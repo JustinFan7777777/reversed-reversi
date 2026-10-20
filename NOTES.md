@@ -5,9 +5,11 @@
 - Source: user-supplied Claude handoff; Appendix A extracted verbatim.
 - `versions/v00_ai.py` preserves the original submission.
 - Baseline v05 passed platform usability and supplied 20 validated match traces. User confirmed Round 2 v12 also passed all 10 usability cases, earned 10 basic points, and stayed fixed for a second 20-game batch.
-- Baseline v05 platform usability passed all 10 cases; user reported successful upload on 2026-10-20. Current ai.py is the new Round 2 candidate.
+- Baseline v05 platform usability passed all 10 cases; user reported successful upload on 2026-10-20. Round 2 then selected v12 (superseded locally by Round 3 v13, below).
 - Initial M3–M5 pilot: 10-minute single-process allowance. User subsequently authorized Round 2 implementation, experiments, and compute; main Round 2 training/matches took about 9 min 39 s, with correctness/resource checks separately measured.
 - Phase 1 deadline: 2026-10-23 23:59; Phase 2: 2026-11-06 23:59.
+- Round 3: working ai.py is v13 (PVS at all levels, inline leaves), validated locally
+  against v12; v12 remains the platform submission until Phase 1 closes.
 
 ## Platform facts and open questions
 
@@ -193,7 +195,10 @@ openings, screening openings, and final confirmation openings are disjoint.
 
 - PVS remains an experimental option. Its extra strength over TT+ordering was not
   established in either ablation, so **PVS_ENABLED=False** in the submitted candidate.
-- Final selected snapshot: `versions/v12_round2_selected_ai.py` (same bytes as ai.py).
+  (Round 2 decision; Round 3 showed the 5 ms ablations could not detect the depth-
+  dependent saving and enabled PVS in v13.)
+- Final selected snapshot: `versions/v12_round2_selected_ai.py` (same bytes as ai.py
+  until Round 3).
 - Baseline rollback: `versions/v05_platform_passed_ai.py`, already platform-accepted.
 - Seven-control CSO produced the following embedded weights; columns are corner,
   X, C, edge, discs, mobility, stable, frontier, potential mobility, parity, position:
@@ -225,14 +230,15 @@ openings, screening openings, and final confirmation openings are disjoint.
 - The platform does not expose move/game timing to the user. Complete terminal traces
   establish normal game outcomes, not precise measured resource headroom.
 - Specialized endgame code, aspiration windows, and stronger pattern evaluators remain
-  optional future work; no untested search pruning was enabled in this release.
+  optional future work; no untested search pruning was enabled in this release (v12).
 
 
 ## Platform batch 02 — v12 locked, 2026-10-20
 
 - User confirmed v12 passed all 10 usability cases and earned the 10 basic points.
-  The user kept the version fixed throughout this batch; ai.py remains byte-identical
-  to `versions/v12_round2_selected_ai.py`. No strategy or weight changes were made.
+  The user kept the version fixed throughout this batch; ai.py remained byte-identical
+  to `versions/v12_round2_selected_ai.py` until Round 3. No strategy or weight changes
+  were made during the batch.
 - Input: Desktop/new_chess_log, 20 traces (groups 11–20), 10 opponent IDs, 1,199
   independently verified legal placements, all terminal, all result labels correct.
 - Results: **11 wins / 3 draws / 6 losses**; black 7/2/1, white 4/1/5 (W/D/L).
@@ -267,3 +273,86 @@ openings, screening openings, and final confirmation openings are disjoint.
   these 20 traces; precise resource usage cannot be recovered from board states.
 - Complete machine-readable findings: `versions/platform_batch02_analysis.json`.
   Raw searches: `artifacts/platform_batch02_*` (ignored by Git).
+
+## Round 3 — PVS at all levels and inline leaves (v13), 2026-10-20
+
+- User approved an algorithm review and then v13 implementation with validation
+  compute. v12 stays on the platform until Phase 1 closes (2026-10-23 23:59).
+- Review: three independent reviewers (endgame, midgame search, evaluation) measured
+  on a shared seeded set of 2,064 self-play positions; an adversarial verifier re-ran
+  the key claims on held-out positions. Only re-verified numbers are recorded here.
+
+### Changes (ai.py)
+
+- `PVS_ENABLED = True`: the existing interior PVS (null windows for later siblings
+  at remaining depth >= 2, fail-soft re-search on improvement).
+- `ROOT_PVS`: root moves after the first are searched with a null window
+  `(alpha, alpha+1)` and re-searched with `(alpha, INF)` on fail-high, through
+  `AI._child_value`, which starts a new resumable search per call (the engine ignores
+  windows while a suspended frame exists, so stats are reset every call).
+- `LEAF_INLINE`: depth-1 nodes score their depth-0 children inline instead of pushing
+  a frame per child. Same LSB order, node counts, values and TT contents.
+- `SLICE_NODES` names the 2048-node slice; `AI.last_value` records the root value of
+  the last completed iteration (telemetry and tests only).
+
+### Measurements
+
+- Why the 5 ms ablation missed PVS: savings grow with depth. Fixed-depth searches
+  with a TT, 24 held-out positions (empties 29-47): interior PVS 0.88x / 0.75x /
+  0.70x nodes at depths 9 / 10 / 11; with root PVS 0.82x / 0.64x / 0.56x (depth 11
+  CI [0.50, 0.63]); identical values and moves; time 0.52x. Without a TT PVS can
+  cost more (601 vs 538 nodes, depth 5 from the opening).
+- Inline leaves: identical tree on 8 positions at depth 10; 1.58x faster.
+- Real 4.0 s budget, 16 positions (games 40-41 of the shared set): mean completed
+  depth 12.50 -> 13.25 at 32-50 empties and 15.75 -> 16.88 at 20-28 empties;
+  same move in 15/16 positions.
+
+| Trial (v13 vs v12, 6 random opening plies) | Games | Search budget | W/D/L | Score | Paired 95% CI |
+|---|---:|---:|---:|---:|---:|
+| Seeds 720000-724009 | 100 | 0.2 s | 44/12/44 | 0.500 | [0.43, 0.57] |
+| Seeds 710000-714009 | 100 | 0.4 s | 57/14/29 | 0.640 | [0.57, 0.71] |
+| Seeds 730000-734009 | 100 | 0.8 s | 59/8/33 | 0.630 | [0.555, 0.705] |
+
+- The gain appears at the larger budgets, as expected from depth-dependent savings.
+  The 0.2 s run includes one v12 timeout caused by machine load (5 parallel arena
+  processes); all other games ended normally.
+- Colour split (v13 as black / as white): 0.4 s 35/6/9 and 22/8/20; 0.8 s 36/2/12 and
+  23/6/21. White remains the weaker colour, matching the platform record.
+- Friend replay (opp19, both recorded losses): of 17 own decisions at 24-40
+  empties searched for 4 s each, v13 changes one move (27 empties, too early to prove);
+  mean depth 13.47 -> 14.47. Those losses are not explained by search depth.
+
+### Validation
+
+- Lint; minimax 192 pairs; resumption 144; PVS/TT window+resume 48 and cache
+  invalidation; TT/feature/minimax 72; interface 492; fallback; terminal 9; arena
+  limits; engine vs reference 40 games / 2,494 positions; 139 exact platform-position
+  oracles (batch 01).
+- New `tests/test_pvs_inline.py`: 1,024 same-tree checks (values, nodes and TT
+  arrays), 2,048 PVS value/bound checks, 32 root-PVS/slice checks with exact root
+  values, and a fake-clock sweep that expires the deadline at every clock read
+  (200 runs, cut inside null windows and re-searches): legal moves, exact values.
+- Self-play: 200 games / 12,433 positions at 0.005 s; zero fallback and warm-up
+  failures.
+- Startup: import 0.08-0.09 s + init 0.93-0.97 s (v12: 0.85 s). Timing stress:
+  maximum 4.0033 s over 14 cases including 3x slowdown and corrupted nps.
+- Memory (same machine, back to back): import + init growth 77.0 MiB (v12 70.6 MiB);
+  play delta and peak delta +0.0 MiB. If initialization counts toward the 100 MB
+  limit (unconfirmed), the margin is smaller than in Round 2.
+
+### Review findings kept for later (not in v13)
+
+- End-phase weight row (empties <= 16) ranks sibling moves worse than the middle row:
+  +3.5 pp pooled [1.1, 6.0] at 12-17 empties (static ranking against exact WLD).
+  Next: a per-empties or tapered table fitted on exact labels, accepted only on
+  match evidence.
+- Eval-based move ordering on top of PVS: plausible further node savings, but chosen
+  on the same positions it was measured on; needs held-out confirmation.
+- Direct WLD proofs (window [-1, 1], first-win stop) prove 21/24 positions at 20
+  empties and 11/24 at 22 within ~4 s, but the current search made 0/15
+  outcome-changing errors at 20 empties: low priority, nps-gated if added.
+- Rejected: TT cutoffs from deeper entries (cannot fire within one iterative
+  deepening run), slice tuning (0.35% overhead), a 1M-entry TT (48 MiB), parity
+  endgame ordering (+5% to +50% nodes), Multi-ProbCut before the evaluation is fixed.
+- Even-empties positions in the shared set are almost all black to move, so
+  colour-specific conclusions need odd-level or colour-split tests.

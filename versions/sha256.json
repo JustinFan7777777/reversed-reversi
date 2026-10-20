@@ -1,5 +1,5 @@
 {
-  "ai.py": "4b6c36a8c5bc5ebbd0a8f4f534c90bf8eb31406c5f0c34888be8f3e5d3c47d57",
+  "ai.py": "96daf02b7d724a713f61fe53ee41ff0e87ccd740113cd1471ffce0a5a545b97e",
   "versions/v00_ai.py": "ceebf4c883d2b21e723d30ab80b8b881ec451b8cbbf7f8611757758f6fbc8a71",
   "versions/v00_arena.py": "38ff35dea714537e4972073259b664ee1ce19749bcaa49bd404ed6efd02ebbd3",
   "versions/v00_bench_memory.py": "33e98d2de3236947ffd88370deeb842d8c8b2e7599111b87b71a7f812eaa0d46",
@@ -17,5 +17,6 @@
   "versions/v09_pvs_cso_ai.py": "e982fab635c1852630cbd3ef92c895d032ffc7a402687de135e62bdad34efdc5",
   "versions/v10_round2_candidate_ai.py": "e982fab635c1852630cbd3ef92c895d032ffc7a402687de135e62bdad34efdc5",
   "versions/v11_tt_cso_ai.py": "9bd7cfdd46d15c0f7b73832aaf3dd03385b6f4c2222f71fa37b1c8b6c36f4193",
-  "versions/v12_round2_selected_ai.py": "4b6c36a8c5bc5ebbd0a8f4f534c90bf8eb31406c5f0c34888be8f3e5d3c47d57"
+  "versions/v12_round2_selected_ai.py": "4b6c36a8c5bc5ebbd0a8f4f534c90bf8eb31406c5f0c34888be8f3e5d3c47d57",
+  "versions/v13_round3_pvs_inline_ai.py": "96daf02b7d724a713f61fe53ee41ff0e87ccd740113cd1471ffce0a5a545b97e"
 }

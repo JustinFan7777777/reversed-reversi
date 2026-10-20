@@ -1,0 +1,224 @@
+{
+  "submission": "ai.py",
+  "snapshot": "versions/v13_round3_pvs_inline_ai.py",
+  "sha256": "96daf02b7d724a713f61fe53ee41ff0e87ccd740113cd1471ffce0a5a545b97e",
+  "baseline_snapshot": "versions/v12_round2_selected_ai.py",
+  "baseline_sha256": "4b6c36a8c5bc5ebbd0a8f4f534c90bf8eb31406c5f0c34888be8f3e5d3c47d57",
+  "changes": [
+    "PVS_ENABLED=True (interior PVS)",
+    "ROOT_PVS root null windows via AI._child_value",
+    "LEAF_INLINE inline depth-1 leaf evaluation",
+    "SLICE_NODES constant",
+    "AI.last_value telemetry"
+  ],
+  "python": "3.10.22",
+  "numpy": "1.26.4",
+  "numba": "0.59.1",
+  "regression": {
+    "minimax_pairs": 192,
+    "resumption_comparisons": 144,
+    "bound_window_resume_checks": 48,
+    "tt_minimax_checks": 72,
+    "interface_cases": 492,
+    "terminal_checks": 9,
+    "engine_positions_40_games": 2500,
+    "platform_exact_oracle_checks": 139,
+    "pvs_inline_same_tree_checks": 1024,
+    "pvs_value_bound_checks": 2048,
+    "root_pvs_slice_checks": 32,
+    "fake_clock_deadline_runs": 200,
+    "self_play_games": 200,
+    "self_play_positions": 12433,
+    "fallbacks": 0,
+    "warmup_failures": 0
+  },
+  "matches_vs_v12": [
+    {
+      "search_seconds_per_move": 0.2,
+      "time_out": 0.25,
+      "opening_plies": 6,
+      "games": 100,
+      "wins": 44,
+      "draws": 12,
+      "losses": 44,
+      "score": 0.5,
+      "paired_ci95": [
+        0.43,
+        0.57
+      ],
+      "by_colour": {
+        "candidate_black": {
+          "win": 31,
+          "draw": 5,
+          "loss": 14
+        },
+        "candidate_white": {
+          "win": 13,
+          "draw": 7,
+          "loss": 30
+        }
+      },
+      "reasons": [
+        "normal",
+        "timeout"
+      ],
+      "seeds": [
+        720000,
+        721000,
+        722000,
+        723000,
+        724000
+      ]
+    },
+    {
+      "search_seconds_per_move": 0.4,
+      "time_out": 0.5,
+      "opening_plies": 6,
+      "games": 100,
+      "wins": 57,
+      "draws": 14,
+      "losses": 29,
+      "score": 0.64,
+      "paired_ci95": [
+        0.57,
+        0.71
+      ],
+      "by_colour": {
+        "candidate_black": {
+          "win": 35,
+          "draw": 6,
+          "loss": 9
+        },
+        "candidate_white": {
+          "win": 22,
+          "draw": 8,
+          "loss": 20
+        }
+      },
+      "reasons": [
+        "normal"
+      ],
+      "seeds": [
+        710000,
+        711000,
+        712000,
+        713000,
+        714000
+      ]
+    },
+    {
+      "search_seconds_per_move": 0.8,
+      "time_out": 1.0,
+      "opening_plies": 6,
+      "games": 100,
+      "wins": 59,
+      "draws": 8,
+      "losses": 33,
+      "score": 0.63,
+      "paired_ci95": [
+        0.555,
+        0.705
+      ],
+      "by_colour": {
+        "candidate_black": {
+          "win": 36,
+          "draw": 2,
+          "loss": 12
+        },
+        "candidate_white": {
+          "win": 23,
+          "draw": 6,
+          "loss": 21
+        }
+      },
+      "reasons": [
+        "normal"
+      ],
+      "seeds": [
+        730000,
+        731000,
+        732000,
+        733000,
+        734000
+      ]
+    }
+  ],
+  "depth_at_4s": {
+    "midgame 32-50": {
+      "v12": {
+        "mean_depth": 12.5,
+        "solved": 0,
+        "n": 8
+      },
+      "v13": {
+        "mean_depth": 13.25,
+        "solved": 0,
+        "n": 8
+      }
+    },
+    "transition 20-28": {
+      "v12": {
+        "mean_depth": 15.75,
+        "solved": 0,
+        "n": 8
+      },
+      "v13": {
+        "mean_depth": 16.88,
+        "solved": 0,
+        "n": 8
+      }
+    },
+    "same_move": 15,
+    "positions": 16
+  },
+  "friend_replay_opp19": {
+    "decisions": 17,
+    "different_choices": 1,
+    "v12_matches_platform": 16,
+    "mean_depth": {
+      "v12": 13.47,
+      "v13": 14.47
+    },
+    "judged": []
+  },
+  "fixed_depth_node_ratio_with_tt": {
+    "depth_9": 0.824,
+    "depth_10": 0.641,
+    "depth_11": 0.562,
+    "depth_11_ci95": [
+      0.504,
+      0.632
+    ],
+    "positions": 24,
+    "source": "independent verifier, held-out positions"
+  },
+  "startup_seconds": {
+    "import": [
+      0.08,
+      0.09
+    ],
+    "init": [
+      0.93,
+      0.97
+    ],
+    "v12_init": 0.85
+  },
+  "max_stress_move_seconds": 4.0033,
+  "stress_cases": 14,
+  "memory_mib": {
+    "import_and_init_growth": 77.0,
+    "v12_import_and_init_growth_same_run": 70.6,
+    "play_peak_delta": 0.0
+  },
+  "reviews": {
+    "correctness": "ship (nits fixed)",
+    "platform_risk": "ship-with-fixes (docs and wording fixed)"
+  },
+  "platform_accepted": false,
+  "platform_status": "Not uploaded. v12 stays on the platform until Phase 1 closes on 2026-10-23 23:59.",
+  "limitations": [
+    "Match evidence uses 0.2-0.8 s search budgets; real games use about 4 s.",
+    "The 0.2 s run includes one v12 timeout caused by machine load.",
+    "Start-up memory counting on the platform is unconfirmed; v13 adds about 6 MiB of JIT growth."
+  ]
+}

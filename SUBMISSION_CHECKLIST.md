@@ -23,3 +23,12 @@ Baseline `versions/v05_platform_passed_ai.py` passed all 10 cases on 2026-10-20.
 
 Local timing and memory observations are in `NOTES.md`. Both uploads' usability
 acceptance is confirmed by user reports; final course rank remains unverified.
+
+## Round 3 v13 (Phase 2 candidate, validated locally)
+
+- [x] PVS in the tree and at the root, inline leaf evaluation; v12 kept in `versions/` for rollback.
+- [x] Full regression plus `tests/test_pvs_inline.py`; 139 platform oracles; 200 self-play games, zero fallbacks.
+- [x] Matches vs v12, 100 paired games each: 0.640 at 0.4 s and 0.630 at 0.8 s search (CIs above 0.5); 0.500 at 0.2 s.
+- [x] Startup about 1.0 s; maximum stress move 4.0033 s; import+init growth 77.0 MiB (v12 70.6 MiB); play delta +0.0 MiB.
+- [ ] Upload v13 only after Phase 1 closes (2026-10-23 23:59) and confirm all 10 usability cases again.
+- [ ] Use `playto` against several opponents (including opp19) and keep the replays for analysis.

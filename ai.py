@@ -251,8 +251,10 @@ def evaluate(me, opp, my_moves, W):
 #    stats[0] = nodes visited, stats[1] = node limit, stats[2] = 1 if aborted
 #    Seven-element stats allow yielding/resuming the explicit stack so the Python
 #    driver checks a monotonic wall clock between short node slices.
-#    PVS is implemented behind a flag for experiments; disabled in this release
-#    because the isolated playing-strength gain was not established.
+#    PVS (null windows for later siblings, re-search on improvement) runs in the
+#    tree and at the root: same fixed-depth values, 0.82-0.56x the nodes at
+#    depths 9-11 with the TT (Round 3, NOTES.md).  Depth-1 nodes score their leaf
+#    children inline instead of pushing depth-0 frames: same tree, ~1.6x faster.
 # ----------------------------------------------------------------------------
 MAXPLY = 128
 NSLOT = 64                      # Safe for arbitrary supplied 8x8 positions.
@@ -264,7 +266,10 @@ I_DEPTH, I_ALPHA, I_BETA, I_BEST, I_N, I_I, I_KEY = 0, 1, 2, 3, 4, 5, 6
 I_ORIG_ALPHA, I_TT_MOVE, I_SCOUT = 6 + NSLOT, 7 + NSLOT, 8 + NSLOT
 SI_COLS = 9 + NSLOT
 TT_SIZE = 131072  # Fixed 6 MiB: full keys, depth, score, move, bound flag.
-PVS_ENABLED = False
+PVS_ENABLED = True        # Compile-time: null-window siblings inside the tree.
+LEAF_INLINE = True        # Compile-time: depth-1 nodes evaluate their leaves inline.
+ROOT_PVS = True           # Python-side: null-window root siblings in AI._search.
+SLICE_NODES = 2048        # Nodes per resumable slice between wall-clock checks.
 ORDER_OPP_MOBILITY = True
 _EMPTY_TT = np.zeros((0, 6), dtype=np.uint64)
 
@@ -336,6 +341,40 @@ def alphabeta_engine(me, opp, depth, alpha, beta, stats, W, su, si, tt):
                     mode = 1
             elif d <= 0:
                 ret = evaluate(cm, co, moves, W)
+                mode = 2
+            elif d == 1 and LEAF_INLINE:
+                # Score the depth-0 children here instead of pushing one frame each.
+                # Same tree as the frame path: LSB order (depth 1 is never sorted),
+                # equal node counts (a child that must pass is one extra frame) and
+                # the same best move for the TT store in mode 2.
+                lo, hi = si[p, I_ALPHA], si[p, I_BETA]
+                best, best_move = -INF, U64(0)
+                m = moves
+                while m != U64(0):
+                    lsb = m & ((~m) + ONE)
+                    m ^= lsb
+                    f = flips(cm, co, lsb)
+                    nme = co & ~f
+                    nop = cm | lsb | f
+                    stats[0] += 1
+                    child_moves = legal_moves(nme, nop)
+                    if child_moves != U64(0):
+                        v = -evaluate(nme, nop, child_moves, W)
+                    else:
+                        back = legal_moves(nop, nme)
+                        if back == U64(0):
+                            v = -terminal_value(nme, nop)
+                        else:
+                            stats[0] += 1              # the pass frame
+                            v = evaluate(nop, nme, back, W)
+                    if v > best:
+                        best, best_move = v, lsb
+                        if v > lo:
+                            lo = v
+                            if lo >= hi:
+                                break
+                si[p, I_TT_MOVE] = np.int64(best_move)
+                ret = best
                 mode = 2
             else:
                 n = 0
@@ -556,6 +595,7 @@ class AI(object):
         self.warmup_failures = 0
         self.last_depth = 0
         self.last_nodes = 0
+        self.last_value = 0             # root value of the last completed iteration
         self.last_solved = False
         self._warmup()
 
@@ -600,6 +640,24 @@ class AI(object):
                             float(self.time_out) * PER_MOVE_FRACTION, 4.0))
 
     # ---- resumable root search with wall-clock checks -----------------------
+    def _child_value(self, child_me, child_opp, depth, lo, hi, stats, su, si, deadline):
+        """Root-side value of one child searched with the root window (lo, hi), or None
+        once the deadline passes.  Each call starts a NEW search: while stats[3] marks
+        a suspended frame, the engine resumes it and ignores the window arguments."""
+        stats[:] = 0
+        while True:
+            if time.perf_counter() >= deadline:
+                return None
+            # A bad nps estimate cannot create a long uninterruptible search: the
+            # explicit stack yields about every SLICE_NODES nodes (an inline depth-1
+            # node may add its leaves before the next check).
+            stats[0], stats[1], stats[2] = 0, SLICE_NODES, 0
+            value = -int(alphabeta(child_me, child_opp, depth, -hi, -lo,
+                                   stats, self.W, su, si, self.tt))
+            self.last_nodes += int(stats[0])
+            if stats[2] != 2:
+                return value
+
     def _search(self, me, opp, root_moves, budget):
         start = time.perf_counter()
         deadline = start + budget
@@ -613,7 +671,7 @@ class AI(object):
             bool((1 << sq) & int(CORNERS)),
             int(popcnt(U64(flips(me, opp, U64(1 << sq)))))))
         best = order[0]
-        self.last_depth = self.last_nodes = 0
+        self.last_depth = self.last_nodes = self.last_value = 0
         self.last_solved = False
         su = np.zeros((MAXPLY, SU_COLS), dtype=np.uint64)
         si = np.zeros((MAXPLY, SI_COLS), dtype=np.int64)
@@ -622,29 +680,28 @@ class AI(object):
         try:
             for depth in range(1, max_depth + 1):
                 alpha, iteration_best, results = -INF, best, []
-                for sq in order:
-                    if time.perf_counter() >= deadline:
-                        return best
+                for i, sq in enumerate(order):
                     move = U64(1 << sq)
                     flipped = U64(flips(me, opp, move))
                     child_me, child_opp = U64(opp & ~flipped), U64(me | move | flipped)
-                    stats[:] = 0
-                    while True:
-                        if time.perf_counter() >= deadline:
-                            return best  # Keep only the last COMPLETED depth.
-                        # A bad nps estimate cannot create a long uninterruptible
-                        # search: the explicit stack yields at most every 2048 nodes.
-                        stats[0], stats[1], stats[2] = 0, 2048, 0
-                        value = -int(alphabeta(child_me, child_opp, depth - 1,
-                                             -INF, -alpha, stats, self.W, su, si, self.tt))
-                        self.last_nodes += int(stats[0])
-                        if stats[2] != 2:
-                            break
+                    if ROOT_PVS and i > 0:
+                        # Null window first: only prove whether this move beats alpha;
+                        # re-search for its exact value when it does.
+                        value = self._child_value(child_me, child_opp, depth - 1, alpha,
+                                                  alpha + 1, stats, su, si, deadline)
+                        if value is not None and value > alpha:
+                            value = self._child_value(child_me, child_opp, depth - 1, alpha,
+                                                      INF, stats, su, si, deadline)
+                    else:
+                        value = self._child_value(child_me, child_opp, depth - 1, alpha,
+                                                  INF, stats, su, si, deadline)
+                    if value is None:
+                        return best  # Keep only the last COMPLETED depth.
                     results.append((value, sq))
                     if value > alpha:
                         alpha, iteration_best = value, sq
                 best = iteration_best
-                self.last_depth = depth
+                self.last_depth, self.last_value = depth, alpha
                 if depth >= empties or abs(alpha) >= WIN_BASE:
                     self.last_solved = True
                     break
@@ -660,7 +717,7 @@ class AI(object):
     def go(self, chessboard):
         # Clear candidate_list, must do this step
         self.candidate_list.clear()
-        self.last_depth = self.last_nodes = 0
+        self.last_depth = self.last_nodes = self.last_value = 0
         self.last_solved = False
         t_start = time.perf_counter()
         try:
