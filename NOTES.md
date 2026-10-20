@@ -76,3 +76,77 @@ Results will identify environment, seeds, budgets, W/D/L, and timing. Local chec
   reserve covers setup/correctness checks under the user's 10-minute experiment allowance.
 - PVS/aspiration windows, a specialized 14–16-empty solver, CSO, and opening books
   remain future experiments; none is claimed complete by these candidates.
+
+### M3–M5 bounded pilot results
+
+- Complete run: 309.6 s, 1,380 games, single process; a first attempt (~24 s)
+  stopped on an overly strict 10 ms experiment timeout. No course 5 s timeout occurred.
+- The first TT run scored 56/8/36; a full repeat scored 53/6/41, interval [0.465, 0.655].
+  The repeat does not establish improvement, so TT is not merged on its own.
+- Feature ablations: 100 games per sign, six seeded opening plies, paired colors,
+  0.01 s soft timeout setting (nominal 4 ms search); 5 s hard limit.
+
+| Feature | Positive weight W/D/L | Negative weight W/D/L |
+|---|---:|---:|
+| Stable edge chains (magnitude 10) | 47/7/46 | 2/0/98 |
+| Own frontier advantage (4) | 14/1/85 | 59/9/32 |
+| Potential mobility (4) | 53/5/42 | 4/2/94 |
+| Side-to-move parity (4) | 45/6/49 | 46/5/49 |
+| Positional penalty (1) | 22/6/72 | 5/5/90 |
+
+- Only negative frontier weight qualified for separate confirmation; these are
+  exploratory comparisons, not ten independent confirmatory claims.
+- SPSA: four iterations, plus/minus perturbations, eight paired-opening games each,
+  historical opponent pool. Proposed weights failed held-out v01: 38/10/52,
+  score 0.430, interval [0.340, 0.515]. Rejected; tuning is a pilot, not convergence.
+- The pilot against v00 scored 21/1/78, but its 50 ms floor gives it more time than
+  the 4 ms candidate budget. It is not a fair strength comparison. The separate
+  confirmation uses timeout 0.125 s so both sides receive a 50 ms intended budget.
+- Sanity checks for the rejected tuned candidate: greedy 9/1/0, random 6/0/0.
+- Maximum observed move in the pilot: 0.0724 s; combined go time per game: 0.7770 s.
+- Raw records: `artifacts/experiments.json`; committed summary: `versions/experiment_results.json`.
+- Extra features, TT, and the rejected weights are preserved as experimental versions.
+
+### Final candidate — v05 Phase 1 local-ready
+
+- Promoted `v04` evaluator without TT, with only the new frontier column enabled
+  at weight -4 in all three phases. SPSA weights were rejected.
+- Held-out seed 60000, 100 games vs v01, timeout 0.01 s: **64/4/32**, score 0.660,
+  paired-bootstrap 95% interval **[0.565, 0.750]**.
+- Held-out seed 70000, 100 games vs v00, timeout **0.125 s** (both receive the same
+  nominal 50 ms search budget): **64/3/33**, score 0.655, interval **[0.555, 0.745]**.
+- Confirmation took 185.5 s. Successful experiment batches totaled 495.1 s;
+  including the aborted first pilot (~24 s) and candidate checks, M3–M5 experiments
+  stayed below the authorized 10-minute compute allowance.
+- Snapshot: `versions/v05_phase1_ai.py`; summary: `versions/confirmation_results.json`;
+  complete records: `artifacts/no-tt-confirmation.json`.
+- Final regression: lint passed; engine 40 games / 2,494 positions; minimax 192 pairs;
+  resumable search 144 comparisons; interface 492 cases; explicit terminal/pass 9 cases;
+  injected exception recovery passed.
+- Final self-play: **200 games / 12,452 positions**, zero fallback/warm-up failures.
+- Final baselines (six seeded random opening plies, timeout 0.1 s): random **6/0/0**,
+  greedy **9/0/1**. These are sanity checks, not broad competition ranking estimates.
+- Fresh process: import **0.08 s**, initialization **0.88 s**, first go **2.00 s**;
+  combined import/init/first go **2.96 s**.
+- Final timing: **14 stress cases**, including synthetic 3x slowdown and broken nps;
+  maximum observed go **2.000193 s**. Recommended controls remain 80 s / 0.40 / 2 s.
+- The complete final regression log is `artifacts/final-validation.log`.
+- Platform upload, usability acceptance, practice replays, and actual server resource
+  accounting remain pending. No local result establishes course points or final rank.
+
+- Final complete-game RSS measurement: **31 own moves**, post-init reference **123.2 MiB**,
+  end RSS **113.2 MiB**, delta **-10.0 MiB**, conservative peak delta **+0.0 MiB**
+  (rounded to 0.1 MiB). Import plus initialization growth **53.1 MiB**, also under 100 MiB.
+  Log: `artifacts/final-memory.log`. RSS reclamation explains the negative delta.
+
+## Remaining work
+
+- M0/M1/M2: completed locally; platform acceptance still requires an upload.
+- M3: fixed-size TT implemented, tested, and rejected for lack of significant improvement;
+  PVS/aspiration windows, richer ordering, and a specialized 14–16-empty solver remain pending.
+- M4: five added feature directions tested both ways; frontier-only improvement confirmed
+  on independent opening seeds and merged. Stability feature is a conservative subset.
+- M5: reproducible SPSA pilot and historical snapshots exist; pilot weights rejected.
+  Larger tuning runs, scaled perturbations, and CSO remain pending a separate compute allowance.
+- M6 optional opening books/MCTS comparison: not undertaken.
+- M7 platform freeze and round-robin verification: pending; final course outcomes unverified.

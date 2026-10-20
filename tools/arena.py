@@ -45,10 +45,10 @@ def play(mod_black, mod_white, time_out, per_move_limit=5.0, game_limit=180.0,
         color = -color
     while passes < 2:
         ai = ais[color]
-        t = time.time()
+        t = time.perf_counter()
         given = board.copy()
         ai.go(given)
-        dt = time.time() - t
+        dt = time.perf_counter() - t
         used[color] += dt
         if metrics is not None:
             metrics["max_move_seconds"] = max(metrics.get("max_move_seconds", 0.0), dt)
@@ -67,9 +67,9 @@ def play(mod_black, mod_white, time_out, per_move_limit=5.0, game_limit=180.0,
                 return -color, "illegal pass", used
             passes += 1
         else:
-            if (not cl or set(cl) != set(legal) or cl[-1] not in legal or
-                    not all(type(m) is tuple and len(m) == 2 and
-                            all(type(x) is int for x in m) for m in cl)):
+            if (not cl or not all(type(m) is tuple and len(m) == 2 and
+                                  all(type(x) is int for x in m) for m in cl) or
+                    set(cl) != set(legal) or cl[-1] not in legal):
                 return -color, "illegal move", used
             board = R.apply_move(board, color, tuple(cl[-1]))
             passes = 0

@@ -46,7 +46,6 @@ def main():
             break
     else:
         raise AssertionError("No playable endgame fixture")
-    assert ai._budget(20) == 0 if ai.used >= A.GAME_BUDGET_SEC else True
     ai.used = A.GAME_BUDGET_SEC
     assert ai._budget(20) == 0
     print("OK: %d resumable-search comparisons; bounded endgame fallback" % checked)

@@ -50,7 +50,7 @@ ONE = U64(1)
 def _bb(squares):
     v = 0
     for s in squares:
-        v |= 1 << s
+        v |= 1 << int(s)
     return U64(v)
 
 
@@ -139,12 +139,13 @@ def flips(me, opp, move):
 # feature columns:   0 corner   1 X-square   2 C-square   3 edge   4 discs   5 mobility
 # For columns 0-4 the feature is (opp_count - me_count), so a POSITIVE weight means
 # "owning this is BAD for me" (reversed game).  Column 5 is (my_mobility - opp_mobility).
-# PLACEHOLDER VALUES -- to be tuned by self-play / evolution (see tools/).
+# Original six-feature weights are the supplied baseline. The extra frontier
+# weight was selected by paired self-play; see NOTES.md for seeds and intervals.
 # rows = game phase:  0 opening (empties > 44), 1 middle (17..44), 2 end (<= 16)
 DEFAULT_W = np.array([
-    [40, -10, 5, 2, 1, 4],
-    [40, -10, 5, 2, 1, 6],
-    [40, -10, 5, 0, 8, 2],
+    [40, -10, 5, 2, 1, 4, 0, -4, 0, 0, 0],
+    [40, -10, 5, 2, 1, 6, 0, -4, 0, 0, 0],
+    [40, -10, 5, 0, 8, 2, 0, -4, 0, 0, 0],
 ], dtype=np.int64)
 
 
@@ -156,6 +157,48 @@ def terminal_value(me, opp):
     elif diff < 0:
         return -WIN_BASE + diff
     return 0
+
+
+# Extra feature columns: stable-edge penalty, frontier benefit, potential
+# mobility benefit, side-to-move parity, positional penalty. Frontier weight -4
+# passed two independent 100-game comparisons; other added features stay disabled.
+POSITION_WEIGHTS = np.array([
+    [80, -20, 8, 4, 4, 8, -20, 80],
+    [-20, -30, 0, 0, 0, 0, -30, -20],
+    [8, 0, 2, 1, 1, 2, 0, 8],
+    [4, 0, 1, 0, 0, 1, 0, 4],
+    [4, 0, 1, 0, 0, 1, 0, 4],
+    [8, 0, 2, 1, 1, 2, 0, 8],
+    [-20, -30, 0, 0, 0, 0, -30, -20],
+    [80, -20, 8, 4, 4, 8, -20, 80],
+], dtype=np.int64).reshape(-1)
+# Group equal weights so evaluation uses population counts, not a square loop.
+POSITION_LEVELS = np.unique(POSITION_WEIGHTS)
+POSITION_MASKS = np.array([_bb(np.flatnonzero(POSITION_WEIGHTS == v))
+                           for v in POSITION_LEVELS], dtype=np.uint64)
+HORIZONTAL_EDGES = U64(0xFF000000000000FF)
+VERTICAL_EDGES = U64(0x8181818181818181)
+
+
+@njit(cache=False)
+def adjacent(bits):
+    out = U64(0)
+    for direction in range(8):
+        out |= shift(bits, direction)
+    return out
+
+
+@njit(cache=False)
+def stable_edge_mask(discs):
+    # Conservative subset: same-color uninterrupted edge chains from corners.
+    stable = discs & CORNERS
+    for direction in range(4):
+        chain = discs & CORNERS
+        edge = HORIZONTAL_EDGES if direction < 2 else VERTICAL_EDGES
+        for _ in range(6):
+            chain |= shift(chain, direction) & discs & edge
+        stable |= chain
+    return stable
 
 
 @njit(cache=False)
@@ -175,8 +218,25 @@ def evaluate(me, opp, my_moves, W):
     f3 = popcnt(opp & EDGES) - popcnt(me & EDGES)
     f4 = co - cm
     f5 = popcnt(my_moves) - popcnt(legal_moves(opp, me))
-    return (W[ph, 0] * f0 + W[ph, 1] * f1 + W[ph, 2] * f2 +
-            W[ph, 3] * f3 + W[ph, 4] * f4 + W[ph, 5] * f5)
+    value = (W[ph, 0] * f0 + W[ph, 1] * f1 + W[ph, 2] * f2 +
+             W[ph, 3] * f3 + W[ph, 4] * f4 + W[ph, 5] * f5)
+    empty = ~(me | opp)
+    if W[ph, 6] != 0:
+        value += W[ph, 6] * (popcnt(stable_edge_mask(opp)) - popcnt(stable_edge_mask(me)))
+    if W[ph, 7] != 0:
+        frontier = adjacent(empty)
+        value += W[ph, 7] * (popcnt(me & frontier) - popcnt(opp & frontier))
+    if W[ph, 8] != 0:
+        value += W[ph, 8] * (popcnt(empty & adjacent(opp)) - popcnt(empty & adjacent(me)))
+    if W[ph, 9] != 0:
+        value += W[ph, 9] * (1 if empties % 2 else -1)
+    if W[ph, 10] != 0:
+        positional = 0
+        for i in range(len(POSITION_LEVELS)):
+            mask = POSITION_MASKS[i]
+            positional += POSITION_LEVELS[i] * (popcnt(opp & mask) - popcnt(me & mask))
+        value += W[ph, 10] * positional
+    return value
 
 
 # ----------------------------------------------------------------------------
@@ -193,7 +253,7 @@ def evaluate(me, opp, my_moves, W):
 #    driver can check a monotonic wall clock between short node slices.
 # ----------------------------------------------------------------------------
 MAXPLY = 128
-NSLOT = 64                      # >= max number of legal moves in a position (33)
+NSLOT = 64                      # Safe even for arbitrary supplied 8x8 positions.
 # columns of the uint64 frame array `su`
 C_ME, C_OPP, C_MV, C_FL = 0, 1, 2, 2 + NSLOT
 SU_COLS = 2 + 2 * NSLOT
@@ -255,7 +315,7 @@ def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si):
                     si[p, I_KEY + n] = popcnt(f)        # fewest flips first
                     n += 1
                 if d >= 2:
-                    for a in range(n):                  # selection sort (n <= 33)
+                    for a in range(n):                  # selection sort (n <= 64)
                         b = a
                         for j in range(a + 1, n):
                             if si[p, I_KEY + j] < si[p, I_KEY + b]:
@@ -511,6 +571,8 @@ class AI(object):
     def go(self, chessboard):
         # Clear candidate_list, must do this step
         self.candidate_list.clear()
+        self.last_depth = self.last_nodes = 0
+        self.last_solved = False
         t_start = time.perf_counter()
         try:
             board = np.asarray(chessboard)

@@ -1,0 +1,12 @@
+{
+  "ai.py": "1485c8fd56e1e59729117d689f75633b3aba52854ed849452a9f1b59a10341a9",
+  "versions/v00_ai.py": "ceebf4c883d2b21e723d30ab80b8b881ec451b8cbbf7f8611757758f6fbc8a71",
+  "versions/v00_arena.py": "38ff35dea714537e4972073259b664ee1ce19749bcaa49bd404ed6efd02ebbd3",
+  "versions/v00_bench_memory.py": "33e98d2de3236947ffd88370deeb842d8c8b2e7599111b87b71a7f812eaa0d46",
+  "versions/v00_ref_engine.py": "8786c62d66291c99d35f1113e33bfa48affaeb9f447ae0fdc1a8b451381854a3",
+  "versions/v01_ai.py": "4c808d080b30c1fdd1d9e8f83d7741c4ff7bb95bb33f2032479402f8eec92093",
+  "versions/v02_tt_ai.py": "14237bf0556456f2b07fba94ed492d37d94ff30532e3e68b9ef6905374b0c727",
+  "versions/v03_features_ai.py": "b6d1302ddbe083abc63f5533d3a49bd20a2bee8fffd3932ee49c24a158e30a96",
+  "versions/v04_features_no_tt_ai.py": "4f33c3c8a71e33df11252a1a9458fafd3638579fcafe317b6be5846227aafb83",
+  "versions/v05_phase1_ai.py": "1485c8fd56e1e59729117d689f75633b3aba52854ed849452a9f1b59a10341a9"
+}

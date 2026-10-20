@@ -24,6 +24,7 @@ for this checkout; both it and `.venv/` are ignored by Git.
 .venv/bin/python tests/test_resumption.py
 .venv/bin/python tests/test_interface.py
 .venv/bin/python tests/test_fallback.py
+.venv/bin/python tests/test_terminal.py
 .venv/bin/python tools/bench_first_move.py ai.py
 .venv/bin/python tools/bench_timing.py
 .venv/bin/python tools/bench_memory.py ai.py --moves 60 --time-out 0.1
@@ -43,6 +44,9 @@ not competition strength. All development tools enable `DEBUG_RAISE`.
 Opening pairs share a seed and exchange colors. The arena checks the full move set,
 input immutability, per-move limits, and the conservative shared 180-second game limit.
 Its paired-bootstrap confidence intervals resample opening pairs together.
+The bounded experiment scripts explicitly treat their millisecond search settings
+as soft compute budgets, while retaining the official 5-second hard limit and
+recording each overrun. The arena CLI honors `time_out` as a hard limit by default.
 
 ## Search and experiments
 
@@ -50,6 +54,8 @@ The stable search uses uint64 bitboards and an explicit-stack negamax alpha-beta
 implementation. Iterative deepening keeps the last completed result. Search yields
 at most every 512 nodes so Python can check elapsed time. Passes do not spend depth;
 both players unable to move is terminal, even with empty squares remaining.
+The final evaluator adds a validated -4 own-frontier term to the supplied six-feature
+baseline. Other experimental features are disabled; TT and SPSA weights were rejected.
 Non-8x8 boards use an independent generic legal-move engine and a greedy choice.
 
 `versions/` contains reproducible snapshots. `tools/run_experiments.py` runs bounded

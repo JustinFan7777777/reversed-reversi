@@ -1,0 +1,35 @@
+{
+  "submission": "ai.py",
+  "snapshot": "versions/v05_phase1_ai.py",
+  "sha256": "1485c8fd56e1e59729117d689f75633b3aba52854ed849452a9f1b59a10341a9",
+  "python": "3.10.22",
+  "numpy": "1.26.4",
+  "numba": "0.59.1",
+  "engine_positions": 2494,
+  "minimax_pairs": 192,
+  "resumption_comparisons": 144,
+  "interface_cases": 492,
+  "terminal_checks": 9,
+  "self_play_games": 200,
+  "self_play_positions": 12452,
+  "fallbacks": 0,
+  "warmup_failures": 0,
+  "stress_cases": 14,
+  "max_stress_move_seconds": 2.000193,
+  "import_init_first_go_seconds": 2.96,
+  "memory_peak_delta_mib_rounded": 0.0,
+  "memory_end_delta_mib": -10.0,
+  "import_init_rss_growth_mib": 53.1,
+  "random_wdl": [
+    6,
+    0,
+    0
+  ],
+  "greedy_wdl": [
+    9,
+    0,
+    1
+  ],
+  "platform_accepted": false,
+  "local_only": true
+}
