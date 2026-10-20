@@ -12,6 +12,13 @@ if re.search(r"\bimport\s+os\b|\bfrom\s+os\b|__import__\(\s*['\"]os", src):
     problems.append("forbidden: the os module is referenced (even in a comment, to be safe)")
 tree = ast.parse(src)
 for node in ast.walk(tree):
+    allowed = {"numpy", "random", "time", "numba"}
+    if isinstance(node, ast.Import):
+        for alias in node.names:
+            if alias.name.split(".")[0] not in allowed:
+                problems.append("unsupported submission import: %s" % alias.name)
+    if isinstance(node, ast.ImportFrom) and (node.module or "").split(".")[0] not in allowed:
+        problems.append("unsupported submission import: %s" % node.module)
     if isinstance(node, ast.Import) and any(a.name.split(".")[0] == "os" for a in node.names):
         problems.append("forbidden import of os at line %d" % node.lineno)
     if isinstance(node, ast.ImportFrom) and (node.module or "").split(".")[0] == "os":

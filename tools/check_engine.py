@@ -23,12 +23,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--games", type=int, default=200)
     ap.add_argument("--seed", type=int, default=1)
+    ap.add_argument("--time-out", type=float, default=0.01)
+    ap.add_argument("--self-play", action="store_true")
     args = ap.parse_args()
     rnd = random.Random(args.seed)
     A.DEBUG_RAISE = True                 # never hide exceptions while testing
-    players = {R.BLACK: A.AI(8, R.BLACK, 0.2), R.WHITE: A.AI(8, R.WHITE, 0.2)}
+    players = {R.BLACK: A.AI(8, R.BLACK, args.time_out),
+               R.WHITE: A.AI(8, R.WHITE, args.time_out)}
     positions = 0
     for g in range(args.games):
+        for ai in players.values():
+            ai.used = 0.0
         board, color, passes = R.initial_board(), R.BLACK, 0
         while passes < 2:
             ref = R.legal_moves(board, color)
@@ -44,6 +49,8 @@ def main():
             ai = players[color]
             ai.candidate_list.clear()
             ai.go(board)
+            assert getattr(ai, "fallback_count", 0) == 0
+            assert getattr(ai, "warmup_failures", 0) == 0
             cl = ai.candidate_list
             if not ref:
                 assert cl == [], "must return [] when no legal move"
@@ -52,13 +59,18 @@ def main():
                 assert all(isinstance(x, tuple) and type(x[0]) is int and type(x[1]) is int for x in cl), \
                     "candidate_list must hold tuples of plain python ints"
                 assert set(cl) == set(ref) and cl[-1] in ref, (cl, ref)
-                mv = rnd.choice(ref) if rnd.random() < 0.7 else cl[-1]   # mix random + AI moves
+                if args.self_play:
+                    # Diverse seeded openings, then exclusively AI decisions.
+                    mv = rnd.choice(ref) if np.count_nonzero(board) < 12 else cl[-1]
+                else:
+                    mv = rnd.choice(ref) if rnd.random() < 0.7 else cl[-1]
                 board = R.apply_move(board, color, mv)
                 passes = 0
             positions += 1
             color = -color
         R.result(board)
     print("OK: %d games, %d positions, engine matches the reference" % (args.games, positions))
+    print("fallbacks=0; warmup_failures=0; self_play=%s" % args.self_play)
 
 
 if __name__ == "__main__":

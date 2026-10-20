@@ -189,11 +189,11 @@ def evaluate(me, opp, my_moves, W):
 #    "play the first legal move".  An explicit stack removes the whole risk.
 #
 #    stats[0] = nodes visited, stats[1] = node limit, stats[2] = 1 if aborted
-#    (time.time() is not usable inside nopython code, so the python driver converts
-#     the time budget into a node budget.)
+#    Seven-element stats allow yielding/resuming the explicit stack so the Python
+#    driver can check a monotonic wall clock between short node slices.
 # ----------------------------------------------------------------------------
 MAXPLY = 128
-NSLOT = 40                      # >= max number of legal moves in a position (33)
+NSLOT = 64                      # >= max number of legal moves in a position (33)
 # columns of the uint64 frame array `su`
 C_ME, C_OPP, C_MV, C_FL = 0, 1, 2, 2 + NSLOT
 SU_COLS = 2 + 2 * NSLOT
@@ -206,23 +206,28 @@ SI_COLS = 6 + NSLOT
 def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si):
     """Value of the position for `me` (side to move) searched `depth` plies (passes are free).
     su / si are scratch frame arrays of shape (MAXPLY, SU_COLS) / (MAXPLY, SI_COLS)."""
-    p = 0
-    su[0, C_ME] = me
-    su[0, C_OPP] = opp
-    si[0, I_DEPTH] = depth
-    si[0, I_ALPHA] = alpha
-    si[0, I_BETA] = beta
-    mode = 0                    # 0 = enter frame p, 1 = pick next child of p, 2 = return from p
-    ret = 0
+    # Seven-element stats enable resumable node slices. Legacy callers may still
+    # use three elements for a single bounded search (including reference tests).
+    if stats.size >= 7 and stats[3] != 0:
+        p, mode, ret = stats[4], stats[5], stats[6]
+    else:
+        p = 0
+        su[0, C_ME], su[0, C_OPP] = me, opp
+        si[0, I_DEPTH] = depth
+        si[0, I_ALPHA], si[0, I_BETA] = alpha, beta
+        mode, ret = 0, 0
     while True:
+        if stats[0] >= stats[1]:
+            stats[2] = 1
+            if stats.size >= 7:
+                stats[2] = 2  # Yield to Python to check the wall clock.
+                stats[3], stats[4], stats[5], stats[6] = 1, p, mode, ret
+            return 0
         if mode == 0:
             cm = su[p, C_ME]
             co = su[p, C_OPP]
             d = si[p, I_DEPTH]
             stats[0] += 1
-            if stats[0] > stats[1]:
-                stats[2] = 1
-                return 0
             moves = legal_moves(cm, co)
             if moves == U64(0):
                 if legal_moves(co, cm) == U64(0):
@@ -290,6 +295,9 @@ def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si):
                 mode = 0
         else:
             if p == 0:
+                if stats.size >= 7:
+                    stats[3] = 0
+                stats[2] = 0
                 return ret
             p -= 1
             v = -ret
@@ -407,6 +415,11 @@ class AI(object):
         self.W = DEFAULT_W.copy()
         self.nps = 300_000.0            # nodes/second estimate, re-calibrated at run time
         self.used = 0.0                 # wall-clock seconds spent in go() so far
+        self.fallback_count = 0
+        self.warmup_failures = 0
+        self.last_depth = 0
+        self.last_nodes = 0
+        self.last_solved = False
         self._warmup()
 
     # compile everything once and calibrate the speed (also a good place to test "does
@@ -419,75 +432,86 @@ class AI(object):
             me, opp = board_to_bb(board, self.color)
             order = np.array(bb_to_squares(legal_moves(me, opp)), dtype=np.int64)
             vals = np.zeros(len(order), dtype=np.int64)
-            stats = np.array([0, 1 << 60, 0], dtype=np.int64)
+            stats = np.zeros(7, dtype=np.int64)
+            stats[1] = 1 << 60
             search_root(me, opp, order, len(order), 2, stats, self.W, vals)      # compile
-            stats[:] = (0, 1 << 60, 0)
-            t = time.time()
+            stats[:] = 0
+            stats[1] = 1 << 60
+            t = time.perf_counter()
             search_root(me, opp, order, len(order), 7, stats, self.W, vals)      # calibrate
-            dt = max(time.time() - t, 1e-4)
+            dt = max(time.perf_counter() - t, 1e-4)
             self.nps = max(50_000.0, stats[0] / dt)
         except Exception:
+            self.warmup_failures += 1
             if DEBUG_RAISE:
                 raise
 
     # ---- time management ----------------------------------------------------
     def _budget(self, empties):
         moves_left = max(1, (empties + 1) // 2)
-        soft = (GAME_BUDGET_SEC - self.used) / moves_left
-        b = min(soft * 1.5, self.time_out * PER_MOVE_FRACTION)
-        return max(0.05, b)
+        remaining = max(0.0, GAME_BUDGET_SEC - self.used)
+        # Respect very small limits and exhausted game budgets; never impose a
+        # minimum that could exceed the supplied timeout.
+        return max(0.0, min(remaining / moves_left * 1.5,
+                            float(self.time_out) * PER_MOVE_FRACTION, 2.0))
 
-    # ---- root search with iterative deepening ---------------------------------
+    # ---- resumable root search with wall-clock checks -----------------------
     def _search(self, me, opp, root_moves, budget):
-        t0 = time.time()
-        deadline = t0 + budget
-        empties = 64 - popcnt(me | opp)
-        # initial order: fewest flips first
-        scored = []
-        for sq in root_moves:
-            b = U64(1 << sq)
-            scored.append((int(popcnt(U64(flips(me, opp, b)))), sq))
-        scored.sort()
-        order = [sq for _, sq in scored]
+        start = time.perf_counter()
+        deadline = start + budget
+        empties = int(64 - popcnt(me | opp))
+        order = sorted(root_moves, key=lambda sq: (
+            bool((1 << sq) & int(CORNERS)),
+            int(popcnt(U64(flips(me, opp, U64(1 << sq)))))))
         best = order[0]
-        stats = np.zeros(3, dtype=np.int64)
-
-        depths = list(range(1, MAX_DEPTH + 1))
-        if empties <= ENDGAME_EMPTIES:
-            depths = [int(empties)]                      # exact solve, single iteration
-        last_iter = 0.0
-        for depth in depths:
-            remaining = deadline - time.time()
-            if remaining <= 0.01:
-                break
-            if last_iter > 0 and last_iter * 4 > remaining:   # next iteration will not fit
-                break
-            limit = int(remaining * self.nps)
-            stats[0], stats[1], stats[2] = 0, max(limit, 1000), 0
-            it0 = time.time()
-            n = len(order)
-            arr = np.array(order, dtype=np.int64)
-            vals = np.full(n, -INF, dtype=np.int64)
-            bi = search_root(me, opp, arr, n, depth, stats, self.W, vals)
-            iter_best = order[bi] if bi >= 0 else None
-            results = [(int(vals[i]), order[i]) for i in range(n)]
-            dt = time.time() - it0
-            if stats[2] != 0:
-                break                                    # aborted: keep the previous depth's answer
-            if stats[0] > 20_000 and dt > 1e-3:
-                self.nps = 0.5 * self.nps + 0.5 * (stats[0] / dt)
-            best = iter_best
-            # PV move first, then by score
-            results.sort(key=lambda t: -t[0])
-            order = [sq for _, sq in results]
-            last_iter = dt
+        self.last_depth = self.last_nodes = 0
+        self.last_solved = False
+        su = np.zeros((MAXPLY, SU_COLS), dtype=np.uint64)
+        si = np.zeros((MAXPLY, SI_COLS), dtype=np.int64)
+        stats = np.zeros(7, dtype=np.int64)
+        max_depth = empties if empties <= ENDGAME_EMPTIES else min(MAX_DEPTH, empties)
+        try:
+            for depth in range(1, max_depth + 1):
+                alpha, iteration_best, results = -INF, best, []
+                for sq in order:
+                    if time.perf_counter() >= deadline:
+                        return best
+                    move = U64(1 << sq)
+                    flipped = U64(flips(me, opp, move))
+                    child_me, child_opp = U64(opp & ~flipped), U64(me | move | flipped)
+                    stats[:] = 0
+                    while True:
+                        if time.perf_counter() >= deadline:
+                            return best  # Keep only the last COMPLETED depth.
+                        # A bad nps estimate cannot create a long uninterruptible
+                        # search: the explicit stack yields at most every 512 nodes.
+                        stats[0], stats[1], stats[2] = 0, 512, 0
+                        value = -int(alphabeta(child_me, child_opp, depth - 1,
+                                             -INF, -alpha, stats, self.W, su, si))
+                        self.last_nodes += int(stats[0])
+                        if stats[2] != 2:
+                            break
+                    results.append((value, sq))
+                    if value > alpha:
+                        alpha, iteration_best = value, sq
+                best = iteration_best
+                self.last_depth = depth
+                if depth >= empties or abs(alpha) >= WIN_BASE:
+                    self.last_solved = True
+                    break
+                results.sort(key=lambda item: -item[0])
+                order = [sq for _, sq in results]
+        finally:
+            elapsed = time.perf_counter() - start
+            if self.last_nodes and elapsed > 0:
+                self.nps = self.last_nodes / elapsed
         return best
 
     # ---- platform entry point ---------------------------------------------------
     def go(self, chessboard):
         # Clear candidate_list, must do this step
         self.candidate_list.clear()
-        t_start = time.time()
+        t_start = time.perf_counter()
         try:
             board = np.asarray(chessboard)
             if board.shape != (8, 8):                    # non-default board size: slow generic path
@@ -501,17 +525,23 @@ class AI(object):
             if not moves:
                 return                                   # no legal move -> empty list
             all_moves = [sq_to_move(s) for s in moves]
+            self.candidate_list.extend(all_moves)
+            if len(moves) == 1:
+                self.candidate_list.append(all_moves[0])
+                return
             try:
                 empties = int(64 - popcnt(me | opp))
                 best_sq = self._search(me, opp, moves, self._budget(empties))
             except Exception:
+                self.fallback_count += 1
                 if DEBUG_RAISE:
                     raise
-                best_sq = moves[0]                       # never crash, never illegal
+                _, fallback = generic_choose(board, self.color)
+                best_sq = fallback[0] * 8 + fallback[1]                       # never crash, never illegal
             # ALL legal moves first, the chosen one LAST (platform takes the last element)
-            self.candidate_list.extend(all_moves)
             self.candidate_list.append(sq_to_move(best_sq))
         except Exception:
+            self.fallback_count += 1
             if DEBUG_RAISE:
                 raise
             # last resort: independent slow path, so we still answer with legal moves
@@ -524,4 +554,4 @@ class AI(object):
             except Exception:
                 self.candidate_list.clear()
         finally:
-            self.used += time.time() - t_start
+            self.used += time.perf_counter() - t_start
