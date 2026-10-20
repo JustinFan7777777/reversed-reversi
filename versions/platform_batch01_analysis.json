@@ -1,0 +1,315 @@
+{
+  "date": "2026-10-20",
+  "student_id": "me",
+  "archive_sha256": "c9cbadff797e4c3e7c7413c0e320237140885363758df18c34d88a56bdccfa6e",
+  "submission_sha256": "1485c8fd56e1e59729117d689f75633b3aba52854ed849452a9f1b59a10341a9",
+  "source": "User-provided chess_log.zip; labels supplied by user and verified against final disc counts",
+  "summary": {
+    "games": 20,
+    "unique_opponents": 9,
+    "outcomes": {
+      "win": 12,
+      "lose": 7,
+      "draw": 1
+    },
+    "placements": 1199,
+    "all_terminal": true,
+    "colors": {
+      "black": {
+        "win": 6,
+        "draw": 1,
+        "lose": 3
+      },
+      "white": {
+        "win": 6,
+        "lose": 4
+      }
+    },
+    "opponent_results": {
+      "opp01": {
+        "win": 2
+      },
+      "opp02": {
+        "win": 1,
+        "lose": 1
+      },
+      "opp03": {
+        "draw": 1,
+        "win": 1
+      },
+      "opp04": {
+        "lose": 2
+      },
+      "opp05": {
+        "win": 2
+      },
+      "opp06": {
+        "win": 2
+      },
+      "opp07": {
+        "win": 2
+      },
+      "opp08": {
+        "lose": 4
+      },
+      "opp09": {
+        "win": 2
+      }
+    },
+    "repeats": [
+      {
+        "a": "08_opp08_black_lose.txt",
+        "b": "10_opp08_black_lose.txt",
+        "opponent": "opp08",
+        "color": "black",
+        "common_prefix_placements": 44,
+        "same_complete_trace": false,
+        "same_final_board": false
+      },
+      {
+        "a": "08_opp08_white_lose.txt",
+        "b": "10_opp08_white_lose.txt",
+        "opponent": "opp08",
+        "color": "white",
+        "common_prefix_placements": 13,
+        "same_complete_trace": false,
+        "same_final_board": false
+      }
+    ]
+  },
+  "exact_audit": {
+    "complete_own_decisions": 139,
+    "outcome_blunders": 0,
+    "margin_only_deviations": [
+      {
+        "game": "03_opp03_white_win.txt",
+        "ply": 50,
+        "empties": 11,
+        "move": [
+          6,
+          7
+        ],
+        "legal_count": 10,
+        "complete": true,
+        "best_value": 100008,
+        "played_value": 100007,
+        "best_outcome": "win",
+        "played_outcome": "win",
+        "best_margin": 8,
+        "played_margin": 7,
+        "outcome_blunder": false,
+        "margin_regret": 1
+      },
+      {
+        "game": "03_opp03_white_win.txt",
+        "ply": 52,
+        "empties": 9,
+        "move": [
+          4,
+          0
+        ],
+        "legal_count": 8,
+        "complete": true,
+        "best_value": 100007,
+        "played_value": 100003,
+        "best_outcome": "win",
+        "played_outcome": "win",
+        "best_margin": 7,
+        "played_margin": 3,
+        "outcome_blunder": false,
+        "margin_regret": 4
+      }
+    ],
+    "losing_game_entry_values": [
+      {
+        "game": "02_opp02_white_lose.txt",
+        "ply": 48,
+        "empties": 13,
+        "move": [
+          5,
+          3
+        ],
+        "legal_count": 10,
+        "complete": true,
+        "best_value": -100012,
+        "played_value": -100012,
+        "best_outcome": "lose",
+        "played_outcome": "lose",
+        "best_margin": -12,
+        "played_margin": -12,
+        "outcome_blunder": false,
+        "margin_regret": 0
+      },
+      {
+        "game": "04_opp04_black_lose.txt",
+        "ply": 47,
+        "empties": 14,
+        "move": [
+          6,
+          2
+        ],
+        "legal_count": 8,
+        "complete": true,
+        "best_value": -100012,
+        "played_value": -100012,
+        "best_outcome": "lose",
+        "played_outcome": "lose",
+        "best_margin": -12,
+        "played_margin": -12,
+        "outcome_blunder": false,
+        "margin_regret": 0
+      },
+      {
+        "game": "04_opp04_white_lose.txt",
+        "ply": 48,
+        "empties": 13,
+        "move": [
+          7,
+          3
+        ],
+        "legal_count": 10,
+        "complete": true,
+        "best_value": -100002,
+        "played_value": -100002,
+        "best_outcome": "lose",
+        "played_outcome": "lose",
+        "best_margin": -2,
+        "played_margin": -2,
+        "outcome_blunder": false,
+        "margin_regret": 0
+      },
+      {
+        "game": "08_opp08_black_lose.txt",
+        "ply": 47,
+        "empties": 14,
+        "move": [
+          6,
+          2
+        ],
+        "legal_count": 7,
+        "complete": true,
+        "best_value": -100006,
+        "played_value": -100006,
+        "best_outcome": "lose",
+        "played_outcome": "lose",
+        "best_margin": -6,
+        "played_margin": -6,
+        "outcome_blunder": false,
+        "margin_regret": 0
+      },
+      {
+        "game": "08_opp08_white_lose.txt",
+        "ply": 48,
+        "empties": 13,
+        "move": [
+          1,
+          7
+        ],
+        "legal_count": 6,
+        "complete": true,
+        "best_value": -100008,
+        "played_value": -100008,
+        "best_outcome": "lose",
+        "played_outcome": "lose",
+        "best_margin": -8,
+        "played_margin": -8,
+        "outcome_blunder": false,
+        "margin_regret": 0
+      },
+      {
+        "game": "10_opp08_black_lose.txt",
+        "ply": 47,
+        "empties": 14,
+        "move": [
+          6,
+          5
+        ],
+        "legal_count": 7,
+        "complete": true,
+        "best_value": -100002,
+        "played_value": -100002,
+        "best_outcome": "lose",
+        "played_outcome": "lose",
+        "best_margin": -2,
+        "played_margin": -2,
+        "outcome_blunder": false,
+        "margin_regret": 0
+      },
+      {
+        "game": "10_opp08_white_lose.txt",
+        "ply": 48,
+        "empties": 13,
+        "move": [
+          0,
+          5
+        ],
+        "legal_count": 4,
+        "complete": true,
+        "best_value": -100016,
+        "played_value": -100016,
+        "best_outcome": "lose",
+        "played_outcome": "lose",
+        "best_margin": -16,
+        "played_margin": -16,
+        "outcome_blunder": false,
+        "margin_regret": 0
+      }
+    ],
+    "independent_reference_checks": [
+      {
+        "name": "01_opp01_black_win.txt",
+        "ply": 55,
+        "empties": 6,
+        "value": 100024,
+        "seconds": 0.053081791003933176
+      },
+      {
+        "name": "03_opp03_black_draw.txt",
+        "ply": 55,
+        "empties": 6,
+        "value": 0,
+        "seconds": 0.04343337500176858
+      },
+      {
+        "name": "04_opp04_black_lose.txt",
+        "ply": 56,
+        "empties": 5,
+        "value": -100012,
+        "seconds": 0.012132625000958797
+      },
+      {
+        "name": "10_opp08_white_lose.txt",
+        "ply": 56,
+        "empties": 5,
+        "value": -100016,
+        "seconds": 0.004415291994519066
+      }
+    ]
+  },
+  "search": {
+    "seconds": 1.1358544590038946,
+    "budget_seconds": 30,
+    "max_empties": 14,
+    "per_position_seconds": 0.25,
+    "nodes": 23165289,
+    "exact_positions_cached": 278
+  },
+  "earlier_search": {
+    "seconds": 18.969040042000415,
+    "budget_seconds": 20.0,
+    "max_empties": 20,
+    "per_position_seconds": 0.5,
+    "nodes": 407590744,
+    "exact_positions_cached": 16
+  },
+  "earlier_completed": 5,
+  "earlier_incomplete": 19,
+  "limitations": [
+    "Nine distinct opponent IDs; repeated opponent IDs and shared move prefixes make games correlated.",
+    "Only board traces are present: server runtime, time_out, search depths, and opponent version history are unavailable.",
+    "The first recorded board follows placement 1; board index 20 is placement 21, so checkpoints use index 19/39.",
+    "Zero observed late-game outcome mistakes applies only to the completed audited decisions and assumes optimal opposing play.",
+    "Midgame causal turning points remain unknown where exact search did not complete.",
+    "These replays are a development dataset, not an independent holdout for evaluating changes selected from them."
+  ]
+}
