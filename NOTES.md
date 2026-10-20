@@ -4,7 +4,7 @@
 
 - Source: user-supplied Claude handoff; Appendix A extracted verbatim.
 - `versions/v00_ai.py` preserves the original submission.
-- Baseline v05 passed platform usability and supplied 20 validated match traces. Round 2 candidate v12 is locally validated; new platform acceptance is pending.
+- Baseline v05 passed platform usability and supplied 20 validated match traces. User confirmed Round 2 v12 also passed all 10 usability cases, earned 10 basic points, and stayed fixed for a second 20-game batch.
 - Baseline v05 platform usability passed all 10 cases; user reported successful upload on 2026-10-20. Current ai.py is the new Round 2 candidate.
 - Initial M3–M5 pilot: 10-minute single-process allowance. User subsequently authorized Round 2 implementation, experiments, and compute; main Round 2 training/matches took about 9 min 39 s, with correctness/resource checks separately measured.
 - Phase 1 deadline: 2026-10-23 23:59; Phase 2: 2026-11-06 23:59.
@@ -216,12 +216,54 @@ openings, screening openings, and final confirmation openings are disjoint.
 - Raw logs/results: `artifacts/round2_*`; committed summary:
   `versions/round2_experiment_report.json`, `versions/final_validation.json`.
 
-### Remaining validation
+### Remaining validation (updated after the second platform batch)
 
-- Current Round 2 candidate has **not** been uploaded to the course platform.
+- User confirmed that current Round 2 v12 was uploaded, passed all 10 usability cases, and earned the 10 basic points.
 - The 100-game evidence above is at short budgets; the 1 s two-game check is only
-  a transfer sanity test. Full-budget platform strength against classmates is unverified.
-- Next: upload ai.py, require all 10 usability cases again, then use playto (start
-  with opp04 and opp08, colors swapped). Preserve complete win/loss/draw traces.
+  a transfer sanity test. The second platform batch supplies 20 formal-setting games;
+  opponents differ from the first batch, and their AI versions are unknown.
+- The platform does not expose move/game timing to the user. Complete terminal traces
+  establish normal game outcomes, not precise measured resource headroom.
 - Specialized endgame code, aspiration windows, and stronger pattern evaluators remain
   optional future work; no untested search pruning was enabled in this release.
+
+
+## Platform batch 02 — v12 locked, 2026-10-20
+
+- User confirmed v12 passed all 10 usability cases and earned the 10 basic points.
+  The user kept the version fixed throughout this batch; ai.py remains byte-identical
+  to `versions/v12_round2_selected_ai.py`. No strategy or weight changes were made.
+- Input: Desktop/new_chess_log, 20 traces (groups 11–20), 10 opponent IDs, 1,199
+  independently verified legal placements, all terminal, all result labels correct.
+- Results: **11 wins / 3 draws / 6 losses**; black 7/2/1, white 4/1/5 (W/D/L).
+  Score is 62.5% counting draws as half, equal to batch 01. Opponent IDs have zero
+  overlap, and opponent AI versions are unknown, so this does not estimate the
+  causal effect of our upgrade. The black/white difference is exploratory (10 each).
+- Exact-to-terminal audit completed **all 160 own decisions with <=16 empties**:
+  zero W/D/L errors and zero terminal-margin regret. One initially interrupted
+  16-empty position was retried and completed; it was a draw before the opponent
+  subsequently allowed the recorded win. Incomplete earlier searches remain unknown.
+- Friend opp19: two recorded losses, both 34–30, own/opponent corners 3/1.
+  User reports six consecutive losses overall; unrecorded games are contextual
+  evidence, not additional rows in the 20-game statistics.
+- Exact narrow-window terminal proofs establish already-lost positions before
+  black game ply 41 (20 empties) and white game ply 38 (23 empties). These are
+  latest proven bounds on when a loss had happened, not the first losing move.
+  Narrow-window bound magnitudes are not exact final margins.
+- White game: after ply 44 mobility is 4 vs 9; after ply 46, 3 vs 8. All three
+  legal placements at ply 48 are corners. Black game: corner at ply 45 was a
+  choice among seven moves, including five noncorner moves. The mechanisms differ.
+  Both games were already lost before those corners, so corner ownership alone
+  does not identify the causal mistake.
+- Separate NumPy-reference recursive minimax checked six final decisions across
+  303 cached states (~0.041 s), confirming optimal margin -4 in both recorded
+  endings. Some noncorner alternatives lose by much more; avoiding corners
+  unconditionally would be incorrect.
+- Next experimental priorities: quality of middle-game mobility, smoother phase
+  weights (17 -> 16 empties changes discs 2 -> 10 and mobility 7 -> 2), and bounded
+  stable-edge/potential-mobility ablations. These remain hypotheses; train/test
+  splits must avoid overfitting to the friend's two traces.
+- Platform timing is unavailable to the user. No abnormal termination appears in
+  these 20 traces; precise resource usage cannot be recovered from board states.
+- Complete machine-readable findings: `versions/platform_batch02_analysis.json`.
+  Raw searches: `artifacts/platform_batch02_*` (ignored by Git).

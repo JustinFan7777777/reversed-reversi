@@ -93,12 +93,15 @@
       0
     ]
   ],
-  "platform_accepted": null,
-  "platform_status": "Round 2 candidate: upload and usability test pending",
+  "platform_accepted": true,
+  "platform_status": "User confirmed v12 passed all 10 usability cases and earned 10 basic points; version fixed for batch02",
   "baseline_platform_accepted": true,
   "baseline_snapshot": "versions/v05_platform_passed_ai.py",
   "limitations": [
     "100-game strength evidence uses a short search budget; the longer-budget two-game pilot is not statistically powered.",
-    "Formal maximum-budget server matches remain pending; local timing samples are not universal guarantees."
-  ]
+    "20 platform traces are available for v12, but platform move/game timing telemetry is unavailable; local timing samples are not universal guarantees."
+  ],
+  "platform_acceptance_evidence": "User report in project conversation, 2026-10-20; not an independently queried platform result",
+  "platform_basic_points_user_reported": 10,
+  "platform_match_timing_available": false
 }

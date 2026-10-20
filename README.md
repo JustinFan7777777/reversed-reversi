@@ -4,7 +4,8 @@ Single-file submission for the Fall 2026 Project 1. Fewer own discs wins.
 Only `ai.py` is uploaded. Course PDFs are excluded from Git.
 
 Platform baseline v05 passed **10/10 usability cases** and supplied 20 verified
-match traces. The current Round 2 candidate needs a new upload and usability test.
+match traces. User confirmed that Round 2 v12 also passed all 10 usability cases,
+earned the 10 basic points, and remained fixed throughout its new 20-game batch.
 The accepted baseline remains in `versions/v05_platform_passed_ai.py`.
 
 ## Environment
@@ -87,7 +88,8 @@ See `NOTES.md` and `versions/round2_experiment_report.json` for all settings/res
 
 1. Upload `ai.py` and record the usability-test result (Phase 1).
 2. After the upload passes, use `playto` against several opponents and inspect replays.
-3. Return timeout/error messages, actual `time_out`, and a downloaded replay for local reproduction.
+3. Return timeout/error messages and downloaded replays for local reproduction.
+   The platform does not expose match timing telemetry to the user.
 4. Keep a stable passing upload before October 23, 2026 at 23:59.
 
 The platform must first accept an upload before practice play is available.

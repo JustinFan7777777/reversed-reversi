@@ -1,0 +1,4611 @@
+{
+  "date": "2026-10-20",
+  "student_id": "me",
+  "submission": "v12_round2_selected_ai.py",
+  "submission_sha256": "4b6c36a8c5bc5ebbd0a8f4f534c90bf8eb31406c5f0c34888be8f3e5d3c47d57",
+  "submission_changed": false,
+  "platform_acceptance": "User confirmed all 10 usability cases passed and 10 basic points earned; version locked",
+  "source": "User-provided Desktop/new_chess_log directory; all 20 JSON traces treated as data and independently replayed",
+  "summary": {
+    "games": 20,
+    "unique_opponents": 10,
+    "outcomes": {
+      "win": 11,
+      "lose": 6,
+      "draw": 3
+    },
+    "placements": 1199,
+    "all_terminal": true,
+    "colors": {
+      "black": {
+        "win": 7,
+        "draw": 2,
+        "lose": 1
+      },
+      "white": {
+        "lose": 5,
+        "win": 4,
+        "draw": 1
+      }
+    },
+    "opponent_results": {
+      "opp10": {
+        "win": 1,
+        "lose": 1
+      },
+      "opp11": {
+        "win": 1,
+        "lose": 1
+      },
+      "opp12": {
+        "win": 2
+      },
+      "opp13": {
+        "win": 1,
+        "draw": 1
+      },
+      "opp14": {
+        "draw": 1,
+        "lose": 1
+      },
+      "opp15": {
+        "draw": 1,
+        "lose": 1
+      },
+      "opp16": {
+        "win": 2
+      },
+      "opp17": {
+        "win": 2
+      },
+      "opp18": {
+        "win": 2
+      },
+      "opp19": {
+        "lose": 2
+      }
+    },
+    "repeats": []
+  },
+  "comparison_to_batch01": {
+    "previous_outcomes": {
+      "win": 12,
+      "lose": 7,
+      "draw": 1
+    },
+    "current_outcomes": {
+      "win": 11,
+      "lose": 6,
+      "draw": 3
+    },
+    "previous_score": 0.625,
+    "current_score": 0.625,
+    "shared_opponent_ids": [],
+    "interpretation": "Both batches have 62.5% score with draw=0.5; disjoint opponent IDs and unknown opponent AI versions prevent a causal before/after strength claim."
+  },
+  "exact_audit": {
+    "max_empties": 16,
+    "total_own_decisions": 160,
+    "completed": 160,
+    "outcome_errors": 0,
+    "margin_errors": 0,
+    "original_search": {
+      "seconds": 3.863404665986309,
+      "budget_seconds": 35.0,
+      "max_empties": 16,
+      "per_position_seconds": 0.5,
+      "nodes": 73076437,
+      "exact_positions_cached": 318
+    },
+    "missing_position_retry": {
+      "seconds": 2.4602899579913355,
+      "budget_seconds": 6,
+      "max_empties": 16,
+      "per_position_seconds": 3,
+      "nodes": 48288973,
+      "exact_positions_cached": 2
+    }
+  },
+  "friend": {
+    "opponent": "opp19",
+    "recorded_games": 2,
+    "user_reported_consecutive_losses": 6,
+    "report_scope": "Only the two recorded games are counted or reconstructed; the six-loss report is contextual evidence and includes unrecorded games.",
+    "final_own_opponent_discs": [
+      34,
+      30
+    ],
+    "own_opponent_corners": [
+      3,
+      1
+    ],
+    "proven_losing_positions": [
+      {
+        "game": "20_opp19_black_lose.txt",
+        "before_ply": 41,
+        "empties": 20,
+        "wdl": "lose"
+      },
+      {
+        "game": "20_opp19_white_lose.txt",
+        "before_ply": 38,
+        "empties": 23,
+        "wdl": "lose"
+      }
+    ],
+    "observations": [
+      {
+        "game": "20_opp19_white_lose.txt",
+        "after_ply": 44,
+        "own_legal": 4,
+        "opponent_legal": 9
+      },
+      {
+        "game": "20_opp19_white_lose.txt",
+        "after_ply": 46,
+        "own_legal": 3,
+        "opponent_legal": 8
+      },
+      {
+        "game": "20_opp19_white_lose.txt",
+        "before_ply": 48,
+        "legal_moves": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            7,
+            7
+          ]
+        ],
+        "all_corners": true
+      },
+      {
+        "game": "20_opp19_black_lose.txt",
+        "before_ply": 45,
+        "chosen": [
+          0,
+          7
+        ],
+        "legal_count": 7,
+        "noncorner_choices": 5
+      }
+    ],
+    "independent_reference_check": {
+      "method": "Separate agent used recursive NumPy ref_engine minimax, without importing ai.py",
+      "cached_states": 303,
+      "seconds": 0.041,
+      "checks": [
+        {
+          "color": "black",
+          "ply": 55,
+          "empties": 6,
+          "played_move": [
+            0,
+            0
+          ],
+          "best_margin": -4,
+          "played_margin": -4
+        },
+        {
+          "color": "black",
+          "ply": 57,
+          "empties": 4,
+          "played_move": [
+            7,
+            7
+          ],
+          "best_margin": -4,
+          "played_margin": -4
+        },
+        {
+          "color": "black",
+          "ply": 60,
+          "empties": 1,
+          "played_move": [
+            7,
+            1
+          ],
+          "best_margin": -4,
+          "played_margin": -4
+        },
+        {
+          "color": "white",
+          "ply": 56,
+          "empties": 5,
+          "played_move": [
+            7,
+            1
+          ],
+          "best_margin": -4,
+          "played_margin": -4
+        },
+        {
+          "color": "white",
+          "ply": 57,
+          "empties": 4,
+          "played_move": [
+            6,
+            0
+          ],
+          "best_margin": -4,
+          "played_margin": -4
+        },
+        {
+          "color": "white",
+          "ply": 59,
+          "empties": 2,
+          "played_move": [
+            0,
+            0
+          ],
+          "best_margin": -4,
+          "played_margin": -4
+        }
+      ]
+    },
+    "early_full_margin_search": {
+      "search": {
+        "seconds": 30.941802959001507,
+        "budget_seconds": 55,
+        "max_empties": 22,
+        "per_position_seconds": 6,
+        "nodes": 522319022,
+        "exact_positions_cached": 8
+      },
+      "rows": [
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 39,
+          "empties": 22,
+          "move": [
+            6,
+            2
+          ],
+          "legal_count": 9,
+          "complete": false
+        },
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 41,
+          "empties": 20,
+          "move": [
+            6,
+            0
+          ],
+          "legal_count": 9,
+          "complete": false
+        },
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 43,
+          "empties": 18,
+          "move": [
+            3,
+            1
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": -100006,
+          "played_value": -100006,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -6,
+          "played_margin": -6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 40,
+          "empties": 21,
+          "move": [
+            5,
+            6
+          ],
+          "legal_count": 9,
+          "complete": false
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 42,
+          "empties": 19,
+          "move": [
+            2,
+            7
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100012,
+          "played_value": -100012,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -12,
+          "played_margin": -12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 44,
+          "empties": 17,
+          "move": [
+            7,
+            5
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100012,
+          "played_value": -100012,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -12,
+          "played_margin": -12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ]
+    },
+    "early_full_margin_tt_search": {
+      "method": "exact-to-terminal full-window alpha-beta with fixed transposition table; unfinished searches unreported as values",
+      "search": {
+        "seconds": 60.295133332998375,
+        "budget_seconds": 65,
+        "max_empties": 24,
+        "per_position_seconds": 7,
+        "nodes": 858716537,
+        "exact_positions_cached": 8
+      },
+      "rows": [
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 37,
+          "empties": 24,
+          "move": [
+            4,
+            1
+          ],
+          "legal_count": 10,
+          "complete": false
+        },
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 39,
+          "empties": 22,
+          "move": [
+            6,
+            2
+          ],
+          "legal_count": 9,
+          "complete": false
+        },
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 41,
+          "empties": 20,
+          "move": [
+            6,
+            0
+          ],
+          "legal_count": 9,
+          "complete": false
+        },
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 43,
+          "empties": 18,
+          "move": [
+            3,
+            1
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": -100006,
+          "played_value": -100006,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -6,
+          "played_margin": -6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 38,
+          "empties": 23,
+          "move": [
+            6,
+            6
+          ],
+          "legal_count": 9,
+          "complete": false
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 40,
+          "empties": 21,
+          "move": [
+            5,
+            6
+          ],
+          "legal_count": 9,
+          "complete": false
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 42,
+          "empties": 19,
+          "move": [
+            2,
+            7
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100012,
+          "played_value": -100012,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -12,
+          "played_margin": -12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 44,
+          "empties": 17,
+          "move": [
+            7,
+            5
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100012,
+          "played_value": -100012,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -12,
+          "played_margin": -12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ]
+    },
+    "earlier_terminal_wdl_proofs": {
+      "method": "Exact terminal WDL proof using alpha-beta window [-1,1]; bound magnitudes are not exact disc margins",
+      "wdl_convention": "1 win, 0 draw, -1 loss; null unknown",
+      "seconds": 20.52877270799945,
+      "nodes": 276592295,
+      "rows": [
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 44,
+          "empties": 17,
+          "move": [
+            7,
+            5
+          ],
+          "best_wdl": -1,
+          "played_wdl": -1,
+          "complete": true,
+          "outcome_blunder": false
+        },
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 43,
+          "empties": 18,
+          "move": [
+            3,
+            1
+          ],
+          "best_wdl": -1,
+          "played_wdl": -1,
+          "complete": true,
+          "outcome_blunder": false
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 42,
+          "empties": 19,
+          "move": [
+            2,
+            7
+          ],
+          "best_wdl": -1,
+          "played_wdl": -1,
+          "complete": true,
+          "outcome_blunder": false
+        },
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 41,
+          "empties": 20,
+          "move": [
+            6,
+            0
+          ],
+          "best_wdl": -1,
+          "played_wdl": -1,
+          "complete": true,
+          "outcome_blunder": false
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 40,
+          "empties": 21,
+          "move": [
+            5,
+            6
+          ],
+          "best_wdl": -1,
+          "played_wdl": -1,
+          "complete": true,
+          "outcome_blunder": false
+        },
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 39,
+          "empties": 22,
+          "move": [
+            6,
+            2
+          ],
+          "best_wdl": null,
+          "played_wdl": -1,
+          "complete": false
+        },
+        {
+          "game": "20_opp19_white_lose.txt",
+          "ply": 38,
+          "empties": 23,
+          "move": [
+            6,
+            6
+          ],
+          "best_wdl": -1,
+          "played_wdl": -1,
+          "complete": true,
+          "outcome_blunder": false
+        },
+        {
+          "game": "20_opp19_black_lose.txt",
+          "ply": 37,
+          "empties": 24,
+          "move": [
+            4,
+            1
+          ],
+          "best_wdl": null,
+          "played_wdl": null,
+          "complete": false
+        }
+      ]
+    }
+  },
+  "games": [
+    {
+      "name": "11_opp10_black_win.txt",
+      "number": "11",
+      "opponent": "opp10",
+      "color": "black",
+      "me": -1,
+      "result": "win",
+      "mine": 30,
+      "theirs": 34,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 3,
+      "corners_opp": 1,
+      "my_discs_after_20": 11,
+      "my_discs_after_40": 17,
+      "corner_events": [
+        {
+          "ply": 51,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 4
+        },
+        {
+          "ply": 55,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 2
+        },
+        {
+          "ply": 57,
+          "side": "me",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 60,
+          "side": "opp",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "901c76b15f2abf63dab5af9685cad48d00c5b6e682cdbfb26f0cd9bfdcba20f2",
+      "final_sha256": "747a572e5c0d4a397877176ab9123bdb4bf73ec3189ac4009bb95d2b18cc66e2",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            2,
+            7
+          ],
+          "legal_count": 11,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 47,
+          "empties": 14,
+          "move": [
+            4,
+            7
+          ],
+          "legal_count": 11,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            4,
+            6
+          ],
+          "legal_count": 9,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 53,
+          "empties": 8,
+          "move": [
+            7,
+            6
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            0,
+            7
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            0,
+            0
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            7,
+            1
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "c94fc3929ababad0f7da87a244c557a2372a3109638835f34cf4652057b29830"
+    },
+    {
+      "name": "11_opp10_white_lose.txt",
+      "number": "11",
+      "opponent": "opp10",
+      "color": "white",
+      "me": 1,
+      "result": "lose",
+      "mine": 34,
+      "theirs": 30,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 2,
+      "corners_opp": 2,
+      "my_discs_after_20": 12,
+      "my_discs_after_40": 25,
+      "corner_events": [
+        {
+          "ply": 50,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 5
+        },
+        {
+          "ply": 53,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 55,
+          "side": "opp",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 60,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "2b96651cbb9c35d41d3ab80366f6ec2a54a2572b687e09afab5e579d2dc0d56e",
+      "final_sha256": "e8afd13a434ae61cec4e97941f2430c14cb8aebb6cff4860f6755bca32eb7223",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            0,
+            6
+          ],
+          "legal_count": 10,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            7,
+            2
+          ],
+          "legal_count": 10,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            0,
+            7
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            5,
+            0
+          ],
+          "legal_count": 9,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            6,
+            7
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 56,
+          "empties": 5,
+          "move": [
+            4,
+            7
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 58,
+          "empties": 3,
+          "move": [
+            5,
+            7
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 60,
+          "empties": 1,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "10d1d81c42c92f3e7e2895274bcee655174dfd88aad7d570a724c3606f92fd6a"
+    },
+    {
+      "name": "12_opp11_black_win.txt",
+      "number": "12",
+      "opponent": "opp11",
+      "color": "black",
+      "me": -1,
+      "result": "win",
+      "mine": 27,
+      "theirs": 37,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [
+        {
+          "before_ply": 30,
+          "color": 1
+        },
+        {
+          "before_ply": 43,
+          "color": 1
+        },
+        {
+          "before_ply": 46,
+          "color": 1
+        },
+        {
+          "before_ply": 49,
+          "color": 1
+        },
+        {
+          "before_ply": 50,
+          "color": 1
+        },
+        {
+          "before_ply": 51,
+          "color": 1
+        },
+        {
+          "before_ply": 52,
+          "color": 1
+        },
+        {
+          "before_ply": 55,
+          "color": 1
+        },
+        {
+          "before_ply": 59,
+          "color": -1
+        },
+        {
+          "before_ply": 60,
+          "color": -1
+        }
+      ],
+      "corners_me": 1,
+      "corners_opp": 3,
+      "my_discs_after_20": 5,
+      "my_discs_after_40": 22,
+      "corner_events": [
+        {
+          "ply": 19,
+          "side": "me",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 7
+        },
+        {
+          "ply": 33,
+          "side": "opp",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 56,
+          "side": "opp",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 58,
+          "side": "opp",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "e12de6e79f438846141d5ddb9649aedd8102ce58d705506e9c7cca02c3fe8a0f",
+      "final_sha256": "69ee5deb6f8d2fda3be8205bcd85d7058e98e4e9b6ac8a2ca52ee296d92392b1",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            2,
+            7
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            4,
+            6
+          ],
+          "legal_count": 9,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            4,
+            7
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            3,
+            5
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            4,
+            5
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            5,
+            5
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            5,
+            7
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            6,
+            7
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            7,
+            6
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            1,
+            7
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": 100010,
+          "played_value": 100010,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 10,
+          "played_margin": 10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "d78ab2aced70c38070b5141787ca12afc213dd398324564afd3110b593de9007"
+    },
+    {
+      "name": "12_opp11_white_lose.txt",
+      "number": "12",
+      "opponent": "opp11",
+      "color": "white",
+      "me": 1,
+      "result": "lose",
+      "mine": 33,
+      "theirs": 31,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [
+        {
+          "before_ply": 59,
+          "color": -1
+        }
+      ],
+      "corners_me": 3,
+      "corners_opp": 1,
+      "my_discs_after_20": 15,
+      "my_discs_after_40": 18,
+      "corner_events": [
+        {
+          "ply": 50,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 3
+        },
+        {
+          "ply": 53,
+          "side": "opp",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 3
+        },
+        {
+          "ply": 54,
+          "side": "me",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 2
+        },
+        {
+          "ply": 58,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 2
+        }
+      ],
+      "trace_sha256": "d02b6622d57329c411c05f7cf70848a4b52060749d8a02fbd9a440f23a2d3d0c",
+      "final_sha256": "f5aa6d0d70e69a6d5b9bc4b0014dd0e55d023a8b699d49ae3769aaade2c3ab31",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            7,
+            5
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            6,
+            3
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            0,
+            7
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            2,
+            7
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            0,
+            0
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 56,
+          "empties": 5,
+          "move": [
+            3,
+            7
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 58,
+          "empties": 3,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            6,
+            1
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "c8670716209c4f59b056c5fccb563bc8c42ff2b903d3ec5847901e7ceebfce64"
+    },
+    {
+      "name": "13_opp12_black_win.txt",
+      "number": "13",
+      "opponent": "opp12",
+      "color": "black",
+      "me": -1,
+      "result": "win",
+      "mine": 22,
+      "theirs": 42,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 2,
+      "corners_opp": 2,
+      "my_discs_after_20": 10,
+      "my_discs_after_40": 12,
+      "corner_events": [
+        {
+          "ply": 57,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 58,
+          "side": "opp",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 59,
+          "side": "me",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 60,
+          "side": "opp",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "3abe49f3aff654bd196755a799f487e5bd4eda344d1acdb51f70e7124187f066",
+      "final_sha256": "10871d3a52958199cb14c347d27dae38a038e2bc702ebad8bda72e573aed8897",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            7,
+            3
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100008,
+          "played_value": 100008,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 8,
+          "played_margin": 8,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 47,
+          "empties": 14,
+          "move": [
+            4,
+            0
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100016,
+          "played_value": 100016,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 16,
+          "played_margin": 16,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            6,
+            0
+          ],
+          "legal_count": 10,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            6,
+            1
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 53,
+          "empties": 8,
+          "move": [
+            7,
+            1
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            7,
+            6
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            0,
+            0
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "79d024f6a3dfa68263f7a0edd09a16b82d9011374abc9921c940a885507fa9af"
+    },
+    {
+      "name": "13_opp12_white_win.txt",
+      "number": "13",
+      "opponent": "opp12",
+      "color": "white",
+      "me": 1,
+      "result": "win",
+      "mine": 26,
+      "theirs": 38,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [
+        {
+          "before_ply": 58,
+          "color": 1
+        }
+      ],
+      "corners_me": 1,
+      "corners_opp": 3,
+      "my_discs_after_20": 14,
+      "my_discs_after_40": 20,
+      "corner_events": [
+        {
+          "ply": 34,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 9
+        },
+        {
+          "ply": 39,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 49,
+          "side": "opp",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 60,
+          "side": "opp",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "2409b3bc5415dfcbe5245d14848cf990475d6ef0cc64d3e7a37575a3324df9cf",
+      "final_sha256": "ee59f76625d02731e38a3ff752499466a702a3e249592e7200735da19d577415",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            6,
+            0
+          ],
+          "legal_count": 9,
+          "complete": true,
+          "best_value": 100011,
+          "played_value": 100011,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 11,
+          "played_margin": 11,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            6,
+            7
+          ],
+          "legal_count": 9,
+          "complete": true,
+          "best_value": 100012,
+          "played_value": 100012,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 12,
+          "played_margin": 12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            7,
+            4
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100012,
+          "played_value": 100012,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 12,
+          "played_margin": 12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            7,
+            3
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100012,
+          "played_value": 100012,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 12,
+          "played_margin": 12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            6,
+            5
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100012,
+          "played_value": 100012,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 12,
+          "played_margin": 12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 56,
+          "empties": 5,
+          "move": [
+            6,
+            2
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100012,
+          "played_value": 100012,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 12,
+          "played_margin": 12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            7,
+            5
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": 100012,
+          "played_value": 100012,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 12,
+          "played_margin": 12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "3d6280565edff932c099f94cd6af2f99ae2bb755f9c23f988a1637b65f85fd74"
+    },
+    {
+      "name": "14_opp13_black_win.txt",
+      "number": "14",
+      "opponent": "opp13",
+      "color": "black",
+      "me": -1,
+      "result": "win",
+      "mine": 30,
+      "theirs": 34,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 2,
+      "corners_opp": 2,
+      "my_discs_after_20": 9,
+      "my_discs_after_40": 22,
+      "corner_events": [
+        {
+          "ply": 56,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 57,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 58,
+          "side": "opp",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 59,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 1
+        }
+      ],
+      "trace_sha256": "abb4b2509056ce005e3d87be1acb6f94e3da4d85e34e23c34cc5b0ef439d3889",
+      "final_sha256": "e7bef688ab27cb167c16d891582e1879144471486732338689f74da2aac9d980",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            7,
+            5
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 47,
+          "empties": 14,
+          "move": [
+            7,
+            3
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            6,
+            5
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            5,
+            7
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 53,
+          "empties": 8,
+          "move": [
+            7,
+            1
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            6,
+            7
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            0,
+            7
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "40645e0cb50039f9f8d5a152de8802cffe32eac9d5c82fed382dd77d51983239"
+    },
+    {
+      "name": "14_opp13_white_draw.txt",
+      "number": "14",
+      "opponent": "opp13",
+      "color": "white",
+      "me": 1,
+      "result": "draw",
+      "mine": 32,
+      "theirs": 32,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 1,
+      "corners_opp": 3,
+      "my_discs_after_20": 15,
+      "my_discs_after_40": 25,
+      "corner_events": [
+        {
+          "ply": 34,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 10
+        },
+        {
+          "ply": 35,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 39,
+          "side": "opp",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 55,
+          "side": "opp",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 3
+        }
+      ],
+      "trace_sha256": "2c35e208694742befcb7d633f1155c029953cac8e35b238183213672d7879876",
+      "final_sha256": "849b93c88dbbe9953dc2ccfe85bbd423c61f9b8307bed515c754f39f6c1150da",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            6,
+            4
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            6,
+            5
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            4,
+            5
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            6,
+            6
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            7,
+            5
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 56,
+          "empties": 5,
+          "move": [
+            6,
+            7
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 58,
+          "empties": 3,
+          "move": [
+            4,
+            7
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 60,
+          "empties": 1,
+          "move": [
+            7,
+            4
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "ef4bcab77edf615b070d22a2329e13973372c06844d8bb0bf3628d175bf88195"
+    },
+    {
+      "name": "15_opp14_black_draw.txt",
+      "number": "15",
+      "opponent": "opp14",
+      "color": "black",
+      "me": -1,
+      "result": "draw",
+      "mine": 32,
+      "theirs": 32,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 2,
+      "corners_opp": 2,
+      "my_discs_after_20": 10,
+      "my_discs_after_40": 16,
+      "corner_events": [
+        {
+          "ply": 44,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 8
+        },
+        {
+          "ply": 47,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 58,
+          "side": "opp",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 59,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "5a5598c285b8073c70e1af8c9db63be7406a20e9b8f4bda2734016ae3f1eb30a",
+      "final_sha256": "d2b1b4d696673b7c005e0ed9ad7ddb6f35b21ca85f4abb9ccb31d5e596c355d7",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            0,
+            1
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 47,
+          "empties": 14,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            1,
+            4
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            0,
+            3
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 53,
+          "empties": 8,
+          "move": [
+            2,
+            7
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            1,
+            5
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            0,
+            6
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "8607f50edf5ebc83331a88ffdc8144422b36bde8e0599710f4a2fe3565003712"
+    },
+    {
+      "name": "15_opp14_white_lose.txt",
+      "number": "15",
+      "opponent": "opp14",
+      "color": "white",
+      "me": 1,
+      "result": "lose",
+      "mine": 36,
+      "theirs": 28,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 3,
+      "corners_opp": 1,
+      "my_discs_after_20": 15,
+      "my_discs_after_40": 30,
+      "corner_events": [
+        {
+          "ply": 48,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 3
+        },
+        {
+          "ply": 57,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 58,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 60,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "781938088296f360bcfeb0bf7de9bc4e7e9d092270f5e0302f3f49b5277d38d5",
+      "final_sha256": "60c61470949c5636db177c936eaf9c28e721d2c1a60f187646a6eaff585bcd5f",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            7,
+            4
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100008,
+          "played_value": -100008,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -8,
+          "played_margin": -8,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": -100008,
+          "played_value": -100008,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -8,
+          "played_margin": -8,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            0,
+            2
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100008,
+          "played_value": -100008,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -8,
+          "played_margin": -8,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            5,
+            0
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100008,
+          "played_value": -100008,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -8,
+          "played_margin": -8,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            7,
+            5
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100008,
+          "played_value": -100008,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -8,
+          "played_margin": -8,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 56,
+          "empties": 5,
+          "move": [
+            4,
+            7
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": -100008,
+          "played_value": -100008,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -8,
+          "played_margin": -8,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 58,
+          "empties": 3,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": -100008,
+          "played_value": -100008,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -8,
+          "played_margin": -8,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 60,
+          "empties": 1,
+          "move": [
+            0,
+            7
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": -100008,
+          "played_value": -100008,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -8,
+          "played_margin": -8,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "72d0d688995eb7290f38c60c4160ca1b2fb09be5fbf6cb40024a23cb7cfe708e"
+    },
+    {
+      "name": "16_opp15_black_draw.txt",
+      "number": "16",
+      "opponent": "opp15",
+      "color": "black",
+      "me": -1,
+      "result": "draw",
+      "mine": 32,
+      "theirs": 32,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 3,
+      "corners_opp": 1,
+      "my_discs_after_20": 12,
+      "my_discs_after_40": 19,
+      "corner_events": [
+        {
+          "ply": 53,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 4
+        },
+        {
+          "ply": 57,
+          "side": "me",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 58,
+          "side": "opp",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 59,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 1
+        }
+      ],
+      "trace_sha256": "b9dbd6389ad9253317c29a2571031c1ca20f03594ef611ca1f82c72590155712",
+      "final_sha256": "994ba0727ccc065ea6a854081e744f2b31389158e656066466905c06a8464127",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            5,
+            0
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 47,
+          "empties": 14,
+          "move": [
+            5,
+            7
+          ],
+          "legal_count": 9,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            6,
+            6
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            2,
+            6
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 53,
+          "empties": 8,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            0,
+            6
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            0,
+            0
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 0,
+          "played_value": 0,
+          "best_outcome": "draw",
+          "played_outcome": "draw",
+          "best_margin": 0,
+          "played_margin": 0,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "ffddc30d4d579c20dc80126dad41dde576cee3805b5308c76b9ac381491bf3e6"
+    },
+    {
+      "name": "16_opp15_white_lose.txt",
+      "number": "16",
+      "opponent": "opp15",
+      "color": "white",
+      "me": 1,
+      "result": "lose",
+      "mine": 33,
+      "theirs": 31,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 2,
+      "corners_opp": 2,
+      "my_discs_after_20": 12,
+      "my_discs_after_40": 25,
+      "corner_events": [
+        {
+          "ply": 48,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 3
+        },
+        {
+          "ply": 55,
+          "side": "opp",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 59,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 60,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "db8a0863bf515f0cd2747778e96ce8b12e761f44fadf26a0d716175e597b56e5",
+      "final_sha256": "c2c6107e0ec5bccb315aeecb1d8e3a09d0a400f01082d57f4ecb764b8047608b",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            1,
+            0
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            0,
+            7
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            5,
+            6
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            6,
+            7
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            7,
+            5
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 56,
+          "empties": 5,
+          "move": [
+            4,
+            0
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 58,
+          "empties": 3,
+          "move": [
+            2,
+            0
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 60,
+          "empties": 1,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": -100002,
+          "played_value": -100002,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -2,
+          "played_margin": -2,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "a507ce240905b37cdd961a877d8cada6613905ea8730dc490446af792abd8c78"
+    },
+    {
+      "name": "17_opp16_black_win.txt",
+      "number": "17",
+      "opponent": "opp16",
+      "color": "black",
+      "me": -1,
+      "result": "win",
+      "mine": 29,
+      "theirs": 35,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [
+        {
+          "before_ply": 59,
+          "color": -1
+        }
+      ],
+      "corners_me": 2,
+      "corners_opp": 2,
+      "my_discs_after_20": 11,
+      "my_discs_after_40": 20,
+      "corner_events": [
+        {
+          "ply": 32,
+          "side": "opp",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 3
+        },
+        {
+          "ply": 56,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 57,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 60,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "42a353e3b1d4c30c759820601f66cb813d59893b023034d6f80707b02b7aabed",
+      "final_sha256": "34694f82564b008edb10af90940b05b91ff2813516cf7147664079bbe6c4da8d",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            7,
+            4
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 47,
+          "empties": 14,
+          "move": [
+            1,
+            2
+          ],
+          "legal_count": 9,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            0,
+            3
+          ],
+          "legal_count": 9,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            0,
+            2
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 53,
+          "empties": 8,
+          "move": [
+            2,
+            0
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            1,
+            0
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 60,
+          "empties": 1,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "18865b5965d44365a5a7a5ba676c5bc428ff0112c7830db0d6a1d3b489fb847e"
+    },
+    {
+      "name": "17_opp16_white_win.txt",
+      "number": "17",
+      "opponent": "opp16",
+      "color": "white",
+      "me": 1,
+      "result": "win",
+      "mine": 25,
+      "theirs": 38,
+      "terminal": true,
+      "empty_at_end": 1,
+      "placements": 59,
+      "passes": [
+        {
+          "before_ply": 56,
+          "color": 1
+        }
+      ],
+      "corners_me": 2,
+      "corners_opp": 1,
+      "my_discs_after_20": 11,
+      "my_discs_after_40": 15,
+      "corner_events": [
+        {
+          "ply": 25,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 6
+        },
+        {
+          "ply": 57,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 59,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "86de44727437092b0472a62031979da644ec629ba4cd9b08e6bb0346f93ad603",
+      "final_sha256": "370a4ded4191c5eeba131167ad71732665e86d514bf2bfa708fb9e9db1672136",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            2,
+            7
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100013,
+          "played_value": 100013,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 13,
+          "played_margin": 13,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            7,
+            4
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100013,
+          "played_value": 100013,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 13,
+          "played_margin": 13,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            4,
+            6
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100013,
+          "played_value": 100013,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 13,
+          "played_margin": 13,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            6,
+            7
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": 100013,
+          "played_value": 100013,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 13,
+          "played_margin": 13,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            7,
+            6
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100013,
+          "played_value": 100013,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 13,
+          "played_margin": 13,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            0,
+            7
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": 100013,
+          "played_value": 100013,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 13,
+          "played_margin": 13,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": 100013,
+          "played_value": 100013,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 13,
+          "played_margin": 13,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "dacdaa457c6016095b48ab36e74bf107cebb1dcfa43a54bf8c5010caeb972d6b"
+    },
+    {
+      "name": "18_opp17_black_win.txt",
+      "number": "18",
+      "opponent": "opp17",
+      "color": "black",
+      "me": -1,
+      "result": "win",
+      "mine": 22,
+      "theirs": 42,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 2,
+      "corners_opp": 2,
+      "my_discs_after_20": 9,
+      "my_discs_after_40": 23,
+      "corner_events": [
+        {
+          "ply": 53,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 4
+        },
+        {
+          "ply": 54,
+          "side": "opp",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 55,
+          "side": "me",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 4
+        },
+        {
+          "ply": 60,
+          "side": "opp",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "fa2cf68f094a273d4c0b2c19826b3cbbf044c18572803a8e49e9a297d6a1ed32",
+      "final_sha256": "f6b4cd49608489f2c21d999dc4393b61023b8ce536912afc6bd08f913ab17f7d",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            7,
+            6
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100018,
+          "played_value": 100018,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 18,
+          "played_margin": 18,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 47,
+          "empties": 14,
+          "move": [
+            6,
+            1
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100018,
+          "played_value": 100018,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 18,
+          "played_margin": 18,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            6,
+            2
+          ],
+          "legal_count": 9,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            5,
+            7
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 53,
+          "empties": 8,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            0,
+            0
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            2,
+            7
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            1,
+            6
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100020,
+          "played_value": 100020,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 20,
+          "played_margin": 20,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "23a39f0d1962e35e6c57d426e4f7ee58b1a7f2a45d406f3dbd73f2c964d55728"
+    },
+    {
+      "name": "18_opp17_white_win.txt",
+      "number": "18",
+      "opponent": "opp17",
+      "color": "white",
+      "me": 1,
+      "result": "win",
+      "mine": 29,
+      "theirs": 35,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 2,
+      "corners_opp": 2,
+      "my_discs_after_20": 13,
+      "my_discs_after_40": 22,
+      "corner_events": [
+        {
+          "ply": 29,
+          "side": "opp",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 8
+        },
+        {
+          "ply": 46,
+          "side": "me",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 4
+        },
+        {
+          "ply": 57,
+          "side": "opp",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 60,
+          "side": "me",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "3ca44800ca025eaa8e17923307f132d908de44d6fa5cb1b088546547e5e11640",
+      "final_sha256": "e2852d0d56d2e24701e81ca2a7aa78cafe07bd97750cd160cd2f572ab0ef529d",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            7,
+            0
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            0,
+            1
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            1,
+            3
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            4,
+            6
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            6,
+            6
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 56,
+          "empties": 5,
+          "move": [
+            5,
+            7
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 58,
+          "empties": 3,
+          "move": [
+            4,
+            7
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 60,
+          "empties": 1,
+          "move": [
+            0,
+            0
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "81247be13c0b58c7b5940cfe8b3934dd612182d752e330dcd2de5dc6046d3245"
+    },
+    {
+      "name": "19_opp18_black_win.txt",
+      "number": "19",
+      "opponent": "opp18",
+      "color": "black",
+      "me": -1,
+      "result": "win",
+      "mine": 30,
+      "theirs": 34,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 2,
+      "corners_opp": 2,
+      "my_discs_after_20": 10,
+      "my_discs_after_40": 15,
+      "corner_events": [
+        {
+          "ply": 35,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 5
+        },
+        {
+          "ply": 58,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 59,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 60,
+          "side": "opp",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "29379b97a6c451222fbcfccdefea855ab84a7aa424a52cdfbb1efeb804e9cda7",
+      "final_sha256": "1c123d67de77be5684c48690f2f2dcee273887a426857d50306ff0226c03abef",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            1,
+            2
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 47,
+          "empties": 14,
+          "move": [
+            5,
+            0
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            2,
+            0
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            7,
+            3
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 53,
+          "empties": 8,
+          "move": [
+            7,
+            1
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            6,
+            0
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            0,
+            1
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100004,
+          "played_value": 100004,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 4,
+          "played_margin": 4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "0befacb11551fc771a982dce69c45314a33d2a3ba274c47c5e73ead82154adff"
+    },
+    {
+      "name": "19_opp18_white_win.txt",
+      "number": "19",
+      "opponent": "opp18",
+      "color": "white",
+      "me": 1,
+      "result": "win",
+      "mine": 29,
+      "theirs": 35,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [],
+      "corners_me": 1,
+      "corners_opp": 3,
+      "my_discs_after_20": 10,
+      "my_discs_after_40": 21,
+      "corner_events": [
+        {
+          "ply": 55,
+          "side": "opp",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 57,
+          "side": "opp",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 59,
+          "side": "opp",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 60,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 0
+        }
+      ],
+      "trace_sha256": "03ae6326792ff7679febef48990e1a1f1eafa8a1c8165e21a9dacfe11153b781",
+      "final_sha256": "9849e7322e6dabe278dc58b67b8863a9b8fb1b2fb876cb7e09811469ee3c3674",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            6,
+            5
+          ],
+          "legal_count": 8,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            5,
+            6
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            7,
+            2
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            7,
+            6
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            6,
+            2
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 56,
+          "empties": 5,
+          "move": [
+            5,
+            7
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 58,
+          "empties": 3,
+          "move": [
+            6,
+            0
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 60,
+          "empties": 1,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": 100006,
+          "played_value": 100006,
+          "best_outcome": "win",
+          "played_outcome": "win",
+          "best_margin": 6,
+          "played_margin": 6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "db9e7117535631167e242162cea3bffaf2a29efb96962ee118a1c30eb29e4b3d"
+    },
+    {
+      "name": "20_opp19_black_lose.txt",
+      "number": "20",
+      "opponent": "opp19",
+      "color": "black",
+      "me": -1,
+      "result": "lose",
+      "mine": 34,
+      "theirs": 30,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [
+        {
+          "before_ply": 59,
+          "color": -1
+        }
+      ],
+      "corners_me": 3,
+      "corners_opp": 1,
+      "my_discs_after_20": 10,
+      "my_discs_after_40": 23,
+      "corner_events": [
+        {
+          "ply": 45,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 5
+        },
+        {
+          "ply": 52,
+          "side": "opp",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 3
+        },
+        {
+          "ply": 55,
+          "side": "me",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 1
+        },
+        {
+          "ply": 57,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 1
+        }
+      ],
+      "trace_sha256": "229735b6f3a825489615fb9a15fc25d390cf3f2ec93efc7d66e2414662176f58",
+      "final_sha256": "8a003b0c9f1ef7ae30c10328c2b2993d72d7fbc20bed634812008da76696dde5",
+      "audit": [
+        {
+          "ply": 45,
+          "empties": 16,
+          "move": [
+            0,
+            7
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": -100006,
+          "played_value": -100006,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -6,
+          "played_margin": -6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 47,
+          "empties": 14,
+          "move": [
+            2,
+            0
+          ],
+          "legal_count": 7,
+          "complete": true,
+          "best_value": -100006,
+          "played_value": -100006,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -6,
+          "played_margin": -6,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 49,
+          "empties": 12,
+          "move": [
+            6,
+            7
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 51,
+          "empties": 10,
+          "move": [
+            5,
+            0
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 53,
+          "empties": 8,
+          "move": [
+            0,
+            2
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 55,
+          "empties": 6,
+          "move": [
+            0,
+            0
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 60,
+          "empties": 1,
+          "move": [
+            7,
+            1
+          ],
+          "legal_count": 1,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "23d5ca01c75dcd3433d0dd672e6420f9f093d8fb3e8fcfad3966f8bdf1e5a612"
+    },
+    {
+      "name": "20_opp19_white_lose.txt",
+      "number": "20",
+      "opponent": "opp19",
+      "color": "white",
+      "me": 1,
+      "result": "lose",
+      "mine": 34,
+      "theirs": 30,
+      "terminal": true,
+      "empty_at_end": 0,
+      "placements": 60,
+      "passes": [
+        {
+          "before_ply": 57,
+          "color": -1
+        }
+      ],
+      "corners_me": 3,
+      "corners_opp": 1,
+      "my_discs_after_20": 12,
+      "my_discs_after_40": 25,
+      "corner_events": [
+        {
+          "ply": 48,
+          "side": "me",
+          "row": 0,
+          "col": 7,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 54,
+          "side": "me",
+          "row": 7,
+          "col": 7,
+          "noncorner_choices": 2
+        },
+        {
+          "ply": 58,
+          "side": "opp",
+          "row": 7,
+          "col": 0,
+          "noncorner_choices": 0
+        },
+        {
+          "ply": 59,
+          "side": "me",
+          "row": 0,
+          "col": 0,
+          "noncorner_choices": 1
+        }
+      ],
+      "trace_sha256": "ceb79fa980cc2ab890565d8b4e2dbabf3478de4eee18fc5bd7567f8389d857d8",
+      "final_sha256": "10b24361d47c0d179e7bedb0905d388de279608287fb86f67e3da6d2316c08dc",
+      "audit": [
+        {
+          "ply": 46,
+          "empties": 15,
+          "move": [
+            6,
+            4
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100012,
+          "played_value": -100012,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -12,
+          "played_margin": -12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 48,
+          "empties": 13,
+          "move": [
+            0,
+            7
+          ],
+          "legal_count": 3,
+          "complete": true,
+          "best_value": -100012,
+          "played_value": -100012,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -12,
+          "played_margin": -12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 50,
+          "empties": 11,
+          "move": [
+            6,
+            2
+          ],
+          "legal_count": 6,
+          "complete": true,
+          "best_value": -100012,
+          "played_value": -100012,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -12,
+          "played_margin": -12,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 52,
+          "empties": 9,
+          "move": [
+            7,
+            3
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100010,
+          "played_value": -100010,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -10,
+          "played_margin": -10,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 54,
+          "empties": 7,
+          "move": [
+            7,
+            7
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 56,
+          "empties": 5,
+          "move": [
+            7,
+            1
+          ],
+          "legal_count": 5,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 57,
+          "empties": 4,
+          "move": [
+            6,
+            0
+          ],
+          "legal_count": 4,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        },
+        {
+          "ply": 59,
+          "empties": 2,
+          "move": [
+            0,
+            0
+          ],
+          "legal_count": 2,
+          "complete": true,
+          "best_value": -100004,
+          "played_value": -100004,
+          "best_outcome": "lose",
+          "played_outcome": "lose",
+          "best_margin": -4,
+          "played_margin": -4,
+          "outcome_blunder": false,
+          "margin_regret": 0
+        }
+      ],
+      "file_sha256": "62ff99e5e0d78c8c8705b710796255d46514f3cc8b1b347985f662906158cb84"
+    }
+  ],
+  "hypotheses_not_implemented": [
+    "Test whether mobility quality (noncorner placements and future forced captures), rather than just raw legal-move count, improves held-out middle-game decisions.",
+    "Test smooth phase interpolation: at 17 to 16 empty squares the current disc weight jumps from 2 to 10, mobility from 7 to 2, and edge from 2 to 0.",
+    "Test currently disabled stable-edge and potential-mobility terms independently against diverse held-out positions/opponents."
+  ],
+  "limitations": [
+    "Only two friend replays are available; the unrecorded losses cannot be reconstructed.",
+    "The first decisive mistake has not been located. A proven already-lost position is not the cause of the loss.",
+    "Earlier unfinished terminal searches are unknown, never treated as draws or losses.",
+    "Narrow-window WDL proof signs are certified outcomes; fail-soft bound magnitudes are not exact terminal disc margins.",
+    "Observed corner ownership and mobility squeeze are symptoms, not established causal errors; late corner choices can be optimal.",
+    "No platform time telemetry is available. All 20 supplied games are terminal legal traces, but exact move/game resource usage cannot be recovered.",
+    "No candidate changes or new training were performed; ai.py remains byte-identical to the locked v12 upload."
+  ],
+  "analysis_search_seconds": 118.08940362397698
+}
