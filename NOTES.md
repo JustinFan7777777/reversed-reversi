@@ -4,8 +4,8 @@
 
 - Source: user-supplied Claude handoff; Appendix A extracted verbatim.
 - `versions/v00_ai.py` preserves the original submission.
-- M0/M1: locally validated. M2: measured stress suite passed; platform verification pending.
-- Platform submission has not been performed.
+- M0/M1: locally validated and platform usability accepted. M2: local stress suite passed; live-match verification pending.
+- Platform usability passed all 10 cases; user reported successful upload on 2026-10-20.
 - M3–M5: at most 10 minutes of single-process experiment compute authorized.
 - Phase 1 deadline: 2026-10-23 23:59; Phase 2: 2026-11-06 23:59.
 
@@ -131,8 +131,8 @@ Results will identify environment, seeds, budgets, W/D/L, and timing. Local chec
 - Final timing: **14 stress cases**, including synthetic 3x slowdown and broken nps;
   maximum observed go **2.000193 s**. Recommended controls remain 80 s / 0.40 / 2 s.
 - The complete final regression log is `artifacts/final-validation.log`.
-- Platform upload, usability acceptance, practice replays, and actual server resource
-  accounting remain pending. No local result establishes course points or final rank.
+- User confirmed successful upload and all 10 usability cases passing on 2026-10-20.
+  Practice replays and actual match resource behavior remain pending; final course points and rank are unverified.
 
 - Final complete-game RSS measurement: **31 own moves**, post-init reference **123.2 MiB**,
   end RSS **113.2 MiB**, delta **-10.0 MiB**, conservative peak delta **+0.0 MiB**
@@ -141,7 +141,7 @@ Results will identify environment, seeds, budgets, W/D/L, and timing. Local chec
 
 ## Remaining work
 
-- M0/M1/M2: completed locally; platform acceptance still requires an upload.
+- M0/M1/M2: completed locally; platform upload accepted all 10 usability cases (user report, 2026-10-20). Live-match verification remains pending.
 - M3: fixed-size TT implemented, tested, and rejected for lack of significant improvement;
   PVS/aspiration windows, richer ordering, and a specialized 14–16-empty solver remain pending.
 - M4: five added feature directions tested both ways; frontier-only improvement confirmed
@@ -150,3 +150,9 @@ Results will identify environment, seeds, budgets, W/D/L, and timing. Local chec
   Larger tuning runs, scaled perturbations, and CSO remain pending a separate compute allowance.
 - M6 optional opening books/MCTS comparison: not undertaken.
 - M7 platform freeze and round-robin verification: pending; final course outcomes unverified.
+
+## Platform acceptance — 2026-10-20
+
+- User reported: "Upload success, usability test pass, you have pass all 10 test cases".
+- This records acceptance of the submitted version; platform matches and final course outcomes are separate.
+- GitHub backup: private repository requested by the user; course PDFs, environments, and caches excluded.

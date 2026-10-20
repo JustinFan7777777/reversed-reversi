@@ -30,6 +30,8 @@
     0,
     1
   ],
-  "platform_accepted": false,
-  "local_only": true
+  "platform_accepted": true,
+  "local_only": false,
+  "platform_status_source": "User report on 2026-10-20: successful upload, all 10 usability cases passed",
+  "live_match_verified": false
 }

@@ -3,6 +3,9 @@
 Single-file submission for the Fall 2026 Project 1. Fewer own discs wins.
 Only `ai.py` is uploaded. Course PDFs are excluded from Git.
 
+Platform status: successful upload and **10/10 usability cases passed**, reported by
+the user on 2026-10-20. Live matches and final round-robin results are pending.
+
 ## Environment
 
 Tested with Python 3.10.22, NumPy 1.26.4 and Numba 0.59.1 on macOS arm64.
