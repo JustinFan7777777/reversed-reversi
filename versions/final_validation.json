@@ -1,37 +1,104 @@
 {
   "submission": "ai.py",
-  "snapshot": "versions/v05_phase1_ai.py",
-  "sha256": "1485c8fd56e1e59729117d689f75633b3aba52854ed849452a9f1b59a10341a9",
+  "snapshot": "versions/v12_round2_selected_ai.py",
+  "sha256": "4b6c36a8c5bc5ebbd0a8f4f534c90bf8eb31406c5f0c34888be8f3e5d3c47d57",
   "python": "3.10.22",
   "numpy": "1.26.4",
   "numba": "0.59.1",
-  "engine_positions": 2494,
+  "engine_positions": 2491,
   "minimax_pairs": 192,
   "resumption_comparisons": 144,
   "interface_cases": 492,
   "terminal_checks": 9,
+  "tt_minimax_checks": 72,
+  "bound_window_resume_checks": 48,
+  "platform_exact_oracle_checks": 139,
   "self_play_games": 200,
-  "self_play_positions": 12452,
+  "self_play_positions": 12429,
   "fallbacks": 0,
   "warmup_failures": 0,
   "stress_cases": 14,
-  "max_stress_move_seconds": 2.000193,
-  "import_init_first_go_seconds": 2.96,
-  "memory_peak_delta_mib_rounded": 0.0,
-  "memory_end_delta_mib": -10.0,
-  "import_init_rss_growth_mib": 53.1,
-  "random_wdl": [
-    6,
-    0,
-    0
+  "max_stress_move_seconds": 4.003145084003336,
+  "import_seconds_rounded": 0.09,
+  "init_seconds_rounded": 0.84,
+  "startup_limit_seconds": 5,
+  "move_limit_seconds": 5,
+  "game_limit_seconds_per_side": 180,
+  "recommended_game_budget_seconds": 160,
+  "recommended_move_search_cap_seconds": 4,
+  "tt_size_mib": 6,
+  "memory_post_init_peak_delta_mib_rounded": 0.0,
+  "memory_post_init_end_delta_mib": -6.7,
+  "memory_import_and_init_growth_mib": 61.6,
+  "final_confirmation": {
+    "games": 100,
+    "wins": 68,
+    "draws": 5,
+    "losses": 27,
+    "search_seconds_per_move": 0.015,
+    "score": 0.705,
+    "paired_bootstrap_ci95": [
+      0.625,
+      0.785
+    ],
+    "opening_seed": 510000
+  },
+  "long_budget_pilot": {
+    "games": 2,
+    "wins": 2,
+    "draws": 0,
+    "losses": 0,
+    "search_seconds_per_move": 1.0
+  },
+  "pvs_enabled": false,
+  "cso_runtime": false,
+  "weights": [
+    [
+      70,
+      -2,
+      2,
+      2,
+      2,
+      5,
+      0,
+      -2,
+      0,
+      0,
+      0
+    ],
+    [
+      70,
+      -2,
+      2,
+      2,
+      2,
+      7,
+      0,
+      -2,
+      0,
+      0,
+      0
+    ],
+    [
+      70,
+      -2,
+      2,
+      0,
+      10,
+      2,
+      0,
+      -2,
+      0,
+      0,
+      0
+    ]
   ],
-  "greedy_wdl": [
-    9,
-    0,
-    1
-  ],
-  "platform_accepted": true,
-  "local_only": false,
-  "platform_status_source": "User report on 2026-10-20: successful upload, all 10 usability cases passed",
-  "live_match_verified": false
+  "platform_accepted": null,
+  "platform_status": "Round 2 candidate: upload and usability test pending",
+  "baseline_platform_accepted": true,
+  "baseline_snapshot": "versions/v05_platform_passed_ai.py",
+  "limitations": [
+    "100-game strength evidence uses a short search budget; the longer-budget two-game pilot is not statistically powered.",
+    "Formal maximum-budget server matches remain pending; local timing samples are not universal guarantees."
+  ]
 }

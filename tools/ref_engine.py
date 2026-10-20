@@ -6,7 +6,7 @@ DIRS = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 
 
 def initial_board(size=8):
-    # ASSUMPTION (verify against a downloaded replay file from the platform!):
+    # Verified by reconstructing the 2026-10-20 platform batch (20 games):
     # white on (3,3),(4,4); black on (3,4),(4,3); black moves first.
     b = np.zeros((size, size), dtype=np.int64)
     lo, hi = size // 2 - 1, size // 2

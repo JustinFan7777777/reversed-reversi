@@ -4,6 +4,7 @@ The optional slowdown delays each search slice to model a slower platform. It is
 not a claim about platform hardware. Run sequentially, on an otherwise idle CPU.
 """
 import argparse
+import importlib.util
 import json
 import pathlib
 import random
@@ -36,11 +37,18 @@ def positions():
 
 
 def main():
+    global A
     ap = argparse.ArgumentParser()
+    ap.add_argument("--path", type=pathlib.Path, default=ROOT / "ai.py")
     ap.add_argument("--time-out", type=float, default=5.0)
+    ap.add_argument("--max-move-seconds", type=float, default=4.5)
     ap.add_argument("--slow-factor", type=float, default=3.0)
     ap.add_argument("--json", type=pathlib.Path, default=ROOT / "artifacts/timing.json")
     args = ap.parse_args()
+    if args.path.resolve() != (ROOT / "ai.py").resolve():
+        spec = importlib.util.spec_from_file_location("timing_candidate", args.path)
+        A = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(A)
     A.DEBUG_RAISE = True
     # Instantiate both colors before installing the synthetic slowdown.
     players = {c: A.AI(8, c, args.time_out) for c in (-1, 1)}
@@ -64,7 +72,7 @@ def main():
             elapsed = time.perf_counter() - start
             assert set(ai.candidate_list) == set(R.legal_moves(board, color))
             assert ai.fallback_count == 0
-            assert elapsed < min(3.0, args.time_out), (ply, slow, elapsed)
+            assert elapsed < min(args.max_move_seconds, args.time_out), (ply, slow, elapsed)
             row = dict(ply=ply, branching=branching, slow=slow, seconds=elapsed,
                        depth=ai.last_depth, nodes=ai.last_nodes, solved=ai.last_solved)
             rows.append(row)

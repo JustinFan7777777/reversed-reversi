@@ -1,6 +1,7 @@
 # Phase 1 submission checklist
 
-Local validation date: 2026-10-20. **Platform usability: 10/10 passed, reported by the user on 2026-10-20.**
+Local validation date: 2026-10-20. **Current Round 2 candidate: platform upload pending.**
+Baseline `versions/v05_platform_passed_ai.py` passed all 10 cases on 2026-10-20.
 
 - [x] Single `ai.py`; class `AI` and required signatures preserved.
 - [x] Submission imports limited to NumPy, random, time, and Numba.
@@ -13,10 +14,12 @@ Local validation date: 2026-10-20. **Platform usability: 10/10 passed, reported 
 - [x] Development exceptions propagate; normal self-play produces zero fallbacks.
 - [x] Tested with Python 3.10.22 / NumPy 1.26.4 / Numba 0.59.1.
 - [x] Local first-call timing, sampled middle/endgame timing, and complete-game memory measured.
-- [x] Upload `ai.py`: user reported "Upload success, usability test pass, you have pass all 10 test cases" on 2026-10-20.
-- [ ] Use `playto` after a successful upload; check actual platform time/memory behavior.
-- [ ] Confirm initialization accounting and time limits with the TA/platform.
+- [x] Baseline upload: user reported "Upload success, usability test pass, you have pass all 10 test cases" on 2026-10-20; 20 complete match traces verified.
+- [x] User confirmed separate 5-second startup, 5 seconds per move, and 180 seconds per side.
+- [x] Round 2: 72 TT/minimax comparisons, 48 bound/resume checks, and 139 exact platform-position oracles passed.
+- [ ] Upload the current Round 2 `ai.py` and confirm all 10 usability cases again.
+- [ ] Use `playto` to validate the new version against actual platform opponents.
 - [ ] Keep a stable passing submission before 2026-10-23 23:59.
 
-Local timing and memory observations are in `NOTES.md`. Platform acceptance is
-confirmed by the user report; live-match stability and final round-robin rank remain unverified.
+Local timing and memory observations are in `NOTES.md`. Baseline acceptance is
+confirmed by the user report; new-candidate acceptance and final rank remain unverified.

@@ -26,9 +26,9 @@ COLOR_NONE = 0
 random.seed(0)
 
 # --- knobs that depend on facts we still have to confirm with the TA ---------
-GAME_BUDGET_SEC = 80.0      # how much of the 180 s whole-game limit WE allow ourselves
-                            # (conservative: 180 s may be shared by both sides)
-PER_MOVE_FRACTION = 0.40    # use at most this fraction of `time_out` on one move
+GAME_BUDGET_SEC = 160.0     # Own move clock; retain 20 seconds below the per-side limit.
+                            # Instructor: 180 s per side; startup has a separate 5 s limit.
+PER_MOVE_FRACTION = 0.80    # use at most this fraction of `time_out` on one move
 ENDGAME_EMPTIES = 10        # solve exactly (search to the end) when <= this many empties
 MAX_DEPTH = 40
 DEBUG_RAISE = False         # dev tools set this True so that errors inside go() are NOT swallowed
@@ -139,13 +139,13 @@ def flips(me, opp, move):
 # feature columns:   0 corner   1 X-square   2 C-square   3 edge   4 discs   5 mobility
 # For columns 0-4 the feature is (opp_count - me_count), so a POSITIVE weight means
 # "owning this is BAD for me" (reversed game).  Column 5 is (my_mobility - opp_mobility).
-# Original six-feature weights are the supplied baseline. The extra frontier
-# weight was selected by paired self-play; see NOTES.md for seeds and intervals.
+# Active weights tuned offline by a small CSO run and tested on unseen openings.
+# The optimizer is not part of this submission; detailed budgets/results: NOTES.md.
 # rows = game phase:  0 opening (empties > 44), 1 middle (17..44), 2 end (<= 16)
 DEFAULT_W = np.array([
-    [40, -10, 5, 2, 1, 4, 0, -4, 0, 0, 0],
-    [40, -10, 5, 2, 1, 6, 0, -4, 0, 0, 0],
-    [40, -10, 5, 0, 8, 2, 0, -4, 0, 0, 0],
+    [70, -2, 2, 2, 2, 5, 0, -2, 0, 0, 0],
+    [70, -2, 2, 2, 2, 7, 0, -2, 0, 0, 0],
+    [70, -2, 2, 0, 10, 2, 0, -2, 0, 0, 0],
 ], dtype=np.int64)
 
 
@@ -160,8 +160,8 @@ def terminal_value(me, opp):
 
 
 # Extra feature columns: stable-edge penalty, frontier benefit, potential
-# mobility benefit, side-to-move parity, positional penalty. Frontier weight -4
-# passed two independent 100-game comparisons; other added features stay disabled.
+# mobility benefit, side-to-move parity, positional penalty. Only frontier is
+# enabled among these added features. All active weights are the validated CSO candidate.
 POSITION_WEIGHTS = np.array([
     [80, -20, 8, 4, 4, 8, -20, 80],
     [-20, -30, 0, 0, 0, 0, -30, -20],
@@ -250,20 +250,38 @@ def evaluate(me, opp, my_moves, W):
 #
 #    stats[0] = nodes visited, stats[1] = node limit, stats[2] = 1 if aborted
 #    Seven-element stats allow yielding/resuming the explicit stack so the Python
-#    driver can check a monotonic wall clock between short node slices.
+#    driver checks a monotonic wall clock between short node slices.
+#    PVS is implemented behind a flag for experiments; disabled in this release
+#    because the isolated playing-strength gain was not established.
 # ----------------------------------------------------------------------------
 MAXPLY = 128
-NSLOT = 64                      # Safe even for arbitrary supplied 8x8 positions.
+NSLOT = 64                      # Safe for arbitrary supplied 8x8 positions.
 # columns of the uint64 frame array `su`
 C_ME, C_OPP, C_MV, C_FL = 0, 1, 2, 2 + NSLOT
 SU_COLS = 2 + 2 * NSLOT
 # columns of the int64 frame array `si`
 I_DEPTH, I_ALPHA, I_BETA, I_BEST, I_N, I_I, I_KEY = 0, 1, 2, 3, 4, 5, 6
-SI_COLS = 6 + NSLOT
+I_ORIG_ALPHA, I_TT_MOVE, I_SCOUT = 6 + NSLOT, 7 + NSLOT, 8 + NSLOT
+SI_COLS = 9 + NSLOT
+TT_SIZE = 131072  # Fixed 6 MiB: full keys, depth, score, move, bound flag.
+PVS_ENABLED = False
+ORDER_OPP_MOBILITY = True
+_EMPTY_TT = np.zeros((0, 6), dtype=np.uint64)
 
 
 @njit(cache=False)
-def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si):
+def tt_index(me, opp):
+    key = me ^ ((opp << U64(17)) | (opp >> U64(47)))
+    key ^= key >> U64(30)
+    key *= U64(0xBF58476D1CE4E5B9)
+    key ^= key >> U64(27)
+    key *= U64(0x94D049BB133111EB)
+    key ^= key >> U64(31)
+    return np.int64(key & U64(TT_SIZE - 1))
+
+
+@njit(cache=False)
+def alphabeta_engine(me, opp, depth, alpha, beta, stats, W, su, si, tt):
     """Value of the position for `me` (side to move) searched `depth` plies (passes are free).
     su / si are scratch frame arrays of shape (MAXPLY, SU_COLS) / (MAXPLY, SI_COLS)."""
     # Seven-element stats enable resumable node slices. Legacy callers may still
@@ -288,6 +306,22 @@ def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si):
             co = su[p, C_OPP]
             d = si[p, I_DEPTH]
             stats[0] += 1
+            si[p, I_ORIG_ALPHA] = si[p, I_ALPHA]
+            si[p, I_TT_MOVE] = 0
+            si[p, I_SCOUT] = 0
+            preferred = U64(0)
+            if tt.shape[0] > 0 and d > 0:
+                h = tt_index(cm, co)
+                if tt[h, 5] != U64(0) and tt[h, 0] == cm and tt[h, 1] == co:
+                    preferred = tt[h, 4]
+                    # Exact depth preserves the defined depth-limited minimax value.
+                    if np.int64(tt[h, 2]) == d:
+                        flag, cached = tt[h, 5], np.int64(tt[h, 3])
+                        if (flag == U64(1) or
+                            (flag == U64(2) and cached >= si[p, I_BETA]) or
+                            (flag == U64(3) and cached <= si[p, I_ALPHA])):
+                            ret, mode = cached, 2
+                            continue
             moves = legal_moves(cm, co)
             if moves == U64(0):
                 if legal_moves(co, cm) == U64(0):
@@ -312,7 +346,12 @@ def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si):
                     f = flips(cm, co, lsb)
                     su[p, C_MV + n] = lsb
                     su[p, C_FL + n] = f
-                    si[p, I_KEY + n] = popcnt(f)        # fewest flips first
+                    key = popcnt(f)
+                    if ORDER_OPP_MOBILITY and d >= 3:
+                        key += 8 * popcnt(legal_moves(co & ~f, cm | lsb | f))
+                    if lsb == preferred:
+                        key -= 10000
+                    si[p, I_KEY + n] = key        # fewest flips first
                     n += 1
                 if d >= 2:
                     for a in range(n):                  # selection sort (n <= 64)
@@ -349,11 +388,39 @@ def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si):
                     si[q, I_DEPTH] = si[p, I_DEPTH]     # pass costs no ply
                 else:
                     si[q, I_DEPTH] = si[p, I_DEPTH] - 1
-                si[q, I_ALPHA] = -si[p, I_BETA]
-                si[q, I_BETA] = -si[p, I_ALPHA]
+                si[p, I_SCOUT] = 0
+                if (PVS_ENABLED and i > 0 and si[p, I_DEPTH] >= 2 and
+                        si[p, I_ALPHA] + 1 < si[p, I_BETA]):
+                    # Later siblings first get a null window: only prove whether
+                    # they can improve alpha. Re-search improvements below beta.
+                    si[q, I_ALPHA] = -si[p, I_ALPHA] - 1
+                    si[q, I_BETA] = -si[p, I_ALPHA]
+                    si[p, I_SCOUT] = 1
+                else:
+                    si[q, I_ALPHA] = -si[p, I_BETA]
+                    si[q, I_BETA] = -si[p, I_ALPHA]
                 p = q
                 mode = 0
         else:
+            if tt.shape[0] > 0 and si[p, I_DEPTH] > 0:
+                cm, co = su[p, C_ME], su[p, C_OPP]
+                h = tt_index(cm, co)
+                flag = U64(1)
+                if ret <= si[p, I_ORIG_ALPHA]:
+                    flag = U64(3)
+                elif ret >= si[p, I_BETA]:
+                    flag = U64(2)
+                same_key = tt[h, 0] == cm and tt[h, 1] == co
+                if not same_key:
+                    tt[h, 4] = U64(0)
+                tt[h, 0], tt[h, 1] = cm, co
+                tt[h, 2], tt[h, 3] = U64(si[p, I_DEPTH]), U64(ret)
+                # Retain a known move when a cached result returns immediately.
+                if si[p, I_TT_MOVE] != 0:
+                    tt[h, 4] = U64(si[p, I_TT_MOVE])
+                elif tt[h, 5] == U64(0):
+                    tt[h, 4] = U64(0)
+                tt[h, 5] = flag
             if p == 0:
                 if stats.size >= 7:
                     stats[3] = 0
@@ -361,7 +428,16 @@ def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si):
                 return ret
             p -= 1
             v = -ret
+            if (PVS_ENABLED and si[p, I_SCOUT] == 1 and
+                    v > si[p, I_ALPHA] and v < si[p, I_BETA]):
+                si[p, I_SCOUT] = 0
+                q = p + 1
+                si[q, I_ALPHA] = -si[p, I_BETA]
+                si[q, I_BETA] = -si[p, I_ALPHA]
+                p, mode = q, 0
+                continue
             if v > si[p, I_BEST]:
+                si[p, I_TT_MOVE] = np.int64(su[p, C_MV + si[p, I_I]])
                 si[p, I_BEST] = v
                 if v > si[p, I_ALPHA]:
                     si[p, I_ALPHA] = v
@@ -372,31 +448,30 @@ def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si):
                 mode = 1
 
 
-@njit(cache=False)
+def alphabeta(me, opp, depth, alpha, beta, stats, W, su, si, tt=None):
+    # Always pass the same mutable ndarray type to Numba. Shape zero disables
+    # caching for reference tests without compiling a second optional-TT variant.
+    table = _EMPTY_TT if tt is None else tt
+    return alphabeta_engine(me, opp, depth, alpha, beta, stats, W, su, si, table)
+
+
 def search_root(me, opp, order, n, depth, stats, W, vals):
-    """Search the n root moves listed in `order` (square indices) to `depth`.
-    Fills vals[i] with the score of order[i]; returns the index of the best move,
-    or -1 if the node budget ran out (stats[2] == 1).
-    NOTE: the whole root loop lives in Numba on purpose -- numba hands uint64 values back
-    to python as plain `int`, which cannot be mixed with np.uint64 in bit operations."""
+    """Compatibility/warm-up root loop; competition search uses resumable slices."""
     su = np.zeros((MAXPLY, SU_COLS), dtype=np.uint64)
     si = np.zeros((MAXPLY, SI_COLS), dtype=np.int64)
-    alpha = -INF
-    best_i = -1
-    best_v = -INF
+    alpha, best_i = -INF, -1
     for i in range(n):
-        b = ONE << np.uint64(order[i])
-        f = flips(me, opp, b)
-        v = -alphabeta(opp & ~f, me | b | f, depth - 1, -INF, -alpha, stats, W, su, si)
+        b = U64(1 << int(order[i]))
+        f = U64(flips(me, opp, b))
+        value = -int(alphabeta(U64(opp & ~f), U64(me | b | f), depth - 1,
+                               -INF, -alpha, stats, W, su, si))
         if stats[2] != 0:
             return -1
-        vals[i] = v
-        if v > best_v:
-            best_v = v
-            best_i = i
-        if v > alpha:
-            alpha = v
+        vals[i] = value
+        if value > alpha:
+            alpha, best_i = value, i
     return best_i
+
 
 
 # ----------------------------------------------------------------------------
@@ -473,6 +548,8 @@ class AI(object):
         self.time_out = time_out
         self.candidate_list = []
         self.W = DEFAULT_W.copy()
+        self.tt = np.zeros((TT_SIZE, 6), dtype=np.uint64)
+        self._tt_weights = self.W.copy()
         self.nps = 300_000.0            # nodes/second estimate, re-calibrated at run time
         self.used = 0.0                 # wall-clock seconds spent in go() so far
         self.fallback_count = 0
@@ -501,6 +578,13 @@ class AI(object):
             search_root(me, opp, order, len(order), 7, stats, self.W, vals)      # calibrate
             dt = max(time.perf_counter() - t, 1e-4)
             self.nps = max(50_000.0, stats[0] / dt)
+            # Compile the mutable-table specialization before the first go().
+            su = np.zeros((MAXPLY, SU_COLS), dtype=np.uint64)
+            si = np.zeros((MAXPLY, SI_COLS), dtype=np.int64)
+            stats[:] = 0
+            stats[1] = 1 << 60
+            alphabeta(me, opp, 2, -INF, INF, stats, self.W, su, si, self.tt)
+            self.tt.fill(0)
         except Exception:
             self.warmup_failures += 1
             if DEBUG_RAISE:
@@ -513,12 +597,17 @@ class AI(object):
         # Respect very small limits and exhausted game budgets; never impose a
         # minimum that could exceed the supplied timeout.
         return max(0.0, min(remaining / moves_left * 1.5,
-                            float(self.time_out) * PER_MOVE_FRACTION, 2.0))
+                            float(self.time_out) * PER_MOVE_FRACTION, 4.0))
 
     # ---- resumable root search with wall-clock checks -----------------------
     def _search(self, me, opp, root_moves, budget):
         start = time.perf_counter()
         deadline = start + budget
+        # Reuse completed results across turns. Offline tuners may replace W;
+        # invalidate scores whenever weights change, retaining exact key checks.
+        if not np.array_equal(self.W, self._tt_weights):
+            self.tt.fill(0)
+            self._tt_weights[:] = self.W
         empties = int(64 - popcnt(me | opp))
         order = sorted(root_moves, key=lambda sq: (
             bool((1 << sq) & int(CORNERS)),
@@ -544,10 +633,10 @@ class AI(object):
                         if time.perf_counter() >= deadline:
                             return best  # Keep only the last COMPLETED depth.
                         # A bad nps estimate cannot create a long uninterruptible
-                        # search: the explicit stack yields at most every 512 nodes.
-                        stats[0], stats[1], stats[2] = 0, 512, 0
+                        # search: the explicit stack yields at most every 2048 nodes.
+                        stats[0], stats[1], stats[2] = 0, 2048, 0
                         value = -int(alphabeta(child_me, child_opp, depth - 1,
-                                             -INF, -alpha, stats, self.W, su, si))
+                                             -INF, -alpha, stats, self.W, su, si, self.tt))
                         self.last_nodes += int(stats[0])
                         if stats[2] != 2:
                             break

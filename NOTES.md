@@ -4,19 +4,19 @@
 
 - Source: user-supplied Claude handoff; Appendix A extracted verbatim.
 - `versions/v00_ai.py` preserves the original submission.
-- M0/M1: locally validated and platform usability accepted. M2: local stress suite passed; live-match verification pending.
-- Platform usability passed all 10 cases; user reported successful upload on 2026-10-20.
-- M3–M5: at most 10 minutes of single-process experiment compute authorized.
+- Baseline v05 passed platform usability and supplied 20 validated match traces. Round 2 candidate v12 is locally validated; new platform acceptance is pending.
+- Baseline v05 platform usability passed all 10 cases; user reported successful upload on 2026-10-20. Current ai.py is the new Round 2 candidate.
+- Initial M3–M5 pilot: 10-minute single-process allowance. User subsequently authorized Round 2 implementation, experiments, and compute; main Round 2 training/matches took about 9 min 39 s, with correctness/resource checks separately measured.
 - Phase 1 deadline: 2026-10-23 23:59; Phase 2: 2026-11-06 23:59.
 
 ## Platform facts and open questions
 
 - User's handoff reports the instructor confirmed incremental AI memory accounting; not independently verified here.
 - [ ] Whether allocations during initialization count toward memory.
-- [ ] Whether import/initialization time counts toward the 5-second limit.
-- [ ] Whether 180 seconds is shared or per player.
+- [x] User clarification (2026-10-20): import + initialization have their own combined 5-second allowance, separate from each move.
+- [x] User clarification (2026-10-20): 180 seconds is PER PLAYER, not shared.
 - [ ] Actual `time_out` units and values.
-- [ ] Starting position/colors, checked against a downloaded platform replay.
+- [x] Initial board, black first, move legality, and terminal handling verified by reconstructing 20 platform traces (1,199 placements).
 - [ ] Whether Phase 1 checks move quality as well as the legal-move set.
 - [ ] Phase 1 raw points versus course points, and which submission determines the grade.
 - [ ] Whether each game receives a new AI object/process.
@@ -139,7 +139,7 @@ Results will identify environment, seeds, budgets, W/D/L, and timing. Local chec
   (rounded to 0.1 MiB). Import plus initialization growth **53.1 MiB**, also under 100 MiB.
   Log: `artifacts/final-memory.log`. RSS reclamation explains the negative delta.
 
-## Remaining work
+## Round 1 remaining work (superseded where Round 2 resolves it)
 
 - M0/M1/M2: completed locally; platform upload accepted all 10 usability cases (user report, 2026-10-20). Live-match verification remains pending.
 - M3: fixed-size TT implemented, tested, and rejected for lack of significant improvement;
@@ -156,3 +156,72 @@ Results will identify environment, seeds, budgets, W/D/L, and timing. Local chec
 - User reported: "Upload success, usability test pass, you have pass all 10 test cases".
 - This records acceptance of the submitted version; platform matches and final course outcomes are separate.
 - GitHub backup: private repository requested by the user; course PDFs, environments, and caches excluded.
+
+## Round 2 — Instructor timing clarification and candidate experiments
+
+- User authorized implementation, experiments, and compute on 2026-10-20.
+- Correct limits: 180 s per player; import + initialization separately <=5 s; each move <=5 s.
+- Arena now checks each side independently and times startup separately; simulated-clock regression tests pass.
+- Stable platform-accepted v05 retained in `versions/v05_platform_passed_ai.py`; main submission remains unchanged during experiments.
+- New resource policy under test: 160 s own-game budget, 80% of the move allowance, capped at 4.0 s; startup stays outside the game clock.
+- Search candidates: fixed 6 MiB full-key TT retained across turns with weight-change invalidation; cached move and opponent-mobility ordering; resumable explicit-stack PVS.
+- CSO is an independent NumPy implementation of loser-learning pairwise competition (Cheng/Jin, DOI 10.1109/TCYB.2014.2322602). Seven normalized controls adjust the original active evaluator across phases. No optimizer enters the submission.
+- CSO training: 8 particles, 6 generations, 32 evaluations x 16 deterministic depth-5 matches = 512 games; about 13.2 s. Training openings use seeds 110000–110007 and do not include the 20 platform replays.
+- Training best: 15/1/0. This is exploratory training fitness, not a held-out strength claim.
+- Fixed-depth benchmark: baseline 3,020,115 nodes / 0.2358 s; TT+ordering 1,049,515 / 0.0938 s; PVS version 866,243 / 0.0839 s. All 48 engine/position/depth values agree.
+- Equal 0.25 s searches on eight fixtures: baseline depths [9,10,9,9,11,10,12,11]; PVS candidate [10,11,10,10,12,12,16,15].
+- Fresh PVS startup: import 0.23 s + init 0.88 s; first and second go about 4.00 s each. Startup and go are separate limits.
+- Matched-opening timed trials, independent confirmation, and transfer checks are in progress; results are budget-specific.
+
+### Round 2 completed results — 2026-10-20
+
+All timed trials use matched fresh random openings with colors exchanged. Confidence
+intervals resample opening pairs, and all hard 5 s / 180 s checks passed. The training
+openings, screening openings, and final confirmation openings are disjoint.
+
+| Trial | Games | Search budget | W/D/L | Score | Paired 95% CI |
+|---|---:|---:|---:|---:|---:|
+| TT+ordering+PVS vs baseline | 100 | 20 ms | 65/6/29 | 0.680 | [0.605, 0.755] |
+| CSO weights alone vs baseline | 100 | 20 ms | 63/5/32 | 0.655 | [0.565, 0.740] |
+| PVS+CSO vs PVS+original weights | 100 | 20 ms | 64/8/28 | 0.680 | [0.590, 0.770] |
+| PVS vs TT+ordering, original weights | 100 | 5 ms | 49/3/48 | 0.505 | [0.450, 0.560] |
+| PVS+CSO vs baseline, independent set | 100 | 25 ms | 82/5/13 | 0.845 | [0.780, 0.910] |
+| PVS+CSO transfer sanity pair | 2 | 250 ms | 2/0/0 | 1.000 | Insufficient sample |
+| PVS vs TT+ordering, learned weights | 100 | 5 ms | 51/5/44 | 0.535 | [0.480, 0.590] |
+| **Final TT+ordering+CSO vs baseline** | **100** | **15 ms** | **68/5/27** | **0.705** | **[0.625, 0.785]** |
+| Final candidate transfer sanity pair | 2 | 1 s | 2/0/0 | 1.000 | Insufficient sample |
+
+- PVS remains an experimental option. Its extra strength over TT+ordering was not
+  established in either ablation, so **PVS_ENABLED=False** in the submitted candidate.
+- Final selected snapshot: `versions/v12_round2_selected_ai.py` (same bytes as ai.py).
+- Baseline rollback: `versions/v05_platform_passed_ai.py`, already platform-accepted.
+- Seven-control CSO produced the following embedded weights; columns are corner,
+  X, C, edge, discs, mobility, stable, frontier, potential mobility, parity, position:
+  opening [70,-2,2,2,2,5,0,-2,0,0,0]; middle [70,-2,2,2,2,7,0,-2,0,0,0];
+  ending [70,-2,2,0,10,2,0,-2,0,0,0].
+- Main training/match time: 13.2 + 400.4 + 165.6 = 579.3 seconds (~9 min 39 s),
+  covering 512 training games and 704 timed validation/ablation/pilot games.
+- Regression: engine 40 games/2,491 positions; minimax 192 pairs; resumable search
+  144 comparisons; interface 492 cases; terminal/pass 9; TT/minimax 72;
+  bound/window/resume 48 plus poisoned-cache invalidation; 139 existing exact
+  platform-position oracle values matched. No illegal moves or hidden fallbacks.
+- Self-play: 200 games/12,429 positions at a small correctness budget; zero fallback
+  and warm-up failures. These games are stability checks, not a strength estimate.
+- Fresh startup: import 0.09 s + init 0.84 s = 0.93 s, within its separate 5 s limit.
+- Timing: 14 sampled middle/endgame stress cases, including synthetic slice delays
+  and corrupted nps telemetry. Maximum observed go 4.003145 s (<4.5 s target, <5 s rule).
+- Memory: TT array exactly 6 MiB. Import/init growth 61.6 MiB in total; post-init
+  complete-game RSS delta -6.7 MiB and rounded peak delta +0.0 MiB, with 30 own moves.
+  The interpreter/NumPy/Numba baseline is excluded per instructor guidance reported by user.
+- Raw logs/results: `artifacts/round2_*`; committed summary:
+  `versions/round2_experiment_report.json`, `versions/final_validation.json`.
+
+### Remaining validation
+
+- Current Round 2 candidate has **not** been uploaded to the course platform.
+- The 100-game evidence above is at short budgets; the 1 s two-game check is only
+  a transfer sanity test. Full-budget platform strength against classmates is unverified.
+- Next: upload ai.py, require all 10 usability cases again, then use playto (start
+  with opp04 and opp08, colors swapped). Preserve complete win/loss/draw traces.
+- Specialized endgame code, aspiration windows, and stronger pattern evaluators remain
+  optional future work; no untested search pruning was enabled in this release.

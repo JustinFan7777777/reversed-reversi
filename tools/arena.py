@@ -19,9 +19,11 @@ import ref_engine as R              # noqa: E402
 
 
 def load(path, tag):
+    started = time.perf_counter()
     spec = importlib.util.spec_from_file_location(tag, path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
+    mod._import_seconds = time.perf_counter() - started
     return mod
 
 
@@ -30,8 +32,16 @@ def play(mod_black, mod_white, time_out, per_move_limit=5.0, game_limit=180.0,
     for m in (mod_black, mod_white):
         if hasattr(m, "DEBUG_RAISE"):
             m.DEBUG_RAISE = True
-    ais = {R.BLACK: mod_black.AI(8, R.BLACK, time_out), R.WHITE: mod_white.AI(8, R.WHITE, time_out)}
     used = {R.BLACK: 0.0, R.WHITE: 0.0}
+    ais = {}
+    for color, module in ((R.BLACK, mod_black), (R.WHITE, mod_white)):
+        started = time.perf_counter()
+        ais[color] = module.AI(8, color, time_out)
+        initialization = time.perf_counter() - started + getattr(module, "_import_seconds", 0.0)
+        if metrics is not None:
+            metrics.setdefault("import_init_seconds", {})[color] = initialization
+        if initialization > 5.0:
+            return -color, "initialization timeout", used
     board, color, passes = R.initial_board(), R.BLACK, 0
     rnd = random.Random(seed)
     for _ in range(opening_plies):
@@ -56,7 +66,7 @@ def play(mod_black, mod_white, time_out, per_move_limit=5.0, game_limit=180.0,
         legal = R.legal_moves(board, color)
         cl = list(ai.candidate_list)
         hard_limit = min(per_move_limit, time_out) if strict_time_out else per_move_limit
-        if dt > hard_limit or sum(used.values()) > game_limit:
+        if dt > hard_limit or used[color] > game_limit:
             return -color, "timeout", used            # opponent wins
         if not np.array_equal(board, given):
             return -color, "mutated input", used

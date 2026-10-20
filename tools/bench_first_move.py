@@ -2,8 +2,8 @@
 
     python tools/bench_first_move.py ai.py
 
-What matters: is the JIT compile time (import + __init__ + first go) comfortably below
-the 5 s limit?  (Confirm with the TA/platform whether import and __init__ are timed.)
+Instructor clarification: import + __init__ have a separate combined 5 s limit;
+each go() has its own 5 s limit. Do not combine startup and the first move.
 """
 import importlib.util
 import sys
@@ -29,3 +29,5 @@ ai.go(b)
 t4 = time.time()
 print("import %.2fs | __init__ %.2fs | 1st go %.2fs | 2nd go %.2fs | total before 2nd go %.2fs"
       % (t1 - t0, t2 - t1, t3 - t2, t4 - t3, t3 - t0))
+assert t2 - t0 < 5.0, "import + initialization exceeded 5 seconds"
+assert max(t3 - t2, t4 - t3) < 5.0, "move exceeded 5 seconds"

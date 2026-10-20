@@ -1,5 +1,5 @@
 {
-  "ai.py": "1485c8fd56e1e59729117d689f75633b3aba52854ed849452a9f1b59a10341a9",
+  "ai.py": "4b6c36a8c5bc5ebbd0a8f4f534c90bf8eb31406c5f0c34888be8f3e5d3c47d57",
   "versions/v00_ai.py": "ceebf4c883d2b21e723d30ab80b8b881ec451b8cbbf7f8611757758f6fbc8a71",
   "versions/v00_arena.py": "38ff35dea714537e4972073259b664ee1ce19749bcaa49bd404ed6efd02ebbd3",
   "versions/v00_bench_memory.py": "33e98d2de3236947ffd88370deeb842d8c8b2e7599111b87b71a7f812eaa0d46",
@@ -8,5 +8,14 @@
   "versions/v02_tt_ai.py": "14237bf0556456f2b07fba94ed492d37d94ff30532e3e68b9ef6905374b0c727",
   "versions/v03_features_ai.py": "b6d1302ddbe083abc63f5533d3a49bd20a2bee8fffd3932ee49c24a158e30a96",
   "versions/v04_features_no_tt_ai.py": "4f33c3c8a71e33df11252a1a9458fafd3638579fcafe317b6be5846227aafb83",
-  "versions/v05_phase1_ai.py": "1485c8fd56e1e59729117d689f75633b3aba52854ed849452a9f1b59a10341a9"
+  "versions/v05_phase1_ai.py": "1485c8fd56e1e59729117d689f75633b3aba52854ed849452a9f1b59a10341a9",
+  "versions/v05_platform_passed_ai.py": "1485c8fd56e1e59729117d689f75633b3aba52854ed849452a9f1b59a10341a9",
+  "versions/v05_time_budget_ai.py": "9e49751acca7859defdf7b565cfb572b1453fe5d35e48fcdbb0746d26de6cee1",
+  "versions/v06_tt_order_ai.py": "86956cf38d1344cd70e4242a1e786762ca6745c8bbe64810adc02afc283e77e6",
+  "versions/v07_pvs_ai.py": "a97949ba0ed5ef99ae2d2618a3673426778e67d4c6c90b6351602b1e5afe53d4",
+  "versions/v08_cso_ai.py": "45503bb15eb17b33a09e698625242cade329c327ab980f8d06f67a9616c48e65",
+  "versions/v09_pvs_cso_ai.py": "e982fab635c1852630cbd3ef92c895d032ffc7a402687de135e62bdad34efdc5",
+  "versions/v10_round2_candidate_ai.py": "e982fab635c1852630cbd3ef92c895d032ffc7a402687de135e62bdad34efdc5",
+  "versions/v11_tt_cso_ai.py": "9bd7cfdd46d15c0f7b73832aaf3dd03385b6f4c2222f71fa37b1c8b6c36f4193",
+  "versions/v12_round2_selected_ai.py": "4b6c36a8c5bc5ebbd0a8f4f534c90bf8eb31406c5f0c34888be8f3e5d3c47d57"
 }
