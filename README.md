@@ -137,3 +137,21 @@ explicit `--data` directory when restoring the dataset elsewhere. The fitter and
 checks its time budget before each new opening pair; an active pair may finish
 after that deadline. Full records and the next-step rationale are in `NOTES.md` and
 `versions/round5_validation.json`.
+
+## Round 6: exact sibling ranking
+
+Read `RESEARCH_STATUS.md` first when handing this checkout between Claude and Codex.
+The fixed experiment fitted differences between legal moves rather than absolute
+board values. It did not pass its diagnostic gates; `ai.py` remains v14.
+On 23 complete fresh holdout roots, mean static-choice margin regret fell from
+3.17 to 2.78 discs, but WDL mistakes rose from one to four. This measures static
+evaluation choices, not complete matches or v14's timed search.
+
+The committed dataset includes 75 complete roots / 611 exact sibling labels and
+105 explicitly incomplete roots. No complete parent at 20 empties was obtained.
+`versions/round6_validation.json` contains the protocol, failed gates, source
+hashes, tests, and failure analysis. Reproduce fitting without the old private data:
+
+```sh
+.venv/bin/python tools/rank_model.py --data versions/round6_rank_dataset.json --output artifacts/round6_reproduced.json
+```

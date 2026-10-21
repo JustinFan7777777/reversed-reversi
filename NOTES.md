@@ -604,3 +604,94 @@ openings, screening openings, and final confirmation openings are disjoint.
   fresh continuation play, not replaying the remaining historical moves verbatim.
 - Validate promising future candidates at longer budgets on fresh openings before
   replacing the accepted upload.
+
+## Round 6 — exact sibling ranking, 2026-10-21
+
+### Decision and coordination
+
+- User authorized starting the next research step and requested durable records
+  for Claude/Codex coordination. Branch: `codex/v16-move-ranking`; handoff entry:
+  `RESEARCH_STATUS.md`. Frozen preregistered protocol: `versions/round6_protocol.md`.
+- **No new strategy promoted.** All four diagnostic gates failed, so no match
+  screen or upload was run. Active `ai.py` remains byte-identical to v14.
+- Current-round measured computation: about 347.4 s (5.8 minutes), one heavy worker.
+  Together with Round 5's approximately 21 minutes, this remains below the original
+  45-minute allowance. Small synthetic tests/analysis add less than one minute.
+
+### Hypothesis and exact labels
+
+- Hypothesis: comparing sibling moves removes unpredictable between-position value
+  offsets. This might improve decisions more than absolute-margin regression.
+- Selected 120 roots from old training games, one parent per game, balanced at
+  18/19/20 empties. Exact full-depth search attempted every legal child with a
+  one-second child limit and 240-second total limit. Only fully solved families
+  entered fitting. Train labels: 232.6 s, 52 complete roots, 427 exact siblings.
+- Fitting used 51 roots / 426 nonterminal children; one complete root had only one
+  move. Center features and eight-times exact margins inside each root, normalize
+  each root to total weight one, and ridge around the original v14 middle row.
+  Lambda was fixed at `1e-4 * trace(X.T @ X) / 10`; parity column 9 stayed fixed.
+  There was no hyperparameter grid. A separate absolute ridge is an offline control.
+- Pooled integer row for child empties 17-19:
+  `[59, -14, -15, 5, 2, 5, 6, -2, 1, 0, -1]`.
+- Models were frozen before generating 60 new games (seeds 10010000-10010059).
+  Fresh policy: eight random plies, then fixed-depth-5 v14 with 15% random moves.
+  Fresh generation plus labels: 104.0 s, 23 complete roots, 184 exact siblings.
+- Independence audit verified one root per game and no within-/cross-split family
+  overlap under D4 board symmetries, preserving turn/player roles. Pass features
+  follow depth-zero search; terminals retain exact encoded values.
+- Timeout censoring is severe: train complete roots at 18/19/20 empties are
+  33/19/0; holdout 17/6/0. The shared row's child-19 behavior is extrapolation,
+  without complete parent-20 supervision. Do not generalize results to that stratum.
+
+### Fresh static-choice results
+
+These are one-step evaluation choices among exact-labeled alternatives, not the
+behavior of the normal timed search and not full-game wins or losses.
+
+| Model | Complete holdout roots | WDL mistakes | Mean exact margin regret | Optimal choices |
+|---|---:|---:|---:|---:|
+| v14 middle row | 23 | 1 | 3.174 discs | 11 |
+| Sibling-centered integer row | 23 | 4 | 2.783 discs | 14 |
+| Absolute ridge control | 23 | 2 | 2.435 discs | 10 |
+
+- Centered-minus-v14 mean regret: -0.391 discs, game-clustered paired bootstrap
+  95% interval [-2.174, 1.435]. This does not establish an improvement.
+- Gates: fitting roots below 72; holdout roots below 30; WDL errors increased;
+  regret reduction below 0.5 discs. All four failed. Do not relax the gates or
+  select the absolute-fit control for matches after viewing this holdout.
+
+### Concrete failure mechanisms
+
+- Three new WDL mistakes occur in fresh roots 18, 33, and 51 (all parent-18).
+  Relative to v14's safe choices, the changed positional feature contributes
+  +32/+32/+36 toward the bad choices. Its fitted coefficient -0.5714 rounded to -1,
+  increasing its magnitude by about 75%. This exposes feature-scale/quantization
+  sensitivity in addition to the mismatch between disc-margin and WDL objectives.
+- Post hoc scoring with the already stored unrounded row removes two new errors,
+  but still has two WDL mistakes and 3.348 discs mean regret. No refitting or new
+  candidate followed. Finer precision alone is not shown to solve the problem.
+- One holdout sibling pair has identical 11 features but exact margins 0 and -2
+  (root 51, squares 40/58). The representation cannot distinguish that pair;
+  this collision does not explain all regressions. Full contributions and the
+  sensitivity calculation are preserved in `versions/round6_validation.json`.
+
+### Verification and reusable outputs
+
+- Twelve synthetic fitter/metric tests and six generator tests pass. Generator
+  tests use independent array move generation and terminal minimax, explicit
+  passes/early terminals, expired deadlines, and real one-node resumption slices.
+- Experimental snapshot passes lint, 192 minimax comparisons and 112 table/layout
+  checks. Its only behavior change from v14 is the three fitted weight rows; it
+  is not an accepted upload and was not benchmarked as a competition replacement.
+- Final review found the older search/table test scripts ignored a positional
+  candidate path. Both now load the requested file and print its resolved path;
+  the snapshot checks were rerun successfully. Original misdirected runs remain
+  recorded as active-v14 checks, explicitly excluded from candidate evidence.
+- `versions/round6_rank_dataset.json` preserves all 180 attempted roots, including
+  105 incomplete families with unknown labels. It can reproduce the fit and
+  diagnostics without the original scratch files. Raw logs remain in ignored
+  `artifacts/codex_round6/`; source/model/data hashes are in the validation report.
+- Next hypothesis: prioritize WDL errors, use margin secondarily, choose integer
+  precision using training data alone, and test on a new untouched holdout. Obtain
+  complete root-20 supervision before modifying child-19 evaluation. No such
+  successor is implemented or accepted in this round.

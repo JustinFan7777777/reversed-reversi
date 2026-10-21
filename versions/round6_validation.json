@@ -1,0 +1,5887 @@
+{
+  "date": "2026-10-21",
+  "branch": "codex/v16-move-ranking",
+  "base_commit": "a981c3b3ea76ab7b122e1916414ccf00944983f5",
+  "status": "completed_negative_diagnostic",
+  "strategy_accepted": false,
+  "decision": "Keep active v14. All four preregistered diagnostic gates failed. No matches or upload were performed.",
+  "protocol": {
+    "path": "versions/round6_protocol.md",
+    "sha256": "b7d8f12bc12bb3b82120f5f9bb3edd4834c5c9b57620c0e510cae98342d9243b",
+    "written_before_labels": true
+  },
+  "dataset": {
+    "path": "versions/round6_rank_dataset.json",
+    "sha256": "01aed026db338127d049d71e0e43ec764755fa5f403a76ca177e9329b2f4e70d",
+    "roots": 180,
+    "complete_roots": 75,
+    "complete_sibling_labels": 611,
+    "incomplete_roots": 105,
+    "model_fitting_roots": 51,
+    "model_fitting_nonterminal_children": 426,
+    "one_complete_training_root_with_only_one_child_excluded_from_fit": true
+  },
+  "source_hashes": {
+    "ai.py": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af",
+    "versions/v14_round4_fitted_end_ai.py": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af",
+    "versions/v16_rank_only_experimental_ai.py": "e1643c6e0feb8d2a7f7eb07a77de2889e7181f6b6620b37cd81eb543d3ef3591",
+    "tools/build_rank_data.py": "a663be34c496f7bde4a71cb8f8a7addccf036fb6a5462e47edb9559bc94341ab",
+    "tools/rank_model.py": "5caf3548fff0fad7baf7cc2ddfbabd07d9a42e32cf89f359fda42ec039eb653a",
+    "tests/test_move_rank.py": "e1dd794a08e07efd36c5db457974f3da2a028ac9a1a283484a7792ba32852e73",
+    "tests/test_rank_data.py": "e4aac4ab24b862a8a0710d0c3d44b47ba97baf786c19a585dbb883593068e25e",
+    "tests/test_search.py": "6e1aba4797a9a299786f10a54a7a7803db084d83ace30ff15e62b4345544f3e5",
+    "tests/test_eval_table.py": "76571d45b2b0d7a291e6696cb1684f909061a04fa2757a126bb6fdc36187503e"
+  },
+  "frozen_candidate_provenance": {
+    "base_sha256": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af",
+    "candidate": "versions/v16_rank_only_experimental_ai.py",
+    "candidate_sha256": "e1643c6e0feb8d2a7f7eb07a77de2889e7181f6b6620b37cd81eb543d3ef3591",
+    "model_sha256": "14633ef4a3e7474eb5493e231ab982257467e47271463847ca0510b9865b3c58",
+    "changes": "Only rows17-19 replaced with one pooled sibling-centered row. No kernel or search-policy change.",
+    "status": "research only, minimum training-count gate failed before holdout inspection"
+  },
+  "dataset_independence": {
+    "phase": "actual_dataset_independence_audit",
+    "seconds": 1.3999133750039618,
+    "exit_code": 0,
+    "roots_by_split": {
+      "train": 120,
+      "holdout": 60
+    },
+    "canonical_family_keys_by_split": {
+      "train": 1153,
+      "holdout": 615
+    },
+    "cross_split_family_overlap": 0,
+    "within_split_family_overlap": 0,
+    "one_root_per_game": true
+  },
+  "results": {
+    "frozen_models": {
+      "models": {
+        "sibling_centered": {
+          "objective": "centered",
+          "row": [
+            59,
+            -14,
+            -15,
+            5,
+            2,
+            5,
+            6,
+            -2,
+            1,
+            0,
+            -1
+          ],
+          "unrounded_row": [
+            58.62960405406774,
+            -13.51880323114454,
+            -15.488564062259446,
+            4.521306527416045,
+            1.5700549402446071,
+            5.30257252047922,
+            6.136809075483398,
+            -2.035511415732209,
+            0.9765657815950313,
+            0.0,
+            -0.571419479126344
+          ],
+          "anchor": [
+            70,
+            -2,
+            2,
+            2,
+            2,
+            7,
+            0,
+            -2,
+            0,
+            0,
+            0
+          ],
+          "fixed_columns": [
+            9
+          ],
+          "ridge_lambda": 0.41530737809302226,
+          "free_feature_rank": 10,
+          "train_roots": 51,
+          "train_nonterminal_children": 426,
+          "training_ids": [
+            "old_51_e18",
+            "old_5076_e18",
+            "old_1007_e19",
+            "old_4041_e18",
+            "old_128_e19",
+            "old_5028_e18",
+            "old_1_e19",
+            "old_2002_e18",
+            "old_6147_e18",
+            "old_4128_e19",
+            "old_6139_e18",
+            "old_5049_e18",
+            "old_48_e19",
+            "old_7113_e18",
+            "old_46_e19",
+            "old_6056_e18",
+            "old_2001_e18",
+            "old_7103_e18",
+            "old_113_e18",
+            "old_6021_e18",
+            "old_2133_e18",
+            "old_6033_e19",
+            "old_7013_e18",
+            "old_5031_e19",
+            "old_6136_e18",
+            "old_7079_e18",
+            "old_2014_e18",
+            "old_2122_e19",
+            "old_2006_e18",
+            "old_23_e18",
+            "old_5121_e19",
+            "old_4122_e19",
+            "old_6029_e18",
+            "old_7058_e18",
+            "old_2149_e19",
+            "old_2012_e18",
+            "old_6037_e19",
+            "old_2102_e18",
+            "old_1059_e18",
+            "old_7077_e18",
+            "old_6092_e19",
+            "old_53_e18",
+            "old_5141_e19",
+            "old_3078_e19",
+            "old_3139_e18",
+            "old_91_e19",
+            "old_2104_e18",
+            "old_5107_e19",
+            "old_1023_e18",
+            "old_6073_e19",
+            "old_2118_e18"
+          ],
+          "child_empties": [
+            17,
+            18,
+            19
+          ]
+        },
+        "absolute_ridge": {
+          "objective": "absolute",
+          "row": [
+            65,
+            -14,
+            -11,
+            4,
+            2,
+            4,
+            7,
+            -2,
+            3,
+            0,
+            0
+          ],
+          "unrounded_row": [
+            65.18231244042336,
+            -14.203891924405298,
+            -11.1695191445461,
+            4.000408153967624,
+            1.6243076434774453,
+            4.403187699567674,
+            6.606214775109617,
+            -1.9636450014789777,
+            3.2939168969959742,
+            0.0,
+            -0.4603912809640905
+          ],
+          "anchor": [
+            70,
+            -2,
+            2,
+            2,
+            2,
+            7,
+            0,
+            -2,
+            0,
+            0,
+            0
+          ],
+          "fixed_columns": [
+            9
+          ],
+          "ridge_lambda": 4.490354565573317,
+          "free_feature_rank": 10,
+          "train_roots": 51,
+          "train_nonterminal_children": 426,
+          "training_ids": [
+            "old_51_e18",
+            "old_5076_e18",
+            "old_1007_e19",
+            "old_4041_e18",
+            "old_128_e19",
+            "old_5028_e18",
+            "old_1_e19",
+            "old_2002_e18",
+            "old_6147_e18",
+            "old_4128_e19",
+            "old_6139_e18",
+            "old_5049_e18",
+            "old_48_e19",
+            "old_7113_e18",
+            "old_46_e19",
+            "old_6056_e18",
+            "old_2001_e18",
+            "old_7103_e18",
+            "old_113_e18",
+            "old_6021_e18",
+            "old_2133_e18",
+            "old_6033_e19",
+            "old_7013_e18",
+            "old_5031_e19",
+            "old_6136_e18",
+            "old_7079_e18",
+            "old_2014_e18",
+            "old_2122_e19",
+            "old_2006_e18",
+            "old_23_e18",
+            "old_5121_e19",
+            "old_4122_e19",
+            "old_6029_e18",
+            "old_7058_e18",
+            "old_2149_e19",
+            "old_2012_e18",
+            "old_6037_e19",
+            "old_2102_e18",
+            "old_1059_e18",
+            "old_7077_e18",
+            "old_6092_e19",
+            "old_53_e18",
+            "old_5141_e19",
+            "old_3078_e19",
+            "old_3139_e18",
+            "old_91_e19",
+            "old_2104_e18",
+            "old_5107_e19",
+            "old_1023_e18",
+            "old_6073_e19",
+            "old_2118_e18"
+          ],
+          "child_empties": [
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      "training_data_sha256": "58e0e29a36801a7667e8cd90b803e7fafffa4de83ccbe726e385973bfbb3804b",
+      "fitter_sha256": "5caf3548fff0fad7baf7cc2ddfbabd07d9a42e32cf89f359fda42ec039eb653a",
+      "protocol_sha256": "b7d8f12bc12bb3b82120f5f9bb3edd4834c5c9b57620c0e510cae98342d9243b",
+      "holdout_inspected": false
+    },
+    "training_summary": {
+      "attempted": 120,
+      "complete": 52,
+      "completion_by_empties": {
+        "18": {
+          "complete": 33,
+          "incomplete": 7
+        },
+        "19": {
+          "incomplete": 21,
+          "complete": 19
+        },
+        "20": {
+          "incomplete": 40
+        }
+      },
+      "seconds": 232.5943980000011,
+      "nodes": 3536363837,
+      "complete_children": 427
+    },
+    "holdout_summary": {
+      "attempted": 60,
+      "complete": 23,
+      "completion_by_empties": {
+        "18": {
+          "complete": 17,
+          "incomplete": 3
+        },
+        "19": {
+          "complete": 6,
+          "incomplete": 14
+        },
+        "20": {
+          "incomplete": 20
+        }
+      },
+      "seconds": 103.9751800840022,
+      "nodes": 1641944490,
+      "complete_children": 184
+    },
+    "metrics": {
+      "train": {
+        "engines": {
+          "v14": {
+            "roots": 52,
+            "wdl_errors": 4,
+            "wdl_error_rate": 0.07692307692307693,
+            "mean_margin_regret": 2.1346153846153846,
+            "optimum_hits": 24,
+            "optimum_hit_rate": 0.46153846153846156,
+            "pairwise_count": 1484,
+            "pairwise_correct": 1081,
+            "pairwise_strict_mistakes": 387,
+            "pairwise_predicted_ties": 16,
+            "pairwise_accuracy": 0.7338274932614556,
+            "per_parent_empties": {
+              "18": {
+                "roots": 33,
+                "wdl_errors": 3,
+                "wdl_error_rate": 0.09090909090909091,
+                "mean_margin_regret": 2.393939393939394,
+                "optimum_hits": 14,
+                "optimum_hit_rate": 0.42424242424242425,
+                "pairwise_count": 982,
+                "pairwise_correct": 714,
+                "pairwise_strict_mistakes": 256,
+                "pairwise_predicted_ties": 12,
+                "pairwise_accuracy": 0.7331975560081466
+              },
+              "19": {
+                "roots": 19,
+                "wdl_errors": 1,
+                "wdl_error_rate": 0.05263157894736842,
+                "mean_margin_regret": 1.6842105263157894,
+                "optimum_hits": 10,
+                "optimum_hit_rate": 0.5263157894736842,
+                "pairwise_count": 502,
+                "pairwise_correct": 367,
+                "pairwise_strict_mistakes": 131,
+                "pairwise_predicted_ties": 4,
+                "pairwise_accuracy": 0.7350597609561753
+              }
+            },
+            "records": [
+              {
+                "id": "old_51_e18",
+                "game": 51,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 40,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  40
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 21,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5076_e18",
+                "game": 5076,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 30,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  30
+                ],
+                "pairwise_count": 35,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 12,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1007_e19",
+                "game": 1007,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 57,
+                "chosen_margin": -20,
+                "best_margin": -16,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  24,
+                  32
+                ],
+                "pairwise_count": 14,
+                "pairwise_correct": 9,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_4041_e18",
+                "game": 4041,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 39,
+                "chosen_margin": 12,
+                "best_margin": 16,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  47
+                ],
+                "pairwise_count": 50,
+                "pairwise_correct": 36,
+                "pairwise_strict_mistakes": 13,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_128_e19",
+                "game": 128,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 15,
+                "chosen_margin": 10,
+                "best_margin": 14,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  39
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 31,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_5028_e18",
+                "game": 5028,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 45,
+                "chosen_margin": 18,
+                "best_margin": 20,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  54
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 14,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1_e19",
+                "game": 1,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 61,
+                "chosen_margin": 0,
+                "best_margin": 0,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  61
+                ],
+                "pairwise_count": 48,
+                "pairwise_correct": 37,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2002_e18",
+                "game": 2002,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": -4,
+                "best_margin": -4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5,
+                  32,
+                  42
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 29,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_6147_e18",
+                "game": 6147,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 39,
+                "chosen_margin": -6,
+                "best_margin": 0,
+                "regret": 6,
+                "wdl_error": true,
+                "optimal_squares": [
+                  63
+                ],
+                "pairwise_count": 5,
+                "pairwise_correct": 0,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_4128_e19",
+                "game": 4128,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 54,
+                "chosen_margin": -14,
+                "best_margin": -12,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5,
+                  53
+                ],
+                "pairwise_count": 8,
+                "pairwise_correct": 3,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6139_e18",
+                "game": 6139,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 55,
+                "chosen_margin": 4,
+                "best_margin": 10,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  25
+                ],
+                "pairwise_count": 60,
+                "pairwise_correct": 47,
+                "pairwise_strict_mistakes": 13,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5049_e18",
+                "game": 5049,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 9,
+                "chosen_margin": 12,
+                "best_margin": 17,
+                "regret": 5,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 18,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_48_e19",
+                "game": 48,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 4,
+                "chosen_margin": -14,
+                "best_margin": -14,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4,
+                  5,
+                  30
+                ],
+                "pairwise_count": 16,
+                "pairwise_correct": 12,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7113_e18",
+                "game": 7113,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 14,
+                "chosen_margin": 12,
+                "best_margin": 12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  14
+                ],
+                "pairwise_count": 53,
+                "pairwise_correct": 44,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5041_e18",
+                "game": 5041,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 25,
+                "chosen_margin": -4,
+                "best_margin": -4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  25
+                ],
+                "pairwise_count": 0,
+                "pairwise_correct": 0,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_46_e19",
+                "game": 46,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 50,
+                "chosen_margin": -20,
+                "best_margin": -16,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  58
+                ],
+                "pairwise_count": 33,
+                "pairwise_correct": 22,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6056_e18",
+                "game": 6056,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 12,
+                "best_margin": 20,
+                "regret": 8,
+                "wdl_error": false,
+                "optimal_squares": [
+                  60
+                ],
+                "pairwise_count": 58,
+                "pairwise_correct": 43,
+                "pairwise_strict_mistakes": 15,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2001_e18",
+                "game": 2001,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5,
+                  40
+                ],
+                "pairwise_count": 20,
+                "pairwise_correct": 16,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7103_e18",
+                "game": 7103,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": -16,
+                "best_margin": -12,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  40
+                ],
+                "pairwise_count": 25,
+                "pairwise_correct": 19,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_113_e18",
+                "game": 113,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 24,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  24
+                ],
+                "pairwise_count": 22,
+                "pairwise_correct": 16,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6021_e18",
+                "game": 6021,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 32,
+                "chosen_margin": 10,
+                "best_margin": 12,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  1,
+                  24,
+                  57
+                ],
+                "pairwise_count": 29,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_2133_e18",
+                "game": 2133,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 62,
+                "chosen_margin": 24,
+                "best_margin": 28,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  10
+                ],
+                "pairwise_count": 39,
+                "pairwise_correct": 36,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6033_e19",
+                "game": 6033,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 13,
+                "chosen_margin": -10,
+                "best_margin": -8,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  21
+                ],
+                "pairwise_count": 3,
+                "pairwise_correct": 2,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7013_e18",
+                "game": 7013,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": 8,
+                "best_margin": 8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 33,
+                "pairwise_correct": 27,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5031_e19",
+                "game": 5031,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 39,
+                "chosen_margin": -24,
+                "best_margin": -24,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  39
+                ],
+                "pairwise_count": 7,
+                "pairwise_correct": 5,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6136_e18",
+                "game": 6136,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 32,
+                "chosen_margin": -8,
+                "best_margin": -2,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  55
+                ],
+                "pairwise_count": 39,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "old_7079_e18",
+                "game": 7079,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 54,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  31,
+                  54
+                ],
+                "pairwise_count": 8,
+                "pairwise_correct": 6,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2014_e18",
+                "game": 2014,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 0,
+                "best_margin": 0,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  8,
+                  13,
+                  47
+                ],
+                "pairwise_count": 47,
+                "pairwise_correct": 40,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2122_e19",
+                "game": 2122,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 54,
+                "chosen_margin": -10,
+                "best_margin": -10,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  1,
+                  24,
+                  54
+                ],
+                "pairwise_count": 68,
+                "pairwise_correct": 51,
+                "pairwise_strict_mistakes": 15,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "old_2006_e18",
+                "game": 2006,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": -18,
+                "best_margin": -12,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  41,
+                  62
+                ],
+                "pairwise_count": 45,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 3
+              },
+              {
+                "id": "old_23_e18",
+                "game": 23,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 10,
+                "chosen_margin": 9,
+                "best_margin": 10,
+                "regret": 1,
+                "wdl_error": false,
+                "optimal_squares": [
+                  6,
+                  21,
+                  22,
+                  30
+                ],
+                "pairwise_count": 9,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5121_e19",
+                "game": 5121,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 58,
+                "chosen_margin": -6,
+                "best_margin": -6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7,
+                  57,
+                  58
+                ],
+                "pairwise_count": 12,
+                "pairwise_correct": 6,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_4122_e19",
+                "game": 4122,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 11,
+                "chosen_margin": -6,
+                "best_margin": 0,
+                "regret": 6,
+                "wdl_error": true,
+                "optimal_squares": [
+                  61
+                ],
+                "pairwise_count": 37,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6029_e18",
+                "game": 6029,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 18,
+                "best_margin": 26,
+                "regret": 8,
+                "wdl_error": false,
+                "optimal_squares": [
+                  17
+                ],
+                "pairwise_count": 34,
+                "pairwise_correct": 14,
+                "pairwise_strict_mistakes": 20,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7058_e18",
+                "game": 7058,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 4,
+                "chosen_margin": -2,
+                "best_margin": 2,
+                "regret": 4,
+                "wdl_error": true,
+                "optimal_squares": [
+                  11
+                ],
+                "pairwise_count": 29,
+                "pairwise_correct": 20,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2149_e19",
+                "game": 2149,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 57,
+                "chosen_margin": 10,
+                "best_margin": 10,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  57,
+                  61
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 32,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2012_e18",
+                "game": 2012,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 10,
+                "chosen_margin": -2,
+                "best_margin": 2,
+                "regret": 4,
+                "wdl_error": true,
+                "optimal_squares": [
+                  62
+                ],
+                "pairwise_count": 34,
+                "pairwise_correct": 28,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_6037_e19",
+                "game": 6037,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 19,
+                "chosen_margin": 2,
+                "best_margin": 2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  18,
+                  19
+                ],
+                "pairwise_count": 14,
+                "pairwise_correct": 9,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2102_e18",
+                "game": 2102,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 31,
+                "chosen_margin": -14,
+                "best_margin": -12,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7
+                ],
+                "pairwise_count": 9,
+                "pairwise_correct": 4,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1059_e18",
+                "game": 1059,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 46,
+                "chosen_margin": 6,
+                "best_margin": 6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  39,
+                  46
+                ],
+                "pairwise_count": 31,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7077_e18",
+                "game": 7077,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 8,
+                "best_margin": 10,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  16
+                ],
+                "pairwise_count": 45,
+                "pairwise_correct": 28,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_6092_e19",
+                "game": 6092,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 49,
+                "chosen_margin": -16,
+                "best_margin": -14,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  50
+                ],
+                "pairwise_count": 35,
+                "pairwise_correct": 25,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_53_e18",
+                "game": 53,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": 8,
+                "best_margin": 8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  48
+                ],
+                "pairwise_count": 3,
+                "pairwise_correct": 2,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5141_e19",
+                "game": 5141,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 5,
+                "chosen_margin": -32,
+                "best_margin": -26,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  59
+                ],
+                "pairwise_count": 6,
+                "pairwise_correct": 2,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_3078_e19",
+                "game": 3078,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 11,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  3,
+                  11,
+                  13
+                ],
+                "pairwise_count": 48,
+                "pairwise_correct": 36,
+                "pairwise_strict_mistakes": 12,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_3139_e18",
+                "game": 3139,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 22,
+                "chosen_margin": 26,
+                "best_margin": 26,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7,
+                  22
+                ],
+                "pairwise_count": 2,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_91_e19",
+                "game": 91,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 13,
+                "chosen_margin": -8,
+                "best_margin": -8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  13
+                ],
+                "pairwise_count": 26,
+                "pairwise_correct": 19,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2104_e18",
+                "game": 2104,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 10,
+                "best_margin": 11,
+                "regret": 1,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_5107_e19",
+                "game": 5107,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 58,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  40,
+                  58,
+                  59
+                ],
+                "pairwise_count": 15,
+                "pairwise_correct": 13,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1023_e18",
+                "game": 1023,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 39,
+                "chosen_margin": -14,
+                "best_margin": -10,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  16
+                ],
+                "pairwise_count": 26,
+                "pairwise_correct": 20,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6073_e19",
+                "game": 6073,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 5,
+                "chosen_margin": 18,
+                "best_margin": 20,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  38
+                ],
+                "pairwise_count": 31,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2118_e18",
+                "game": 2118,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 4,
+                "chosen_margin": 12,
+                "best_margin": 12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4,
+                  6
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 1
+              }
+            ]
+          },
+          "sibling_centered": {
+            "roots": 52,
+            "wdl_errors": 4,
+            "wdl_error_rate": 0.07692307692307693,
+            "mean_margin_regret": 1.75,
+            "optimum_hits": 27,
+            "optimum_hit_rate": 0.5192307692307693,
+            "pairwise_count": 1484,
+            "pairwise_correct": 1052,
+            "pairwise_strict_mistakes": 417,
+            "pairwise_predicted_ties": 15,
+            "pairwise_accuracy": 0.7139487870619946,
+            "per_parent_empties": {
+              "18": {
+                "roots": 33,
+                "wdl_errors": 3,
+                "wdl_error_rate": 0.09090909090909091,
+                "mean_margin_regret": 1.606060606060606,
+                "optimum_hits": 18,
+                "optimum_hit_rate": 0.5454545454545454,
+                "pairwise_count": 982,
+                "pairwise_correct": 691,
+                "pairwise_strict_mistakes": 280,
+                "pairwise_predicted_ties": 11,
+                "pairwise_accuracy": 0.7092668024439919
+              },
+              "19": {
+                "roots": 19,
+                "wdl_errors": 1,
+                "wdl_error_rate": 0.05263157894736842,
+                "mean_margin_regret": 2.0,
+                "optimum_hits": 9,
+                "optimum_hit_rate": 0.47368421052631576,
+                "pairwise_count": 502,
+                "pairwise_correct": 361,
+                "pairwise_strict_mistakes": 137,
+                "pairwise_predicted_ties": 4,
+                "pairwise_accuracy": 0.7231075697211156
+              }
+            },
+            "records": [
+              {
+                "id": "old_51_e18",
+                "game": 51,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 40,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  40
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 21,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5076_e18",
+                "game": 5076,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 30,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  30
+                ],
+                "pairwise_count": 35,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_1007_e19",
+                "game": 1007,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 57,
+                "chosen_margin": -20,
+                "best_margin": -16,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  24,
+                  32
+                ],
+                "pairwise_count": 14,
+                "pairwise_correct": 8,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_4041_e18",
+                "game": 4041,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 16,
+                "best_margin": 16,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  47
+                ],
+                "pairwise_count": 50,
+                "pairwise_correct": 40,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_128_e19",
+                "game": 128,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 39,
+                "chosen_margin": 14,
+                "best_margin": 14,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  39
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5028_e18",
+                "game": 5028,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 45,
+                "chosen_margin": 18,
+                "best_margin": 20,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  54
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 15,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1_e19",
+                "game": 1,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 61,
+                "chosen_margin": 0,
+                "best_margin": 0,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  61
+                ],
+                "pairwise_count": 48,
+                "pairwise_correct": 36,
+                "pairwise_strict_mistakes": 12,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2002_e18",
+                "game": 2002,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": -4,
+                "best_margin": -4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5,
+                  32,
+                  42
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 28,
+                "pairwise_strict_mistakes": 12,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6147_e18",
+                "game": 6147,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": -2,
+                "best_margin": 0,
+                "regret": 2,
+                "wdl_error": true,
+                "optimal_squares": [
+                  63
+                ],
+                "pairwise_count": 5,
+                "pairwise_correct": 2,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_4128_e19",
+                "game": 4128,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 53,
+                "chosen_margin": -12,
+                "best_margin": -12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5,
+                  53
+                ],
+                "pairwise_count": 8,
+                "pairwise_correct": 5,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6139_e18",
+                "game": 6139,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 25,
+                "chosen_margin": 10,
+                "best_margin": 10,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  25
+                ],
+                "pairwise_count": 60,
+                "pairwise_correct": 44,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5049_e18",
+                "game": 5049,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 4,
+                "chosen_margin": 12,
+                "best_margin": 17,
+                "regret": 5,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 18,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_48_e19",
+                "game": 48,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 22,
+                "chosen_margin": -18,
+                "best_margin": -14,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4,
+                  5,
+                  30
+                ],
+                "pairwise_count": 16,
+                "pairwise_correct": 11,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7113_e18",
+                "game": 7113,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 14,
+                "chosen_margin": 12,
+                "best_margin": 12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  14
+                ],
+                "pairwise_count": 53,
+                "pairwise_correct": 42,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "old_5041_e18",
+                "game": 5041,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 25,
+                "chosen_margin": -4,
+                "best_margin": -4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  25
+                ],
+                "pairwise_count": 0,
+                "pairwise_correct": 0,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_46_e19",
+                "game": 46,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 50,
+                "chosen_margin": -20,
+                "best_margin": -16,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  58
+                ],
+                "pairwise_count": 33,
+                "pairwise_correct": 22,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6056_e18",
+                "game": 6056,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 12,
+                "best_margin": 20,
+                "regret": 8,
+                "wdl_error": false,
+                "optimal_squares": [
+                  60
+                ],
+                "pairwise_count": 58,
+                "pairwise_correct": 40,
+                "pairwise_strict_mistakes": 18,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2001_e18",
+                "game": 2001,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5,
+                  40
+                ],
+                "pairwise_count": 20,
+                "pairwise_correct": 15,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_7103_e18",
+                "game": 7103,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 19,
+                "chosen_margin": -16,
+                "best_margin": -12,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  40
+                ],
+                "pairwise_count": 25,
+                "pairwise_correct": 11,
+                "pairwise_strict_mistakes": 14,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_113_e18",
+                "game": 113,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 24,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  24
+                ],
+                "pairwise_count": 22,
+                "pairwise_correct": 16,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6021_e18",
+                "game": 6021,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 32,
+                "chosen_margin": 10,
+                "best_margin": 12,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  1,
+                  24,
+                  57
+                ],
+                "pairwise_count": 29,
+                "pairwise_correct": 24,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2133_e18",
+                "game": 2133,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 10,
+                "chosen_margin": 28,
+                "best_margin": 28,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  10
+                ],
+                "pairwise_count": 39,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6033_e19",
+                "game": 6033,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 13,
+                "chosen_margin": -10,
+                "best_margin": -8,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  21
+                ],
+                "pairwise_count": 3,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7013_e18",
+                "game": 7013,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": 8,
+                "best_margin": 8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 33,
+                "pairwise_correct": 28,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_5031_e19",
+                "game": 5031,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 39,
+                "chosen_margin": -24,
+                "best_margin": -24,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  39
+                ],
+                "pairwise_count": 7,
+                "pairwise_correct": 4,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_6136_e18",
+                "game": 6136,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 32,
+                "chosen_margin": -8,
+                "best_margin": -2,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  55
+                ],
+                "pairwise_count": 39,
+                "pairwise_correct": 21,
+                "pairwise_strict_mistakes": 18,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7079_e18",
+                "game": 7079,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 54,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  31,
+                  54
+                ],
+                "pairwise_count": 8,
+                "pairwise_correct": 7,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2014_e18",
+                "game": 2014,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 0,
+                "best_margin": 0,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  8,
+                  13,
+                  47
+                ],
+                "pairwise_count": 47,
+                "pairwise_correct": 38,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2122_e19",
+                "game": 2122,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 2,
+                "chosen_margin": -12,
+                "best_margin": -10,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  1,
+                  24,
+                  54
+                ],
+                "pairwise_count": 68,
+                "pairwise_correct": 55,
+                "pairwise_strict_mistakes": 12,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_2006_e18",
+                "game": 2006,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 58,
+                "chosen_margin": -16,
+                "best_margin": -12,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  41,
+                  62
+                ],
+                "pairwise_count": 45,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 19,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_23_e18",
+                "game": 23,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 10,
+                "chosen_margin": 9,
+                "best_margin": 10,
+                "regret": 1,
+                "wdl_error": false,
+                "optimal_squares": [
+                  6,
+                  21,
+                  22,
+                  30
+                ],
+                "pairwise_count": 9,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5121_e19",
+                "game": 5121,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 58,
+                "chosen_margin": -6,
+                "best_margin": -6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7,
+                  57,
+                  58
+                ],
+                "pairwise_count": 12,
+                "pairwise_correct": 5,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_4122_e19",
+                "game": 4122,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 11,
+                "chosen_margin": -6,
+                "best_margin": 0,
+                "regret": 6,
+                "wdl_error": true,
+                "optimal_squares": [
+                  61
+                ],
+                "pairwise_count": 37,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6029_e18",
+                "game": 6029,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 18,
+                "best_margin": 26,
+                "regret": 8,
+                "wdl_error": false,
+                "optimal_squares": [
+                  17
+                ],
+                "pairwise_count": 34,
+                "pairwise_correct": 13,
+                "pairwise_strict_mistakes": 21,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7058_e18",
+                "game": 7058,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 23,
+                "chosen_margin": 0,
+                "best_margin": 2,
+                "regret": 2,
+                "wdl_error": true,
+                "optimal_squares": [
+                  11
+                ],
+                "pairwise_count": 29,
+                "pairwise_correct": 22,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2149_e19",
+                "game": 2149,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 23,
+                "chosen_margin": 4,
+                "best_margin": 10,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  57,
+                  61
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 24,
+                "pairwise_strict_mistakes": 17,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2012_e18",
+                "game": 2012,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 10,
+                "chosen_margin": -2,
+                "best_margin": 2,
+                "regret": 4,
+                "wdl_error": true,
+                "optimal_squares": [
+                  62
+                ],
+                "pairwise_count": 34,
+                "pairwise_correct": 29,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6037_e19",
+                "game": 6037,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 19,
+                "chosen_margin": 2,
+                "best_margin": 2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  18,
+                  19
+                ],
+                "pairwise_count": 14,
+                "pairwise_correct": 11,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_2102_e18",
+                "game": 2102,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 7,
+                "chosen_margin": -12,
+                "best_margin": -12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7
+                ],
+                "pairwise_count": 9,
+                "pairwise_correct": 7,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1059_e18",
+                "game": 1059,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 39,
+                "chosen_margin": 6,
+                "best_margin": 6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  39,
+                  46
+                ],
+                "pairwise_count": 31,
+                "pairwise_correct": 28,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7077_e18",
+                "game": 7077,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 8,
+                "best_margin": 10,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  16
+                ],
+                "pairwise_count": 45,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 3
+              },
+              {
+                "id": "old_6092_e19",
+                "game": 6092,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 17,
+                "chosen_margin": -16,
+                "best_margin": -14,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  50
+                ],
+                "pairwise_count": 35,
+                "pairwise_correct": 29,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_53_e18",
+                "game": 53,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": 8,
+                "best_margin": 8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  48
+                ],
+                "pairwise_count": 3,
+                "pairwise_correct": 3,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5141_e19",
+                "game": 5141,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 5,
+                "chosen_margin": -32,
+                "best_margin": -26,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  59
+                ],
+                "pairwise_count": 6,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_3078_e19",
+                "game": 3078,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 11,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  3,
+                  11,
+                  13
+                ],
+                "pairwise_count": 48,
+                "pairwise_correct": 38,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_3139_e18",
+                "game": 3139,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 22,
+                "chosen_margin": 26,
+                "best_margin": 26,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7,
+                  22
+                ],
+                "pairwise_count": 2,
+                "pairwise_correct": 2,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_91_e19",
+                "game": 91,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 13,
+                "chosen_margin": -8,
+                "best_margin": -8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  13
+                ],
+                "pairwise_count": 26,
+                "pairwise_correct": 18,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_2104_e18",
+                "game": 2104,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 10,
+                "best_margin": 11,
+                "regret": 1,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 31,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5107_e19",
+                "game": 5107,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 58,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  40,
+                  58,
+                  59
+                ],
+                "pairwise_count": 15,
+                "pairwise_correct": 12,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1023_e18",
+                "game": 1023,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 16,
+                "chosen_margin": -10,
+                "best_margin": -10,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  16
+                ],
+                "pairwise_count": 26,
+                "pairwise_correct": 21,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_6073_e19",
+                "game": 6073,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 5,
+                "chosen_margin": 18,
+                "best_margin": 20,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  38
+                ],
+                "pairwise_count": 31,
+                "pairwise_correct": 21,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2118_e18",
+                "game": 2118,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 3,
+                "chosen_margin": 10,
+                "best_margin": 12,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4,
+                  6
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 19,
+                "pairwise_strict_mistakes": 19,
+                "pairwise_predicted_ties": 2
+              }
+            ]
+          },
+          "absolute_ridge": {
+            "roots": 52,
+            "wdl_errors": 9,
+            "wdl_error_rate": 0.17307692307692307,
+            "mean_margin_regret": 3.3653846153846154,
+            "optimum_hits": 18,
+            "optimum_hit_rate": 0.34615384615384615,
+            "pairwise_count": 1484,
+            "pairwise_correct": 995,
+            "pairwise_strict_mistakes": 473,
+            "pairwise_predicted_ties": 16,
+            "pairwise_accuracy": 0.6758760107816711,
+            "per_parent_empties": {
+              "18": {
+                "roots": 33,
+                "wdl_errors": 7,
+                "wdl_error_rate": 0.21212121212121213,
+                "mean_margin_regret": 3.4242424242424243,
+                "optimum_hits": 11,
+                "optimum_hit_rate": 0.3333333333333333,
+                "pairwise_count": 982,
+                "pairwise_correct": 661,
+                "pairwise_strict_mistakes": 306,
+                "pairwise_predicted_ties": 15,
+                "pairwise_accuracy": 0.6807535641547862
+              },
+              "19": {
+                "roots": 19,
+                "wdl_errors": 2,
+                "wdl_error_rate": 0.10526315789473684,
+                "mean_margin_regret": 3.263157894736842,
+                "optimum_hits": 7,
+                "optimum_hit_rate": 0.3684210526315789,
+                "pairwise_count": 502,
+                "pairwise_correct": 334,
+                "pairwise_strict_mistakes": 167,
+                "pairwise_predicted_ties": 1,
+                "pairwise_accuracy": 0.6663346613545816
+              }
+            },
+            "records": [
+              {
+                "id": "old_51_e18",
+                "game": 51,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": -4,
+                "best_margin": 4,
+                "regret": 8,
+                "wdl_error": true,
+                "optimal_squares": [
+                  40
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 13,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_5076_e18",
+                "game": 5076,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 30,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  30
+                ],
+                "pairwise_count": 35,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "old_1007_e19",
+                "game": 1007,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 57,
+                "chosen_margin": -20,
+                "best_margin": -16,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  24,
+                  32
+                ],
+                "pairwise_count": 14,
+                "pairwise_correct": 8,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_4041_e18",
+                "game": 4041,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": 10,
+                "best_margin": 16,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  47
+                ],
+                "pairwise_count": 50,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 20,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_128_e19",
+                "game": 128,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 15,
+                "chosen_margin": 10,
+                "best_margin": 14,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  39
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 31,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_5028_e18",
+                "game": 5028,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 45,
+                "chosen_margin": 18,
+                "best_margin": 20,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  54
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 13,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1_e19",
+                "game": 1,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 22,
+                "chosen_margin": -4,
+                "best_margin": 0,
+                "regret": 4,
+                "wdl_error": true,
+                "optimal_squares": [
+                  61
+                ],
+                "pairwise_count": 48,
+                "pairwise_correct": 35,
+                "pairwise_strict_mistakes": 13,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2002_e18",
+                "game": 2002,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 12,
+                "chosen_margin": -8,
+                "best_margin": -4,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5,
+                  32,
+                  42
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_6147_e18",
+                "game": 6147,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 55,
+                "chosen_margin": -2,
+                "best_margin": 0,
+                "regret": 2,
+                "wdl_error": true,
+                "optimal_squares": [
+                  63
+                ],
+                "pairwise_count": 5,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_4128_e19",
+                "game": 4128,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 54,
+                "chosen_margin": -14,
+                "best_margin": -12,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5,
+                  53
+                ],
+                "pairwise_count": 8,
+                "pairwise_correct": 3,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6139_e18",
+                "game": 6139,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 2,
+                "best_margin": 10,
+                "regret": 8,
+                "wdl_error": false,
+                "optimal_squares": [
+                  25
+                ],
+                "pairwise_count": 60,
+                "pairwise_correct": 50,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5049_e18",
+                "game": 5049,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 6,
+                "chosen_margin": 6,
+                "best_margin": 17,
+                "regret": 11,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 14,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_48_e19",
+                "game": 48,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 22,
+                "chosen_margin": -18,
+                "best_margin": -14,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4,
+                  5,
+                  30
+                ],
+                "pairwise_count": 16,
+                "pairwise_correct": 11,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7113_e18",
+                "game": 7113,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 14,
+                "chosen_margin": 12,
+                "best_margin": 12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  14
+                ],
+                "pairwise_count": 53,
+                "pairwise_correct": 40,
+                "pairwise_strict_mistakes": 13,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5041_e18",
+                "game": 5041,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 25,
+                "chosen_margin": -4,
+                "best_margin": -4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  25
+                ],
+                "pairwise_count": 0,
+                "pairwise_correct": 0,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_46_e19",
+                "game": 46,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 62,
+                "chosen_margin": -28,
+                "best_margin": -16,
+                "regret": 12,
+                "wdl_error": false,
+                "optimal_squares": [
+                  58
+                ],
+                "pairwise_count": 33,
+                "pairwise_correct": 20,
+                "pairwise_strict_mistakes": 13,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6056_e18",
+                "game": 6056,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 60,
+                "chosen_margin": 20,
+                "best_margin": 20,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  60
+                ],
+                "pairwise_count": 58,
+                "pairwise_correct": 44,
+                "pairwise_strict_mistakes": 14,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2001_e18",
+                "game": 2001,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 8,
+                "chosen_margin": 0,
+                "best_margin": 4,
+                "regret": 4,
+                "wdl_error": true,
+                "optimal_squares": [
+                  5,
+                  40
+                ],
+                "pairwise_count": 20,
+                "pairwise_correct": 15,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_7103_e18",
+                "game": 7103,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": -16,
+                "best_margin": -12,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  40
+                ],
+                "pairwise_count": 25,
+                "pairwise_correct": 20,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_113_e18",
+                "game": 113,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 23,
+                "chosen_margin": 0,
+                "best_margin": 4,
+                "regret": 4,
+                "wdl_error": true,
+                "optimal_squares": [
+                  24
+                ],
+                "pairwise_count": 22,
+                "pairwise_correct": 15,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_6021_e18",
+                "game": 6021,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 57,
+                "chosen_margin": 12,
+                "best_margin": 12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  1,
+                  24,
+                  57
+                ],
+                "pairwise_count": 29,
+                "pairwise_correct": 22,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_2133_e18",
+                "game": 2133,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 62,
+                "chosen_margin": 24,
+                "best_margin": 28,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  10
+                ],
+                "pairwise_count": 39,
+                "pairwise_correct": 31,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6033_e19",
+                "game": 6033,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 13,
+                "chosen_margin": -10,
+                "best_margin": -8,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  21
+                ],
+                "pairwise_count": 3,
+                "pairwise_correct": 2,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7013_e18",
+                "game": 7013,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": 0,
+                "best_margin": 8,
+                "regret": 8,
+                "wdl_error": true,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 33,
+                "pairwise_correct": 22,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5031_e19",
+                "game": 5031,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 39,
+                "chosen_margin": -24,
+                "best_margin": -24,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  39
+                ],
+                "pairwise_count": 7,
+                "pairwise_correct": 6,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6136_e18",
+                "game": 6136,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": -8,
+                "best_margin": -2,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  55
+                ],
+                "pairwise_count": 39,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 13,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7079_e18",
+                "game": 7079,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 54,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  31,
+                  54
+                ],
+                "pairwise_count": 8,
+                "pairwise_correct": 7,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2014_e18",
+                "game": 2014,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 0,
+                "best_margin": 0,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  8,
+                  13,
+                  47
+                ],
+                "pairwise_count": 47,
+                "pairwise_correct": 35,
+                "pairwise_strict_mistakes": 12,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2122_e19",
+                "game": 2122,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 54,
+                "chosen_margin": -10,
+                "best_margin": -10,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  1,
+                  24,
+                  54
+                ],
+                "pairwise_count": 68,
+                "pairwise_correct": 52,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2006_e18",
+                "game": 2006,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 62,
+                "chosen_margin": -12,
+                "best_margin": -12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  41,
+                  62
+                ],
+                "pairwise_count": 45,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 20,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "old_23_e18",
+                "game": 23,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 10,
+                "chosen_margin": 9,
+                "best_margin": 10,
+                "regret": 1,
+                "wdl_error": false,
+                "optimal_squares": [
+                  6,
+                  21,
+                  22,
+                  30
+                ],
+                "pairwise_count": 9,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5121_e19",
+                "game": 5121,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 57,
+                "chosen_margin": -6,
+                "best_margin": -6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7,
+                  57,
+                  58
+                ],
+                "pairwise_count": 12,
+                "pairwise_correct": 8,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_4122_e19",
+                "game": 4122,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 15,
+                "chosen_margin": -10,
+                "best_margin": 0,
+                "regret": 10,
+                "wdl_error": true,
+                "optimal_squares": [
+                  61
+                ],
+                "pairwise_count": 37,
+                "pairwise_correct": 18,
+                "pairwise_strict_mistakes": 19,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_6029_e18",
+                "game": 6029,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 18,
+                "best_margin": 26,
+                "regret": 8,
+                "wdl_error": false,
+                "optimal_squares": [
+                  17
+                ],
+                "pairwise_count": 34,
+                "pairwise_correct": 15,
+                "pairwise_strict_mistakes": 19,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7058_e18",
+                "game": 7058,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 1,
+                "chosen_margin": -4,
+                "best_margin": 2,
+                "regret": 6,
+                "wdl_error": true,
+                "optimal_squares": [
+                  11
+                ],
+                "pairwise_count": 29,
+                "pairwise_correct": 15,
+                "pairwise_strict_mistakes": 14,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2149_e19",
+                "game": 2149,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 57,
+                "chosen_margin": 10,
+                "best_margin": 10,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  57,
+                  61
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2012_e18",
+                "game": 2012,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 6,
+                "chosen_margin": -8,
+                "best_margin": 2,
+                "regret": 10,
+                "wdl_error": true,
+                "optimal_squares": [
+                  62
+                ],
+                "pairwise_count": 34,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_6037_e19",
+                "game": 6037,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 19,
+                "chosen_margin": 2,
+                "best_margin": 2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  18,
+                  19
+                ],
+                "pairwise_count": 14,
+                "pairwise_correct": 8,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2102_e18",
+                "game": 2102,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 1,
+                "chosen_margin": -14,
+                "best_margin": -12,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7
+                ],
+                "pairwise_count": 9,
+                "pairwise_correct": 4,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1059_e18",
+                "game": 1059,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 39,
+                "chosen_margin": 6,
+                "best_margin": 6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  39,
+                  46
+                ],
+                "pairwise_count": 31,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_7077_e18",
+                "game": 7077,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 8,
+                "best_margin": 10,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  16
+                ],
+                "pairwise_count": 45,
+                "pairwise_correct": 27,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "old_6092_e19",
+                "game": 6092,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 8,
+                "chosen_margin": -20,
+                "best_margin": -14,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  50
+                ],
+                "pairwise_count": 35,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 12,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_53_e18",
+                "game": 53,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": 8,
+                "best_margin": 8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  48
+                ],
+                "pairwise_count": 3,
+                "pairwise_correct": 2,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5141_e19",
+                "game": 5141,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 5,
+                "chosen_margin": -32,
+                "best_margin": -26,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  59
+                ],
+                "pairwise_count": 6,
+                "pairwise_correct": 0,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_3078_e19",
+                "game": 3078,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 55,
+                "chosen_margin": -8,
+                "best_margin": -2,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  3,
+                  11,
+                  13
+                ],
+                "pairwise_count": 48,
+                "pairwise_correct": 27,
+                "pairwise_strict_mistakes": 21,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_3139_e18",
+                "game": 3139,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 22,
+                "chosen_margin": 26,
+                "best_margin": 26,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7,
+                  22
+                ],
+                "pairwise_count": 2,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_91_e19",
+                "game": 91,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 13,
+                "chosen_margin": -8,
+                "best_margin": -8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  13
+                ],
+                "pairwise_count": 26,
+                "pairwise_correct": 19,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2104_e18",
+                "game": 2104,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 10,
+                "best_margin": 11,
+                "regret": 1,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 32,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_5107_e19",
+                "game": 5107,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 58,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  40,
+                  58,
+                  59
+                ],
+                "pairwise_count": 15,
+                "pairwise_correct": 14,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_1023_e18",
+                "game": 1023,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 8,
+                "chosen_margin": -16,
+                "best_margin": -10,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  16
+                ],
+                "pairwise_count": 26,
+                "pairwise_correct": 16,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "old_6073_e19",
+                "game": 6073,
+                "split": "train",
+                "parent_empties": 19,
+                "chosen_square": 5,
+                "chosen_margin": 18,
+                "best_margin": 20,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  38
+                ],
+                "pairwise_count": 31,
+                "pairwise_correct": 19,
+                "pairwise_strict_mistakes": 12,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "old_2118_e18",
+                "game": 2118,
+                "split": "train",
+                "parent_empties": 18,
+                "chosen_square": 8,
+                "chosen_margin": 6,
+                "best_margin": 12,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4,
+                  6
+                ],
+                "pairwise_count": 40,
+                "pairwise_correct": 21,
+                "pairwise_strict_mistakes": 18,
+                "pairwise_predicted_ties": 1
+              }
+            ]
+          }
+        },
+        "paired_margin_regret_vs_v14": {
+          "sibling_centered": {
+            "mean_difference": -0.38461538461538464,
+            "ci95": [
+              -0.8846153846153846,
+              0.11538461538461539
+            ],
+            "roots": 52,
+            "games": 52,
+            "samples": 2000,
+            "seed": 20261021,
+            "resampling_unit": "game",
+            "negative_favors_candidate": true
+          },
+          "absolute_ridge": {
+            "mean_difference": 1.2307692307692308,
+            "ci95": [
+              0.4230769230769231,
+              2.1153846153846154
+            ],
+            "roots": 52,
+            "games": 52,
+            "samples": 2000,
+            "seed": 20261021,
+            "resampling_unit": "game",
+            "negative_favors_candidate": true
+          }
+        }
+      },
+      "holdout": {
+        "engines": {
+          "v14": {
+            "roots": 23,
+            "wdl_errors": 1,
+            "wdl_error_rate": 0.043478260869565216,
+            "mean_margin_regret": 3.1739130434782608,
+            "optimum_hits": 11,
+            "optimum_hit_rate": 0.4782608695652174,
+            "pairwise_count": 654,
+            "pairwise_correct": 493,
+            "pairwise_strict_mistakes": 154,
+            "pairwise_predicted_ties": 7,
+            "pairwise_accuracy": 0.7591743119266054,
+            "per_parent_empties": {
+              "18": {
+                "roots": 17,
+                "wdl_errors": 1,
+                "wdl_error_rate": 0.058823529411764705,
+                "mean_margin_regret": 3.9411764705882355,
+                "optimum_hits": 7,
+                "optimum_hit_rate": 0.4117647058823529,
+                "pairwise_count": 542,
+                "pairwise_correct": 403,
+                "pairwise_strict_mistakes": 133,
+                "pairwise_predicted_ties": 6,
+                "pairwise_accuracy": 0.7490774907749077
+              },
+              "19": {
+                "roots": 6,
+                "wdl_errors": 0,
+                "wdl_error_rate": 0.0,
+                "mean_margin_regret": 1.0,
+                "optimum_hits": 4,
+                "optimum_hit_rate": 0.6666666666666666,
+                "pairwise_count": 112,
+                "pairwise_correct": 90,
+                "pairwise_strict_mistakes": 21,
+                "pairwise_predicted_ties": 1,
+                "pairwise_accuracy": 0.8080357142857143
+              }
+            },
+            "records": [
+              {
+                "id": "fresh_10010000_e18",
+                "game": "fresh_10010000",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 55,
+                "chosen_margin": 8,
+                "best_margin": 8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  55
+                ],
+                "pairwise_count": 46,
+                "pairwise_correct": 31,
+                "pairwise_strict_mistakes": 15,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010001_e19",
+                "game": "fresh_10010001",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 47,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  47
+                ],
+                "pairwise_count": 21,
+                "pairwise_correct": 20,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010003_e18",
+                "game": "fresh_10010003",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 3,
+                "chosen_margin": 6,
+                "best_margin": 16,
+                "regret": 10,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4
+                ],
+                "pairwise_count": 63,
+                "pairwise_correct": 50,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "fresh_10010006_e18",
+                "game": "fresh_10010006",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 14,
+                "chosen_margin": -16,
+                "best_margin": -6,
+                "regret": 10,
+                "wdl_error": false,
+                "optimal_squares": [
+                  3,
+                  56
+                ],
+                "pairwise_count": 14,
+                "pairwise_correct": 6,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010009_e18",
+                "game": "fresh_10010009",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": -6,
+                "best_margin": -6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  48
+                ],
+                "pairwise_count": 27,
+                "pairwise_correct": 18,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010010_e19",
+                "game": "fresh_10010010",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 7,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7
+                ],
+                "pairwise_count": 0,
+                "pairwise_correct": 0,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010015_e18",
+                "game": "fresh_10010015",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 54,
+                "chosen_margin": -6,
+                "best_margin": 0,
+                "regret": 6,
+                "wdl_error": true,
+                "optimal_squares": [
+                  1,
+                  39
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 25,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010016_e19",
+                "game": "fresh_10010016",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 16,
+                "chosen_margin": 34,
+                "best_margin": 34,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  12,
+                  16
+                ],
+                "pairwise_count": 19,
+                "pairwise_correct": 19,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010018_e18",
+                "game": "fresh_10010018",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": 3,
+                "best_margin": 4,
+                "regret": 1,
+                "wdl_error": false,
+                "optimal_squares": [
+                  8
+                ],
+                "pairwise_count": 57,
+                "pairwise_correct": 49,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010021_e18",
+                "game": "fresh_10010021",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": -4,
+                "best_margin": -4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  61
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010024_e18",
+                "game": "fresh_10010024",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 1,
+                "chosen_margin": 2,
+                "best_margin": 12,
+                "regret": 10,
+                "wdl_error": false,
+                "optimal_squares": [
+                  16,
+                  32
+                ],
+                "pairwise_count": 32,
+                "pairwise_correct": 18,
+                "pairwise_strict_mistakes": 14,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010030_e18",
+                "game": "fresh_10010030",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": -24,
+                "best_margin": -24,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  49,
+                  56
+                ],
+                "pairwise_count": 2,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010033_e18",
+                "game": "fresh_10010033",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": 0,
+                "best_margin": 0,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  32,
+                  49
+                ],
+                "pairwise_count": 32,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "fresh_10010036_e18",
+                "game": "fresh_10010036",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 4,
+                "best_margin": 10,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  60
+                ],
+                "pairwise_count": 50,
+                "pairwise_correct": 40,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010039_e18",
+                "game": "fresh_10010039",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 2,
+                "best_margin": 16,
+                "regret": 14,
+                "wdl_error": false,
+                "optimal_squares": [
+                  23,
+                  30
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 15,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010040_e19",
+                "game": "fresh_10010040",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 46,
+                "chosen_margin": -10,
+                "best_margin": -8,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 17,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010042_e18",
+                "game": "fresh_10010042",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 15,
+                "chosen_margin": -12,
+                "best_margin": -8,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 27,
+                "pairwise_correct": 18,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010045_e18",
+                "game": "fresh_10010045",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 54,
+                "chosen_margin": -16,
+                "best_margin": -12,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  3
+                ],
+                "pairwise_count": 5,
+                "pairwise_correct": 4,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010046_e19",
+                "game": "fresh_10010046",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 17,
+                "chosen_margin": -18,
+                "best_margin": -14,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  56
+                ],
+                "pairwise_count": 7,
+                "pairwise_correct": 3,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010048_e18",
+                "game": "fresh_10010048",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": 16,
+                "best_margin": 16,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  49
+                ],
+                "pairwise_count": 34,
+                "pairwise_correct": 30,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010051_e18",
+                "game": "fresh_10010051",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": 2,
+                "best_margin": 4,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  32
+                ],
+                "pairwise_count": 35,
+                "pairwise_correct": 27,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010052_e19",
+                "game": "fresh_10010052",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 53,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  53
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 31,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010057_e18",
+                "game": "fresh_10010057",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 12,
+                "pairwise_correct": 11,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              }
+            ]
+          },
+          "sibling_centered": {
+            "roots": 23,
+            "wdl_errors": 4,
+            "wdl_error_rate": 0.17391304347826086,
+            "mean_margin_regret": 2.782608695652174,
+            "optimum_hits": 14,
+            "optimum_hit_rate": 0.6086956521739131,
+            "pairwise_count": 654,
+            "pairwise_correct": 477,
+            "pairwise_strict_mistakes": 166,
+            "pairwise_predicted_ties": 11,
+            "pairwise_accuracy": 0.7377675840978594,
+            "per_parent_empties": {
+              "18": {
+                "roots": 17,
+                "wdl_errors": 4,
+                "wdl_error_rate": 0.23529411764705882,
+                "mean_margin_regret": 3.764705882352941,
+                "optimum_hits": 8,
+                "optimum_hit_rate": 0.47058823529411764,
+                "pairwise_count": 542,
+                "pairwise_correct": 377,
+                "pairwise_strict_mistakes": 156,
+                "pairwise_predicted_ties": 9,
+                "pairwise_accuracy": 0.7038745387453874
+              },
+              "19": {
+                "roots": 6,
+                "wdl_errors": 0,
+                "wdl_error_rate": 0.0,
+                "mean_margin_regret": 0.0,
+                "optimum_hits": 6,
+                "optimum_hit_rate": 1.0,
+                "pairwise_count": 112,
+                "pairwise_correct": 100,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 2,
+                "pairwise_accuracy": 0.9017857142857143
+              }
+            },
+            "records": [
+              {
+                "id": "fresh_10010000_e18",
+                "game": "fresh_10010000",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 2,
+                "chosen_margin": 4,
+                "best_margin": 8,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  55
+                ],
+                "pairwise_count": 46,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 22,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010001_e19",
+                "game": "fresh_10010001",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 47,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  47
+                ],
+                "pairwise_count": 21,
+                "pairwise_correct": 18,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010003_e18",
+                "game": "fresh_10010003",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 3,
+                "chosen_margin": 6,
+                "best_margin": 16,
+                "regret": 10,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4
+                ],
+                "pairwise_count": 63,
+                "pairwise_correct": 43,
+                "pairwise_strict_mistakes": 19,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010006_e18",
+                "game": "fresh_10010006",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 3,
+                "chosen_margin": -6,
+                "best_margin": -6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  3,
+                  56
+                ],
+                "pairwise_count": 14,
+                "pairwise_correct": 8,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010009_e18",
+                "game": "fresh_10010009",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": -6,
+                "best_margin": -6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  48
+                ],
+                "pairwise_count": 27,
+                "pairwise_correct": 22,
+                "pairwise_strict_mistakes": 5,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010010_e19",
+                "game": "fresh_10010010",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 7,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7
+                ],
+                "pairwise_count": 0,
+                "pairwise_correct": 0,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010015_e18",
+                "game": "fresh_10010015",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": -6,
+                "best_margin": 0,
+                "regret": 6,
+                "wdl_error": true,
+                "optimal_squares": [
+                  1,
+                  39
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 21,
+                "pairwise_strict_mistakes": 20,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010016_e19",
+                "game": "fresh_10010016",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 16,
+                "chosen_margin": 34,
+                "best_margin": 34,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  12,
+                  16
+                ],
+                "pairwise_count": 19,
+                "pairwise_correct": 17,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010018_e18",
+                "game": "fresh_10010018",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 52,
+                "chosen_margin": -2,
+                "best_margin": 4,
+                "regret": 6,
+                "wdl_error": true,
+                "optimal_squares": [
+                  8
+                ],
+                "pairwise_count": 57,
+                "pairwise_correct": 40,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010021_e18",
+                "game": "fresh_10010021",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": -4,
+                "best_margin": -4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  61
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 19,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "fresh_10010024_e18",
+                "game": "fresh_10010024",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 32,
+                "chosen_margin": 12,
+                "best_margin": 12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  16,
+                  32
+                ],
+                "pairwise_count": 32,
+                "pairwise_correct": 15,
+                "pairwise_strict_mistakes": 16,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010030_e18",
+                "game": "fresh_10010030",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": -24,
+                "best_margin": -24,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  49,
+                  56
+                ],
+                "pairwise_count": 2,
+                "pairwise_correct": 1,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010033_e18",
+                "game": "fresh_10010033",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 60,
+                "chosen_margin": -2,
+                "best_margin": 0,
+                "regret": 2,
+                "wdl_error": true,
+                "optimal_squares": [
+                  32,
+                  49
+                ],
+                "pairwise_count": 32,
+                "pairwise_correct": 29,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010036_e18",
+                "game": "fresh_10010036",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 4,
+                "best_margin": 10,
+                "regret": 6,
+                "wdl_error": false,
+                "optimal_squares": [
+                  60
+                ],
+                "pairwise_count": 50,
+                "pairwise_correct": 43,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010039_e18",
+                "game": "fresh_10010039",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 61,
+                "chosen_margin": 2,
+                "best_margin": 16,
+                "regret": 14,
+                "wdl_error": false,
+                "optimal_squares": [
+                  23,
+                  30
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 27,
+                "pairwise_strict_mistakes": 14,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010040_e19",
+                "game": "fresh_10010040",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 7,
+                "chosen_margin": -8,
+                "best_margin": -8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 21,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010042_e18",
+                "game": "fresh_10010042",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": -8,
+                "best_margin": -8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 27,
+                "pairwise_correct": 20,
+                "pairwise_strict_mistakes": 7,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010045_e18",
+                "game": "fresh_10010045",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 3,
+                "chosen_margin": -12,
+                "best_margin": -12,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  3
+                ],
+                "pairwise_count": 5,
+                "pairwise_correct": 5,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010046_e19",
+                "game": "fresh_10010046",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 56,
+                "chosen_margin": -14,
+                "best_margin": -14,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  56
+                ],
+                "pairwise_count": 7,
+                "pairwise_correct": 5,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010048_e18",
+                "game": "fresh_10010048",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 47,
+                "chosen_margin": 4,
+                "best_margin": 16,
+                "regret": 12,
+                "wdl_error": false,
+                "optimal_squares": [
+                  49
+                ],
+                "pairwise_count": 34,
+                "pairwise_correct": 27,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010051_e18",
+                "game": "fresh_10010051",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 40,
+                "chosen_margin": 0,
+                "best_margin": 4,
+                "regret": 4,
+                "wdl_error": true,
+                "optimal_squares": [
+                  32
+                ],
+                "pairwise_count": 35,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010052_e19",
+                "game": "fresh_10010052",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 53,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  53
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 39,
+                "pairwise_strict_mistakes": 2,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010057_e18",
+                "game": "fresh_10010057",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 12,
+                "pairwise_correct": 11,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              }
+            ]
+          },
+          "absolute_ridge": {
+            "roots": 23,
+            "wdl_errors": 2,
+            "wdl_error_rate": 0.08695652173913043,
+            "mean_margin_regret": 2.4347826086956523,
+            "optimum_hits": 10,
+            "optimum_hit_rate": 0.43478260869565216,
+            "pairwise_count": 654,
+            "pairwise_correct": 465,
+            "pairwise_strict_mistakes": 181,
+            "pairwise_predicted_ties": 8,
+            "pairwise_accuracy": 0.7171253822629969,
+            "per_parent_empties": {
+              "18": {
+                "roots": 17,
+                "wdl_errors": 1,
+                "wdl_error_rate": 0.058823529411764705,
+                "mean_margin_regret": 2.3529411764705883,
+                "optimum_hits": 9,
+                "optimum_hit_rate": 0.5294117647058824,
+                "pairwise_count": 542,
+                "pairwise_correct": 391,
+                "pairwise_strict_mistakes": 144,
+                "pairwise_predicted_ties": 7,
+                "pairwise_accuracy": 0.727859778597786
+              },
+              "19": {
+                "roots": 6,
+                "wdl_errors": 1,
+                "wdl_error_rate": 0.16666666666666666,
+                "mean_margin_regret": 2.6666666666666665,
+                "optimum_hits": 1,
+                "optimum_hit_rate": 0.16666666666666666,
+                "pairwise_count": 112,
+                "pairwise_correct": 74,
+                "pairwise_strict_mistakes": 37,
+                "pairwise_predicted_ties": 1,
+                "pairwise_accuracy": 0.6651785714285714
+              }
+            },
+            "records": [
+              {
+                "id": "fresh_10010000_e18",
+                "game": "fresh_10010000",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 55,
+                "chosen_margin": 8,
+                "best_margin": 8,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  55
+                ],
+                "pairwise_count": 46,
+                "pairwise_correct": 31,
+                "pairwise_strict_mistakes": 14,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010001_e19",
+                "game": "fresh_10010001",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 49,
+                "chosen_margin": 0,
+                "best_margin": 4,
+                "regret": 4,
+                "wdl_error": true,
+                "optimal_squares": [
+                  47
+                ],
+                "pairwise_count": 21,
+                "pairwise_correct": 14,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010003_e18",
+                "game": "fresh_10010003",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 1,
+                "chosen_margin": 8,
+                "best_margin": 16,
+                "regret": 8,
+                "wdl_error": false,
+                "optimal_squares": [
+                  4
+                ],
+                "pairwise_count": 63,
+                "pairwise_correct": 46,
+                "pairwise_strict_mistakes": 15,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "fresh_10010006_e18",
+                "game": "fresh_10010006",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 14,
+                "chosen_margin": -16,
+                "best_margin": -6,
+                "regret": 10,
+                "wdl_error": false,
+                "optimal_squares": [
+                  3,
+                  56
+                ],
+                "pairwise_count": 14,
+                "pairwise_correct": 6,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010009_e18",
+                "game": "fresh_10010009",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": -6,
+                "best_margin": -6,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  48
+                ],
+                "pairwise_count": 27,
+                "pairwise_correct": 16,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010010_e19",
+                "game": "fresh_10010010",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 7,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7
+                ],
+                "pairwise_count": 0,
+                "pairwise_correct": 0,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010015_e18",
+                "game": "fresh_10010015",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 1,
+                "chosen_margin": 0,
+                "best_margin": 0,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  1,
+                  39
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 29,
+                "pairwise_strict_mistakes": 12,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010016_e19",
+                "game": "fresh_10010016",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 8,
+                "chosen_margin": 32,
+                "best_margin": 34,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  12,
+                  16
+                ],
+                "pairwise_count": 19,
+                "pairwise_correct": 13,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010018_e18",
+                "game": "fresh_10010018",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 8,
+                "chosen_margin": 4,
+                "best_margin": 4,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  8
+                ],
+                "pairwise_count": 57,
+                "pairwise_correct": 46,
+                "pairwise_strict_mistakes": 11,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010021_e18",
+                "game": "fresh_10010021",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 14,
+                "chosen_margin": -6,
+                "best_margin": -4,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  61
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 23,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010024_e18",
+                "game": "fresh_10010024",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 48,
+                "chosen_margin": 8,
+                "best_margin": 12,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  16,
+                  32
+                ],
+                "pairwise_count": 32,
+                "pairwise_correct": 16,
+                "pairwise_strict_mistakes": 15,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010030_e18",
+                "game": "fresh_10010030",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": -24,
+                "best_margin": -24,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  49,
+                  56
+                ],
+                "pairwise_count": 2,
+                "pairwise_correct": 2,
+                "pairwise_strict_mistakes": 0,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010033_e18",
+                "game": "fresh_10010033",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": 0,
+                "best_margin": 0,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  32,
+                  49
+                ],
+                "pairwise_count": 32,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 6,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010036_e18",
+                "game": "fresh_10010036",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 15,
+                "chosen_margin": 6,
+                "best_margin": 10,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  60
+                ],
+                "pairwise_count": 50,
+                "pairwise_correct": 40,
+                "pairwise_strict_mistakes": 10,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010039_e18",
+                "game": "fresh_10010039",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 30,
+                "chosen_margin": 16,
+                "best_margin": 16,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  23,
+                  30
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 20,
+                "pairwise_strict_mistakes": 19,
+                "pairwise_predicted_ties": 2
+              },
+              {
+                "id": "fresh_10010040_e19",
+                "game": "fresh_10010040",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 46,
+                "chosen_margin": -10,
+                "best_margin": -8,
+                "regret": 2,
+                "wdl_error": false,
+                "optimal_squares": [
+                  7
+                ],
+                "pairwise_count": 24,
+                "pairwise_correct": 16,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010042_e18",
+                "game": "fresh_10010042",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 15,
+                "chosen_margin": -12,
+                "best_margin": -8,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 27,
+                "pairwise_correct": 18,
+                "pairwise_strict_mistakes": 9,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010045_e18",
+                "game": "fresh_10010045",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 54,
+                "chosen_margin": -16,
+                "best_margin": -12,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  3
+                ],
+                "pairwise_count": 5,
+                "pairwise_correct": 4,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010046_e19",
+                "game": "fresh_10010046",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 17,
+                "chosen_margin": -18,
+                "best_margin": -14,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  56
+                ],
+                "pairwise_count": 7,
+                "pairwise_correct": 3,
+                "pairwise_strict_mistakes": 4,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010048_e18",
+                "game": "fresh_10010048",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 49,
+                "chosen_margin": 16,
+                "best_margin": 16,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  49
+                ],
+                "pairwise_count": 34,
+                "pairwise_correct": 31,
+                "pairwise_strict_mistakes": 3,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010051_e18",
+                "game": "fresh_10010051",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 62,
+                "chosen_margin": 0,
+                "best_margin": 4,
+                "regret": 4,
+                "wdl_error": true,
+                "optimal_squares": [
+                  32
+                ],
+                "pairwise_count": 35,
+                "pairwise_correct": 26,
+                "pairwise_strict_mistakes": 8,
+                "pairwise_predicted_ties": 1
+              },
+              {
+                "id": "fresh_10010052_e19",
+                "game": "fresh_10010052",
+                "split": "holdout",
+                "parent_empties": 19,
+                "chosen_square": 8,
+                "chosen_margin": -6,
+                "best_margin": -2,
+                "regret": 4,
+                "wdl_error": false,
+                "optimal_squares": [
+                  53
+                ],
+                "pairwise_count": 41,
+                "pairwise_correct": 28,
+                "pairwise_strict_mistakes": 13,
+                "pairwise_predicted_ties": 0
+              },
+              {
+                "id": "fresh_10010057_e18",
+                "game": "fresh_10010057",
+                "split": "holdout",
+                "parent_empties": 18,
+                "chosen_square": 5,
+                "chosen_margin": -2,
+                "best_margin": -2,
+                "regret": 0,
+                "wdl_error": false,
+                "optimal_squares": [
+                  5
+                ],
+                "pairwise_count": 12,
+                "pairwise_correct": 11,
+                "pairwise_strict_mistakes": 1,
+                "pairwise_predicted_ties": 0
+              }
+            ]
+          }
+        },
+        "paired_margin_regret_vs_v14": {
+          "sibling_centered": {
+            "mean_difference": -0.391304347826087,
+            "ci95": [
+              -2.1739130434782608,
+              1.434782608695652
+            ],
+            "roots": 23,
+            "games": 23,
+            "samples": 2000,
+            "seed": 20261021,
+            "resampling_unit": "game",
+            "negative_favors_candidate": true
+          },
+          "absolute_ridge": {
+            "mean_difference": -0.7391304347826086,
+            "ci95": [
+              -2.391304347826087,
+              0.6086956521739131
+            ],
+            "roots": 23,
+            "games": 23,
+            "samples": 2000,
+            "seed": 20261021,
+            "resampling_unit": "game",
+            "negative_favors_candidate": true
+          }
+        }
+      }
+    },
+    "gates": {
+      "minimum_training_roots": false,
+      "minimum_holdout_roots": false,
+      "no_more_outcome_errors": false,
+      "at_least_half_disc_regret_improvement": false
+    },
+    "advance_to_matches": false,
+    "strategy_accepted": false,
+    "limitations": [
+      "Small timeout-censored sample, particularly severe at20empties.",
+      "The current feature set and one sharedrow do not test broader learned pattern representations.",
+      "Static choice quality does not establish timed search strength.",
+      "No independent matches after diagnostic gate failure."
+    ]
+  },
+  "failure_analysis": {
+    "rows": {
+      "v14": [
+        70,
+        -2,
+        2,
+        2,
+        2,
+        7,
+        0,
+        -2,
+        0,
+        0,
+        0
+      ],
+      "centered": [
+        59,
+        -14,
+        -15,
+        5,
+        2,
+        5,
+        6,
+        -2,
+        1,
+        0,
+        -1
+      ],
+      "delta": [
+        -11,
+        -12,
+        -17,
+        3,
+        0,
+        -2,
+        6,
+        0,
+        1,
+        0,
+        -1
+      ]
+    },
+    "feature_names": [
+      "corner",
+      "X",
+      "C",
+      "edge",
+      "discs",
+      "mobility",
+      "stable_edge",
+      "frontier",
+      "potential_mobility",
+      "parity",
+      "positional"
+    ],
+    "errors": [
+      {
+        "id": "fresh_10010015_e18",
+        "parent_empties": 18,
+        "best_margin": 0,
+        "v14_chosen": {
+          "square": 54,
+          "margin": -6,
+          "v14_score": 16,
+          "new_score": -33
+        },
+        "new_chosen": {
+          "square": 47,
+          "margin": -6,
+          "v14_score": 5,
+          "new_score": -24
+        },
+        "new_scored_optimal": {
+          "square": 39,
+          "margin": 0,
+          "v14_score": -32,
+          "new_score": -60
+        },
+        "comparison_reference_square": 39,
+        "feature_difference_new_minus_reference": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          3,
+          0,
+          -4,
+          3,
+          0,
+          -2
+        ],
+        "contributions_new": [
+          0,
+          0,
+          0,
+          0,
+          8,
+          15,
+          0,
+          8,
+          3,
+          0,
+          2
+        ],
+        "contributions_old": [
+          0,
+          0,
+          0,
+          0,
+          8,
+          21,
+          0,
+          8,
+          0,
+          0,
+          0
+        ],
+        "contribution_shift": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -6,
+          0,
+          0,
+          3,
+          0,
+          2
+        ],
+        "v14_wdl_error": true,
+        "score_gap_new_minus_reference": {
+          "v14": 37,
+          "integer_new": 36,
+          "stored_unrounded_new": 34.40251928838271
+        },
+        "contributions_stored_unrounded": [
+          0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          6.2802197609784285,
+          15.90771756143766,
+          0.0,
+          8.142045662928837,
+          2.929697344785094,
+          0.0,
+          1.142838958252688
+        ],
+        "positional_contribution_new_minus_reference": {
+          "v14": 0,
+          "integer_new": 2,
+          "stored_unrounded_new": 1.142838958252688
+        }
+      },
+      {
+        "id": "fresh_10010018_e18",
+        "parent_empties": 18,
+        "best_margin": 4,
+        "v14_chosen": {
+          "square": 49,
+          "margin": 3,
+          "v14_score": 44,
+          "new_score": 18
+        },
+        "new_chosen": {
+          "square": 52,
+          "margin": -2,
+          "v14_score": 25,
+          "new_score": 24
+        },
+        "new_scored_optimal": {
+          "square": 8,
+          "margin": 4,
+          "v14_score": 31,
+          "new_score": -15
+        },
+        "comparison_reference_square": 49,
+        "feature_difference_new_minus_reference": [
+          0,
+          1,
+          0,
+          0,
+          2,
+          -3,
+          0,
+          0,
+          -1,
+          0,
+          -32
+        ],
+        "contributions_new": [
+          0,
+          -14,
+          0,
+          0,
+          4,
+          -15,
+          0,
+          0,
+          -1,
+          0,
+          32
+        ],
+        "contributions_old": [
+          0,
+          -2,
+          0,
+          0,
+          4,
+          -21,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "contribution_shift": [
+          0,
+          -12,
+          0,
+          0,
+          0,
+          6,
+          0,
+          0,
+          -1,
+          0,
+          32
+        ],
+        "v14_wdl_error": false,
+        "score_gap_new_minus_reference": {
+          "v14": -19,
+          "integer_new": 6,
+          "stored_unrounded_new": -8.977553361645011
+        },
+        "contributions_stored_unrounded": [
+          0.0,
+          -13.51880323114454,
+          -0.0,
+          0.0,
+          3.1401098804892142,
+          -15.90771756143766,
+          0.0,
+          -0.0,
+          -0.9765657815950313,
+          0.0,
+          18.28542333204301
+        ],
+        "positional_contribution_new_minus_reference": {
+          "v14": 0,
+          "integer_new": 32,
+          "stored_unrounded_new": 18.28542333204301
+        }
+      },
+      {
+        "id": "fresh_10010033_e18",
+        "parent_empties": 18,
+        "best_margin": 0,
+        "v14_chosen": {
+          "square": 49,
+          "margin": 0,
+          "v14_score": -10,
+          "new_score": -87
+        },
+        "new_chosen": {
+          "square": 60,
+          "margin": -2,
+          "v14_score": -33,
+          "new_score": -85
+        },
+        "new_scored_optimal": {
+          "square": 32,
+          "margin": 0,
+          "v14_score": -31,
+          "new_score": -86
+        },
+        "comparison_reference_square": 49,
+        "feature_difference_new_minus_reference": [
+          0,
+          1,
+          0,
+          -1,
+          -2,
+          -1,
+          0,
+          4,
+          6,
+          0,
+          -32
+        ],
+        "contributions_new": [
+          0,
+          -14,
+          0,
+          -5,
+          -4,
+          -5,
+          0,
+          -8,
+          6,
+          0,
+          32
+        ],
+        "contributions_old": [
+          0,
+          -2,
+          0,
+          -2,
+          -4,
+          -7,
+          0,
+          -8,
+          0,
+          0,
+          0
+        ],
+        "contribution_shift": [
+          0,
+          -12,
+          0,
+          -3,
+          0,
+          2,
+          0,
+          0,
+          6,
+          0,
+          32
+        ],
+        "v14_wdl_error": false,
+        "score_gap_new_minus_reference": {
+          "v14": -23,
+          "integer_new": 2,
+          "stored_unrounded_new": -10.480019800844659
+        },
+        "contributions_stored_unrounded": [
+          0.0,
+          -13.51880323114454,
+          -0.0,
+          -4.521306527416045,
+          -3.1401098804892142,
+          -5.30257252047922,
+          0.0,
+          -8.142045662928837,
+          5.859394689570188,
+          0.0,
+          18.28542333204301
+        ],
+        "positional_contribution_new_minus_reference": {
+          "v14": 0,
+          "integer_new": 32,
+          "stored_unrounded_new": 18.28542333204301
+        }
+      },
+      {
+        "id": "fresh_10010051_e18",
+        "parent_empties": 18,
+        "best_margin": 4,
+        "v14_chosen": {
+          "square": 49,
+          "margin": 2,
+          "v14_score": -25,
+          "new_score": -85
+        },
+        "new_chosen": {
+          "square": 40,
+          "margin": 0,
+          "v14_score": -29,
+          "new_score": -65
+        },
+        "new_scored_optimal": {
+          "square": 32,
+          "margin": 4,
+          "v14_score": -60,
+          "new_score": -95
+        },
+        "comparison_reference_square": 49,
+        "feature_difference_new_minus_reference": [
+          0,
+          1,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          -36
+        ],
+        "contributions_new": [
+          0,
+          -14,
+          0,
+          -5,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          36
+        ],
+        "contributions_old": [
+          0,
+          -2,
+          0,
+          -2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "contribution_shift": [
+          0,
+          -12,
+          0,
+          -3,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          36
+        ],
+        "v14_wdl_error": false,
+        "score_gap_new_minus_reference": {
+          "v14": -4,
+          "integer_new": 20,
+          "stored_unrounded_new": 5.460688834772894
+        },
+        "contributions_stored_unrounded": [
+          0.0,
+          -13.51880323114454,
+          -0.0,
+          -4.521306527416045,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          2.929697344785094,
+          0.0,
+          20.571101248548388
+        ],
+        "positional_contribution_new_minus_reference": {
+          "v14": 0,
+          "integer_new": 36,
+          "stored_unrounded_new": 20.571101248548388
+        }
+      }
+    ],
+    "collisions": {
+      "train_complete_roots": {
+        "roots": 52,
+        "labeled_nonterminal_children": 427,
+        "sibling_pairs": 1725,
+        "identical_feature_pairs": 2,
+        "different_margin_pairs": 1,
+        "different_wdl_pairs": 0,
+        "roots_with_margin_collision": 1,
+        "roots_with_wdl_collision": 0,
+        "examples": [
+          {
+            "id": "old_7077_e18",
+            "squares": [
+              24,
+              60
+            ],
+            "margins": [
+              4,
+              6
+            ],
+            "features": [
+              0,
+              1,
+              3,
+              1,
+              3,
+              1,
+              0,
+              0,
+              7,
+              -1,
+              -78
+            ]
+          }
+        ]
+      },
+      "train_all_exact_known_children": {
+        "roots": 120,
+        "labeled_nonterminal_children": 509,
+        "sibling_pairs": 1842,
+        "identical_feature_pairs": 2,
+        "different_margin_pairs": 1,
+        "different_wdl_pairs": 0,
+        "roots_with_margin_collision": 1,
+        "roots_with_wdl_collision": 0,
+        "examples": [
+          {
+            "id": "old_7077_e18",
+            "squares": [
+              24,
+              60
+            ],
+            "margins": [
+              4,
+              6
+            ],
+            "features": [
+              0,
+              1,
+              3,
+              1,
+              3,
+              1,
+              0,
+              0,
+              7,
+              -1,
+              -78
+            ]
+          }
+        ]
+      },
+      "holdout_complete_roots": {
+        "roots": 23,
+        "labeled_nonterminal_children": 184,
+        "sibling_pairs": 731,
+        "identical_feature_pairs": 1,
+        "different_margin_pairs": 1,
+        "different_wdl_pairs": 1,
+        "roots_with_margin_collision": 1,
+        "roots_with_wdl_collision": 1,
+        "examples": [
+          {
+            "id": "fresh_10010051_e18",
+            "squares": [
+              40,
+              58
+            ],
+            "margins": [
+              0,
+              -2
+            ],
+            "features": [
+              0,
+              -3,
+              -2,
+              -2,
+              -13,
+              1,
+              0,
+              4,
+              -2,
+              -1,
+              96
+            ]
+          }
+        ]
+      },
+      "holdout_all_exact_known_children": {
+        "roots": 60,
+        "labeled_nonterminal_children": 219,
+        "sibling_pairs": 776,
+        "identical_feature_pairs": 1,
+        "different_margin_pairs": 1,
+        "different_wdl_pairs": 1,
+        "roots_with_margin_collision": 1,
+        "roots_with_wdl_collision": 1,
+        "examples": [
+          {
+            "id": "fresh_10010051_e18",
+            "squares": [
+              40,
+              58
+            ],
+            "margins": [
+              0,
+              -2
+            ],
+            "features": [
+              0,
+              -3,
+              -2,
+              -2,
+              -13,
+              1,
+              0,
+              4,
+              -2,
+              -1,
+              96
+            ]
+          }
+        ]
+      }
+    },
+    "posthoc_frozen_float_diagnostic": {
+      "purpose": "Arithmetic sensitivity check of stored unrounded fit, not a new fit or preregistered candidate; not promotion evidence",
+      "wdl_errors": 2,
+      "mean_margin_regret": 3.347826086956522,
+      "optimum_hits": 11,
+      "records": [
+        {
+          "id": "fresh_10010000_e18",
+          "square": 2,
+          "margin": 4,
+          "best_margin": 8,
+          "regret": 4,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010001_e19",
+          "square": 47,
+          "margin": 4,
+          "best_margin": 4,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010003_e18",
+          "square": 3,
+          "margin": 6,
+          "best_margin": 16,
+          "regret": 10,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010006_e18",
+          "square": 3,
+          "margin": -6,
+          "best_margin": -6,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010009_e18",
+          "square": 48,
+          "margin": -6,
+          "best_margin": -6,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010010_e19",
+          "square": 7,
+          "margin": 4,
+          "best_margin": 4,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010015_e18",
+          "square": 54,
+          "margin": -6,
+          "best_margin": 0,
+          "regret": 6,
+          "wdl_error": true
+        },
+        {
+          "id": "fresh_10010016_e19",
+          "square": 16,
+          "margin": 34,
+          "best_margin": 34,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010018_e18",
+          "square": 49,
+          "margin": 3,
+          "best_margin": 4,
+          "regret": 1,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010021_e18",
+          "square": 61,
+          "margin": -4,
+          "best_margin": -4,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010024_e18",
+          "square": 1,
+          "margin": 2,
+          "best_margin": 12,
+          "regret": 10,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010030_e18",
+          "square": 49,
+          "margin": -24,
+          "best_margin": -24,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010033_e18",
+          "square": 49,
+          "margin": 0,
+          "best_margin": 0,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010036_e18",
+          "square": 61,
+          "margin": 4,
+          "best_margin": 10,
+          "regret": 6,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010039_e18",
+          "square": 61,
+          "margin": 2,
+          "best_margin": 16,
+          "regret": 14,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010040_e19",
+          "square": 46,
+          "margin": -10,
+          "best_margin": -8,
+          "regret": 2,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010042_e18",
+          "square": 15,
+          "margin": -12,
+          "best_margin": -8,
+          "regret": 4,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010045_e18",
+          "square": 54,
+          "margin": -16,
+          "best_margin": -12,
+          "regret": 4,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010046_e19",
+          "square": 56,
+          "margin": -14,
+          "best_margin": -14,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010048_e18",
+          "square": 47,
+          "margin": 4,
+          "best_margin": 16,
+          "regret": 12,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010051_e18",
+          "square": 62,
+          "margin": 0,
+          "best_margin": 4,
+          "regret": 4,
+          "wdl_error": true
+        },
+        {
+          "id": "fresh_10010052_e19",
+          "square": 53,
+          "margin": -2,
+          "best_margin": -2,
+          "regret": 0,
+          "wdl_error": false
+        },
+        {
+          "id": "fresh_10010057_e18",
+          "square": 5,
+          "margin": -2,
+          "best_margin": -2,
+          "regret": 0,
+          "wdl_error": false
+        }
+      ],
+      "scoring_implementation": "Direct numpy float64 dot product of each child feature vector with frozen unrounded_row; no rank_model._row call, rounding, fitting, searches or new candidate source.",
+      "integer_model_positional_weight": -1,
+      "stored_float_positional_weight": -0.571419479126344,
+      "relative_positional_magnitude_increase_due_to_rounding": 0.7500278456186378
+    },
+    "interpretation": {
+      "holdout_roots": 23,
+      "v14_mean_regret": 3.1739130434782608,
+      "new_mean_regret": 2.782608695652174,
+      "total_margin_regret_reduction_discs": 9,
+      "wdl_errors_v14": 1,
+      "wdl_errors_new": 4,
+      "new_error_ids": [
+        "fresh_10010018_e18",
+        "fresh_10010033_e18",
+        "fresh_10010051_e18"
+      ],
+      "rounding_sensitivity": "Positional coefficient -0.5714194791 rounds to-1; magnitude increases75%. Arithmetic using original unrounded fit removes errors18,33 but still has2WDLerrors and worse3.3478meanregret. Posthocdiagnostic is notpromotion evidence.",
+      "representational_collision_caveat": "The holdoutdraw/loss featurecollision isreal butdoesnotexplainallnewerrors; it occursbetween two suboptimalmoves at root51.",
+      "coverage": "Zero complete root20 in either split; pooledrowchild19 lackscompletedexactroot20 supervision. Diagnostic sample minima andallothergatesfailed; nomatches warranted.",
+      "next_hypothesis": "Prioritize sibling WDL-class inversions in training, with terminal-margin loss secondary, and preselect sufficientlyfine fixedpoint weightprecision using onlytraining diagnostics. Keepnewholdoutindependent; noholdoutrescue. Do notexpandtorow19withoutroot20exactlabels."
+    }
+  },
+  "regression": [
+    {
+      "phase": "validation",
+      "command": [
+        ".venv/bin/python",
+        "tests/test_move_rank.py"
+      ],
+      "seconds": 0.09473562499624677,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.007s\n\nOK\n"
+    },
+    {
+      "phase": "validation",
+      "command": [
+        ".venv/bin/python",
+        "tests/test_rank_data.py"
+      ],
+      "seconds": 1.4519177909969585,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 1.332s\n\nOK\n"
+    },
+    {
+      "phase": "validation",
+      "command": [
+        ".venv/bin/python",
+        "tests/test_search.py",
+        "versions/v16_rank_only_experimental_ai.py"
+      ],
+      "seconds": 2.094945499993628,
+      "exit_code": 0,
+      "stdout": "OK: alphabeta == minimax on 192 (position, depth) pairs\n",
+      "stderr": "",
+      "actual_source_before_cli_fix": "ai.py (active v14); positional candidate path was ignored",
+      "candidate_evidence": false
+    },
+    {
+      "phase": "validation",
+      "command": [
+        ".venv/bin/python",
+        "tests/test_eval_table.py",
+        "versions/v16_rank_only_experimental_ai.py"
+      ],
+      "seconds": 1.240616791008506,
+      "exit_code": 0,
+      "stdout": "OK: per-empties table layout; 112 legacy-equivalence and row-isolation checks\n",
+      "stderr": "",
+      "actual_source_before_cli_fix": "ai.py (active v14); positional candidate path was ignored",
+      "candidate_evidence": false
+    },
+    {
+      "phase": "validation",
+      "command": [
+        ".venv/bin/python",
+        "tools/lint_submission.py",
+        "versions/v16_rank_only_experimental_ai.py"
+      ],
+      "seconds": 0.02445979199546855,
+      "exit_code": 0,
+      "stdout": "lint OK\n",
+      "stderr": ""
+    },
+    {
+      "phase": "corrected_candidate_validation",
+      "command": [
+        ".venv/bin/python",
+        "tests/test_search.py",
+        "versions/v16_rank_only_experimental_ai.py"
+      ],
+      "seconds": 2.706325792009011,
+      "exit_code": 0,
+      "stdout": "source: /Users/justinfan7777777/Projects/Reversed Reversi/versions/v16_rank_only_experimental_ai.py\nOK: alphabeta == minimax on 192 (position, depth) pairs\n",
+      "stderr": "",
+      "candidate_evidence": true,
+      "candidate_sha256": "e1643c6e0feb8d2a7f7eb07a77de2889e7181f6b6620b37cd81eb543d3ef3591",
+      "test_sha256": "6e1aba4797a9a299786f10a54a7a7803db084d83ace30ff15e62b4345544f3e5"
+    },
+    {
+      "phase": "corrected_candidate_validation",
+      "command": [
+        ".venv/bin/python",
+        "tests/test_eval_table.py",
+        "versions/v16_rank_only_experimental_ai.py"
+      ],
+      "seconds": 1.226842875010334,
+      "exit_code": 0,
+      "stdout": "source: /Users/justinfan7777777/Projects/Reversed Reversi/versions/v16_rank_only_experimental_ai.py\nOK: per-empties table layout; 112 legacy-equivalence and row-isolation checks\n",
+      "stderr": "",
+      "candidate_evidence": true,
+      "candidate_sha256": "e1643c6e0feb8d2a7f7eb07a77de2889e7181f6b6620b37cd81eb543d3ef3591",
+      "test_sha256": "76571d45b2b0d7a291e6696cb1684f909061a04fa2757a126bb6fdc36187503e"
+    }
+  ],
+  "compute": {
+    "parallel_heavy_workers": 1,
+    "current_round_recorded_seconds": 347.42572237504646,
+    "ledger": [
+      {
+        "phase": "training_labels",
+        "command": [
+          ".venv/bin/python",
+          "tools/build_rank_data.py",
+          "train",
+          "--output",
+          "artifacts/codex_round6/train.json"
+        ],
+        "seconds": 232.81421745801345,
+        "exit_code": 0
+      },
+      {
+        "phase": "fit_and_freeze",
+        "seconds": 0.04289420900749974,
+        "exit_code": 0
+      },
+      {
+        "phase": "fresh_holdout_generation_and_labels",
+        "command": [
+          ".venv/bin/python",
+          "tools/build_rank_data.py",
+          "holdout",
+          "--exclude",
+          "artifacts/codex_round6/train.json",
+          "--frozen-model",
+          "artifacts/codex_round6/frozen_model.json",
+          "--output",
+          "artifacts/codex_round6/holdout.json"
+        ],
+        "seconds": 104.13175991699973,
+        "exit_code": 0
+      },
+      {
+        "phase": "holdout_analysis_and_dataset_export",
+        "seconds": 0.197093250011676,
+        "exit_code": 0
+      },
+      {
+        "phase": "validation",
+        "command": [
+          ".venv/bin/python",
+          "tests/test_move_rank.py"
+        ],
+        "seconds": 0.09473562499624677,
+        "exit_code": 0
+      },
+      {
+        "phase": "validation",
+        "command": [
+          ".venv/bin/python",
+          "tests/test_rank_data.py"
+        ],
+        "seconds": 1.4519177909969585,
+        "exit_code": 0
+      },
+      {
+        "phase": "validation",
+        "command": [
+          ".venv/bin/python",
+          "tests/test_search.py",
+          "versions/v16_rank_only_experimental_ai.py"
+        ],
+        "seconds": 2.094945499993628,
+        "exit_code": 0
+      },
+      {
+        "phase": "validation",
+        "command": [
+          ".venv/bin/python",
+          "tests/test_eval_table.py",
+          "versions/v16_rank_only_experimental_ai.py"
+        ],
+        "seconds": 1.240616791008506,
+        "exit_code": 0
+      },
+      {
+        "phase": "validation",
+        "command": [
+          ".venv/bin/python",
+          "tools/lint_submission.py",
+          "versions/v16_rank_only_experimental_ai.py"
+        ],
+        "seconds": 0.02445979199546855,
+        "exit_code": 0
+      },
+      {
+        "phase": "actual_dataset_independence_audit",
+        "seconds": 1.3999133750039618,
+        "exit_code": 0,
+        "roots_by_split": {
+          "train": 120,
+          "holdout": 60
+        },
+        "canonical_family_keys_by_split": {
+          "train": 1153,
+          "holdout": 615
+        },
+        "cross_split_family_overlap": 0,
+        "within_split_family_overlap": 0,
+        "one_root_per_game": true
+      },
+      {
+        "phase": "corrected_candidate_validation",
+        "command": [
+          ".venv/bin/python",
+          "tests/test_search.py",
+          "versions/v16_rank_only_experimental_ai.py"
+        ],
+        "seconds": 2.706325792009011,
+        "exit_code": 0,
+        "candidate_evidence": true,
+        "candidate_sha256": "e1643c6e0feb8d2a7f7eb07a77de2889e7181f6b6620b37cd81eb543d3ef3591",
+        "test_sha256": "6e1aba4797a9a299786f10a54a7a7803db084d83ace30ff15e62b4345544f3e5"
+      },
+      {
+        "phase": "corrected_candidate_validation",
+        "command": [
+          ".venv/bin/python",
+          "tests/test_eval_table.py",
+          "versions/v16_rank_only_experimental_ai.py"
+        ],
+        "seconds": 1.226842875010334,
+        "exit_code": 0,
+        "candidate_evidence": true,
+        "candidate_sha256": "e1643c6e0feb8d2a7f7eb07a77de2889e7181f6b6620b37cd81eb543d3ef3591",
+        "test_sha256": "76571d45b2b0d7a291e6696cb1684f909061a04fa2757a126bb6fdc36187503e"
+      }
+    ],
+    "prior_round_approximate_minutes": 21,
+    "cumulative_approximate_minutes": 26.790428706250776,
+    "authorized_cumulative_minutes": 45,
+    "caveat": "Measured phase wall durations count local computation; chat turnaround is excluded. Small agent synthetic tests and failure-analysis arithmetic add less than a minute."
+  },
+  "limitations": [
+    "Static one-step move ranking is not actual timed v14 play.",
+    "Only52training and23freshholdout complete roots, below the declared count floors.",
+    "Zero complete parent20 roots: no complete sibling supervision for child19; the pooled row19 is extrapolation only.",
+    "Timeout censoring concentrates complete roots in easier18/19emptypositions.",
+    "Neither integer nor posthoc frozen-float arithmetic establishes stronger play.",
+    "Same11features collide for one holdout draw/loss pair; this alone does not explain all regressions."
+  ],
+  "next_hypothesis": "Study WDL-prioritized sibling loss with margin as a secondary objective, precision fixed using training only, and a brand-new untouched holdout. Obtain complete root20 supervision before extending row19. No implementation or adoption in this round.",
+  "reproduce_without_private_raw_inputs": [
+    ".venv/bin/python tools/rank_model.py --data versions/round6_rank_dataset.json --output artifacts/codex_round6/reproduced.json",
+    ".venv/bin/python tests/test_move_rank.py",
+    ".venv/bin/python tests/test_rank_data.py",
+    ".venv/bin/python tests/test_search.py versions/v16_rank_only_experimental_ai.py",
+    ".venv/bin/python tests/test_eval_table.py versions/v16_rank_only_experimental_ai.py"
+  ],
+  "test_loader_fix": "Older search/table tests ignored positional path; now explicit module loading and printed source path support the documented candidate commands. Misdirected runs retained but excluded from candidate evidence.",
+  "documented_reproduction_verified": true,
+  "documented_reproduction_result": "Exact equality of both frozen models and all train/holdout metric records; all source, protocol, dataset and version hashes verified."
+}

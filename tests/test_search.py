@@ -1,8 +1,9 @@
 """alpha-beta (numba, iterative) must return EXACTLY the same value as a plain minimax
 without pruning.  Covers pruning, passes and terminal scoring (late-game positions).
 
-    python tests/test_search.py
+    python tests/test_search.py [path/to/ai.py]
 """
+import importlib.util
 import pathlib
 import random
 import sys
@@ -51,7 +52,15 @@ def random_position(rnd, plies):
     return board, color
 
 
-def main():
+def main(path=None):
+    global A, W
+    if path is not None:
+        spec = importlib.util.spec_from_file_location("minimax_test_candidate", path)
+        A = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(A)
+        A.DEBUG_RAISE = True
+        W = A.DEFAULT_W
+        print("source:", pathlib.Path(path).resolve())
     rnd = random.Random(7)
     su = np.zeros((A.MAXPLY, A.SU_COLS), dtype=np.uint64)
     si = np.zeros((A.MAXPLY, A.SI_COLS), dtype=np.int64)
@@ -70,4 +79,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 2:
+        raise SystemExit("usage: test_search.py [path/to/ai.py]")
+    main(sys.argv[1] if len(sys.argv) == 2 else None)

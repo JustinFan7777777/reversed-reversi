@@ -1,7 +1,8 @@
 """Per-empties weight table: layout, legacy-table equivalence and row isolation.
 
-    python tests/test_eval_table.py
+    python tests/test_eval_table.py [path/to/ai.py]
 """
+import importlib.util
 import pathlib
 import random
 import sys
@@ -33,7 +34,13 @@ def search(me, opp, depth, W):
     return int(value), int(stats[0])
 
 
-def main():
+def main(path=None):
+    global A
+    if path is not None:
+        spec = importlib.util.spec_from_file_location("table_test_candidate", path)
+        A = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(A)
+        print("source:", pathlib.Path(path).resolve())
     A.DEBUG_RAISE = True
     W = A.DEFAULT_W
     # Layout: one C-contiguous int64 row per empties count 0..64.
@@ -68,4 +75,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 2:
+        raise SystemExit("usage: test_eval_table.py [path/to/ai.py]")
+    main(sys.argv[1] if len(sys.argv) == 2 else None)
