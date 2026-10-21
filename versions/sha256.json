@@ -22,5 +22,6 @@
   "versions/v14_round4_fitted_end_ai.py": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af",
   "versions/v15_fast_features_candidate_ai.py": "1fe74d257bd32e1f9a7e76ebb48d5f2171940788cce7dfbca6329e7646311c57",
   "versions/v15_mid19_experimental_ai.py": "3affe147592c163b8fdbc7d5b1413dc64ce97af2dd4ea60cb4722dd09cf906f3",
-  "versions/v16_rank_only_experimental_ai.py": "e1643c6e0feb8d2a7f7eb07a77de2889e7181f6b6620b37cd81eb543d3ef3591"
+  "versions/v16_rank_only_experimental_ai.py": "e1643c6e0feb8d2a7f7eb07a77de2889e7181f6b6620b37cd81eb543d3ef3591",
+  "versions/v17_outcome_first_candidate_ai.py": "4aae97d26ac911f57ad7e2fb14d0b0ad5f72f2173ecc670ee73dad0bb583ef90"
 }

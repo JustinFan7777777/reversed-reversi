@@ -12,6 +12,8 @@
     null windows, between a fail-high null window and its re-search, inside the
     re-search) on a table that is never cleared; every returned move is legal and
     every reported value is exact for its completed depth.
+  * Round 7 driver switches (OUTCOME_FIRST, PARTIAL_ITERATION), where present, are off
+    in the root and deadline parts; tests/test_outcome_root.py covers them.
 
     python tests/test_pvs_inline.py [path/to/ai.py]
 """
@@ -85,6 +87,11 @@ def main():
         "frames_ab": load(path, "t3_frames_ab", PVS_ENABLED=False, LEAF_INLINE=False),
     }
     X, REF = engines["inline_pvs"], engines["frames_ab"]
+    # Parts 3-4 check v14's root semantics (the last completed depth decides). Round 7
+    # driver switches, where present, are off there; tests/test_outcome_root.py covers them.
+    round7 = {k: getattr(X, k) for k in ("OUTCOME_FIRST", "PARTIAL_ITERATION") if hasattr(X, k)}
+    for k in round7:
+        setattr(X, k, False)
     defaults = (X.ROOT_PVS, X.MAX_DEPTH, X.SLICE_NODES)    # restored after each part
     W = X.DEFAULT_W.copy()
     INF = X.INF
@@ -236,6 +243,8 @@ def main():
         X.ROOT_PVS, X.MAX_DEPTH, X.SLICE_NODES = defaults
 
     # ---- the platform entry point still answers legally with these switches --------
+    for k, v in round7.items():
+        setattr(X, k, v)
     board, color = T.random_position(rnd, 20)
     ai.color, ai.time_out = color, 0.05
     ai.go(board)

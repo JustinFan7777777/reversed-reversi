@@ -1,0 +1,221 @@
+{
+ "date": "2026-10-21",
+ "branch": "claude/v17-outcome-first",
+ "base_commit": "8d94d8d",
+ "protocol": {
+  "original": "versions/round7_protocol.md",
+  "original_sha256": "33040ff5e043b6510b70ec5b81effa9c9ab565b47a482aa8ab5e81817facfae2",
+  "revision1": "versions/round7_protocol_rev1.md",
+  "revision1_sha256": "9b79aebfb584061f2bc0f0405f2ed6454943688dd9c210a0ac2a815e7c5e9aaf",
+  "revision_reason": "full labels too slow (30-60 s per position at 22-23 empties); first run of ~13 min stopped and discarded, never used for any engine comparison"
+ },
+ "active_submission": "ai.py == versions/v14_round4_fitted_end_ai.py",
+ "active_sha256": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af",
+ "candidate": "versions/v17_outcome_first_candidate_ai.py",
+ "candidate_sha256": "4aae97d26ac911f57ad7e2fb14d0b0ad5f72f2173ecc670ee73dad0bb583ef90",
+ "strategy_accepted": false,
+ "decision": "Primary gate failed (sign test p=0.832); v14 retained; non-regression matches and timing stress skipped per the protocol and the user's choice.",
+ "cost_table": {
+  "15": {
+   "n": 40,
+   "censored": 0,
+   "median": 63131,
+   "q25": 10325,
+   "q75": 149024
+  },
+  "16": {
+   "n": 40,
+   "censored": 0,
+   "median": 260385,
+   "q25": 44397,
+   "q75": 541920
+  },
+  "17": {
+   "n": 40,
+   "censored": 0,
+   "median": 550253,
+   "q25": 52078,
+   "q75": 892294
+  },
+  "18": {
+   "n": 40,
+   "censored": 0,
+   "median": 801604,
+   "q25": 202239,
+   "q75": 2402497
+  },
+  "19": {
+   "n": 40,
+   "censored": 0,
+   "median": 1915833,
+   "q25": 493651,
+   "q75": 4120265
+  },
+  "20": {
+   "n": 40,
+   "censored": 0,
+   "median": 3708290,
+   "q25": 1074386,
+   "q75": 16795124
+  },
+  "21": {
+   "n": 40,
+   "censored": 2,
+   "median": 13790018,
+   "q25": 2388208,
+   "q75": 37857698
+  },
+  "22": {
+   "n": 40,
+   "censored": 11,
+   "median": 22366232,
+   "q25": 5857334,
+   "q75": 200000000
+  },
+  "23": {
+   "n": 40,
+   "censored": 14,
+   "median": 103772496,
+   "q25": 9932268,
+   "q75": 200000000
+  },
+  "24": {
+   "n": 40,
+   "censored": 19,
+   "median": 157116036,
+   "q25": 21725373,
+   "q75": 200000000
+  }
+ },
+ "training_check": {
+  "overall": {
+   "positions": 150,
+   "differing_moves": 37,
+   "capped": 0,
+   "b_better": 0,
+   "a_better": 0,
+   "sign_test_p": 1.0
+  },
+  "by_empties": {
+   "20": {
+    "positions": 36,
+    "differing_moves": 12,
+    "capped": 0,
+    "b_better": 0,
+    "a_better": 0,
+    "sign_test_p": 1.0
+   },
+   "21": {
+    "positions": 35,
+    "differing_moves": 13,
+    "capped": 0,
+    "b_better": 0,
+    "a_better": 0,
+    "sign_test_p": 1.0
+   },
+   "22": {
+    "positions": 37,
+    "differing_moves": 9,
+    "capped": 0,
+    "b_better": 0,
+    "a_better": 0,
+    "sign_test_p": 1.0
+   },
+   "23": {
+    "positions": 42,
+    "differing_moves": 3,
+    "capped": 0,
+    "b_better": 0,
+    "a_better": 0,
+    "sign_test_p": 1.0
+   }
+  },
+  "v17_reported_outcomes": 69,
+  "max_move_seconds": {
+   "a": 4.016,
+   "b": 4.051
+  }
+ },
+ "holdout": {
+  "overall": {
+   "positions": 600,
+   "differing_moves": 160,
+   "capped": 0,
+   "b_better": 12,
+   "a_better": 10,
+   "sign_test_p": 0.83181
+  },
+  "by_empties": {
+   "20": {
+    "positions": 130,
+    "differing_moves": 39,
+    "capped": 0,
+    "b_better": 5,
+    "a_better": 2,
+    "sign_test_p": 0.45312
+   },
+   "21": {
+    "positions": 163,
+    "differing_moves": 57,
+    "capped": 0,
+    "b_better": 4,
+    "a_better": 2,
+    "sign_test_p": 0.6875
+   },
+   "22": {
+    "positions": 151,
+    "differing_moves": 51,
+    "capped": 0,
+    "b_better": 3,
+    "a_better": 5,
+    "sign_test_p": 0.72656
+   },
+   "23": {
+    "positions": 156,
+    "differing_moves": 13,
+    "capped": 0,
+    "b_better": 0,
+    "a_better": 1,
+    "sign_test_p": 1.0
+   }
+  },
+  "v17_reported_outcomes": 293,
+  "max_move_seconds": {
+   "a": 4.139,
+   "b": 4.02
+  }
+ },
+ "post_hoc_explanatory": {
+  "note": "Not a candidate selection; explains the null result.",
+  "v17_proved_outcome": {
+   "v17_better": 6,
+   "v14_better": 1
+  },
+  "v17_unproven_fallback": {
+   "v17_better": 6,
+   "v14_better": 9
+  }
+ },
+ "correctness": "lint; check_engine 40 games/2504 positions; self-play 200 games/12442 positions, 0 fallbacks; test_search 192; resumption 144; interface 492; fallback; terminal 9; arena limits; variants 72; advanced 48; pvs_inline 1024/2048/32/196 (Round 7 switches off); eval_table 112; stable_edge_lookup; move_rank 12; rank_data 6; new test_outcome_root: 120 exact solves, 120 end-to-end, 269 deadline runs, 17 scripted cut points (all pass on the candidate)",
+ "compute_minutes_approx": {
+  "discarded_full_labels": 13,
+  "positions": 1,
+  "cost_table": 10,
+  "training_check": 10,
+  "holdout": 30
+ },
+ "files": {
+  "tools": [
+   "tools/build_outcome_set.py",
+   "tools/outcome_cost.py",
+   "tools/outcome_benchmark.py",
+   "tools/outcome_disagree.py",
+   "tools/outcome_report.py"
+  ],
+  "tests": [
+   "tests/test_outcome_root.py",
+   "tests/test_pvs_inline.py (switches off in parts 3-4)"
+  ],
+  "raw": "artifacts/claude_round7/ (ignored)"
+ }
+}

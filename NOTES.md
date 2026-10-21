@@ -695,3 +695,51 @@ behavior of the normal timed search and not full-game wins or losses.
   precision using training data alone, and test on a new untouched holdout. Obtain
   complete root-20 supervision before modifying child-19 evaluation. No such
   successor is implemented or accepted in this round.
+
+## Round 7 — outcome-first endgame (Claude), 2026-10-21
+
+### Decision
+
+- **No new strategy promoted; v14 stays.** Candidate v17 (root driver only: outcome-only
+  root solve when its median cost fits, plus keeping a move the unfinished iteration
+  proved better) failed the primary gate on fresh positions. Branch
+  `claude/v17-outcome-first`; protocol `versions/round7_protocol.md` and revision 1
+  `versions/round7_protocol_rev1.md`; record `versions/round7_validation.json`.
+
+### Evidence that motivated the round (scratchpad probes, before the protocol)
+
+- Codex's Round 6 hypothesis (win/loss objective in the weight fit) has no support: at
+  17-19 empties a logistic win/loss fit ranks win-versus-loss pairs no better than the
+  margin ridge (0.945 vs 0.948; 0.941 vs 0.952 with patterns).
+- Judge evaluation changes by ranking within one empties row: per-row constants never
+  change a move. Rows 20-60 refitted on self-play outcomes do not rank better than v14.
+- Edge+2X and 3x3 corner patterns add ranking at exact rows (10-16 empties within-row
+  0.846 -> 0.867, sibling pairs 0.742 -> 0.753, 6,720 train positions): the strongest
+  remaining evaluation lead.
+- Outcome-only platform audits (v14 batch 04, v13 batch 03): every loss was already lost
+  back to 21-27 empties; one draw (38_opp27, white) was a proven win at 21 empties.
+- v14 discards its aborted last iteration (about 40% of a 4 s move).
+
+### Results
+
+- Cost table (median nodes of a complete outcome-only root solve, 40 training probes per
+  empties count): 3.7M at 20, 13.8M at 21, 22.4M at 22, 104M at 23 empties; at 4 s the
+  solve is attempted at <= 22 empties on this machine.
+- Training (150 positions, 4 s): moves differed in 37, outcomes in none.
+- Holdout (600 fresh positions, 4 s): moves differed in 160, outcomes in 22: v17 better
+  12, worse 10, sign test p = 0.83. No label capped. Slowest moves 4.14 s (v14), 4.02 s
+  (v17). Matches and timing stress were skipped after the gate failed.
+- Post hoc, explanatory only: where v17 proved the outcome it was better 6 / worse 1;
+  where the solve was cut and it fell back to its shallower heuristic choice, better 6
+  / worse 9. The idea works when the solve completes; the lost heuristic depth cancels it.
+- The first full-label design (every move solved) cost 30-60 s per position at 22-23
+  empties; its ~13-minute partial run was discarded unused (revision 1).
+
+### Next
+
+- A variant that keeps v14's full heuristic search and only *adds* a solve when it is
+  cheap (e.g. <= 20 empties, or after the heuristic depth stops improving) would avoid
+  the fallback losses, but it needs a new holdout; the expected gain is small (the
+  endgame already makes few outcome errors).
+- The midgame decides the losses. The best-supported lead is pattern features on the
+  exact rows 10-20 (the leaves of the 25-35-empties decisions).
