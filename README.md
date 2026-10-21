@@ -7,8 +7,10 @@ Platform baseline v05 passed **10/10 usability cases** and supplied 20 verified
 match traces. User confirmed that Round 2 v12 also passed all 10 usability cases,
 earned the 10 basic points, and remained fixed throughout its new 20-game batch.
 The accepted baseline remains in `versions/v05_platform_passed_ai.py`.
-The working `ai.py` is Round 3 v13 (PVS at all levels, inline leaf evaluation),
-validated locally against v12; v12 stays on the platform until Phase 1 closes.
+The working `ai.py` is Round 4 v14: Round 3 v13 (PVS at all levels, inline leaf
+evaluation) plus end-phase weights fitted on exact labels. v13 and then v14 were
+uploaded on 2026-10-21 and each passed all 10 usability cases (user report); v14 is
+the platform submission.
 
 ## Environment
 
@@ -36,6 +38,7 @@ for this checkout; both it and `.venv/` are ignored by Git.
 .venv/bin/python tests/test_variants.py ai.py
 .venv/bin/python tests/test_advanced_search.py ai.py
 .venv/bin/python tests/test_pvs_inline.py
+.venv/bin/python tests/test_eval_table.py
 .venv/bin/python tools/bench_first_move.py ai.py
 .venv/bin/python tools/bench_timing.py
 .venv/bin/python tools/bench_memory.py ai.py --moves 60 --time-out 0.1
@@ -69,12 +72,17 @@ can check elapsed time. Passes do not spend depth;
 both players unable to move is terminal, even with empty squares remaining.
 The candidate uses a fixed 6 MiB transposition table with full-key checks, retained
 across turns and invalidated when weights change. Ordering favors cached moves and
-uses opponent mobility. Seven active evaluation controls were tuned offline with
-CSO; the optimizer is not part of the submission. The earlier SPSA pilot was rejected.
+uses opponent mobility. The opening and middle-game weights (seven active controls)
+were tuned offline with CSO; the optimizer is not part of the submission. The earlier
+SPSA pilot was rejected.
 Round 3 enables PVS inside the tree and at the root (0.56x the nodes at depth 11 with
 identical values), and depth-1 nodes evaluate their leaves inline (same tree, about
 1.6x faster). Against v12 over 100 paired games each, v13 scored 0.640 at 0.4 s and
 0.630 at 0.8 s of search per move (both paired CIs above 0.5) and 0.500 at 0.2 s.
+Round 4 replaces the end-phase row with one row per empties count 1-16, fitted by
+ridge regression on exact final margins from 1,200 self-play games. Against v13 over
+100 paired games each, v14 scored 0.635 at 0.4 s and at 0.8 s (CIs above 0.5) and
+0.565 at 2 s (CI [0.50, 0.63], inconclusive); the real 4 s budget is unmeasured.
 Non-8x8 boards use an independent generic legal-move engine and a greedy choice.
 
 Instructor-confirmed timing rules: startup has its own 5 seconds, every move has

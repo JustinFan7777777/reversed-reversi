@@ -1,15 +1,19 @@
 # Reversed Reversi development notes
 
-## Status — 2026-10-20
+## Status — 2026-10-21
 
 - Source: user-supplied Claude handoff; Appendix A extracted verbatim.
 - `versions/v00_ai.py` preserves the original submission.
 - Baseline v05 passed platform usability and supplied 20 validated match traces. User confirmed Round 2 v12 also passed all 10 usability cases, earned 10 basic points, and stayed fixed for a second 20-game batch.
-- Baseline v05 platform usability passed all 10 cases; user reported successful upload on 2026-10-20. Round 2 then selected v12 (superseded locally by Round 3 v13, below).
+- Baseline v05 platform usability passed all 10 cases; user reported successful upload on 2026-10-20. Round 2 then selected v12 (superseded by Round 3 v13 and Round 4 v14, below).
 - Initial M3–M5 pilot: 10-minute single-process allowance. User subsequently authorized Round 2 implementation, experiments, and compute; main Round 2 training/matches took about 9 min 39 s, with correctness/resource checks separately measured.
 - Phase 1 deadline: 2026-10-23 23:59; Phase 2: 2026-11-06 23:59.
-- Round 3: working ai.py is v13 (PVS at all levels, inline leaves), validated locally
-  against v12; v12 remains the platform submission until Phase 1 closes.
+- Round 3: v13 (PVS at all levels, inline leaves), validated locally against v12 and
+  committed as 1261282. The user uploaded it on 2026-10-21, before Phase 1 closed; it
+  passed all 10 usability cases (user report).
+- Round 4: working ai.py is v14 (end-phase weights fitted on exact labels), validated
+  against v13. Uploaded on 2026-10-21; it passed all 10 usability cases (user report)
+  and is the platform submission.
 
 ## Platform facts and open questions
 
@@ -203,7 +207,7 @@ openings, screening openings, and final confirmation openings are disjoint.
 - Seven-control CSO produced the following embedded weights; columns are corner,
   X, C, edge, discs, mobility, stable, frontier, potential mobility, parity, position:
   opening [70,-2,2,2,2,5,0,-2,0,0,0]; middle [70,-2,2,2,2,7,0,-2,0,0,0];
-  ending [70,-2,2,0,10,2,0,-2,0,0,0].
+  ending [70,-2,2,0,10,2,0,-2,0,0,0] (replaced in Round 4 by fitted rows per empties).
 - Main training/match time: 13.2 + 400.4 + 165.6 = 579.3 seconds (~9 min 39 s),
   covering 512 training games and 704 timed validation/ablation/pilot games.
 - Regression: engine 40 games/2,491 positions; minimax 192 pairs; resumable search
@@ -268,7 +272,8 @@ openings, screening openings, and final confirmation openings are disjoint.
 - Next experimental priorities: quality of middle-game mobility, smoother phase
   weights (17 -> 16 empties changes discs 2 -> 10 and mobility 7 -> 2), and bounded
   stable-edge/potential-mobility ablations. These remain hypotheses; train/test
-  splits must avoid overfitting to the friend's two traces.
+  splits must avoid overfitting to the friend's two traces. (Round 4 replaced the
+  end-phase row with fitted rows that use stable edges and potential mobility.)
 - Platform timing is unavailable to the user. No abnormal termination appears in
   these 20 traces; precise resource usage cannot be recovered from board states.
 - Complete machine-readable findings: `versions/platform_batch02_analysis.json`.
@@ -277,7 +282,8 @@ openings, screening openings, and final confirmation openings are disjoint.
 ## Round 3 — PVS at all levels and inline leaves (v13), 2026-10-20
 
 - User approved an algorithm review and then v13 implementation with validation
-  compute. v12 stays on the platform until Phase 1 closes (2026-10-23 23:59).
+  compute. v12 stayed on the platform at the time; v13 and then v14 were uploaded on
+  2026-10-21 (see Status).
 - Review: three independent reviewers (endgame, midgame search, evaluation) measured
   on a shared seeded set of 2,064 self-play positions; an adversarial verifier re-ran
   the key claims on held-out positions. Only re-verified numbers are recorded here.
@@ -345,7 +351,7 @@ openings, screening openings, and final confirmation openings are disjoint.
 - End-phase weight row (empties <= 16) ranks sibling moves worse than the middle row:
   +3.5 pp pooled [1.1, 6.0] at 12-17 empties (static ranking against exact WLD).
   Next: a per-empties or tapered table fitted on exact labels, accepted only on
-  match evidence.
+  match evidence. Done in Round 4 (v14).
 - Eval-based move ordering on top of PVS: plausible further node savings, but chosen
   on the same positions it was measured on; needs held-out confirmation.
 - Direct WLD proofs (window [-1, 1], first-win stop) prove 21/24 positions at 20
@@ -356,3 +362,135 @@ openings, screening openings, and final confirmation openings are disjoint.
   endgame ordering (+5% to +50% nodes), Multi-ProbCut before the evaluation is fixed.
 - Even-empties positions in the shared set are almost all black to move, so
   colour-specific conclusions need odd-level or colour-split tests.
+
+## Round 4 — Fitted end-phase evaluation (v14), 2026-10-20/21
+
+- User approved item 5 of the Round 3 review (end-phase weights fitted on exact labels),
+  to be adopted only on match evidence; v13 was committed first (1261282). The user also
+  approved a 2 s confirmation match after a mixed depth signal at the real 4 s budget.
+- Platform: the user uploaded v13 on 2026-10-21, before Phase 1 closed, to play
+  `playto` games, and then v14 the same day; both passed all 10 usability cases (user
+  report). A paired platform comparison (v14 against the opponents of the v13 batch,
+  same colours) is in progress.
+- Records: snapshot `versions/v14_round4_fitted_end_ai.py`; machine-readable results
+  `versions/round4_validation.json`; new test `tests/test_eval_table.py`.
+
+### Changes (ai.py)
+
+- `evaluate()` indexes the weight table by empties when it has more than three rows;
+  three-row phase tables (offline tools, older versions) keep the phase lookup.
+- `DEFAULT_W` has 65 rows (empties 0-64): rows 1-16 are the fitted `END_W` (units of
+  1/8 disc), rows 17-44 the unchanged CSO middle row, rows 45-64 the unchanged opening
+  row; row 0 copies row 1 (terminal positions are never evaluated). Rows 61-64 only
+  cover direct calls on near-empty boards: `go()` searches only with two or more legal
+  moves, so evaluated positions have at most 60 empties.
+- Fitted and CSO rows use different scales. This is safe because every leaf of one
+  iteration has the same number of empties (passes are free) and TT cutoffs require
+  equal depth, so values from different rows are never compared. The correctness
+  review confirmed this by randomising every other row (identical values and nodes).
+- `AI._search` now copies the weights for its TT invalidation check, so offline tools
+  can still assign a 3-row table (review finding; play is unaffected).
+
+### Fit
+
+- Data: 1,200 self-play games (v13 search at 10 ms per move; 8 random opening plies,
+  then a random move with probability 0.1), 28,762 positions with 1-24 empties; exact
+  final margin for every position with at most 16 empties. Split by game: 960 train,
+  240 test.
+- Features: the engine's own 11 columns, extracted by calling `evaluate()` with unit
+  weights. Within one row the empties-parity column is constant, so it acts as the
+  row's intercept.
+- Ridge regression per empties 1-16 (penalty 1e-4 x trace/11): in-sample R^2 0.76-0.79
+  (0.90 at 1 empty). Rounded to 1/8 disc, the shipped rows have a held-out MAE of
+  4.1-5.7 discs (3.5 at 1 empty), within 0.13 disc of the unrounded fit. The
+  positional-table column rounds to 0 in every row.
+- Learned weights: stable edge discs (every corner is one) are the largest
+  non-intercept feature at 5-16 empties, about 0.9-1.25 discs each (0 in v13). Corner, disc and stable columns together make
+  a corner cost 11-16 eighths of a disc: 1.8x an ordinary disc at 1 empty, 7.5x at 16
+  (v13's end row: 8x). At odd empties the intercept is -3 to -6 discs for the side to
+  move (it makes the last move and gains discs).
+
+### Offline comparison (240 held-out games)
+
+| End rows (<= 16 empties) | Sibling pairs ranked correctly (38,191) | W/D/L pairs (10,356) | Per root vs v13 [95% CI] |
+|---|---:|---:|---:|
+| v13 end row | 0.714 | 0.773 | — |
+| Middle row reused | 0.749 | 0.814 | +3.6 pp [2.8, 4.3] |
+| **Fitted, 1/8 disc (selected)** | **0.760** | **0.825** | **+5.0 pp [4.2, 5.7]** |
+| Fitted, 1/16 disc | 0.759 | 0.824 | +4.8 pp [4.1, 5.5] |
+| Fitted, ridge 1e-2, 1/8 disc | 0.750 | 0.815 | +4.1 pp [3.4, 4.8] |
+
+- Sibling ranking: children of test positions at 11-17 empties, static evaluation
+  against exact margins (ties count half).
+- Rows 1-9 (children of 1,806 held-out roots at 2-10 empties, solved exactly; added
+  after review): v14 0.686 vs v13's end row 0.650, +5.5 pp per root [4.1, 6.8]. The
+  middle row is no better there (0.660, -0.8 pp [-1.9, 0.4]); v14 is at least as good
+  as v13's end row in every row.
+- Fixed-depth decisions at 20-21 empties (201 roots, every child W/D/L-proven): 0-6
+  errors per table at depths 4/6/8; no difference resolvable.
+- Cost, fixed depth from 20-24 empties: 0.95x / 0.85x / 0.82x nodes at depths 6 / 8 /
+  10 and 0.90x time at depth 10 (about 9% fewer nodes per second). Full iterative
+  deepening to 4-5 empties, 12 held-out positions at 23 empties (12 of 80 planned
+  roots; the run was stopped early): 0.76-0.77x nodes (geometric means; 0.73x in
+  total), but worse on 2-3 of 12 and up to 1.5x on one. Removing the parity intercept
+  changed little (0.97x / 1.00x nodes; 11 and 12 of 12 same moves).
+
+### Matches (v14 vs v13, 6 random opening plies)
+
+| Trial | Games | Search budget | W/D/L | Score | Paired 95% CI |
+|---|---:|---:|---:|---:|---:|
+| Seeds 810000-814009 | 100 | 0.4 s | 59/9/32 | 0.635 | [0.565, 0.705] |
+| Seeds 830000-834009 | 100 | 0.8 s | 61/5/34 | 0.635 | [0.565, 0.705] |
+| Seeds 850000-854009 | 100 | 2.0 s | 50/13/37 | 0.565 | [0.50, 0.63] |
+
+- The 0.4 s and 0.8 s runs pass the promotion rule (paired CI entirely above 0.5). The
+  2 s run does not (lower bound 0.500): it is inconclusive. Its score is lower (0.565
+  vs 0.635), but the drop is not statistically resolved (z = 1.43). At the real budget
+  of about 4 s per move the effect is unmeasured and may be near zero.
+- Pooled over the three budgets (300 games; mixed budgets, not an estimate at 4 s):
+  0.612 [0.572, 0.650].
+- Colour split (v14 as black / as white): 0.4 s 34/5/11 and 25/4/21; 0.8 s 36/0/14 and
+  25/5/20; 2.0 s 32/3/15 and 18/10/22. All games ended normally (no timeouts or illegal
+  moves); the largest per-game side total at 2 s was 40.6 s.
+- The 0.4 s and 0.8 s runs used the 61-row candidate (rows 0-60 identical to the final
+  table); the 2.0 s run used the final table and search (the later one-line TT-weights
+  fix is not exercised in play).
+
+### Diagnostics at the real 4.0 s budget
+
+- Depth (16 positions, games 40-41 of the shared set): 13.25 -> 13.25 at 32-50 empties;
+  16.88 -> 16.38 at 20-28 empties (v14 solved one position, was 1-2 plies shallower at
+  four); same move in 13/16. This is repeatable per position, not timing noise: v13 gave
+  the same depth and move at 16/16 positions in Rounds 3 and 4. In the same 4 s v14
+  searches 0.89-0.96x as many nodes (slower evaluation). The fixed-depth and deep
+  samples above are cheaper on average but costlier on some positions; eight
+  positions cannot fix the average effect.
+- Friend replay (opp19, 17 decisions at 24-40 empties): v14 changes 2 moves; at 24
+  empties both choices are proven losses, the other (27 empties) is unjudged. Mean depth
+  14.47 -> 14.71. v13 reproduces its Round 3 run exactly (same move and completed depth
+  at 17/17 decisions); as in Round 3 it differs from the platform's v12 moves at plies
+  32 and 34.
+
+### Validation (final bytes)
+
+- All README checks pass: lint; minimax 192 pairs; resumption 144; interface 492;
+  fallback; terminal 9; arena limits; TT/feature/minimax 72; PVS/TT window+resume 48
+  and cache invalidation; PVS/inline same-tree 1,024, value/bound 2,048, root/slice 32,
+  deadline sweep 196; engine vs reference 40 games / 2,492 positions; self-play 200
+  games / 12,450 positions at 0.005 s; zero fallbacks and warm-up failures.
+- New `tests/test_eval_table.py`: table layout; a 65-row expansion of v13's phase rows
+  matches the 3-row lookup in evaluation and search; row isolation (randomising every
+  row except empties - depth leaves values and node counts unchanged); 112 checks. A
+  planted off-by-one row index fails it (checked once; not part of the suite).
+- Startup: import 0.09 s + init 0.94 s. Timing stress: maximum 4.0005 s over 14 cases.
+- Memory (same machine, two back-to-back runs each): import + init growth 63.5 / 77.1
+  MB (v13 74.0 / 76.9 MB). RSS readings vary by over 10 MB between runs, so the two
+  versions do not differ measurably. Play peak delta at most +0.1 MB.
+
+### Limitations
+
+- All match evidence is head-to-head against v13; the rows were fitted on v13 self-play
+  at 10 ms per move, not on platform opponents.
+- Rows 17-64 are the unchanged CSO rows; only the end phase was refitted.
+- No measurement at the real 4 s budget beyond the 16-position depth table and the
+  17-decision replay.

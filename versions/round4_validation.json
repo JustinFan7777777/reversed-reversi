@@ -1,0 +1,760 @@
+{
+ "submission": "ai.py",
+ "snapshot": "versions/v14_round4_fitted_end_ai.py",
+ "sha256": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af",
+ "baseline_snapshot": "versions/v13_round3_pvs_inline_ai.py",
+ "baseline_sha256": "96daf02b7d724a713f61fe53ee41ff0e87ccd740113cd1471ffce0a5a545b97e",
+ "changes": [
+  "evaluate() indexes W by empties when W has more than 3 rows (3-row phase tables unchanged)",
+  "DEFAULT_W: 65 rows; rows 1-16 = END_W fitted (1/8 disc), 17-44 middle row, 45-64 opening row, row 0 = row 1",
+  "AI._search copies W for TT invalidation (a tool may change the row count)",
+  "tests/test_eval_table.py: table layout, legacy-table equivalence, row isolation"
+ ],
+ "python": "3.10.22",
+ "numpy": "1.26.4",
+ "numba": "0.59.1",
+ "data": {
+  "games": 1200,
+  "train_games": 960,
+  "test_games": 240,
+  "positions": 28762,
+  "generator": "v13 search 10 ms/move; 8 random opening plies; random move p=0.1",
+  "labels": "exact final margin for every position with <= 16 empties"
+ },
+ "fit": {
+  "method": "ridge per empties 1-16, penalty 1e-4 x trace/11, rounded to 1/8 disc",
+  "selected": "FIT8_l0.0001",
+  "in_sample_r2_unrounded": {
+   "1": 0.902,
+   "2": 0.766,
+   "3": 0.769,
+   "4": 0.764,
+   "5": 0.76,
+   "6": 0.772,
+   "7": 0.779,
+   "8": 0.783,
+   "9": 0.785,
+   "10": 0.772,
+   "11": 0.766,
+   "12": 0.769,
+   "13": 0.777,
+   "14": 0.776,
+   "15": 0.783,
+   "16": 0.785
+  },
+  "heldout_mae_shipped_vs_unrounded": {
+   "1": [
+    3.47,
+    3.34,
+    237
+   ],
+   "2": [
+    5.11,
+    5.0,
+    240
+   ],
+   "3": [
+    5.17,
+    5.14,
+    240
+   ],
+   "4": [
+    5.68,
+    5.59,
+    240
+   ],
+   "5": [
+    5.54,
+    5.56,
+    240
+   ],
+   "6": [
+    5.39,
+    5.41,
+    240
+   ],
+   "7": [
+    5.33,
+    5.24,
+    240
+   ],
+   "8": [
+    5.06,
+    4.97,
+    240
+   ],
+   "9": [
+    5.03,
+    4.95,
+    240
+   ],
+   "10": [
+    4.87,
+    4.91,
+    240
+   ],
+   "11": [
+    4.91,
+    4.89,
+    240
+   ],
+   "12": [
+    5.03,
+    4.98,
+    240
+   ],
+   "13": [
+    4.97,
+    4.92,
+    240
+   ],
+   "14": [
+    4.98,
+    4.87,
+    240
+   ],
+   "15": [
+    4.78,
+    4.71,
+    240
+   ],
+   "16": [
+    4.14,
+    4.2,
+    240
+   ]
+  }
+ },
+ "offline_sibling_ranking": {
+  "rows_10_16": {
+   "CUR": {
+    "margin_pairs": 38191,
+    "acc_margin": 0.7138,
+    "wdl_pairs": 10356,
+    "acc_wdl": 0.7734,
+    "per_root_minus_CUR": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "MID": {
+    "margin_pairs": 38191,
+    "acc_margin": 0.7492,
+    "wdl_pairs": 10356,
+    "acc_wdl": 0.8141,
+    "per_root_minus_CUR": 0.0358,
+    "ci95": [
+     0.0282,
+     0.0434
+    ]
+   },
+   "FIT8_l0.0001": {
+    "margin_pairs": 38191,
+    "acc_margin": 0.7598,
+    "wdl_pairs": 10356,
+    "acc_wdl": 0.8245,
+    "per_root_minus_CUR": 0.0495,
+    "ci95": [
+     0.0422,
+     0.0569
+    ]
+   },
+   "FIT16_l0.0001": {
+    "margin_pairs": 38191,
+    "acc_margin": 0.7587,
+    "wdl_pairs": 10356,
+    "acc_wdl": 0.8239,
+    "per_root_minus_CUR": 0.048,
+    "ci95": [
+     0.0407,
+     0.0551
+    ]
+   },
+   "FIT8_l0.01": {
+    "margin_pairs": 38191,
+    "acc_margin": 0.7504,
+    "wdl_pairs": 10356,
+    "acc_wdl": 0.8146,
+    "per_root_minus_CUR": 0.0407,
+    "ci95": [
+     0.0337,
+     0.048
+    ]
+   },
+   "FIT16_l0.01": {
+    "margin_pairs": 38191,
+    "acc_margin": 0.7505,
+    "wdl_pairs": 10356,
+    "acc_wdl": 0.8132,
+    "per_root_minus_CUR": 0.0404,
+    "ci95": [
+     0.0336,
+     0.0474
+    ]
+   }
+  },
+  "rows_1_9": {
+   "v13_end": {
+    "roots": 1806,
+    "pairs": 13598,
+    "acc": 0.6496,
+    "per_root_minus_v13": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "middle": {
+    "roots": 1806,
+    "pairs": 13598,
+    "acc": 0.6598,
+    "per_root_minus_v13": -0.0076,
+    "ci95": [
+     -0.0188,
+     0.0039
+    ]
+   },
+   "v14": {
+    "roots": 1806,
+    "pairs": 13598,
+    "acc": 0.6858,
+    "per_root_minus_v13": 0.0549,
+    "ci95": [
+     0.041,
+     0.0684
+    ]
+   }
+  },
+  "rows_1_9_by_row": {
+   "v13_end": {
+    "1": 0.54,
+    "2": 0.622,
+    "3": 0.581,
+    "4": 0.643,
+    "5": 0.624,
+    "6": 0.657,
+    "7": 0.639,
+    "8": 0.688,
+    "9": 0.654
+   },
+   "middle": {
+    "1": 0.417,
+    "2": 0.63,
+    "3": 0.572,
+    "4": 0.663,
+    "5": 0.612,
+    "6": 0.684,
+    "7": 0.628,
+    "8": 0.721,
+    "9": 0.667
+   },
+   "v14": {
+    "1": 0.928,
+    "2": 0.623,
+    "3": 0.677,
+    "4": 0.665,
+    "5": 0.637,
+    "6": 0.689,
+    "7": 0.658,
+    "8": 0.719,
+    "9": 0.699
+   }
+  }
+ },
+ "fixed_depth_decisions_20_21_empties": {
+  "CUR_d4": {
+   "roots": 201,
+   "errors": 6,
+   "rate": 0.0299,
+   "nodes": 314256,
+   "minus_CUR": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  "MID_d4": {
+   "roots": 201,
+   "errors": 5,
+   "rate": 0.0249,
+   "nodes": 320896,
+   "minus_CUR": -0.005,
+   "ci95": [
+    -0.0249,
+    0.0149
+   ]
+  },
+  "FIT8_l0.0001_d4": {
+   "roots": 201,
+   "errors": 4,
+   "rate": 0.0199,
+   "nodes": 319655,
+   "minus_CUR": -0.01,
+   "ci95": [
+    -0.0348,
+    0.0149
+   ]
+  },
+  "FIT16_l0.0001_d4": {
+   "roots": 201,
+   "errors": 4,
+   "rate": 0.0199,
+   "nodes": 320580,
+   "minus_CUR": -0.01,
+   "ci95": [
+    -0.0348,
+    0.0149
+   ]
+  },
+  "FIT8_l0.01_d4": {
+   "roots": 201,
+   "errors": 4,
+   "rate": 0.0199,
+   "nodes": 317682,
+   "minus_CUR": -0.01,
+   "ci95": [
+    -0.0299,
+    0.01
+   ]
+  },
+  "FIT16_l0.01_d4": {
+   "roots": 201,
+   "errors": 5,
+   "rate": 0.0249,
+   "nodes": 318247,
+   "minus_CUR": -0.005,
+   "ci95": [
+    -0.0299,
+    0.0149
+   ]
+  },
+  "CUR_d6": {
+   "roots": 201,
+   "errors": 3,
+   "rate": 0.0149,
+   "nodes": 2731067,
+   "minus_CUR": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  "MID_d6": {
+   "roots": 201,
+   "errors": 1,
+   "rate": 0.005,
+   "nodes": 2606653,
+   "minus_CUR": -0.01,
+   "ci95": [
+    -0.0299,
+    0.01
+   ]
+  },
+  "FIT8_l0.0001_d6": {
+   "roots": 201,
+   "errors": 0,
+   "rate": 0.0,
+   "nodes": 2560656,
+   "minus_CUR": -0.0149,
+   "ci95": [
+    -0.0348,
+    0.0
+   ]
+  },
+  "FIT16_l0.0001_d6": {
+   "roots": 201,
+   "errors": 1,
+   "rate": 0.005,
+   "nodes": 2577074,
+   "minus_CUR": -0.01,
+   "ci95": [
+    -0.0299,
+    0.01
+   ]
+  },
+  "FIT8_l0.01_d6": {
+   "roots": 201,
+   "errors": 2,
+   "rate": 0.01,
+   "nodes": 2470452,
+   "minus_CUR": -0.005,
+   "ci95": [
+    -0.0249,
+    0.01
+   ]
+  },
+  "FIT16_l0.01_d6": {
+   "roots": 201,
+   "errors": 0,
+   "rate": 0.0,
+   "nodes": 2543513,
+   "minus_CUR": -0.0149,
+   "ci95": [
+    -0.0348,
+    0.0
+   ]
+  },
+  "CUR_d8": {
+   "roots": 201,
+   "errors": 1,
+   "rate": 0.005,
+   "nodes": 18654906,
+   "minus_CUR": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  "MID_d8": {
+   "roots": 201,
+   "errors": 2,
+   "rate": 0.01,
+   "nodes": 17485627,
+   "minus_CUR": 0.005,
+   "ci95": [
+    -0.01,
+    0.0249
+   ]
+  },
+  "FIT8_l0.0001_d8": {
+   "roots": 201,
+   "errors": 3,
+   "rate": 0.0149,
+   "nodes": 16194109,
+   "minus_CUR": 0.01,
+   "ci95": [
+    -0.01,
+    0.0299
+   ]
+  },
+  "FIT16_l0.0001_d8": {
+   "roots": 201,
+   "errors": 3,
+   "rate": 0.0149,
+   "nodes": 16777334,
+   "minus_CUR": 0.01,
+   "ci95": [
+    -0.01,
+    0.0299
+   ]
+  },
+  "FIT8_l0.01_d8": {
+   "roots": 201,
+   "errors": 3,
+   "rate": 0.0149,
+   "nodes": 16146027,
+   "minus_CUR": 0.01,
+   "ci95": [
+    -0.01,
+    0.0299
+   ]
+  },
+  "FIT16_l0.01_d8": {
+   "roots": 201,
+   "errors": 3,
+   "rate": 0.0149,
+   "nodes": 16741666,
+   "minus_CUR": 0.01,
+   "ci95": [
+    -0.01,
+    0.0299
+   ]
+  }
+ },
+ "cost": {
+  "fixed_depth_20_24_empties": {
+   "roots": 200,
+   "d6": {
+    "v13": {
+     "nodes": 1154008,
+     "seconds": 0.09,
+     "mnps": 13.0
+    },
+    "fit": {
+     "nodes": 1096463,
+     "seconds": 0.09,
+     "mnps": 11.96
+    },
+    "v13_again": {
+     "nodes": 1154008,
+     "seconds": 0.09,
+     "mnps": 12.41
+    },
+    "nodes_ratio": 0.95,
+    "time_ratio": 1.0
+   },
+   "d8": {
+    "v13": {
+     "nodes": 8804296,
+     "seconds": 0.62,
+     "mnps": 14.15
+    },
+    "fit": {
+     "nodes": 7501287,
+     "seconds": 0.59,
+     "mnps": 12.66
+    },
+    "v13_again": {
+     "nodes": 8804296,
+     "seconds": 0.62,
+     "mnps": 14.19
+    },
+    "nodes_ratio": 0.852,
+    "time_ratio": 0.952
+   },
+   "d10": {
+    "v13": {
+     "nodes": 56259064,
+     "seconds": 4.14,
+     "mnps": 13.58
+    },
+    "fit": {
+     "nodes": 45880667,
+     "seconds": 3.71,
+     "mnps": 12.38
+    },
+    "v13_again": {
+     "nodes": 56259064,
+     "seconds": 4.12,
+     "mnps": 13.64
+    },
+    "nodes_ratio": 0.816,
+    "time_ratio": 0.898
+   }
+  },
+  "deep_iterative_deepening": {
+   "planned_roots": 80,
+   "completed_roots": 12,
+   "empties": [
+    23
+   ],
+   "note": "stopped early on purpose; every completed root is at 23 empties",
+   "leaves_at_5_empties": {
+    "v14_over_v13_geomean": 0.77,
+    "v14_over_v13_total": 0.732,
+    "v14_worse_on": 3,
+    "v14_max_ratio": 1.495,
+    "no_parity_over_v14_total": 0.974,
+    "no_parity_same_move": 11
+   },
+   "leaves_at_4_empties": {
+    "v14_over_v13_geomean": 0.76,
+    "v14_over_v13_total": 0.727,
+    "v14_worse_on": 2,
+    "v14_max_ratio": 1.352,
+    "no_parity_over_v14_total": 0.998,
+    "no_parity_same_move": 12
+   }
+  }
+ },
+ "matches_vs_v13": [
+  {
+   "time_out": 0.5,
+   "search_seconds": 0.4,
+   "games": 100,
+   "wins": 59,
+   "draws": 9,
+   "losses": 32,
+   "score": 0.635,
+   "paired_ci95": [
+    0.565,
+    0.705
+   ],
+   "by_colour": {
+    "candidate_black": {
+     "win": 34,
+     "draw": 5,
+     "loss": 11
+    },
+    "candidate_white": {
+     "win": 25,
+     "draw": 4,
+     "loss": 21
+    }
+   },
+   "reasons": [
+    "normal"
+   ],
+   "max_side_seconds_per_game": 8.215213164017769,
+   "seeds": "810000-814009",
+   "candidate_file": "scratch 61-row candidate (rows 0-60 identical)"
+  },
+  {
+   "time_out": 1.0,
+   "search_seconds": 0.8,
+   "games": 100,
+   "wins": 61,
+   "draws": 5,
+   "losses": 34,
+   "score": 0.635,
+   "paired_ci95": [
+    0.565,
+    0.705
+   ],
+   "by_colour": {
+    "candidate_black": {
+     "win": 36,
+     "draw": 0,
+     "loss": 14
+    },
+    "candidate_white": {
+     "win": 25,
+     "draw": 5,
+     "loss": 20
+    }
+   },
+   "reasons": [
+    "normal"
+   ],
+   "max_side_seconds_per_game": 16.465531168010784,
+   "seeds": "830000-834009",
+   "candidate_file": "scratch 61-row candidate (rows 0-60 identical)"
+  },
+  {
+   "time_out": 2.5,
+   "search_seconds": 2.0,
+   "games": 100,
+   "wins": 50,
+   "draws": 13,
+   "losses": 37,
+   "score": 0.565,
+   "paired_ci95": [
+    0.5,
+    0.63
+   ],
+   "by_colour": {
+    "candidate_black": {
+     "win": 32,
+     "draw": 3,
+     "loss": 15
+    },
+    "candidate_white": {
+     "win": 18,
+     "draw": 10,
+     "loss": 22
+    }
+   },
+   "reasons": [
+    "normal"
+   ],
+   "max_side_seconds_per_game": 40.61656733197742,
+   "seeds": "850000-854009",
+   "candidate_file": "final table and search, before the one-line TT-weights fix"
+  }
+ ],
+ "matches_pooled": {
+  "games": 300,
+  "score": 0.6117,
+  "paired_ci95": [
+   0.572,
+   0.65
+  ],
+  "note": "mixed budgets (0.4, 0.8, 2.0 s); not an estimate at 4 s"
+ },
+ "promotion_rule": "paired 95% CI entirely above 0.5: passed at 0.4 s and 0.8 s; not at 2.0 s (lower bound 0.500)",
+ "depth_at_4s": {
+  "midgame 32-50": {
+   "v13": {
+    "mean_depth": 13.25,
+    "solved": 0,
+    "n": 8
+   },
+   "v14": {
+    "mean_depth": 13.25,
+    "solved": 0,
+    "n": 8
+   }
+  },
+  "transition 20-28": {
+   "v13": {
+    "mean_depth": 16.88,
+    "solved": 0,
+    "n": 8
+   },
+   "v14": {
+    "mean_depth": 16.38,
+    "solved": 1,
+    "n": 8
+   }
+  },
+  "same_move": 13,
+  "positions": 16
+ },
+ "friend_replay_opp19": {
+  "decisions": 17,
+  "different_choices": 2,
+  "v13_matches_platform": 15,
+  "mean_depth": {
+   "v13": 14.47,
+   "v14": 14.71
+  },
+  "judged": [
+   {
+    "game": "20_opp19_black_lose.txt",
+    "ply": 37,
+    "wld": {
+     "v13": "L",
+     "v14": "L"
+    }
+   }
+  ]
+ },
+ "regression": {
+  "minimax_pairs": 192,
+  "resumption_comparisons": 144,
+  "interface_cases": 492,
+  "terminal_checks": 9,
+  "tt_minimax_checks": 72,
+  "bound_window_resume_checks": 48,
+  "pvs_inline_same_tree_checks": 1024,
+  "pvs_value_bound_checks": 2048,
+  "root_pvs_slice_checks": 32,
+  "deadline_runs": 196,
+  "eval_table_checks": 112,
+  "engine_positions_40_games": 2492,
+  "self_play_positions_200_games": 12450
+ },
+ "startup_seconds": {
+  "import": 0.09,
+  "init": 0.94
+ },
+ "max_stress_move_seconds": 4.0005,
+ "stress_cases": 14,
+ "memory": {
+  "v14": [
+   {
+    "import_and_init_growth_mb": 63.5,
+    "play_peak_delta_mb": 0.1
+   },
+   {
+    "import_and_init_growth_mb": 77.1,
+    "play_peak_delta_mb": 0.0
+   }
+  ],
+  "v13": [
+   {
+    "import_and_init_growth_mb": 74.0,
+    "play_peak_delta_mb": 0.0
+   },
+   {
+    "import_and_init_growth_mb": 76.9,
+    "play_peak_delta_mb": 0.0
+   }
+  ],
+  "note": "RSS varies by over 10 MB between runs; no measurable difference"
+ },
+ "reviews": {
+  "correctness": "ship (6 low/nit findings; fixed or addressed)",
+  "platform_risk": "ship-with-fixes (no platform risk; record fixes applied)"
+ },
+ "platform_accepted": true,
+ "platform_status": "Uploaded 2026-10-21; passed all 10 usability cases (user report). Paired platform comparison against the batch 03 opponents in progress.",
+ "limitations": [
+  "Match evidence uses 0.4-2.0 s search budgets; real games use about 4 s, where the effect is unmeasured and may be near zero.",
+  "Scores 0.635, 0.635, 0.565 by budget; the drop at 2 s is not statistically resolved (z = 1.43).",
+  "All match evidence is head-to-head against v13; the rows were fitted on v13 self-play at 10 ms per move.",
+  "Rows 17-64 are the unchanged CSO rows; only the end phase was refitted.",
+  "At 4 s, v14 is 1-2 plies shallower on 4 of 8 transition positions (repeatable per position)."
+ ]
+}

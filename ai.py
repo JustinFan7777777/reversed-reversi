@@ -139,14 +139,39 @@ def flips(me, opp, move):
 # feature columns:   0 corner   1 X-square   2 C-square   3 edge   4 discs   5 mobility
 # For columns 0-4 the feature is (opp_count - me_count), so a POSITIVE weight means
 # "owning this is BAD for me" (reversed game).  Column 5 is (my_mobility - opp_mobility).
-# Active weights tuned offline by a small CSO run and tested on unseen openings.
+# Opening/middle weights tuned offline by a small CSO run and tested on unseen openings.
 # The optimizer is not part of this submission; detailed budgets/results: NOTES.md.
-# rows = game phase:  0 opening (empties > 44), 1 middle (17..44), 2 end (<= 16)
-DEFAULT_W = np.array([
+# rows = game phase:  0 opening (empties > 44), 1 middle (17..44)
+PHASE_W = np.array([
     [70, -2, 2, 2, 2, 5, 0, -2, 0, 0, 0],
     [70, -2, 2, 2, 2, 7, 0, -2, 0, 0, 0],
-    [70, -2, 2, 0, 10, 2, 0, -2, 0, 0, 0],
 ], dtype=np.int64)
+# End rows for 1..16 empties: ridge fit of the exact final margin on these features
+# (about 960 self-play positions per row, units of 1/8 disc; Round 4, NOTES.md).
+END_W = np.array([
+    [-2, -1, -7, -4, 6, 0, 7, 5, -4, -48, 0],  # 1 empty
+    [0, 0, -7, -3, 5, 2, 7, 4, 7, 1, 0],
+    [-1, 0, -9, -3, 5, 4, 8, 3, 4, -35, 0],
+    [2, 3, -9, -3, 4, 5, 8, 2, 6, 4, 0],
+    [2, 2, -7, -3, 4, 6, 8, 1, 3, -34, 0],
+    [3, 3, -6, -3, 4, 7, 8, 1, 1, 4, 0],
+    [3, 4, -5, -2, 4, 7, 8, 1, 3, -31, 0],
+    [3, 3, -7, -2, 4, 5, 9, 0, 3, 4, 0],
+    [2, 2, -6, -2, 4, 5, 9, -1, 2, -32, 0],
+    [1, 1, -6, -1, 3, 5, 9, -1, 3, 4, 0],
+    [2, 1, -6, -1, 3, 5, 10, -2, 2, -29, 0],
+    [2, 3, -5, 0, 3, 5, 9, -2, 2, -1, 0],
+    [3, 3, -4, -1, 3, 5, 9, -3, 1, -25, 0],
+    [2, 6, -3, 0, 2, 3, 9, -4, 2, -1, 0],
+    [3, 5, -3, 0, 2, 5, 9, -3, 1, -24, 0],
+    [3, 4, -4, 1, 2, 4, 10, -4, 2, 1, 0],  # 16 empties
+], dtype=np.int64)
+# One row per empties count (evaluate() indexes by empties): 0..16 end, 17..44 middle,
+# 45..64 opening (64 covers any 8x8 board, even one with fewer than 4 discs).
+# Rows may use different scales: all leaves of one iteration have the same empties
+# (passes are free) and TT cutoffs need equal depth, so they never mix.
+DEFAULT_W = np.vstack((END_W[:1], END_W, np.repeat(PHASE_W[1:], 28, axis=0),
+                       np.repeat(PHASE_W[:1], 20, axis=0)))
 
 
 @njit(cache=False)
@@ -160,8 +185,9 @@ def terminal_value(me, opp):
 
 
 # Extra feature columns: stable-edge penalty, frontier benefit, potential
-# mobility benefit, side-to-move parity, positional penalty. Only frontier is
-# enabled among these added features. All active weights are the validated CSO candidate.
+# mobility benefit, side-to-move parity, positional penalty. The CSO opening/middle
+# rows enable only frontier; the fitted end rows also use stable edges, potential
+# mobility and parity (the positional column rounds to 0 there).
 POSITION_WEIGHTS = np.array([
     [80, -20, 8, 4, 4, 8, -20, 80],
     [-20, -30, 0, 0, 0, 0, -30, -20],
@@ -206,7 +232,9 @@ def evaluate(me, opp, my_moves, W):
     cm = popcnt(me)
     co = popcnt(opp)
     empties = 64 - cm - co
-    if empties > 44:
+    if W.shape[0] > 3:            # one row per empties count (DEFAULT_W)
+        ph = empties
+    elif empties > 44:            # legacy 3-row phase tables (offline tools)
         ph = 0
     elif empties > 16:
         ph = 1
@@ -665,7 +693,7 @@ class AI(object):
         # invalidate scores whenever weights change, retaining exact key checks.
         if not np.array_equal(self.W, self._tt_weights):
             self.tt.fill(0)
-            self._tt_weights[:] = self.W
+            self._tt_weights = self.W.copy()     # copy: a tuner may change the row count
         empties = int(64 - popcnt(me | opp))
         order = sorted(root_moves, key=lambda sq: (
             bool((1 << sq) & int(CORNERS)),
