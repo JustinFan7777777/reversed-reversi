@@ -1,0 +1,263 @@
+{
+  "input": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/common_state_probes.json",
+  "input_sha256": "8e10bb8e5fd37f6866fc197c2608d57d2cfaa5975471f63cf02f74fb2ad23f20",
+  "engine_paths": {
+    "v13": "/Users/justinfan7777777/Projects/Reversed Reversi/versions/v13_round3_pvs_inline_ai.py",
+    "v14": "/Users/justinfan7777777/Projects/Reversed Reversi/versions/v14_round4_fitted_end_ai.py",
+    "candidate": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/confirmation_candidate.py"
+  },
+  "engine_sha256": {
+    "v13": "96daf02b7d724a713f61fe53ee41ff0e87ccd740113cd1471ffce0a5a545b97e",
+    "v14": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af",
+    "candidate": "3affe147592c163b8fdbc7d5b1413dc64ce97af2dd4ea60cb4722dd09cf906f3"
+  },
+  "search_seconds": 4.0,
+  "proof_budget_seconds": 10.0,
+  "proof_elapsed_seconds": 1.1415496250119759,
+  "coordinate_system": "zero-based row,column",
+  "records": [
+    {
+      "probe_id": "opp14_black_before_ply31",
+      "color_to_move": -1,
+      "empties_before": 30,
+      "placement_number": 31,
+      "v13_original_move": [
+        5,
+        7
+      ],
+      "v14_original_move": [
+        7,
+        4
+      ],
+      "v13_filename": "26_opp14_black_win.txt",
+      "v14_filename": "31_opp14_black_lose.txt",
+      "searches": {
+        "v13": {
+          "move": [
+            5,
+            7
+          ],
+          "square": 47,
+          "completed_depth": 15,
+          "nodes": 56545767,
+          "elapsed_seconds": 4.000126958999317,
+          "search_budget_seconds": 4.0,
+          "init_seconds": 0.9475605420011561,
+          "module_import_seconds": 0.07972012499521952,
+          "last_value": -94,
+          "last_solved": false,
+          "must_pass": false,
+          "matches_v13_original": true,
+          "matches_v14_original": false
+        },
+        "v14": {
+          "move": [
+            7,
+            4
+          ],
+          "square": 60,
+          "completed_depth": 15,
+          "nodes": 52371856,
+          "elapsed_seconds": 4.000165875011589,
+          "search_budget_seconds": 4.0,
+          "init_seconds": 0.8586622089933371,
+          "module_import_seconds": 0.004610750009305775,
+          "last_value": 8,
+          "last_solved": false,
+          "must_pass": false,
+          "matches_v13_original": false,
+          "matches_v14_original": true
+        },
+        "candidate": {
+          "move": [
+            7,
+            4
+          ],
+          "square": 60,
+          "completed_depth": 15,
+          "nodes": 55380843,
+          "elapsed_seconds": 4.000073125003837,
+          "search_budget_seconds": 4.0,
+          "init_seconds": 0.8286041659885086,
+          "module_import_seconds": 0.0009261669911211357,
+          "last_value": 8,
+          "last_solved": false,
+          "must_pass": false,
+          "matches_v13_original": false,
+          "matches_v14_original": true
+        }
+      },
+      "proof": {
+        "status": "unknown",
+        "root": null,
+        "chosen_children": [],
+        "reason": "more than 20 empties; exact search deliberately skipped"
+      }
+    },
+    {
+      "probe_id": "opp14_white_before_ply42",
+      "color_to_move": 1,
+      "empties_before": 19,
+      "placement_number": 42,
+      "v13_original_move": [
+        3,
+        0
+      ],
+      "v14_original_move": [
+        6,
+        0
+      ],
+      "v13_filename": "26_opp14_white_lose.txt",
+      "v14_filename": "31_opp14_white_lose.txt",
+      "searches": {
+        "v13": {
+          "move": [
+            3,
+            0
+          ],
+          "square": 24,
+          "completed_depth": 19,
+          "nodes": 51392332,
+          "elapsed_seconds": 3.5728174579999177,
+          "search_budget_seconds": 4.0,
+          "init_seconds": 0.00043508400267455727,
+          "module_import_seconds": 0.07972012499521952,
+          "last_value": -100008,
+          "last_solved": true,
+          "must_pass": false,
+          "matches_v13_original": true,
+          "matches_v14_original": false
+        },
+        "v14": {
+          "move": [
+            3,
+            0
+          ],
+          "square": 24,
+          "completed_depth": 19,
+          "nodes": 40770164,
+          "elapsed_seconds": 2.889970916992752,
+          "search_budget_seconds": 4.0,
+          "init_seconds": 0.0004695839888881892,
+          "module_import_seconds": 0.004610750009305775,
+          "last_value": -100008,
+          "last_solved": true,
+          "must_pass": false,
+          "matches_v13_original": true,
+          "matches_v14_original": false
+        },
+        "candidate": {
+          "move": [
+            3,
+            0
+          ],
+          "square": 24,
+          "completed_depth": 19,
+          "nodes": 40770164,
+          "elapsed_seconds": 2.8425434170057997,
+          "search_budget_seconds": 4.0,
+          "init_seconds": 0.00046862498857080936,
+          "module_import_seconds": 0.0009261669911211357,
+          "last_value": -100008,
+          "last_solved": true,
+          "must_pass": false,
+          "matches_v13_original": true,
+          "matches_v14_original": false
+        }
+      },
+      "proof": {
+        "status": "exact",
+        "root": {
+          "depth": 19,
+          "side_to_move": 1,
+          "legal_count": 9,
+          "must_pass": false,
+          "terminal": false,
+          "complete": true,
+          "encoded_value": -100008,
+          "margin": -8,
+          "outcome": "lose",
+          "nodes": 6240765,
+          "seconds": 0.4336032499995781,
+          "reason": "full-depth full-window search completed"
+        },
+        "chosen_children": [
+          {
+            "move": [
+              3,
+              0
+            ],
+            "sources": [
+              "v13_original",
+              "v13_timed",
+              "v14_timed",
+              "candidate_timed"
+            ],
+            "child_side_result": {
+              "depth": 18,
+              "side_to_move": -1,
+              "legal_count": 8,
+              "must_pass": false,
+              "terminal": false,
+              "complete": true,
+              "encoded_value": 100008,
+              "margin": 8,
+              "outcome": "win",
+              "nodes": 4419423,
+              "seconds": 0.2918762909976067,
+              "reason": "full-depth full-window search completed"
+            },
+            "root_perspective": {
+              "encoded_value": -100008,
+              "margin": -8,
+              "outcome": "lose"
+            },
+            "optimal_margin": true,
+            "margin_regret": 0,
+            "outcome_matches_optimum": true
+          },
+          {
+            "move": [
+              6,
+              0
+            ],
+            "sources": [
+              "v14_original"
+            ],
+            "child_side_result": {
+              "depth": 18,
+              "side_to_move": -1,
+              "legal_count": 10,
+              "must_pass": false,
+              "terminal": false,
+              "complete": true,
+              "encoded_value": 100009,
+              "margin": 9,
+              "outcome": "win",
+              "nodes": 6374608,
+              "seconds": 0.41505791700910777,
+              "reason": "full-depth full-window search completed"
+            },
+            "root_perspective": {
+              "encoded_value": -100009,
+              "margin": -9,
+              "outcome": "lose"
+            },
+            "optimal_margin": false,
+            "margin_regret": 1,
+            "outcome_matches_optimum": true
+          }
+        ],
+        "reason": "Completed roots/children only are reported as exact"
+      }
+    }
+  ],
+  "limitations": [
+    "Heuristic last_value scores at different evaluation rows, scales or depths are not directly comparable.",
+    "Cold-table internal searches do not reconstruct accumulated platform cache or timing history.",
+    "A move matching a historical winner is not proof of its optimality.",
+    "Only completed full-depth full-window searches are exact; deadline interruptions remain unknown.",
+    "The proof deadline is shared across all eligible roots and children, checked between 4096-node slices.",
+    "Child values are negated to the original root player's perspective, including forced passes and early endings."
+  ]
+}

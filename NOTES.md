@@ -494,3 +494,113 @@ openings, screening openings, and final confirmation openings are disjoint.
 - Rows 17-64 are the unchanged CSO rows; only the end phase was refitted.
 - No measurement at the real 4 s budget beyond the 16-position depth table and the
   17-decision replay.
+
+
+## Round 5 — Codex continuation, 2026-10-21
+
+### Decision and resource scope
+
+- User authorized at most 45 minutes of local computation, with one worker. Reused
+  Claude's completed data rather than generating more games. Work is isolated on
+  `codex/v15-midgame`; active `ai.py` stays byte-identical to accepted v14.
+- **No new strategy promoted.** The independently confirmed middle-game candidate
+  scored 48/10/42 against v14 at equal 0.2 s search budgets: score 0.530, paired 95%
+  interval [0.470, 0.595]. All 100 games completed normally.
+- Candidate/teacher source hashes, actual move/startup measurements, opening seeds,
+  full confirmation records, and all rejected screening summaries are committed in
+  `versions/round5_validation.json`. Planned secondary transfer matches were skipped
+  after the primary acceptance rule failed, rather than used to rescue a claim.
+
+### Recovered data and fitting
+
+- Preserved 31 Claude scratch input/script files in ignored
+  `artifacts/codex_round5/claude_round5_inputs/`, with checksums in `input_manifest.json`.
+- Data: 1,200 games / 52,800 positions at 17-60 empties. Exact margins are available
+  for all 3,600 states at 17-19 empties. Split by game: 960 train / 240 test; no
+  shared board between splits for the fitted 17-32 range.
+- `tools/fit_midgame.py` implements the existing progressive fit in one process,
+  loading a frozen v14 source. Ridge coefficients are rounded before reporting
+  errors. Exact rows target eight times the terminal margin; later rows imitate
+  fixed-depth search (depth capped at six), with terminal scores converted back to
+  the same units. TT is cleared per label. Entire pipeline: 9.4 s.
+- Held-out exact MAE at 17-19 empties: approximately 4.54 / 4.32 / 4.10 discs. Lower
+  bootstrap MAE at later rows is teacher-imitation error, not new exact evidence.
+
+### Exploratory matched-opening screens
+
+| Candidate versus unchanged-weight kernel control | Games | Search budget | W/D/L | Score | Paired 95% CI |
+|---|---:|---:|---:|---:|---:|
+| Fitted rows 17-24 | 40 | 0.04 s | 15/3/22 | 0.4125 | [0.2875, 0.5375] |
+| Fitted rows 17-32 | 40 | 0.04 s | 12/11/17 | 0.4375 | [0.3125, 0.5625] |
+| Child-evaluation ordering at depth >=5 | 40 | 0.08 s | 14/8/18 | 0.4500 | [0.3500, 0.5500] |
+| Exact-fitted rows 17-19 only | 40 | 0.04 s | 18/10/12 | 0.5750 | [0.4875, 0.6750] |
+
+- Only the last candidate cleared the exploratory 55% score gate. Its weights were
+  frozen before the independent 100-game confirmation (fresh seeds 940000-940049).
+  The final candidate additionally used only exact-equivalent feature calculations.
+- No further ridge/parameter search followed the inconclusive confirmation.
+- Ordering probe: identical depth-10 scores on 12 new fixtures, 0.87x nodes / 0.94x
+  total time, but individual time regressions reached 1.7x. Match screening did not
+  justify adopting it.
+
+### Exact-equivalent evaluation prototype
+
+- `versions/v15_fast_features_candidate_ai.py`: two 256-entry uint64 tables (4 KiB)
+  replace repeated edge-chain propagation. Horizontal-band expansion computes the
+  same eight-neighbor adjacency mask. Weights/search policy remain v14's.
+- New `tests/test_stable_edge_lookup.py`: 21,024 oracle/mask checks, 6,156 evaluations
+  with production and random three-/65-row weights, 1,152 score/node/cache comparisons,
+  including passes, early terminals and 496 resumed searches. Independent adjacency
+  oracle: 1,000 further checks.
+- Twelve fresh depth-10 fixtures, two timed repetitions per engine: identical scores
+  and node counts; time ratio 0.988 overall, 0.951 when fitted-phase leaves are used.
+  These small timing samples do not establish stronger timed play. Prototype kept
+  separate; not uploaded and not substituted for the active v14.
+- Standard regression passed, including 192 minimax pairs, 144 resumptions, 492
+  interface cases, 72 TT/minimax checks, 48 bound/resume checks, 1,024 PVS same-tree
+  checks, 2,048 bound checks, 32 root/slice checks, 196 injected deadline runs, and
+  112 row-isolation checks. The fitted candidate also passed minimax and table checks.
+- Final resource checks on the feature prototype: import plus initialization about
+  1.01 s; maximum move 4.0016 s across 14 timing-stress cases, including simulated
+  slowdown and an inaccurate initial node-rate estimate. Self-play: 200 games /
+  12,451 positions, zero fallbacks and zero warm-up failures (43.6 s).
+- Memory in one local run: Python/NumPy/Numba baseline 69.9 MiB, import growth
+  3.0 MiB, initialization growth 71.1 MiB, then 144.1 MiB after initialization and
+  after 30 own moves. Counted post-initialization growth and peak growth both round
+  to 0.0 MiB. RSS varies across runs; these figures do not establish platform usage.
+- Recorded fitting and matches took 1,105.4 s (18.4 minutes). Including the short
+  correctness, resource and replay diagnostics, local computation was approximately
+  21 minutes, below the 45-minute allowance. This excludes chat wall-clock time.
+
+### Platform v14 batch (Desktop/v4_chess_log)
+
+- Complete supplied inventory is 18 files: groups 31-39, nine opponents, both colors.
+  Independently verified 1,079 legal placements / six legal passes; all terminal,
+  all result labels correct, no duplicate complete trace.
+- Results: **9 wins / 1 draw / 8 losses**, score 52.8%; black 5/0/4, white 4/1/4.
+- Exact audit completed all 144 own decisions with <=16 empties: **zero outcome
+  errors and zero terminal-margin regret**. Search took approximately 3.56 s.
+- Only opp14 overlaps v3 by opponent ID, both colors. The two batches' aggregate
+  scores are not a controlled estimate of upgrade strength; opponent AI versions
+  are unknown. Friend opp19 is absent from this batch.
+- Black versus opp14 shares 30 placements: at ply31 (30 empties), v13 chooses
+  (5,7), v14 chooses (7,4). Equal 4 s cold-table replay reproduces both choices; the
+  new middle-game candidate also chooses (7,4). This root remains unproven.
+- White shares 41 placements. The ply42 root (19 empties) has exact best margin -8.
+  Original v13 move (3,0) achieves -8, v14's recorded (6,0) achieves -9; both lose.
+  Cold-table 4 s searches now solve the position and choose (3,0) in all three
+  engines. This is a one-disc inaccuracy in an already-lost game, not a missed draw.
+- Records: `versions/platform_batch04_analysis.json`,
+  `versions/platform_batch04_common_states.json`, `versions/platform_batch04_probe_results.json`.
+
+### Next research step
+
+- Keep v14 on the platform. Avoid treating better regression MAE, fewer nodes, or a
+  higher aggregate platform score against different opponents as proven improvement.
+- Prefer a decision-ranking objective using counterfactual sibling moves and exact
+  labels, plus more diverse opponent positions, over another arbitrary ridge sweep.
+  This is a hypothesis for the next round, not an implemented improvement.
+- Retain the two shared platform boards as diagnostics; changing a move requires
+  fresh continuation play, not replaying the remaining historical moves verbatim.
+- Validate promising future candidates at longer budgets on fresh openings before
+  replacing the accepted upload.

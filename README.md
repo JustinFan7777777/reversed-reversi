@@ -109,3 +109,31 @@ See `NOTES.md` and `versions/round2_experiment_report.json` for all settings/res
 
 The platform must first accept an upload before practice play is available.
 Local checks do not establish platform acceptance or a round-robin rank.
+
+## Round 5 handoff
+
+`ai.py` remains the platform-accepted **v14**. Middle-game fitting did not pass
+independent confirmation: 48 wins / 10 draws / 42 losses against v14 at equal
+0.2-second search budgets, score 53%, paired 95% CI [47%, 59.5%]. No new strategy
+was promoted. `versions/v15_mid19_experimental_ai.py` preserves that rejected-for-
+promotion experiment; this result is inconclusive rather than proof of inferiority.
+
+`versions/v15_fast_features_candidate_ai.py` preserves a separate, exact-equivalent
+feature-kernel prototype: edge-chain lookups and fused adjacency computation.
+It passes value/node/cache equality checks. Small fixed-depth samples show about
+5% less time when fitted end-phase features are active, and about 1% overall.
+This is a performance prototype, not a demonstrated playing-strength improvement.
+
+```sh
+.venv/bin/python tests/test_stable_edge_lookup.py
+.venv/bin/python tools/check_common_probes.py --candidate versions/v15_mid19_experimental_ai.py
+```
+
+`tools/fit_midgame.py` reuses the 1,200-game dataset recovered into ignored
+`artifacts/codex_round5/claude_round5_inputs/`; the raw dataset is not shipped in Git.
+Rows 17-19 use exact labels; later rows use bootstrapped teacher labels. Pass an
+explicit `--data` directory when restoring the dataset elsewhere. The fitter and
+`tools/run_paired_trial.py` use one process and save source hashes. The match runner
+checks its time budget before each new opening pair; an active pair may finish
+after that deadline. Full records and the next-step rationale are in `NOTES.md` and
+`versions/round5_validation.json`.

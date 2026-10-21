@@ -39,7 +39,12 @@ def main():
     # Layout: one C-contiguous int64 row per empties count 0..64.
     assert W.shape == (65, 11) and W.dtype == np.int64 and W.flags["C_CONTIGUOUS"]
     assert (W[0] == W[1]).all() and (W[1:17] == A.END_W).all()
-    assert (W[17:45] == A.PHASE_W[1]).all() and (W[45:] == A.PHASE_W[0]).all()
+    middle = np.repeat(A.PHASE_W[1:2], 28, axis=0)
+    if hasattr(A, "MID_W"):
+        assert A.MID_W.ndim == 2 and A.MID_W.shape[1] == 11
+        assert 1 <= len(A.MID_W) <= 28
+        middle[:len(A.MID_W)] = A.MID_W
+    assert np.array_equal(W[17:45], middle) and (W[45:] == A.PHASE_W[0]).all()
     legacy = expand(V13_W)
     rng, noise, checked = random.Random(4417), np.random.default_rng(4417), 0
     for plies in (8, 24, 36, 44, 48, 52, 56):

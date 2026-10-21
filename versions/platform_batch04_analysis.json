@@ -1,0 +1,1179 @@
+{
+  "own_student_id": "me",
+  "analysis_type": "read-only lightweight JSON and independent reference-engine validation; no AI import, JIT, or search",
+  "coordinate_system": "zero-based row,column",
+  "batches": {
+    "v3": {
+      "games": 20,
+      "unique_opponents": 8,
+      "outcomes": {
+        "win": 5,
+        "draw": 2,
+        "lose": 13
+      },
+      "score": 0.3,
+      "colors": {
+        "black": {
+          "win": 4,
+          "draw": 2,
+          "lose": 4
+        },
+        "white": {
+          "win": 1,
+          "draw": 0,
+          "lose": 9
+        }
+      },
+      "opponent_outcomes": {
+        "opp08": {
+          "win": 0,
+          "draw": 2,
+          "lose": 2
+        },
+        "opp21": {
+          "win": 1,
+          "draw": 0,
+          "lose": 3
+        },
+        "opp14": {
+          "win": 1,
+          "draw": 0,
+          "lose": 1
+        },
+        "opp20": {
+          "win": 2,
+          "draw": 0,
+          "lose": 0
+        },
+        "opp11": {
+          "win": 0,
+          "draw": 0,
+          "lose": 2
+        },
+        "opp19": {
+          "win": 0,
+          "draw": 0,
+          "lose": 2
+        },
+        "opp23": {
+          "win": 1,
+          "draw": 0,
+          "lose": 1
+        },
+        "opp22": {
+          "win": 0,
+          "draw": 0,
+          "lose": 2
+        }
+      }
+    },
+    "v4": {
+      "games": 18,
+      "unique_opponents": 9,
+      "outcomes": {
+        "win": 9,
+        "draw": 1,
+        "lose": 8
+      },
+      "score": 0.5277777777777778,
+      "colors": {
+        "black": {
+          "win": 5,
+          "draw": 0,
+          "lose": 4
+        },
+        "white": {
+          "win": 4,
+          "draw": 1,
+          "lose": 4
+        }
+      },
+      "opponent_outcomes": {
+        "opp24": {
+          "win": 0,
+          "draw": 0,
+          "lose": 2
+        },
+        "opp17": {
+          "win": 2,
+          "draw": 0,
+          "lose": 0
+        },
+        "opp27": {
+          "win": 0,
+          "draw": 1,
+          "lose": 1
+        },
+        "opp25": {
+          "win": 2,
+          "draw": 0,
+          "lose": 0
+        },
+        "opp28": {
+          "win": 2,
+          "draw": 0,
+          "lose": 0
+        },
+        "opp26": {
+          "win": 2,
+          "draw": 0,
+          "lose": 0
+        },
+        "opp14": {
+          "win": 0,
+          "draw": 0,
+          "lose": 2
+        },
+        "opp15": {
+          "win": 0,
+          "draw": 0,
+          "lose": 2
+        },
+        "opp07": {
+          "win": 1,
+          "draw": 0,
+          "lose": 1
+        }
+      }
+    }
+  },
+  "v4_validation": {
+    "legal_placements": 1079,
+    "legal_passes": 6,
+    "all_terminal": true
+  },
+  "v4_game_numbers": [
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39"
+  ],
+  "v4_inventory_note": "18 games present, groups31\u201339; no group40 file present. Do not infer missing intended games without user confirmation.",
+  "v3_duplicates": [
+    {
+      "trace_int8_sha256": "414c1b017f83b39df651dd7e4cd2a25e8eeace65c7d27b53c5f6765e11464088",
+      "filenames": [
+        "21_opp08_black_draw.txt",
+        "25_opp08_black_draw.txt"
+      ]
+    },
+    {
+      "trace_int8_sha256": "7821e5358af152d8bcdcefad271ad55171b67a981800845273dceb749338ae49",
+      "filenames": [
+        "21_opp08_white_lose.txt",
+        "25_opp08_white_lose.txt"
+      ]
+    },
+    {
+      "trace_int8_sha256": "8094f8262a2bbd8267a7dfa48f5fe1de18dabbbfcd618d5490a646165115ff57",
+      "filenames": [
+        "23_opp21_white_lose.txt",
+        "24_opp21_white_lose.txt"
+      ]
+    }
+  ],
+  "v4_duplicates": [],
+  "matched_v3_v4_opponent_ids": [
+    "opp14"
+  ],
+  "matched_v3_v4_games": [
+    {
+      "opponent": "opp14",
+      "color": "black",
+      "v13_filename": "26_opp14_black_win.txt",
+      "v14_filename": "31_opp14_black_lose.txt",
+      "v13_result": "win",
+      "v14_result": "lose",
+      "v13_final_counts": [
+        29,
+        35
+      ],
+      "v14_final_counts": [
+        33,
+        31
+      ],
+      "shared_prefix_placements": 30,
+      "identical_complete_trace": false
+    },
+    {
+      "opponent": "opp14",
+      "color": "white",
+      "v13_filename": "26_opp14_white_lose.txt",
+      "v14_filename": "31_opp14_white_lose.txt",
+      "v13_result": "lose",
+      "v14_result": "lose",
+      "v13_final_counts": [
+        33,
+        31
+      ],
+      "v14_final_counts": [
+        33,
+        31
+      ],
+      "shared_prefix_placements": 41,
+      "identical_complete_trace": false
+    }
+  ],
+  "v4_loss_margin_counts": {
+    "2": 4,
+    "4": 2,
+    "6": 1,
+    "10": 1
+  },
+  "friend_opp19": {
+    "present_in_v4": false,
+    "recorded_history": [
+      {
+        "batch": 2,
+        "filename": "20_opp19_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v2_chess_log/20_opp19_black_lose.txt",
+        "source_sha256": "23d5ca01c75dcd3433d0dd672e6420f9f093d8fb3e8fcfad3966f8bdf1e5a612",
+        "trace_int8_sha256": "229735b6f3a825489615fb9a15fc25d390cf3f2ec93efc7d66e2414662176f58",
+        "final_int8_sha256": "8a003b0c9f1ef7ae30c10328c2b2993d72d7fbc20bed634812008da76696dde5",
+        "game_number": "20",
+        "opponent": "opp19",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 2,
+        "filename": "20_opp19_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v2_chess_log/20_opp19_white_lose.txt",
+        "source_sha256": "62ff99e5e0d78c8c8705b710796255d46514f3cc8b1b347985f662906158cb84",
+        "trace_int8_sha256": "ceb79fa980cc2ab890565d8b4e2dbabf3478de4eee18fc5bd7567f8389d857d8",
+        "final_int8_sha256": "10b24361d47c0d179e7bedb0905d388de279608287fb86f67e3da6d2316c08dc",
+        "game_number": "20",
+        "opponent": "opp19",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "27_opp19_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/27_opp19_black_lose.txt",
+        "source_sha256": "11616e43aaca144317d46214e01b68ba301f5f422ac94a571209ef812776502e",
+        "trace_int8_sha256": "264b8089964636ee06de2b96b9767f1753140dd833d80007a70910322ca36e30",
+        "final_int8_sha256": "d20cee1bf97a2736cbf45afcf217c9229389996a29f59855b07b0e947c8e3798",
+        "game_number": "27",
+        "opponent": "opp19",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "27_opp19_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/27_opp19_white_lose.txt",
+        "source_sha256": "55c9a1ba22c0ab9adc0bfaf3bbfa727e9cc884eb4e4375804822624e31169e59",
+        "trace_int8_sha256": "07eaae2dc03fb31cb2f6ec0051e20b38a583a71c4da20e6683e7fa3dab33ffe3",
+        "final_int8_sha256": "15bc1445fd663dc42ca2e471010e00a239d888689aacba02a43ca7cc77f554b7",
+        "game_number": "27",
+        "opponent": "opp19",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 35,
+        "opponent_final_count": 29,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      }
+    ]
+  },
+  "limitations": [
+    "v3/v4 version labels follow existing project records; filename itself does not encode own code hash.",
+    "Opponent IDs do not establish opponent AI version stability.",
+    "Aggregate batch scores cannot identify causal version gains because only one opponent ID overlaps.",
+    "A shared divergence position controls the starting state, not subsequent opponent decisions.",
+    "Recorded friend games only; unrecorded matches excluded."
+  ],
+  "games": {
+    "v3": [
+      {
+        "batch": 3,
+        "filename": "21_opp08_black_draw.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/21_opp08_black_draw.txt",
+        "source_sha256": "107ad433f402425f575f1b94d0bad21a13312c93bf5125932617752ae9a93805",
+        "trace_int8_sha256": "414c1b017f83b39df651dd7e4cd2a25e8eeace65c7d27b53c5f6765e11464088",
+        "final_int8_sha256": "405b49b353898166a716496491aca1ee5e09d8ccc905f506061e2275c364dd55",
+        "game_number": "21",
+        "opponent": "opp08",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "draw",
+        "own_final_count": 32,
+        "opponent_final_count": 32,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 2
+      },
+      {
+        "batch": 3,
+        "filename": "21_opp08_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/21_opp08_white_lose.txt",
+        "source_sha256": "b5aa703b450b5de882c9d381c6e1736514ec3a643560fc79cb451dd78f5d7b35",
+        "trace_int8_sha256": "7821e5358af152d8bcdcefad271ad55171b67a981800845273dceb749338ae49",
+        "final_int8_sha256": "18d06e08bb94fb356bbc0fb471c212377a86eb44122e445c1539255c4d0ad900",
+        "game_number": "21",
+        "opponent": "opp08",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 33,
+        "opponent_final_count": 31,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 2
+      },
+      {
+        "batch": 3,
+        "filename": "22_opp20_black_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/22_opp20_black_win.txt",
+        "source_sha256": "82b5d12deb0ac5994849f10cbb6854a1dabda582e81600b797017acfbd7ee20e",
+        "trace_int8_sha256": "c8fb3a69c0439037dc1a7d1ebc284f6e28e510c22e80f906c42006c08f6e6bd4",
+        "final_int8_sha256": "75246e0e0d7ecddf93e01f1c9d9032ff33700f6647b12d3a8fbeb1b95b90f172",
+        "game_number": "22",
+        "opponent": "opp20",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "win",
+        "own_final_count": 24,
+        "opponent_final_count": 40,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 1
+      },
+      {
+        "batch": 3,
+        "filename": "22_opp20_white_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/22_opp20_white_win.txt",
+        "source_sha256": "d6274c894df40dfbc788c0d96e7c678f3a42f47e320bae4ff11cb28b34cf75e8",
+        "trace_int8_sha256": "898cff976bd9f803d54a43f4510458fc2c6b1f5f71c7230b1bc424afc5745d46",
+        "final_int8_sha256": "a71f5e80064936cd18c59c12b517ac200d121990ad4495e8ab0e1bc854270c21",
+        "game_number": "22",
+        "opponent": "opp20",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "win",
+        "own_final_count": 23,
+        "opponent_final_count": 41,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 1
+      },
+      {
+        "batch": 3,
+        "filename": "23_opp21_black_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/23_opp21_black_win.txt",
+        "source_sha256": "ac2588ae127c7166da50f0f2f26fcd233dabd73e49dd4f9c2fe2c6a0faf6e65c",
+        "trace_int8_sha256": "87b1408deab9f74bf5d403a03d0dd456e4eeec91f2e0e22b3bb2857202fdfe74",
+        "final_int8_sha256": "5f892fd003de9e069abaa617a7d284152fb1f95224fea6aafca599d5f0c1bbfb",
+        "game_number": "23",
+        "opponent": "opp21",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "win",
+        "own_final_count": 25,
+        "opponent_final_count": 39,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 2
+      },
+      {
+        "batch": 3,
+        "filename": "23_opp21_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/23_opp21_white_lose.txt",
+        "source_sha256": "fe4c1408977846ec7f8d424fbadc76dba9aba2a434d267fc7202cd9ee2f670bd",
+        "trace_int8_sha256": "8094f8262a2bbd8267a7dfa48f5fe1de18dabbbfcd618d5490a646165115ff57",
+        "final_int8_sha256": "9cf0f3fa9b3cc8e1cdf2ed1f16bd3c70032ac9b0c3eadf06b8c15506d912b0bc",
+        "game_number": "23",
+        "opponent": "opp21",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "24_opp21_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/24_opp21_black_lose.txt",
+        "source_sha256": "c8efcb2c26cf099c2f132696047c735342b910fcbb49e5de174cefc78a435df7",
+        "trace_int8_sha256": "c4cdfbd136018e31b7187fecbfb43f599457d57c052314ec674d5f84dc29a82e",
+        "final_int8_sha256": "d0dafd36e0f3a11c0d835f371bea8866943e40b8f9dff05bed5fefde81254658",
+        "game_number": "24",
+        "opponent": "opp21",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "24_opp21_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/24_opp21_white_lose.txt",
+        "source_sha256": "fe4c1408977846ec7f8d424fbadc76dba9aba2a434d267fc7202cd9ee2f670bd",
+        "trace_int8_sha256": "8094f8262a2bbd8267a7dfa48f5fe1de18dabbbfcd618d5490a646165115ff57",
+        "final_int8_sha256": "9cf0f3fa9b3cc8e1cdf2ed1f16bd3c70032ac9b0c3eadf06b8c15506d912b0bc",
+        "game_number": "24",
+        "opponent": "opp21",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "25_opp08_black_draw.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/25_opp08_black_draw.txt",
+        "source_sha256": "107ad433f402425f575f1b94d0bad21a13312c93bf5125932617752ae9a93805",
+        "trace_int8_sha256": "414c1b017f83b39df651dd7e4cd2a25e8eeace65c7d27b53c5f6765e11464088",
+        "final_int8_sha256": "405b49b353898166a716496491aca1ee5e09d8ccc905f506061e2275c364dd55",
+        "game_number": "25",
+        "opponent": "opp08",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "draw",
+        "own_final_count": 32,
+        "opponent_final_count": 32,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 2
+      },
+      {
+        "batch": 3,
+        "filename": "25_opp08_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/25_opp08_white_lose.txt",
+        "source_sha256": "b5aa703b450b5de882c9d381c6e1736514ec3a643560fc79cb451dd78f5d7b35",
+        "trace_int8_sha256": "7821e5358af152d8bcdcefad271ad55171b67a981800845273dceb749338ae49",
+        "final_int8_sha256": "18d06e08bb94fb356bbc0fb471c212377a86eb44122e445c1539255c4d0ad900",
+        "game_number": "25",
+        "opponent": "opp08",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 33,
+        "opponent_final_count": 31,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 2
+      },
+      {
+        "batch": 3,
+        "filename": "26_opp14_black_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/26_opp14_black_win.txt",
+        "source_sha256": "2990dcfefe968f0b6ca122c0d2f56cc23ef7b763831ac4ea5b16d0b6fecfd085",
+        "trace_int8_sha256": "ce15089b425ef6147dedf09c35f280fec433e21014c4582a4156c189c5507cd3",
+        "final_int8_sha256": "8936498bcffccf57ebc7577325ca472d89924eacf30cc8c735e177739adf7213",
+        "game_number": "26",
+        "opponent": "opp14",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "win",
+        "own_final_count": 29,
+        "opponent_final_count": 35,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 1
+      },
+      {
+        "batch": 3,
+        "filename": "26_opp14_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/26_opp14_white_lose.txt",
+        "source_sha256": "801b16b5dc1e30bf8f7bf6282bf417008fde5ab48b6d2401a45846b47158c7a5",
+        "trace_int8_sha256": "5473140e6799b6ce0dc7d22d781061b87a3da889e102836f8ce36816838562c5",
+        "final_int8_sha256": "ef36a3407be3c245f49966b52f178f69f949757d7b367d5f635556f10fc13869",
+        "game_number": "26",
+        "opponent": "opp14",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 33,
+        "opponent_final_count": 31,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "27_opp19_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/27_opp19_black_lose.txt",
+        "source_sha256": "11616e43aaca144317d46214e01b68ba301f5f422ac94a571209ef812776502e",
+        "trace_int8_sha256": "264b8089964636ee06de2b96b9767f1753140dd833d80007a70910322ca36e30",
+        "final_int8_sha256": "d20cee1bf97a2736cbf45afcf217c9229389996a29f59855b07b0e947c8e3798",
+        "game_number": "27",
+        "opponent": "opp19",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "27_opp19_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/27_opp19_white_lose.txt",
+        "source_sha256": "55c9a1ba22c0ab9adc0bfaf3bbfa727e9cc884eb4e4375804822624e31169e59",
+        "trace_int8_sha256": "07eaae2dc03fb31cb2f6ec0051e20b38a583a71c4da20e6683e7fa3dab33ffe3",
+        "final_int8_sha256": "15bc1445fd663dc42ca2e471010e00a239d888689aacba02a43ca7cc77f554b7",
+        "game_number": "27",
+        "opponent": "opp19",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 35,
+        "opponent_final_count": 29,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "28_opp11_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/28_opp11_black_lose.txt",
+        "source_sha256": "fab94fd5a9c17906a89b6866c8878d447d443e7d131de17a77ee0181351fb5e4",
+        "trace_int8_sha256": "022dc4c5add4952195e55e281fae82d7b8b82bfa4450bdd018ace50df8e62348",
+        "final_int8_sha256": "6e436e63a69d409582635d681abf9f91bbab2f8aabad1ce74975d9b3705c99a2",
+        "game_number": "28",
+        "opponent": "opp11",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 33,
+        "opponent_final_count": 31,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "28_opp11_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/28_opp11_white_lose.txt",
+        "source_sha256": "178097312331b84d8787e6eacea908a208f4e11cbe9bbbfafd456f7c325ac373",
+        "trace_int8_sha256": "a12848879bac6c96c5550172daad5ffa2526003dfed52a56b6e097f27c0ad818",
+        "final_int8_sha256": "3b7c91f302d03d78fa5b74e418df80488d9f467e8b07b8c3d801983c4535da0f",
+        "game_number": "28",
+        "opponent": "opp11",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "29_opp22_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/29_opp22_black_lose.txt",
+        "source_sha256": "893078f9a920940a379c2af82da20c1485d575373b6c93cd81a1c9fb61a51be9",
+        "trace_int8_sha256": "49fbe6b1b42a66e07d9d2ba88c72b70f9c7522b867ec966d4c7e036b857d92e7",
+        "final_int8_sha256": "5ce07c90771ae90f31fb39de178c6648a71cdb64db88fb18129595bb54df25ef",
+        "game_number": "29",
+        "opponent": "opp22",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 37,
+        "opponent_final_count": 27,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      },
+      {
+        "batch": 3,
+        "filename": "29_opp22_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/29_opp22_white_lose.txt",
+        "source_sha256": "51e62cb711c484a364babf6937f3d42585ce9dd31d75cee243a6edf631e2f1c5",
+        "trace_int8_sha256": "05c9a41ad64f689cee3acd0be319719eeafe1b4bfa862c90b996d206a36dec0d",
+        "final_int8_sha256": "498331b4ff89ee3f3f43b474c7c9ed65eb80735073dfcddc0864b49bb06b441a",
+        "game_number": "29",
+        "opponent": "opp22",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 37,
+        "opponent_final_count": 27,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 2
+      },
+      {
+        "batch": 3,
+        "filename": "30_opp23_black_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/30_opp23_black_win.txt",
+        "source_sha256": "3d942d194130230acaff8dc56026c1b46e7df404918b6a8d528088bd1cce5dc7",
+        "trace_int8_sha256": "4c0d42c0ff2d530a4353720b9785a3d42304def4526cbf5260b24634fbb5b76c",
+        "final_int8_sha256": "96ed49ea6f58c353ebebd0a4d200add10a4d9b01c959a06b33c2446da9352e7a",
+        "game_number": "30",
+        "opponent": "opp23",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "win",
+        "own_final_count": 30,
+        "opponent_final_count": 34,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 1
+      },
+      {
+        "batch": 3,
+        "filename": "30_opp23_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v3_chess_log/30_opp23_white_lose.txt",
+        "source_sha256": "805a847de89939d11d1b33fd2072533b911b564e72d0b737ec45a73b9461d971",
+        "trace_int8_sha256": "acc4cb20aa17373acfdf988a51073f32cd1e3bcbe1c3456f084102cf623eb0b3",
+        "final_int8_sha256": "283c85ef891a2b14d2245f7bcfb93a4b7444c10552787a3823a6921ea231b988",
+        "game_number": "30",
+        "opponent": "opp23",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 35,
+        "opponent_final_count": 29,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3
+      }
+    ],
+    "v4": [
+      {
+        "batch": 4,
+        "filename": "31_opp14_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/31_opp14_black_lose.txt",
+        "source_sha256": "9c0ea6582ca7eb5d26360fcb91fcf9490e4d5e065630cacad82d3f762648fea8",
+        "trace_int8_sha256": "6b2ef5874af555fc8aad69a618faa022860c12671124098356f1ecfc13ee6c9f",
+        "final_int8_sha256": "4d541dc4b39a75d5e62ab725dba75ee9ef53a47351bd443890bd9852612d00a3",
+        "game_number": "31",
+        "opponent": "opp14",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 33,
+        "opponent_final_count": 31,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 1,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": [
+          {
+            "placement": 59,
+            "move": [
+              7,
+              0
+            ],
+            "legal_count": 1
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "filename": "31_opp14_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/31_opp14_white_lose.txt",
+        "source_sha256": "958dd6dbe8ad48367d5ecc238c84a9fd65e4c08a497f18562c7f2279e0fd0ea3",
+        "trace_int8_sha256": "e4a6218b58c90986dad7f635661aa06355a18d1842f904def298086dbdc95967",
+        "final_int8_sha256": "36f3a46cb4978013c4ca9c5b9adc72463cfa696899b0895e9a55f95607772488",
+        "game_number": "31",
+        "opponent": "opp14",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 33,
+        "opponent_final_count": 31,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": [
+          {
+            "placement": 58,
+            "move": [
+              7,
+              7
+            ],
+            "legal_count": 3
+          },
+          {
+            "placement": 60,
+            "move": [
+              0,
+              0
+            ],
+            "legal_count": 1
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "filename": "32_opp15_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/32_opp15_black_lose.txt",
+        "source_sha256": "dc557fdd85263ae84e0795c28f7a7cbb7ba6ef9b939d8db9f0c5f07a95ee6570",
+        "trace_int8_sha256": "c1fa3c6c5d688f00c8bb0f5029b56d7f773e052d5bfc3176522bf65f6c50bf66",
+        "final_int8_sha256": "65692b0cc5a8d0c4fcd614a5c4dc23fbb4df9188edc1bd85587a1a9af89ad884",
+        "game_number": "32",
+        "opponent": "opp15",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 33,
+        "opponent_final_count": 31,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": []
+      },
+      {
+        "batch": 4,
+        "filename": "32_opp15_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/32_opp15_white_lose.txt",
+        "source_sha256": "0ea0b2d971ba1b41fd1dff33c7e86b1fcd47ab90c1cb82db4c561e2ce8cc0cd0",
+        "trace_int8_sha256": "03390d459b51c541e2446be1bd1ce3e51c5a3f765205b3674e98d12590531cfb",
+        "final_int8_sha256": "ca9406f27cd317b4660a791c483b3a820c2bc12e3e155f8921ada441fef31662",
+        "game_number": "32",
+        "opponent": "opp15",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 33,
+        "opponent_final_count": 31,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": [
+          {
+            "placement": 60,
+            "move": [
+              0,
+              0
+            ],
+            "legal_count": 1
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "filename": "33_opp24_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/33_opp24_black_lose.txt",
+        "source_sha256": "79632725203e3f9b24208eea7999d8145ba116ad19ea50baaf87c6cd1eb815e0",
+        "trace_int8_sha256": "ff227b73f792a57f63e46f46a92cd5fbdc153572821f6608c7d38aeaa373ae6f",
+        "final_int8_sha256": "a879f12d49b9e9904a093688d2ae307f0cc3c84eb2097e37d4fb5b84a2d7d810",
+        "game_number": "33",
+        "opponent": "opp24",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 35,
+        "opponent_final_count": 29,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 2,
+        "forced_own_corner_events": [
+          {
+            "placement": 55,
+            "move": [
+              0,
+              7
+            ],
+            "legal_count": 3
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "filename": "33_opp24_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/33_opp24_white_lose.txt",
+        "source_sha256": "7751ddfb29c643c7f505f1d037df0dee221640645defaf81340396fe23081818",
+        "trace_int8_sha256": "762111af2b114bd4e643861d03b4e1152d6fe1b7db2d181d607b6e6df39c45db",
+        "final_int8_sha256": "d07d97424c79c01e905f676a069ecea9469f89975a5aae72964e8f5a54e7310b",
+        "game_number": "33",
+        "opponent": "opp24",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 37,
+        "opponent_final_count": 27,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": [
+          {
+            "placement": 60,
+            "move": [
+              0,
+              0
+            ],
+            "legal_count": 1
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "filename": "34_opp07_black_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/34_opp07_black_win.txt",
+        "source_sha256": "e818d0d7b566b73c4bcb3809e2f11f54838d32509c068a45244d923d9ba735f2",
+        "trace_int8_sha256": "e15a1d54f31d660de89642a859e1dd0ac6dbf64cd0d605822b4ae39973696bbe",
+        "final_int8_sha256": "ef01b38bc89ed5f26d17f34a386e21ac0083283cb25310083840765cd4f9cfb8",
+        "game_number": "34",
+        "opponent": "opp07",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "win",
+        "own_final_count": 26,
+        "opponent_final_count": 38,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": []
+      },
+      {
+        "batch": 4,
+        "filename": "34_opp07_white_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/34_opp07_white_lose.txt",
+        "source_sha256": "db94d147ba77b66a873ced8c3cd9f6461e267c61b01c89547733485ce43c11fa",
+        "trace_int8_sha256": "d318247a7bfd70df54dcd30f6058f8103055fdea2f1cbcd8a3f3173c1f2bab16",
+        "final_int8_sha256": "33846e0889107a2a8aed4646da2945bec14b37d4d5c2ec8dc440fef6ac4553d7",
+        "game_number": "34",
+        "opponent": "opp07",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": [
+          {
+            "placement": 54,
+            "move": [
+              7,
+              0
+            ],
+            "legal_count": 1
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "filename": "35_opp25_black_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/35_opp25_black_win.txt",
+        "source_sha256": "5c4b1eb68926ea21b18c60253679c4b79a7aa6f57aba9b7735f19e4d68c7cc05",
+        "trace_int8_sha256": "13a68139d74827039fabab7d41f3bb0ff5d0887fe9739e4511a3bdc1316399f2",
+        "final_int8_sha256": "c96e8139af28a24a5f62f39885838eda10b0c01ce68937d0282ee2365c3eb715",
+        "game_number": "35",
+        "opponent": "opp25",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "win",
+        "own_final_count": 22,
+        "opponent_final_count": 42,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 1,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": []
+      },
+      {
+        "batch": 4,
+        "filename": "35_opp25_white_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/35_opp25_white_win.txt",
+        "source_sha256": "13a96566a632548779be184504a0634ba5583af9de3c410d97853ffb526229e5",
+        "trace_int8_sha256": "0fbf0a6cbdea85cb3287b6b98fb4abb9046a73f9be63c30d9719463eb3db43cf",
+        "final_int8_sha256": "2803d9862de429fac914dd6bb9ec8fd9b7f04f10d0f4668095eaaf9b648089d9",
+        "game_number": "35",
+        "opponent": "opp25",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "win",
+        "own_final_count": 24,
+        "opponent_final_count": 40,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 2,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 1,
+        "forced_own_corner_events": []
+      },
+      {
+        "batch": 4,
+        "filename": "36_opp26_black_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/36_opp26_black_win.txt",
+        "source_sha256": "511744e3059f26d8e923f7f2d87205c3abe23701d72c96e938763a71832ed3c6",
+        "trace_int8_sha256": "cd2c0cef7bd2645e69eda3609815437797c060c90bbec158a3a45b537e86c636",
+        "final_int8_sha256": "fe6e5e1e00435586c4d66f1c5b9fd7e319a22b054c0f8d0a2909b43d8672fb4c",
+        "game_number": "36",
+        "opponent": "opp26",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "win",
+        "own_final_count": 19,
+        "opponent_final_count": 45,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 1,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": []
+      },
+      {
+        "batch": 4,
+        "filename": "36_opp26_white_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/36_opp26_white_win.txt",
+        "source_sha256": "a0882f5a59d24cb78a11049123a385a40dfdc021b60b9f58432a4698b3581950",
+        "trace_int8_sha256": "8aea697b1540ab82db1d811a5708f2ee82e6a561ee223bf9a1ee15facc15c13c",
+        "final_int8_sha256": "7ec7c310d3c2e4786234d1eab25aeaf805ea0579f1b657c3a26f771a641b05ae",
+        "game_number": "36",
+        "opponent": "opp26",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "win",
+        "own_final_count": 24,
+        "opponent_final_count": 40,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 2,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 1,
+        "forced_own_corner_events": []
+      },
+      {
+        "batch": 4,
+        "filename": "37_opp17_black_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/37_opp17_black_win.txt",
+        "source_sha256": "454f991eebf9b895c336f2406e5829ab9eae92dab1446009de8969f0c94172b6",
+        "trace_int8_sha256": "d87699a3dbd3e90f71459e7ea487ce3689018f88116a74a0f1bc429b774de654",
+        "final_int8_sha256": "a85f39b68553b4622349818728e168e5bf484b1d8faaf6b10fb89c4426122428",
+        "game_number": "37",
+        "opponent": "opp17",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "win",
+        "own_final_count": 27,
+        "opponent_final_count": 37,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 2,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": []
+      },
+      {
+        "batch": 4,
+        "filename": "37_opp17_white_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/37_opp17_white_win.txt",
+        "source_sha256": "e63c55efe2f76d7b7802eb601066a5b2841f1359c3262c23be899e3f014405b1",
+        "trace_int8_sha256": "de52246adc0155700cdaf8d76069f4ff065c16a22780d7d5467a966d1b77e7d6",
+        "final_int8_sha256": "03e30eaf7330b1f7252cccde5f3282aa7320bf488b02d2959538819670301b40",
+        "game_number": "37",
+        "opponent": "opp17",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "win",
+        "own_final_count": 29,
+        "opponent_final_count": 34,
+        "placements": 59,
+        "empty_at_end": 1,
+        "own_final_corners": 1,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": []
+      },
+      {
+        "batch": 4,
+        "filename": "38_opp27_black_lose.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/38_opp27_black_lose.txt",
+        "source_sha256": "90db233ed97a4a4c7ef956fd9ad493007656aacf4d76f5d58311d0b571e17446",
+        "trace_int8_sha256": "3aac77e970a46e133409b52ad21f0e019434a24061274e1546f2919a610a4834",
+        "final_int8_sha256": "696fa268718bdfebbcfb7d6729625c85ce7ccf629cdcc907622fe61487963688",
+        "game_number": "38",
+        "opponent": "opp27",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "lose",
+        "own_final_count": 34,
+        "opponent_final_count": 30,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 1,
+        "forced_own_corner_events": [
+          {
+            "placement": 57,
+            "move": [
+              0,
+              7
+            ],
+            "legal_count": 4
+          },
+          {
+            "placement": 59,
+            "move": [
+              0,
+              0
+            ],
+            "legal_count": 2
+          },
+          {
+            "placement": 60,
+            "move": [
+              7,
+              7
+            ],
+            "legal_count": 1
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "filename": "38_opp27_white_draw.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/38_opp27_white_draw.txt",
+        "source_sha256": "211e8b7bf352729a5dc6bd38aea028c0db2ea5a786fe674373666a15236b2ccf",
+        "trace_int8_sha256": "a565d70e024043d7fe37f3c732880b66172ba562041f0d16885d1b566bd3763e",
+        "final_int8_sha256": "c9b689f09eb28dd5b14ce4ebff1d99942d79c3268225396dc214ac2256c4dbf9",
+        "game_number": "38",
+        "opponent": "opp27",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "draw",
+        "own_final_count": 32,
+        "opponent_final_count": 32,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 1,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": [
+          {
+            "placement": 60,
+            "move": [
+              7,
+              0
+            ],
+            "legal_count": 1
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "filename": "39_opp28_black_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/39_opp28_black_win.txt",
+        "source_sha256": "991532a89bf1acd53ab35c8fec5d3e43f2b2042d1450d61b80b9fa7ef0cc7752",
+        "trace_int8_sha256": "3073ae9a183367f87a5beebfe3d9a31381c50fd8a027d37a57af54a7375eb690",
+        "final_int8_sha256": "ab7a36114353095811b3a596ce6470d04cdaf823d8a4cf94f6995ab3ebc69535",
+        "game_number": "39",
+        "opponent": "opp28",
+        "color": "black",
+        "own_color_value": -1,
+        "result": "win",
+        "own_final_count": 21,
+        "opponent_final_count": 43,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 3,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 0,
+        "forced_own_corner_events": []
+      },
+      {
+        "batch": 4,
+        "filename": "39_opp28_white_win.txt",
+        "source_path": "/Users/justinfan7777777/Desktop/v4_chess_log/39_opp28_white_win.txt",
+        "source_sha256": "7e4c5d1e2e01bee1fd66af85d7bc775d2fca835a31c94b7a670ab06722ef9383",
+        "trace_int8_sha256": "2a6446ba8dc7a02bacbd1753a21cf14141635cb04ec35656600131118e32c68d",
+        "final_int8_sha256": "d53bc90448441e38d360c05782e4dfb1de4d1db67bb30df5144830054810d824",
+        "game_number": "39",
+        "opponent": "opp28",
+        "color": "white",
+        "own_color_value": 1,
+        "result": "win",
+        "own_final_count": 23,
+        "opponent_final_count": 41,
+        "placements": 60,
+        "empty_at_end": 0,
+        "own_final_corners": 1,
+        "validated_legal": true,
+        "terminal": true,
+        "legal_passes": 1,
+        "forced_own_corner_events": [
+          {
+            "placement": 58,
+            "move": [
+              7,
+              7
+            ],
+            "legal_count": 2
+          }
+        ]
+      }
+    ]
+  }
+}

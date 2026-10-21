@@ -1,0 +1,2776 @@
+{
+  "date": "2026-10-21",
+  "base_commit": "e32e5a4caac9075070169945472738fec139c523",
+  "branch": "codex/v15-midgame",
+  "compute_allowance_seconds": 2700,
+  "parallel_workers": 1,
+  "main_submission_changed": false,
+  "active_submission": "versions/v14_round4_fitted_end_ai.py",
+  "active_sha256": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af",
+  "decision": "No new strategy promoted. Keep platform-accepted v14. Exact-preserving evaluation optimizations remain a separately validated candidate; stronger play is unproven.",
+  "candidate_snapshots": {
+    "versions/v15_fast_features_candidate_ai.py": "1fe74d257bd32e1f9a7e76ebb48d5f2171940788cce7dfbca6329e7646311c57",
+    "versions/v15_mid19_experimental_ai.py": "3affe147592c163b8fdbc7d5b1413dc64ce97af2dd4ea60cb4722dd09cf906f3"
+  },
+  "training": {
+    "engine": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/base_v14.py",
+    "engine_sha256": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af",
+    "data_files": {
+      "mid_w0.json": "f4b993a45272d4d2d1963b172ccba8c53e0ef5001ab657eb17984e098ac3af03",
+      "mid_w1.json": "516f5d8bad34f3af329bdd47e015c395f7f48bf1a8e66c923a4b6fc6bd2c2c20",
+      "mid_w2.json": "45aa1d7c2f383319ea5d9c4c942fbde35744c1d4fd433d548d7503bf21115d3b",
+      "mid_w3.json": "e258b76b8a0e6c7be2cc8dc8bb34653f514be16d1bf991a0e1176468ac95094e",
+      "mid_w4.json": "92ac18a552d0fd2ee28281b302bf5b15d4ec77f2ca90526ec0059033079d6055",
+      "mid_w5.json": "c613e8eb9f707850b4f81fe170ac49a6dfadba3d3db97740d657ec8bf7c472b3",
+      "mid_w6.json": "c43d0b95ec755a6b35cb16ce1624479bf6abc2ac351fc004501303de57754555",
+      "mid_w7.json": "0c10f133cf08764effea14439e3c706356d2b86ed08b807325a2a2510cbf0ad2"
+    },
+    "train_games": 960,
+    "test_games": 240,
+    "board_overlap": 0,
+    "rows": {
+      "17": {
+        "label": "exact",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 0,
+        "row": [
+          4,
+          8,
+          -2,
+          0,
+          2,
+          5,
+          8,
+          -3,
+          2,
+          -27,
+          0
+        ],
+        "train_mae_discs": 4.263411458333334,
+        "test_mae_discs": 4.541145833333333
+      },
+      "18": {
+        "label": "exact",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 0,
+        "row": [
+          4,
+          8,
+          -1,
+          1,
+          2,
+          5,
+          8,
+          -3,
+          2,
+          -2,
+          0
+        ],
+        "train_mae_discs": 4.315364583333333,
+        "test_mae_discs": 4.316666666666666
+      },
+      "19": {
+        "label": "exact",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 0,
+        "row": [
+          5,
+          9,
+          -1,
+          1,
+          2,
+          4,
+          8,
+          -4,
+          2,
+          -28,
+          0
+        ],
+        "train_mae_discs": 4.308072916666666,
+        "test_mae_discs": 4.104166666666667
+      },
+      "20": {
+        "label": "bootstrap_depth_4",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 670835,
+        "row": [
+          3,
+          6,
+          -1,
+          1,
+          1,
+          5,
+          9,
+          -4,
+          2,
+          1,
+          0
+        ],
+        "train_mae_discs": 2.2631510416666667,
+        "test_mae_discs": 2.0010416666666666
+      },
+      "21": {
+        "label": "bootstrap_depth_5",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 2226614,
+        "row": [
+          3,
+          6,
+          0,
+          1,
+          1,
+          5,
+          9,
+          -5,
+          2,
+          -27,
+          0
+        ],
+        "train_mae_discs": 2.4618489583333334,
+        "test_mae_discs": 2.2546875
+      },
+      "22": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 6196216,
+        "row": [
+          3,
+          7,
+          0,
+          1,
+          1,
+          4,
+          8,
+          -5,
+          2,
+          2,
+          0
+        ],
+        "train_mae_discs": 2.4643229166666667,
+        "test_mae_discs": 2.3036458333333334
+      },
+      "23": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 6592229,
+        "row": [
+          4,
+          7,
+          -1,
+          1,
+          1,
+          5,
+          7,
+          -4,
+          2,
+          -27,
+          0
+        ],
+        "train_mae_discs": 2.2701822916666665,
+        "test_mae_discs": 2.31875
+      },
+      "24": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 7105317,
+        "row": [
+          4,
+          10,
+          1,
+          1,
+          1,
+          4,
+          7,
+          -4,
+          3,
+          -2,
+          0
+        ],
+        "train_mae_discs": 2.296875,
+        "test_mae_discs": 2.340104166666667
+      },
+      "25": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 7872942,
+        "row": [
+          6,
+          11,
+          2,
+          1,
+          1,
+          4,
+          6,
+          -4,
+          2,
+          -28,
+          0
+        ],
+        "train_mae_discs": 2.4404947916666666,
+        "test_mae_discs": 2.2020833333333334
+      },
+      "26": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 8100184,
+        "row": [
+          5,
+          8,
+          2,
+          0,
+          1,
+          4,
+          7,
+          -5,
+          2,
+          2,
+          0
+        ],
+        "train_mae_discs": 2.3272135416666666,
+        "test_mae_discs": 2.2265625
+      },
+      "27": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 8788421,
+        "row": [
+          6,
+          6,
+          1,
+          0,
+          1,
+          4,
+          7,
+          -6,
+          3,
+          -27,
+          0
+        ],
+        "train_mae_discs": 2.296744791666667,
+        "test_mae_discs": 2.252083333333333
+      },
+      "28": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 9393486,
+        "row": [
+          5,
+          7,
+          1,
+          0,
+          1,
+          4,
+          7,
+          -5,
+          2,
+          3,
+          0
+        ],
+        "train_mae_discs": 1.951171875,
+        "test_mae_discs": 1.9958333333333333
+      },
+      "29": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 9847181,
+        "row": [
+          6,
+          6,
+          -1,
+          0,
+          1,
+          4,
+          6,
+          -5,
+          2,
+          -27,
+          0
+        ],
+        "train_mae_discs": 1.9278645833333334,
+        "test_mae_discs": 1.8661458333333334
+      },
+      "30": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 10744742,
+        "row": [
+          5,
+          8,
+          1,
+          0,
+          1,
+          3,
+          7,
+          -5,
+          3,
+          -1,
+          0
+        ],
+        "train_mae_discs": 1.9998697916666666,
+        "test_mae_discs": 2.0223958333333334
+      },
+      "31": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 11437459,
+        "row": [
+          7,
+          9,
+          1,
+          0,
+          0,
+          3,
+          6,
+          -5,
+          3,
+          -28,
+          0
+        ],
+        "train_mae_discs": 1.7670572916666667,
+        "test_mae_discs": 1.8244791666666667
+      },
+      "32": {
+        "label": "bootstrap_depth_6",
+        "n_train": 960,
+        "n_test": 240,
+        "nodes": 11501726,
+        "row": [
+          7,
+          8,
+          1,
+          0,
+          0,
+          3,
+          6,
+          -5,
+          3,
+          2,
+          0
+        ],
+        "train_mae_discs": 1.7609375,
+        "test_mae_discs": 1.9973958333333333
+      }
+    },
+    "completed_through": 32,
+    "bootstrap_mae_caveat": "Rows20+ measure imitation of a fitted search teacher; independent matches decide adoption.",
+    "seconds": 9.436449417000404,
+    "complete": true
+  },
+  "screening": {
+    "mid24": {
+      "paths": {
+        "a": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_mid24.py",
+        "b": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_edge_lookup.py"
+      },
+      "sha256": {
+        "a": "14f1f296bf48e4c602c110b87150c905891e2adb6cb073c983758c523b9323c0",
+        "b": "070a1b392e7ea87b2053a8f7ce921778d954d145ce67c75a96009d0a3e6af1c6"
+      },
+      "target_games": 40,
+      "search_seconds": 0.04,
+      "seed": 920000,
+      "budget_seconds": 250.0,
+      "startup_limit": 5,
+      "move_limit": 5,
+      "per_side_limit": 180,
+      "opening_plies": "6 and 8 alternating by pair",
+      "games": 40,
+      "wins": 15,
+      "draws": 3,
+      "losses": 22,
+      "score": 0.4125,
+      "paired_ci95": [
+        0.2875,
+        0.5375
+      ],
+      "by_color": {
+        "black": {
+          "loss": 9,
+          "win": 10,
+          "draw": 1
+        },
+        "white": {
+          "loss": 13,
+          "win": 5,
+          "draw": 2
+        }
+      },
+      "reasons": {
+        "normal": 40
+      },
+      "max_move_seconds": 0.04334666600334458,
+      "max_side_seconds": 0.8541557500429917,
+      "seconds": 66.67772375000641,
+      "complete": true
+    },
+    "mid32": {
+      "paths": {
+        "a": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_mid32.py",
+        "b": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_edge_lookup.py"
+      },
+      "sha256": {
+        "a": "93151ce9acf6e9028d49ca53201ed9bca2c019b4d2a02e469a10676aa19aa5af",
+        "b": "070a1b392e7ea87b2053a8f7ce921778d954d145ce67c75a96009d0a3e6af1c6"
+      },
+      "target_games": 40,
+      "search_seconds": 0.04,
+      "seed": 920000,
+      "budget_seconds": 250.0,
+      "startup_limit": 5,
+      "move_limit": 5,
+      "per_side_limit": 180,
+      "opening_plies": "6 and 8 alternating by pair",
+      "games": 40,
+      "wins": 12,
+      "draws": 11,
+      "losses": 17,
+      "score": 0.4375,
+      "paired_ci95": [
+        0.3125,
+        0.5625
+      ],
+      "by_color": {
+        "black": {
+          "draw": 5,
+          "win": 8,
+          "loss": 7
+        },
+        "white": {
+          "loss": 10,
+          "draw": 6,
+          "win": 4
+        }
+      },
+      "reasons": {
+        "normal": 40
+      },
+      "max_move_seconds": 0.06266020800103433,
+      "max_side_seconds": 0.8586204599705525,
+      "seconds": 66.39308675000211,
+      "complete": true
+    },
+    "ordering": {
+      "paths": {
+        "a": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_eval_order.py",
+        "b": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_edge_lookup.py"
+      },
+      "sha256": {
+        "a": "6830f0b54aa4884cbfe608268636f7f1576cb6f398055a31fe9d634ded618992",
+        "b": "070a1b392e7ea87b2053a8f7ce921778d954d145ce67c75a96009d0a3e6af1c6"
+      },
+      "target_games": 40,
+      "search_seconds": 0.08,
+      "seed": 930000,
+      "budget_seconds": 300.0,
+      "startup_limit": 5,
+      "move_limit": 5,
+      "per_side_limit": 180,
+      "opening_plies": "6 and 8 alternating by pair",
+      "games": 40,
+      "wins": 14,
+      "draws": 8,
+      "losses": 18,
+      "score": 0.45,
+      "paired_ci95": [
+        0.35,
+        0.55
+      ],
+      "by_color": {
+        "black": {
+          "loss": 10,
+          "win": 8,
+          "draw": 2
+        },
+        "white": {
+          "loss": 8,
+          "win": 6,
+          "draw": 6
+        }
+      },
+      "reasons": {
+        "normal": 40
+      },
+      "max_move_seconds": 0.0901575000025332,
+      "max_side_seconds": 1.698748293943936,
+      "seconds": 128.15180316699843,
+      "complete": true
+    },
+    "mid19": {
+      "paths": {
+        "a": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_mid19.py",
+        "b": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_edge_lookup.py"
+      },
+      "sha256": {
+        "a": "3d617c4fe7cc612838d6e4479038e1c231279460fdc7ca7f3e34f31b140feb4f",
+        "b": "070a1b392e7ea87b2053a8f7ce921778d954d145ce67c75a96009d0a3e6af1c6"
+      },
+      "target_games": 40,
+      "search_seconds": 0.04,
+      "seed": 922000,
+      "budget_seconds": 220.0,
+      "startup_limit": 5,
+      "move_limit": 5,
+      "per_side_limit": 180,
+      "opening_plies": "6 and 8 alternating by pair",
+      "games": 40,
+      "wins": 18,
+      "draws": 10,
+      "losses": 12,
+      "score": 0.575,
+      "paired_ci95": [
+        0.4875,
+        0.675
+      ],
+      "by_color": {
+        "black": {
+          "win": 11,
+          "draw": 5,
+          "loss": 4
+        },
+        "white": {
+          "draw": 5,
+          "loss": 8,
+          "win": 7
+        }
+      },
+      "reasons": {
+        "normal": 40
+      },
+      "max_move_seconds": 0.059206292004091665,
+      "max_side_seconds": 0.8561057889746735,
+      "seconds": 65.97166587499669,
+      "complete": true
+    }
+  },
+  "confirmation": {
+    "paths": {
+      "a": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/confirmation_candidate.py",
+      "b": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/base_v14.py"
+    },
+    "sha256": {
+      "a": "3affe147592c163b8fdbc7d5b1413dc64ce97af2dd4ea60cb4722dd09cf906f3",
+      "b": "9f404be6e8f17e38584612331e191da115e54476954a788eedf1fb49538145af"
+    },
+    "target_games": 100,
+    "search_seconds": 0.2,
+    "seed": 940000,
+    "budget_seconds": 1250.0,
+    "startup_limit": 5,
+    "move_limit": 5,
+    "per_side_limit": 180,
+    "opening_plies": "6 and 8 alternating by pair",
+    "records": [
+      {
+        "game": 0,
+        "opening_seed": 940000,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.072769039019477,
+          "1": 4.037397750973469
+        },
+        "wall_seconds": 10.160818791991915,
+        "import_init_seconds": {
+          "-1": 1.395910291990731,
+          "1": 0.8783766259875847
+        },
+        "max_move_seconds": 0.20020483300322667,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 1,
+        "opening_seed": 940000,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.007611456967425,
+          "1": 3.89074845801224
+        },
+        "wall_seconds": 7.904617958993185,
+        "import_init_seconds": {
+          "-1": 0.001200832994072698,
+          "1": 0.22840079199522734
+        },
+        "max_move_seconds": 0.20024150000244845,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 2,
+        "opening_seed": 940001,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.7528961249336135,
+          "1": 3.6705966260196874
+        },
+        "wall_seconds": 7.428974541995558,
+        "import_init_seconds": {
+          "-1": 0.22840958400047384,
+          "1": 0.0012017089902656153
+        },
+        "max_move_seconds": 0.20019425000646152,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 3,
+        "opening_seed": 940001,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8549132099724375,
+          "1": 3.7488215420016786
+        },
+        "wall_seconds": 7.609640166992904,
+        "import_init_seconds": {
+          "-1": 0.001201624982059002,
+          "1": 0.22840566700324416
+        },
+        "max_move_seconds": 0.20022158398933243,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 4,
+        "opening_seed": 940002,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.028763664973667,
+          "1": 3.8397714950115187
+        },
+        "wall_seconds": 7.874098457992659,
+        "import_init_seconds": {
+          "-1": 0.22839095900417306,
+          "1": 0.0011919999815290794
+        },
+        "max_move_seconds": 0.2002064169937512,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 5,
+        "opening_seed": 940002,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.026370543972007,
+          "1": 3.8377047490066616
+        },
+        "wall_seconds": 7.869702334006433,
+        "import_init_seconds": {
+          "-1": 0.001236291995155625,
+          "1": 0.22843704298429657
+        },
+        "max_move_seconds": 0.20023724999919068,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 6,
+        "opening_seed": 940003,
+        "a_color": -1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 3.667980414975318,
+          "1": 3.640586455047014
+        },
+        "wall_seconds": 7.314367458006018,
+        "import_init_seconds": {
+          "-1": 0.22842450000462122,
+          "1": 0.0012061260058544576
+        },
+        "max_move_seconds": 0.20018595800502226,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 7,
+        "opening_seed": 940003,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.847087874004501,
+          "1": 3.705374372017104
+        },
+        "wall_seconds": 7.558243999999831,
+        "import_init_seconds": {
+          "-1": 0.0011792500008596107,
+          "1": 0.22837895900011063
+        },
+        "max_move_seconds": 0.20022199999948498,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 8,
+        "opening_seed": 940004,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8821926639648154,
+          "1": 3.8507028350431938
+        },
+        "wall_seconds": 7.738827541994397,
+        "import_init_seconds": {
+          "-1": 0.22841166700527538,
+          "1": 0.0011936670052818954
+        },
+        "max_move_seconds": 0.20020512500195764,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 9,
+        "opening_seed": 940004,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.048704165936215,
+          "1": 3.899384833945078
+        },
+        "wall_seconds": 7.953941458006739,
+        "import_init_seconds": {
+          "-1": 0.0012234169989824295,
+          "1": 0.2284100840042811
+        },
+        "max_move_seconds": 0.20020999999542255,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 10,
+        "opening_seed": 940005,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8329973370127846,
+          "1": 3.6913810830155853
+        },
+        "wall_seconds": 7.530031667003641,
+        "import_init_seconds": {
+          "-1": 0.22844012499263044,
+          "1": 0.001193249991047196
+        },
+        "max_move_seconds": 0.20019595899793785,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 11,
+        "opening_seed": 940005,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8302909950434696,
+          "1": 3.6791892100154655
+        },
+        "wall_seconds": 7.515140542003792,
+        "import_init_seconds": {
+          "-1": 0.001219958983710967,
+          "1": 0.22840704199916217
+        },
+        "max_move_seconds": 0.20019195800705347,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 12,
+        "opening_seed": 940006,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.9247735800454393,
+          "1": 3.826378041994758
+        },
+        "wall_seconds": 7.75721270799113,
+        "import_init_seconds": {
+          "-1": 0.22842679198947735,
+          "1": 0.0012080419983249158
+        },
+        "max_move_seconds": 0.20023000000219326,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 13,
+        "opening_seed": 940006,
+        "a_color": 1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 3.9263256240228657,
+          "1": 3.7503112500271527
+        },
+        "wall_seconds": 7.682274417005829,
+        "import_init_seconds": {
+          "-1": 0.001212708986713551,
+          "1": 0.22840312599146273
+        },
+        "max_move_seconds": 0.2001847500068834,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 14,
+        "opening_seed": 940007,
+        "a_color": -1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 3.767014080993249,
+          "1": 3.648913208002341
+        },
+        "wall_seconds": 7.421552291998523,
+        "import_init_seconds": {
+          "-1": 0.228431791998446,
+          "1": 0.0011921669938601553
+        },
+        "max_move_seconds": 0.20020025000849273,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 15,
+        "opening_seed": 940007,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.7476780839497223,
+          "1": 3.672574915981386
+        },
+        "wall_seconds": 7.425764125000569,
+        "import_init_seconds": {
+          "-1": 0.0012167499953648075,
+          "1": 0.22840383400034625
+        },
+        "max_move_seconds": 0.20024375000502914,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 16,
+        "opening_seed": 940008,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.0585419190028915,
+          "1": 3.9766223309998168
+        },
+        "wall_seconds": 8.040837834007107,
+        "import_init_seconds": {
+          "-1": 0.22843670898873825,
+          "1": 0.001190250986837782
+        },
+        "max_move_seconds": 0.20022491599956993,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 17,
+        "opening_seed": 940008,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.06355712506047,
+          "1": 3.9069142929511145
+        },
+        "wall_seconds": 7.976059999986319,
+        "import_init_seconds": {
+          "-1": 0.0012156249867985025,
+          "1": 0.2284040009981254
+        },
+        "max_move_seconds": 0.20018741699459497,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 18,
+        "opening_seed": 940009,
+        "a_color": -1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 3.835471545040491,
+          "1": 3.703365539040533
+        },
+        "wall_seconds": 7.544583666996914,
+        "import_init_seconds": {
+          "-1": 0.22842858399963006,
+          "1": 0.0011939999967580661
+        },
+        "max_move_seconds": 0.20025283299037255,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 19,
+        "opening_seed": 940009,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8359583729761653,
+          "1": 3.7419289200479398
+        },
+        "wall_seconds": 7.583427125005983,
+        "import_init_seconds": {
+          "-1": 0.0012055419938405976,
+          "1": 0.22840233400347643
+        },
+        "max_move_seconds": 0.20021220900525805,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 20,
+        "opening_seed": 940010,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.02781699798652,
+          "1": 3.940177456024685
+        },
+        "wall_seconds": 7.973752834004699,
+        "import_init_seconds": {
+          "-1": 0.2284262509929249,
+          "1": 0.0011894999915966764
+        },
+        "max_move_seconds": 0.2003930409991881,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 21,
+        "opening_seed": 940010,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.045541749001131,
+          "1": 3.897551875023055
+        },
+        "wall_seconds": 7.948638708010549,
+        "import_init_seconds": {
+          "-1": 0.0012270419974811375,
+          "1": 0.22840291800093837
+        },
+        "max_move_seconds": 0.20020412499434315,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 22,
+        "opening_seed": 940011,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.6843064119602786,
+          "1": 3.585751000995515
+        },
+        "wall_seconds": 7.275506749996566,
+        "import_init_seconds": {
+          "-1": 0.22843504199408926,
+          "1": 0.00119479198474437
+        },
+        "max_move_seconds": 0.20020141599525232,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 23,
+        "opening_seed": 940011,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.6870919589564437,
+          "1": 3.59711137303384
+        },
+        "wall_seconds": 7.289613000000827,
+        "import_init_seconds": {
+          "-1": 0.0012108329974580556,
+          "1": 0.22840575099689886
+        },
+        "max_move_seconds": 0.20019720800337382,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 24,
+        "opening_seed": 940012,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.029648832976818,
+          "1": 3.9138831249438226
+        },
+        "wall_seconds": 7.949162041011732,
+        "import_init_seconds": {
+          "-1": 0.22842937600216828,
+          "1": 0.0011891669855685905
+        },
+        "max_move_seconds": 0.20021870800701436,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 25,
+        "opening_seed": 940012,
+        "a_color": 1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 4.03916279002442,
+          "1": 3.938192416957463
+        },
+        "wall_seconds": 7.982807082997169,
+        "import_init_seconds": {
+          "-1": 0.0012199170014355332,
+          "1": 0.22840637600165792
+        },
+        "max_move_seconds": 0.20023245799529832,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 26,
+        "opening_seed": 940013,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.821946877040318,
+          "1": 3.6238569989945972
+        },
+        "wall_seconds": 7.451039583000238,
+        "import_init_seconds": {
+          "-1": 0.2284373339934973,
+          "1": 0.0011929169995710254
+        },
+        "max_move_seconds": 0.20017995800299104,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 27,
+        "opening_seed": 940013,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.834994876960991,
+          "1": 3.7675044180068653
+        },
+        "wall_seconds": 7.60906108400377,
+        "import_init_seconds": {
+          "-1": 0.001220916979946196,
+          "1": 0.22840929200174287
+        },
+        "max_move_seconds": 0.2090476250014035,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 28,
+        "opening_seed": 940014,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.058957332003047,
+          "1": 4.000796542983153
+        },
+        "wall_seconds": 8.066500166998594,
+        "import_init_seconds": {
+          "-1": 0.22850258399557788,
+          "1": 0.0012699169892584905
+        },
+        "max_move_seconds": 0.21624137500475626,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 29,
+        "opening_seed": 940014,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.037319126058719,
+          "1": 3.9395408349955687
+        },
+        "wall_seconds": 8.041564041996025,
+        "import_init_seconds": {
+          "-1": 0.0012683749955613166,
+          "1": 0.22844725100731011
+        },
+        "max_move_seconds": 0.2087911249982426,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 30,
+        "opening_seed": 940015,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.760967917027301,
+          "1": 3.65783204199397
+        },
+        "wall_seconds": 7.426341250000405,
+        "import_init_seconds": {
+          "-1": 0.229194291998283,
+          "1": 0.0016851669934112579
+        },
+        "max_move_seconds": 0.20022208300360944,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 31,
+        "opening_seed": 940015,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.811092748961528,
+          "1": 3.730512001013267
+        },
+        "wall_seconds": 7.547822165986872,
+        "import_init_seconds": {
+          "-1": 0.00121704199409578,
+          "1": 0.2284068339940859
+        },
+        "max_move_seconds": 0.20038254199607763,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 32,
+        "opening_seed": 940016,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8644690419896506,
+          "1": 3.8359112520265626
+        },
+        "wall_seconds": 7.706618917000014,
+        "import_init_seconds": {
+          "-1": 0.22842183399188798,
+          "1": 0.0011887919972650707
+        },
+        "max_move_seconds": 0.2003605840000091,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 33,
+        "opening_seed": 940016,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.958413915024721,
+          "1": 3.878422497975407
+        },
+        "wall_seconds": 7.842914041000768,
+        "import_init_seconds": {
+          "-1": 0.0012124579952796921,
+          "1": 0.22840262598765548
+        },
+        "max_move_seconds": 0.2002229579957202,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 34,
+        "opening_seed": 940017,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.6980251659988426,
+          "1": 3.688740333993337
+        },
+        "wall_seconds": 7.392523999995319,
+        "import_init_seconds": {
+          "-1": 0.22841975100163836,
+          "1": 0.0012008750054519624
+        },
+        "max_move_seconds": 0.20041220900020562,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 35,
+        "opening_seed": 940017,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.835256207967177,
+          "1": 3.762896333995741
+        },
+        "wall_seconds": 7.603872332998435,
+        "import_init_seconds": {
+          "-1": 0.00121441698865965,
+          "1": 0.228403333996539
+        },
+        "max_move_seconds": 0.20022770800278522,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 36,
+        "opening_seed": 940018,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.044996085969615,
+          "1": 3.8781250000029104
+        },
+        "wall_seconds": 7.928652624992537,
+        "import_init_seconds": {
+          "-1": 0.2284272510005394,
+          "1": 0.0011887509899679571
+        },
+        "max_move_seconds": 0.20024999999441206,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 37,
+        "opening_seed": 940018,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.053750624982058,
+          "1": 3.941230834039743
+        },
+        "wall_seconds": 8.000496834007208,
+        "import_init_seconds": {
+          "-1": 0.001204457992571406,
+          "1": 0.22840016699046828
+        },
+        "max_move_seconds": 0.20021629199618474,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 38,
+        "opening_seed": 940019,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.763966419006465,
+          "1": 3.607455253979424
+        },
+        "wall_seconds": 7.378413124999497,
+        "import_init_seconds": {
+          "-1": 0.22842716799641494,
+          "1": 0.0012076669809175655
+        },
+        "max_move_seconds": 0.2002818750042934,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 39,
+        "opening_seed": 940019,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.7480389189877314,
+          "1": 3.6832667049602605
+        },
+        "wall_seconds": 7.437177250001696,
+        "import_init_seconds": {
+          "-1": 0.0012328759912634268,
+          "1": 0.22840641699440312
+        },
+        "max_move_seconds": 0.20021687498956453,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 40,
+        "opening_seed": 940020,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.111478418009938,
+          "1": 3.9445527490170207
+        },
+        "wall_seconds": 8.061860875008279,
+        "import_init_seconds": {
+          "-1": 0.2284288750088308,
+          "1": 0.00119479198474437
+        },
+        "max_move_seconds": 0.20020704199851025,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 41,
+        "opening_seed": 940020,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.9427278740040492,
+          "1": 3.9037667109660106
+        },
+        "wall_seconds": 7.852432791987667,
+        "import_init_seconds": {
+          "-1": 0.0012332089827395976,
+          "1": 0.2284647509950446
+        },
+        "max_move_seconds": 0.20025187500868924,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 42,
+        "opening_seed": 940021,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.861220460035838,
+          "1": 3.712489831945277
+        },
+        "wall_seconds": 7.579450541990809,
+        "import_init_seconds": {
+          "-1": 0.22842591800144874,
+          "1": 0.0011871669994434342
+        },
+        "max_move_seconds": 0.20025287500175182,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 43,
+        "opening_seed": 940021,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.863952912026434,
+          "1": 3.735882832988864
+        },
+        "wall_seconds": 7.605694083002163,
+        "import_init_seconds": {
+          "-1": 0.0012178749893791974,
+          "1": 0.22839795899926685
+        },
+        "max_move_seconds": 0.20017212499806192,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 44,
+        "opening_seed": 940022,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.942355208011577,
+          "1": 3.8629792890133103
+        },
+        "wall_seconds": 7.811029207994579,
+        "import_init_seconds": {
+          "-1": 0.2284307509980863,
+          "1": 0.0011967079917667434
+        },
+        "max_move_seconds": 0.20022400000016205,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 45,
+        "opening_seed": 940022,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.864854248051415,
+          "1": 3.822793586034095
+        },
+        "wall_seconds": 7.693703249999089,
+        "import_init_seconds": {
+          "-1": 0.0012088749936083332,
+          "1": 0.22840712599281687
+        },
+        "max_move_seconds": 0.20023645801120438,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 46,
+        "opening_seed": 940023,
+        "a_color": -1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 3.7092939999711234,
+          "1": 3.652859002977493
+        },
+        "wall_seconds": 7.367960915988078,
+        "import_init_seconds": {
+          "-1": 0.2284241680026753,
+          "1": 0.0011947919992962852
+        },
+        "max_move_seconds": 0.2002386249951087,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 47,
+        "opening_seed": 940023,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.7016639539797325,
+          "1": 3.6346425429946976
+        },
+        "wall_seconds": 7.34193341700302,
+        "import_init_seconds": {
+          "-1": 0.001208457993925549,
+          "1": 0.2284150839986978
+        },
+        "max_move_seconds": 0.20020258300064597,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 48,
+        "opening_seed": 940024,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.969781666979543,
+          "1": 3.869096417009132
+        },
+        "wall_seconds": 7.8446899999980815,
+        "import_init_seconds": {
+          "-1": 0.22842854200280271,
+          "1": 0.0011840419902000576
+        },
+        "max_move_seconds": 0.200210540991975,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 49,
+        "opening_seed": 940024,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.059662083018338,
+          "1": 3.897371624960215
+        },
+        "wall_seconds": 7.962915249998332,
+        "import_init_seconds": {
+          "-1": 0.0012100000021746382,
+          "1": 0.228416333993664
+        },
+        "max_move_seconds": 0.20021616699523292,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 50,
+        "opening_seed": 940025,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.842840375000378,
+          "1": 3.709966956972494
+        },
+        "wall_seconds": 7.558338290997199,
+        "import_init_seconds": {
+          "-1": 0.22841850100667216,
+          "1": 0.0012102079926989973
+        },
+        "max_move_seconds": 0.20020975000807084,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 51,
+        "opening_seed": 940025,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.842859040974872,
+          "1": 3.6979853350349003
+        },
+        "wall_seconds": 7.546570584003348,
+        "import_init_seconds": {
+          "-1": 0.0012244579993421212,
+          "1": 0.2284067089931341
+        },
+        "max_move_seconds": 0.20024370899773203,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 52,
+        "opening_seed": 940026,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.062987665980472,
+          "1": 3.991744957966148
+        },
+        "wall_seconds": 8.060314374990412,
+        "import_init_seconds": {
+          "-1": 0.22841512599552516,
+          "1": 0.0011884589912369847
+        },
+        "max_move_seconds": 0.2002456659974996,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 53,
+        "opening_seed": 940026,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.063439373974688,
+          "1": 3.987913499964634
+        },
+        "wall_seconds": 8.056966292002471,
+        "import_init_seconds": {
+          "-1": 0.00121537598897703,
+          "1": 0.22839912498602644
+        },
+        "max_move_seconds": 0.20020362500508782,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 54,
+        "opening_seed": 940027,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8297147510165814,
+          "1": 3.7113945020537358
+        },
+        "wall_seconds": 7.5469273749913555,
+        "import_init_seconds": {
+          "-1": 0.22842341699288227,
+          "1": 0.0011877089855261147
+        },
+        "max_move_seconds": 0.2002211250073742,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 55,
+        "opening_seed": 940027,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8566253779863473,
+          "1": 3.7523061240208335
+        },
+        "wall_seconds": 7.619154749991139,
+        "import_init_seconds": {
+          "-1": 0.0012124589993618429,
+          "1": 0.2284007090056548
+        },
+        "max_move_seconds": 0.2002429169951938,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 56,
+        "opening_seed": 940028,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8539777889673132,
+          "1": 3.83479104199796
+        },
+        "wall_seconds": 7.694086041010451,
+        "import_init_seconds": {
+          "-1": 0.22843166699749418,
+          "1": 0.0011852509924210608
+        },
+        "max_move_seconds": 0.20019029200193472,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 57,
+        "opening_seed": 940028,
+        "a_color": 1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 4.066937167939614,
+          "1": 3.9903789989621146
+        },
+        "wall_seconds": 8.062725459007197,
+        "import_init_seconds": {
+          "-1": 0.0012225839891470969,
+          "1": 0.22840408400224987
+        },
+        "max_move_seconds": 0.20017079199897125,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 58,
+        "opening_seed": 940029,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.826578994936426,
+          "1": 3.678625084037776
+        },
+        "wall_seconds": 7.510614667000482,
+        "import_init_seconds": {
+          "-1": 0.22843083398765884,
+          "1": 0.0011997089895885438
+        },
+        "max_move_seconds": 0.20023729201056994,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 59,
+        "opening_seed": 940029,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8272982500639046,
+          "1": 3.6720807070669252
+        },
+        "wall_seconds": 7.504955374999554,
+        "import_init_seconds": {
+          "-1": 0.001207958979648538,
+          "1": 0.22840166700189002
+        },
+        "max_move_seconds": 0.2002285420021508,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 60,
+        "opening_seed": 940030,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.88993045600364,
+          "1": 3.764706705973367
+        },
+        "wall_seconds": 7.66004470900225,
+        "import_init_seconds": {
+          "-1": 0.22843141701014247,
+          "1": 0.0011856259952764958
+        },
+        "max_move_seconds": 0.20019737500115298,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 61,
+        "opening_seed": 940030,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.888566753012128,
+          "1": 3.762442416016711
+        },
+        "wall_seconds": 7.656669000003603,
+        "import_init_seconds": {
+          "-1": 0.0012253759923623875,
+          "1": 0.22839958399708848
+        },
+        "max_move_seconds": 0.2002135420043487,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 62,
+        "opening_seed": 940031,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 2.6266861259791767,
+          "1": 3.722902873996645
+        },
+        "wall_seconds": 6.354978667004616,
+        "import_init_seconds": {
+          "-1": 0.22843725098937284,
+          "1": 0.0011889999877894297
+        },
+        "max_move_seconds": 0.20022312499349937,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 63,
+        "opening_seed": 940031,
+        "a_color": 1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 2.601724166976055,
+          "1": 4.032067913984065
+        },
+        "wall_seconds": 6.639382042005309,
+        "import_init_seconds": {
+          "-1": 0.0012161670019850135,
+          "1": 0.22840529200038873
+        },
+        "max_move_seconds": 0.20018899999558926,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 64,
+        "opening_seed": 940032,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.9252002080029342,
+          "1": 3.875705249971361
+        },
+        "wall_seconds": 7.8064039169985335,
+        "import_init_seconds": {
+          "-1": 0.22849741799291223,
+          "1": 0.0011979589908150956
+        },
+        "max_move_seconds": 0.20019137499912176,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 65,
+        "opening_seed": 940032,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.025943622997147,
+          "1": 3.8655416660476476
+        },
+        "wall_seconds": 7.897716458013747,
+        "import_init_seconds": {
+          "-1": 0.0012168329994892702,
+          "1": 0.2284005419933237
+        },
+        "max_move_seconds": 0.20037287499872036,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 66,
+        "opening_seed": 940033,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8244792099721963,
+          "1": 3.6751220860460307
+        },
+        "wall_seconds": 7.505587999999989,
+        "import_init_seconds": {
+          "-1": 0.22843012600787915,
+          "1": 0.0011902499973075464
+        },
+        "max_move_seconds": 0.2001995419996092,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 67,
+        "opening_seed": 940033,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8508305410068715,
+          "1": 3.737017872001161
+        },
+        "wall_seconds": 7.594098874993506,
+        "import_init_seconds": {
+          "-1": 0.001224624997121282,
+          "1": 0.22840758399979677
+        },
+        "max_move_seconds": 0.20023720900644548,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 68,
+        "opening_seed": 940034,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.033913747975021,
+          "1": 3.8586817100876942
+        },
+        "wall_seconds": 7.899761874999967,
+        "import_init_seconds": {
+          "-1": 0.2285361669928534,
+          "1": 0.0012980419851373881
+        },
+        "max_move_seconds": 0.2004423750040587,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 69,
+        "opening_seed": 940034,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.011150583013659,
+          "1": 3.8936976630502613
+        },
+        "wall_seconds": 7.911558583000442,
+        "import_init_seconds": {
+          "-1": 0.0013467499957187101,
+          "1": 0.2286103340011323
+        },
+        "max_move_seconds": 0.2002269590011565,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 70,
+        "opening_seed": 940035,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.837019665981643,
+          "1": 3.672038123026141
+        },
+        "wall_seconds": 7.515297000005376,
+        "import_init_seconds": {
+          "-1": 0.22843870900396723,
+          "1": 0.0011976259993389249
+        },
+        "max_move_seconds": 0.20024854099028744,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 71,
+        "opening_seed": 940035,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8524520430073608,
+          "1": 3.698717374005355
+        },
+        "wall_seconds": 7.556894249995821,
+        "import_init_seconds": {
+          "-1": 0.0012230839929543436,
+          "1": 0.22840662598900963
+        },
+        "max_move_seconds": 0.20019770799262915,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 72,
+        "opening_seed": 940036,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.077373334017466,
+          "1": 3.8921268769772723
+        },
+        "wall_seconds": 7.975310624999111,
+        "import_init_seconds": {
+          "-1": 0.2284332509880187,
+          "1": 0.0011921259865630418
+        },
+        "max_move_seconds": 0.20028741699934471,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 73,
+        "opening_seed": 940036,
+        "a_color": 1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 4.08340983101516,
+          "1": 3.423265584046021
+        },
+        "wall_seconds": 7.5588847500039265,
+        "import_init_seconds": {
+          "-1": 0.0012180009944131598,
+          "1": 0.22847554199688602
+        },
+        "max_move_seconds": 0.20705041600740515,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 74,
+        "opening_seed": 940037,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.715514790994348,
+          "1": 3.640000374041847
+        },
+        "wall_seconds": 7.361388166013057,
+        "import_init_seconds": {
+          "-1": 0.22845308401156217,
+          "1": 0.0012003329902654514
+        },
+        "max_move_seconds": 0.20021204100339673,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 75,
+        "opening_seed": 940037,
+        "a_color": 1,
+        "winner": 0,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8400862920098007,
+          "1": 3.7922945840255124
+        },
+        "wall_seconds": 7.644749624989345,
+        "import_init_seconds": {
+          "-1": 0.0012202509824419394,
+          "1": 0.22840870899381116
+        },
+        "max_move_seconds": 0.22417237500485498,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 76,
+        "opening_seed": 940038,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.9850018320139498,
+          "1": 3.8741407449706458
+        },
+        "wall_seconds": 7.870163292012876,
+        "import_init_seconds": {
+          "-1": 0.2284885840053903,
+          "1": 0.0012515839916886762
+        },
+        "max_move_seconds": 0.20351054199272767,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 77,
+        "opening_seed": 940038,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.92593862702779,
+          "1": 3.8483304190449417
+        },
+        "wall_seconds": 7.784251749995747,
+        "import_init_seconds": {
+          "-1": 0.0014015419874340296,
+          "1": 0.2284877089987276
+        },
+        "max_move_seconds": 0.21194316699984483,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 78,
+        "opening_seed": 940039,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8767977909737965,
+          "1": 3.534400251999614
+        },
+        "wall_seconds": 7.417195541987894,
+        "import_init_seconds": {
+          "-1": 0.22855595899454784,
+          "1": 0.0012536669964902103
+        },
+        "max_move_seconds": 0.20020704201306216,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 79,
+        "opening_seed": 940039,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.878293917965493,
+          "1": 3.528291125985561
+        },
+        "wall_seconds": 7.412590041989461,
+        "import_init_seconds": {
+          "-1": 0.001213791998452507,
+          "1": 0.22840304199780803
+        },
+        "max_move_seconds": 0.20028162500238977,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 80,
+        "opening_seed": 940040,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.0301854149875,
+          "1": 3.895089121957426
+        },
+        "wall_seconds": 7.930721124997945,
+        "import_init_seconds": {
+          "-1": 0.22842600099102128,
+          "1": 0.0011884999985340983
+        },
+        "max_move_seconds": 0.2002212499937741,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 81,
+        "opening_seed": 940040,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.046631670018542,
+          "1": 4.027504163997946
+        },
+        "wall_seconds": 8.07979504200921,
+        "import_init_seconds": {
+          "-1": 0.0012150419934187084,
+          "1": 0.22840045900375117
+        },
+        "max_move_seconds": 0.20019575000333134,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 82,
+        "opening_seed": 940041,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8381627059716266,
+          "1": 3.8278705859847832
+        },
+        "wall_seconds": 7.6717135420039995,
+        "import_init_seconds": {
+          "-1": 0.22842429298907518,
+          "1": 0.0012113749835407361
+        },
+        "max_move_seconds": 0.20019912499992643,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 83,
+        "opening_seed": 940041,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.7306861660035793,
+          "1": 3.71039016796567
+        },
+        "wall_seconds": 7.446532208996359,
+        "import_init_seconds": {
+          "-1": 0.0012221669894643128,
+          "1": 0.22840287600411102
+        },
+        "max_move_seconds": 0.2002013749879552,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 84,
+        "opening_seed": 940042,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8662062480143504,
+          "1": 3.7135458739940077
+        },
+        "wall_seconds": 7.585105374993873,
+        "import_init_seconds": {
+          "-1": 0.22842858399963006,
+          "1": 0.0011889169836649671
+        },
+        "max_move_seconds": 0.2002106659929268,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 85,
+        "opening_seed": 940042,
+        "a_color": 1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.053565748981782,
+          "1": 3.8588040830363752
+        },
+        "wall_seconds": 7.9180320000014035,
+        "import_init_seconds": {
+          "-1": 0.0012145839864388108,
+          "1": 0.2284001670050202
+        },
+        "max_move_seconds": 0.20019925000087824,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 86,
+        "opening_seed": 940043,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8798705440567574,
+          "1": 3.7503685409901664
+        },
+        "wall_seconds": 7.6398853749997215,
+        "import_init_seconds": {
+          "-1": 0.22867570900416467,
+          "1": 0.001334332991973497
+        },
+        "max_move_seconds": 0.20247445900167804,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 87,
+        "opening_seed": 940043,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.7250884170352947,
+          "1": 3.647548627050128
+        },
+        "wall_seconds": 7.379407166998135,
+        "import_init_seconds": {
+          "-1": 0.0012483329919632524,
+          "1": 0.22841208399040624
+        },
+        "max_move_seconds": 0.20039037500100676,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 88,
+        "opening_seed": 940044,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.039006503968267,
+          "1": 3.8815196649666177
+        },
+        "wall_seconds": 7.9263769579993095,
+        "import_init_seconds": {
+          "-1": 0.22844216700468678,
+          "1": 0.0012014169915346429
+        },
+        "max_move_seconds": 0.20022829099616501,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 89,
+        "opening_seed": 940044,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.96703979097947,
+          "1": 3.884026458967128
+        },
+        "wall_seconds": 7.857978416999686,
+        "import_init_seconds": {
+          "-1": 0.0012280419905437157,
+          "1": 0.2284016259945929
+        },
+        "max_move_seconds": 0.20032454199099448,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 90,
+        "opening_seed": 940045,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8337761279399274,
+          "1": 3.701963288040133
+        },
+        "wall_seconds": 7.542795417000889,
+        "import_init_seconds": {
+          "-1": 0.22842362499795854,
+          "1": 0.0011905419960385188
+        },
+        "max_move_seconds": 0.20029629100463353,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 91,
+        "opening_seed": 940045,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.7257251250121044,
+          "1": 3.675897084962344
+        },
+        "wall_seconds": 7.415026707996731,
+        "import_init_seconds": {
+          "-1": 0.003924541990272701,
+          "1": 0.22993045899784192
+        },
+        "max_move_seconds": 0.20061533300031442,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 92,
+        "opening_seed": 940046,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.9647881249402417,
+          "1": 3.817553876026068
+        },
+        "wall_seconds": 7.788202292009373,
+        "import_init_seconds": {
+          "-1": 0.228422750995378,
+          "1": 0.0011868759902426973
+        },
+        "max_move_seconds": 0.20031387500057463,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 93,
+        "opening_seed": 940046,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 4.026633666973794,
+          "1": 3.94490133295767
+        },
+        "wall_seconds": 7.97737625001173,
+        "import_init_seconds": {
+          "-1": 0.001209875990753062,
+          "1": 0.22841108399734367
+        },
+        "max_move_seconds": 0.2001759580016369,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 94,
+        "opening_seed": 940047,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8548249599989504,
+          "1": 3.7679654989769915
+        },
+        "wall_seconds": 7.628687709002406,
+        "import_init_seconds": {
+          "-1": 0.22844104199612048,
+          "1": 0.0011964169971179217
+        },
+        "max_move_seconds": 0.20032124999852385,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 95,
+        "opening_seed": 940047,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.701632993950625,
+          "1": 3.609410166973248
+        },
+        "wall_seconds": 7.317020208007307,
+        "import_init_seconds": {
+          "-1": 0.0012753339833579957,
+          "1": 0.22846041699813213
+        },
+        "max_move_seconds": 0.2002127500018105,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 96,
+        "opening_seed": 940048,
+        "a_color": -1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.915042791995802,
+          "1": 3.7758303309528856
+        },
+        "wall_seconds": 7.697194292006316,
+        "import_init_seconds": {
+          "-1": 0.22844637600064743,
+          "1": 0.00121854200551752
+        },
+        "max_move_seconds": 0.20027716700860765,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 97,
+        "opening_seed": 940048,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.911998916955781,
+          "1": 3.757588580949232
+        },
+        "wall_seconds": 7.6756548340054,
+        "import_init_seconds": {
+          "-1": 0.0012125839857617393,
+          "1": 0.22841220899135806
+        },
+        "max_move_seconds": 0.20026383399090264,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 98,
+        "opening_seed": 940049,
+        "a_color": -1,
+        "winner": 1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.8563305839779787,
+          "1": 3.669066667018342
+        },
+        "wall_seconds": 7.531784708000487,
+        "import_init_seconds": {
+          "-1": 0.22841750099905767,
+          "1": 0.0011885839921887964
+        },
+        "max_move_seconds": 0.2002719580050325,
+        "soft_limit_overruns": 0
+      },
+      {
+        "game": 99,
+        "opening_seed": 940049,
+        "a_color": 1,
+        "winner": -1,
+        "reason": "normal",
+        "used": {
+          "-1": 3.6594881289929617,
+          "1": 3.65653362798912
+        },
+        "wall_seconds": 7.322646917004022,
+        "import_init_seconds": {
+          "-1": 0.0012259579816600308,
+          "1": 0.2284126680024201
+        },
+        "max_move_seconds": 0.20028454100247473,
+        "soft_limit_overruns": 0
+      }
+    ],
+    "games": 100,
+    "wins": 48,
+    "draws": 10,
+    "losses": 42,
+    "score": 0.53,
+    "paired_ci95": [
+      0.47,
+      0.595
+    ],
+    "by_color": {
+      "black": {
+        "win": 28,
+        "loss": 18,
+        "draw": 4
+      },
+      "white": {
+        "win": 20,
+        "loss": 24,
+        "draw": 6
+      }
+    },
+    "reasons": {
+      "normal": 100
+    },
+    "max_move_seconds": 0.22417237500485498,
+    "max_side_seconds": 4.111478418009938,
+    "seconds": 768.7645672500075,
+    "complete": true
+  },
+  "selection_policy": {
+    "screen_games_per_candidate": 40,
+    "screen_seconds_per_search": 0.04,
+    "screen_seed": 920000,
+    "minimum_screen_score_for_independent_confirmation": 0.55,
+    "candidate_selection": "Highest screening score among eligible candidates; screening is exploratory and not promotion evidence.",
+    "confirmation_games": 100,
+    "confirmation_seconds_per_search": 0.2,
+    "confirmation_seed": 940000,
+    "promotion": "All correctness/resource checks; completed100-game fresh confirmation and paired95% CI lower bound strictly greater than0.5. Longer-budget sanity is separately reported, not statistically powered.",
+    "fallback": "Do not adopt new weights if no candidate qualifies; keep v14 weights. Exact-preserving kernel speedup can be assessed on equivalent scores and measured execution time.",
+    "ordering_probe": "One predeclared variant only: evaluate child positions for interior sorting atdepth>=5, TT move first; validate exact full-window scores on freshfixtures before screening.",
+    "optional_exact_only_diagnostic": "If the ordering screen does not qualify, test just exact-fitted17\u201319 rows once on fresh922000 seeds; preserve20+. No additional ridge/hyperparameter sweep.",
+    "ordering_screen_seconds": 0.08,
+    "ordering_screen_seed": 930000,
+    "frozen_confirmation_candidate": "artifacts/codex_round5/confirmation_candidate.py",
+    "candidate_sha256": "3affe147592c163b8fdbc7d5b1413dc64ce97af2dd4ea60cb4722dd09cf906f3",
+    "selection_reason": "Exact-only17\u201319 diagnostic cleared exploratory55%screen. No other strategy candidate qualified. Combine only exact-preserving kernel changes already equality-checked.",
+    "primary_control": "base_v14.py",
+    "confirmation_source_frozen_unless_correctness_bug": true,
+    "secondary_trials_planned": [
+      {
+        "opponent": "v14",
+        "games": 12,
+        "seconds": 0.8,
+        "seed": 950000,
+        "role": "longer-budget sanity, not a statistically powered4s claim"
+      },
+      {
+        "opponent": "v13",
+        "games": 12,
+        "seconds": 0.2,
+        "seed": 960000,
+        "role": "historical cross-check"
+      },
+      {
+        "opponent": "v12",
+        "games": 12,
+        "seconds": 0.2,
+        "seed": 961000,
+        "role": "historical cross-check"
+      }
+    ],
+    "compute_budget_accounting": "45min maximum cumulative single-process fitting/benchmark/match runtime; record each phase duration. Do not reset allowance for a new stage."
+  },
+  "strategy_accepted": false,
+  "secondary_matches_skipped_reason": "The independent primary100-game confidence interval crosses0.5, so the new weights are not adopted. No additional transfer matches were used to rescue the claim.",
+  "fast_feature_equivalence": {
+    "edge_oracle_and_random_checks": 21024,
+    "full_evaluation_checks": 6156,
+    "score_node_cache_comparisons": 1152,
+    "resumed_searches": 496,
+    "independent_adjacency_checks": 1000,
+    "fixed_depth_values_and_nodes_equal": true
+  },
+  "fast_feature_benchmark": {
+    "fresh_positions": 12,
+    "depth": 10,
+    "repeats_per_engine": 2,
+    "overall_time_ratio": 0.9880256316238684,
+    "fitted_leaf_phase_time_ratio": 0.9506793677184676,
+    "limitation": "Small fixed-depth CPU samples; no statistically powered playing-strength claim for the kernel-only optimization."
+  },
+  "regression": [
+    {
+      "test": "tools/lint_submission.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 0.4368031249905471,
+      "stdout": "lint OK\n",
+      "stderr": ""
+    },
+    {
+      "test": "tools/check_engine.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 17.78359749999072,
+      "stdout": "OK: 40 games, 2494 positions, engine matches the reference\nfallbacks=0; warmup_failures=0; self_play=False\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_search.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 2.1990126249875175,
+      "stdout": "OK: alphabeta == minimax on 192 (position, depth) pairs\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_resumption.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 1.2549717090005288,
+      "stdout": "OK: 144 resumable-search comparisons; bounded endgame fallback\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_interface.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 1.7857935409992933,
+      "stdout": "OK: 492 interface cases, array/list/dtype/view/size/pass checks\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_fallback.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 1.169710665999446,
+      "stdout": "OK: search/engine fallback and debug exception propagation\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_terminal.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 1.1723265420005191,
+      "stdout": "OK: 9 explicit pass/horizon/terminal checks\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_arena_limits.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 0.3499509590037633,
+      "stdout": "OK: independent 180-second player budgets and separate 5-second startup\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_variants.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 2.494891374997678,
+      "stdout": "OK: /Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py; 72 TT/feature/minimax comparisons; TT 6.00 MiB\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_advanced_search.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 1.7375806250056485,
+      "stdout": "OK: 48 PVS/TT window+resume checks and weight-cache invalidation\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_pvs_inline.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 4.403648209001403,
+      "stdout": "OK: 1024 same-tree, 2048 PVS value/bound, 32 root-PVS/slice checks; 196 deadline runs (138 cut inside null windows, 4 inside re-searches)\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_eval_table.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/candidate_fast_features.py",
+      "exit_code": 0,
+      "seconds": 1.2314815419958904,
+      "stdout": "OK: per-empties table layout; 112 legacy-equivalence and row-isolation checks\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_search.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/confirmation_candidate.py",
+      "exit_code": 0,
+      "seconds": 2.1408054580097087,
+      "stdout": "OK: alphabeta == minimax on 192 (position, depth) pairs\n",
+      "stderr": ""
+    },
+    {
+      "test": "tests/test_eval_table.py",
+      "source": "/Users/justinfan7777777/Projects/Reversed Reversi/artifacts/codex_round5/confirmation_candidate.py",
+      "exit_code": 0,
+      "seconds": 1.2125868330040248,
+      "stdout": "OK: per-empties table layout; 112 legacy-equivalence and row-isolation checks\n",
+      "stderr": ""
+    }
+  ],
+  "startup_log": "import 0.09s | __init__ 0.92s | 1st go 4.00s | 2nd go 4.00s | total before 2nd go 5.01s",
+  "timing_stress": [
+    {
+      "ply": 12,
+      "branching": 12,
+      "slow": false,
+      "seconds": 4.000127917010104,
+      "depth": 13,
+      "nodes": 52281621,
+      "solved": false
+    },
+    {
+      "ply": 24,
+      "branching": 13,
+      "slow": false,
+      "seconds": 4.000155500005349,
+      "depth": 13,
+      "nodes": 50862384,
+      "solved": false
+    },
+    {
+      "ply": 36,
+      "branching": 19,
+      "slow": false,
+      "seconds": 4.0001091660087695,
+      "depth": 14,
+      "nodes": 46185549,
+      "solved": false
+    },
+    {
+      "ply": 48,
+      "branching": 10,
+      "slow": false,
+      "seconds": 0.007914083005744033,
+      "depth": 12,
+      "nodes": 121975,
+      "solved": true
+    },
+    {
+      "ply": 50,
+      "branching": 8,
+      "slow": false,
+      "seconds": 0.0020238750003045425,
+      "depth": 10,
+      "nodes": 27532,
+      "solved": true
+    },
+    {
+      "ply": 52,
+      "branching": 7,
+      "slow": false,
+      "seconds": 0.00035604200093075633,
+      "depth": 8,
+      "nodes": 2998,
+      "solved": true
+    },
+    {
+      "ply": 54,
+      "branching": 5,
+      "slow": false,
+      "seconds": 0.0001269589993171394,
+      "depth": 6,
+      "nodes": 548,
+      "solved": true
+    },
+    {
+      "ply": 12,
+      "branching": 12,
+      "slow": true,
+      "seconds": 4.000520167013747,
+      "depth": 11,
+      "nodes": 4140362,
+      "solved": false
+    },
+    {
+      "ply": 24,
+      "branching": 13,
+      "slow": true,
+      "seconds": 4.001555334005388,
+      "depth": 10,
+      "nodes": 3318652,
+      "solved": false
+    },
+    {
+      "ply": 36,
+      "branching": 19,
+      "slow": true,
+      "seconds": 4.000645416002953,
+      "depth": 10,
+      "nodes": 3080011,
+      "solved": false
+    },
+    {
+      "ply": 48,
+      "branching": 10,
+      "slow": true,
+      "seconds": 0.17357183400599752,
+      "depth": 12,
+      "nodes": 121975,
+      "solved": true
+    },
+    {
+      "ply": 50,
+      "branching": 8,
+      "slow": true,
+      "seconds": 0.038422625002567656,
+      "depth": 10,
+      "nodes": 27532,
+      "solved": true
+    },
+    {
+      "ply": 52,
+      "branching": 7,
+      "slow": true,
+      "seconds": 0.005504834000021219,
+      "depth": 8,
+      "nodes": 2998,
+      "solved": true
+    },
+    {
+      "ply": 54,
+      "branching": 5,
+      "slow": true,
+      "seconds": 0.0019650829926831648,
+      "depth": 6,
+      "nodes": 548,
+      "solved": true
+    }
+  ],
+  "platform_batch04": {
+    "games": 18,
+    "wins": 9,
+    "draws": 1,
+    "losses": 8,
+    "black": [
+      5,
+      0,
+      4
+    ],
+    "white": [
+      4,
+      1,
+      4
+    ],
+    "score": 0.5277777777777778,
+    "only_v3_v4_shared_opponent": "opp14",
+    "exact_decisions": 144,
+    "exact_outcome_errors": 0,
+    "exact_margin_errors": 0
+  },
+  "common_state_probes": "versions/platform_batch04_probe_results.json",
+  "limitations": [
+    "0.2-second confirmation is not proof at the formal4-second budget.",
+    "Fitted20+labels imitate a learned teacher, not exact game-theoretic values.",
+    "Only two platform games match v3 and v4 by opponent and color; opponent AI versions are unknown.",
+    "The30-empty common-state probe remains unproven.",
+    "Fast-feature snapshots are experimental and have not been submitted to the platform."
+  ],
+  "recorded_fit_and_match_seconds": 1105.3952962090116,
+  "max_stress_move_seconds": 4.001555334005388,
+  "fast_feature_selfplay": {
+    "source": "versions/v15_fast_features_candidate_ai.py",
+    "games": 200,
+    "positions": 12451,
+    "fallbacks": 0,
+    "warmup_failures": 0,
+    "seconds": 43.60758529198938,
+    "stdout": "OK: 200 games, 12451 positions, engine matches the reference\nfallbacks=0; warmup_failures=0; self_play=True\nElapsed seconds 43.60758529198938"
+  },
+  "fast_feature_memory": {
+    "source": "versions/v15_fast_features_candidate_ai.py",
+    "units": "MiB; rounded to one decimal by the existing benchmark",
+    "baseline": 69.9,
+    "import_growth": 3.0,
+    "init_growth": 71.1,
+    "after_init": 144.1,
+    "after_30_own_moves": 144.1,
+    "counted_delta": 0.0,
+    "counted_peak_delta": 0.0,
+    "caveat": "One local run. RSS includes the Python/NumPy/Numba baseline; the course benchmark counts growth after initialization.",
+    "stdout": "baseline (python+numpy+numba)   :    69.9 MB\nimport ai.py growth             :    +3.0 MB\n__init__ growth (JIT warm-up)   :   +71.1 MB   (before the reference point)\nmem_after_init (reference)      :   144.1 MB\nmem_after_30_moves              :   144.1 MB\nCOUNTED delta                   :    +0.0 MB   (limit 100)\nCOUNTED peak delta              :    +0.0 MB   (limit 100)"
+  },
+  "validation_status": "Completed. All required checks passed; primary strength acceptance failed. Active ai.py remains v14.",
+  "compute_accounting": {
+    "allowance_seconds": 2700,
+    "workers": 1,
+    "recorded_fit_and_match_seconds": 1105.3952962090116,
+    "recorded_regression_seconds": 39.37316070898669,
+    "recorded_selfplay_seconds": 43.60758529198938,
+    "caveat": "The fit/match total excludes separately executed short regression, timing, memory, equivalence and replay diagnostics. Overall measured local computation was approximately 21 minutes, below the authorized 45-minute ceiling; this is not chat wall-clock time."
+  }
+}
