@@ -21,6 +21,11 @@ Updated: 2026-10-22 (Asia/Shanghai)
   `tools/bench_node_rate.py` from the main repo, and give `tools/bench_timing.py` a
   `--json` under `artifacts/claude_round10/` so runs do not overwrite each other.
   Run `tools/run_paired_trial.py` without `-I` (it imports `arena` from `tools/`).
+- Stage B: `tools/run_stage_b10.py CANDIDATE FIT --out-dir DIR` runs all of it (suite in a
+  repo copy with `--frozen`, startup, memory, timing, node rate) and writes stage_b.json.
+  Smoke-tested on a synthetic-label P0 build: suite 19/19, memory +2.4 MB, timing and
+  node rate pass; startup failed only from load (v18 itself 2.4 s with the 8 labelling
+  workers running, P0 +7%), so Stage B runs on an idle machine.
 - Stage C mechanics (fixed before any Stage C data): `tools/run_stage_c10.py` runs the
   plan and `tools/pool_paired.py` pools and gates it (dry run: all three stages, FAILED
   when the short gate fails). `tools/run_paired_trial.py` now saves a game lost at
