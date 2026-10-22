@@ -790,3 +790,44 @@ behavior of the normal timed search and not full-game wins or losses.
   the opening/midgame rows (20-64) are still v14's.
 - Next: the same recipe one bucket further out (rows 20-24, labels by exact outcome or
   bootstrapped search), or patterns with more data at rows 10-19.
+
+## Round 9 — richer patterns and more data at rows 10-19 (Claude), 2026-10-22
+
+### Decision
+
+- **Stage A gate failed; v18 retained.** Record: `versions/round9_validation.json`,
+  protocol `versions/round9_protocol.md` (frozen before any fit).
+
+### Change tested
+
+- 3,000 new self-play games (seeds 20000000+) added to Round 8's 3,000 (all train).
+  Shape sets: P0 = v18's shapes; P1 = P0 + 2x5 corner (8 instances); P2 = P1 + the inner
+  lines 2-4 of each side and the diagonals of length 4-8. Fit `tools/fit_patterns9.py`,
+  build `tools/build_v19.py` (int8 tables; scale restricted to int8-feasible values).
+
+### Results
+
+- Validation ranking: v18 0.881, P0 0.888, P1 0.889, P2 0.893 -> P2 chosen.
+- Test (new games, opened once): frozen P2 0.8976 vs v18 0.8894, +0.81 points; a refit run
+  gave +0.85 [+0.53, +1.17]. Required: +1.0 with interval excluding 0. Failed.
+- Shapes at 10-19 empties are saturating: Round 8 +3.2 points, Round 9 +0.8.
+- Caveat: the ridge solver is not bit-reproducible across runs (threaded floating point,
+  about 4% of table entries differ); the decision uses the frozen model.
+
+## Platform batch 05 — v18, and the effective platform budget, 2026-10-22
+
+- 20 games (games 41-50, both colours): 7W/3D/10L. Same opponent and colour as v14's
+  batch: net +10 points. Still lost both colours to opp14 and opp24.
+- W/D/L audit (`artifacts/platform_batch05/wld_audit_v18.json`): every loss was already
+  lost at the earliest audited position (18-25 empties). One missed win: game 45 black vs
+  opp15, 18 empties, played (7,6) (draw), (7,5) wins. Locally v18 solves it at 4 s (3.57 s, 53.6M nodes) but not at <= 2 s.
+- Budget fingerprint (`tools/budget_fingerprint.py`: replay each game with one engine per
+  budget, table kept across moves, compare with the platform move), 577 decisions:
+
+| Budget (this Mac) | 0.25 s | 0.5 s | 1 s | 2 s | 4 s |
+|---|---:|---:|---:|---:|---:|
+| Same move as platform | 80.4% | 83.9% | 92.9% | 97.6% | 86.3% |
+
+- The platform's 4 s move equals about **2 s here** (slower or shared CPU). Promotion
+  matches should therefore weight 1-2 s; exact endgame solving starts about two plies
+  later than local 4 s tests suggest, and the middlegame leaves fall at about 20-27 empties.

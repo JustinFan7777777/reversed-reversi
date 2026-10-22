@@ -1,0 +1,53 @@
+{
+ "date": "2026-10-22",
+ "branch": "claude/v18-patterns",
+ "base_commit": "db7ada3",
+ "protocol": "versions/round9_protocol.md",
+ "protocol_sha256": "e22ecffc98918ecf4ccce072a0085a3cd2e630817435ebec4ca4c8f67ec38b7f",
+ "active_submission": "ai.py == versions/v18_patterns_candidate_ai.py (unchanged)",
+ "fit_frozen_sha256": "e108bfe5bc3e4382e004aae1150898229ae3f176a0318134ea23076851931497",
+ "strategy_accepted": false,
+ "decision": "Stage A gate failed (+0.81 points on test vs the required +1.0); v18 retained; Stages B-C not run.",
+ "data": {
+  "games": 3000,
+  "seed_base": 20000000,
+  "positions_train(incl. validation)_validation_test": [
+   52790,
+   4570,
+   5710
+  ],
+  "plus_round8_games_as_train": true
+ },
+ "selection": {
+  "P0": {
+   "validation": 0.8882687192152029,
+   "v18_validation": 0.8812179103508783
+  },
+  "P1": {
+   "validation": 0.8892210449943864,
+   "v18_validation": 0.8812179103508783
+  },
+  "P2": {
+   "validation": 0.8932708420238801,
+   "v18_validation": 0.8812179103508783
+  }
+ },
+ "chosen_set": "P2",
+ "test_frozen_model": {
+  "model": 0.8976,
+  "v18": 0.8894,
+  "diff": 0.0081,
+  "note": "frozen model of fit_frozen.json scored on test once"
+ },
+ "test_refit_run": {
+  "model": 0.8973247208825814,
+  "v18": 0.888866728382653,
+  "diff": 0.008457992499928402,
+  "diff_ci95": [
+   0.005250629200020904,
+   0.011720426773559039
+  ],
+  "gate_pass": false
+ },
+ "caveat": "ridge_cg refits are not bit-reproducible (about 4% of table entries differ between runs, threaded floating point); the gate decision uses the frozen model."
+}
