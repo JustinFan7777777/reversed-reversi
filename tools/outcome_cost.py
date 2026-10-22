@@ -1,6 +1,6 @@
 """Round 7: median node cost of a complete outcome-only root solve per empties count.
 
-    .venv/bin/python -I tools/outcome_cost.py ENGINE --data artifacts/claude_round7/train_w*.json \
+    .venv/bin/python -I tools/outcome_cost.py ENGINE --data artifacts/claude_round7/pos_train_w*.json \
         --per-empties 40 --cap 200000000 --worker J --workers K --out PART.json
     .venv/bin/python -I tools/outcome_cost.py --merge PART.json ... --out TABLE.json
 
@@ -11,6 +11,7 @@ min(8, empties - 1) for the move order, then the engine's own _outcome_root with
 limit but a node cap (a clock shim reports the deadline as passed once the cap is
 reached). Only the outcome solve's nodes count. A capped solve is censored; the median is
 reported as the cap when at least half of an empties count is censored.
+(Round 7 data is archived: run `tar -xJkf artifacts/archive_history.tar.xz` from the repo root first.)
 """
 import argparse
 import importlib.util

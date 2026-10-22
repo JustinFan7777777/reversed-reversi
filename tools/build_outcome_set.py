@@ -1,7 +1,7 @@
 """Round 7 positions with the exact outcome of every legal move (versions/round7_protocol.md).
 
     .venv/bin/python -I tools/build_outcome_set.py --split train --seed-base 13000000 \
-        --games 200 --worker 0 --workers 6 --out artifacts/claude_round7/train_w0.json [--probes]
+        --games 200 --worker 0 --workers 6 --out artifacts/claude_round7/pos_train_w0.json [--probes]
 
 Self-play with the frozen v14 snapshot: v14 search at 10 ms per move, eight random opening
 plies, then a random move with probability 0.1 (seeded per game: seed-base + game id). One
@@ -13,6 +13,7 @@ With --probes (training only), one extra unlabelled position per empties count 1
 for measuring solve costs. With --no-labels (protocol revision 1) positions are kept
 without solving any move. Outcomes are from the side to move: 1 win, 0 draw, -1 loss.
 The output is rewritten after every game, so an interrupted run keeps finished games.
+(Round 7 data is archived: run `tar -xJkf artifacts/archive_history.tar.xz` from the repo root first.)
 """
 import argparse
 import importlib.util

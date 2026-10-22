@@ -3,14 +3,14 @@
 Single-file submission for the Fall 2026 Project 1. Fewer own discs wins.
 Only `ai.py` is uploaded. Course PDFs are excluded from Git.
 
-Platform baseline v05 passed **10/10 usability cases** and supplied 20 verified
-match traces. User confirmed that Round 2 v12 also passed all 10 usability cases,
-earned the 10 basic points, and remained fixed throughout its new 20-game batch.
-The accepted baseline remains in `versions/v05_platform_passed_ai.py`.
-The working `ai.py` is Round 4 v14: Round 3 v13 (PVS at all levels, inline leaf
-evaluation) plus end-phase weights fitted on exact labels. v13 and then v14 were
-uploaded on 2026-10-21 and each passed all 10 usability cases (user report); v14 is
-the platform submission.
+Every uploaded version passed **10/10 usability cases** (user reports): v05 and
+v12 (2026-10-20), v13 and v14 (2026-10-21), and v18 (2026-10-22). The working and
+uploaded `ai.py` is **v18** (sha256 7bb4ed79, equal to
+`versions/v18_patterns_candidate_ai.py`): v14's search and fitted end rows plus
+shape-pattern tables on rows 10-19 (Round 8). Round 10, patterns on rows 20-22 and the
+final planned round, is in progress; see `RESEARCH_STATUS.md`. Deadlines: Phase 1
+(usability) 2026-10-23 23:59, Phase 2 (round-robin) 2026-11-06 23:59. The first
+platform-accepted baseline is kept in `versions/v05_platform_passed_ai.py`.
 
 ## Environment
 
@@ -22,7 +22,31 @@ uv pip install --python .venv/bin/python -r requirements.txt
 ```
 
 VS Code uses `.venv/bin/python`. A project-local `.python/` interpreter was installed
-for this checkout; both it and `.venv/` are ignored by Git.
+for this checkout; both it and `.venv/` are ignored by Git. `.venv/bin/python` is a
+symlink into `.python/`, so `.python/` must not be deleted.
+
+## Repository layout
+
+- `ai.py`: the submission (v18); only this file is uploaded.
+- `versions/`: frozen engine snapshots `v00`-`v18` (platform-accepted: v05, v12, v13,
+  v14, v18; the others are candidates and rejected experiments), round protocols
+  (`roundN_protocol.md`), validation records (`roundN_validation.json`) and platform
+  batch analyses.
+- `tools/` (data, fitting, benchmark and match scripts) and `tests/` (correctness
+  checks, run by the Validate list below). Keep both folders flat: every script finds
+  the repo as `Path(__file__).resolve().parent.parent` and imports siblings by name.
+- `artifacts/` (ignored by Git): `claude_round8/`, `claude_round9/`, `claude_round10/`
+  (live Round 10 data), `platform_batch05/`, and `platform_logs/`: every downloaded
+  platform replay, one zip per upload (`batch01_v05` ... `batch05_v18`, games 01-50,
+  readable by `tools/analyze_replays.py`). Replays name other students' IDs, so they stay
+  out of Git. Everything older, including the
+  Round 4 raw data behind v14 and Codex's Round 0-6 outputs, is packed in
+  `artifacts/archive_history.tar.xz` with a manifest. Restore it from the repo root
+  with `tar -xJkf artifacts/archive_history.tar.xz` (`-k` never overwrites newer files).
+- `NOTES.md`: full research log. `RESEARCH_STATUS.md`: Claude/Codex handoff and the
+  active protocol. `SUBMISSION_CHECKLIST.md`: platform checklist.
+- `Project Requirements/`: course PDFs (ignored by Git; only `2026Fall人工智能PROJECT1.pdf`
+  is binding, the others are lecture references).
 
 ## Validate
 
@@ -86,6 +110,12 @@ Round 4 replaces the end-phase row with one row per empties count 1-16, fitted b
 ridge regression on exact final margins from 1,200 self-play games. Against v13 over
 100 paired games each, v14 scored 0.635 at 0.4 s and at 0.8 s (CIs above 0.5) and
 0.565 at 2 s (CI [0.50, 0.63], inconclusive); the real 4 s budget is unmeasured.
+Round 8 adds shape-pattern tables (edge plus both X squares, 3^10; 3x3 corner, 3^9) to
+rows 10-19, fitted on exact margins of 24,000 self-play positions (6,000 more held out
+for the test): +3.2 ranking points offline, 0.55 against v14 over 200 paired games at 0.4/0.8 s (CI [0.515, 0.588]) and
+0.61 at 2 s; this is v18. Round 7 (outcome-first endgame solve) and Round 9 (richer
+patterns on rows 10-19) failed their pre-registered gates. Replaying v18's platform
+games shows the platform's 4 s move matches about 2 s on the development machine.
 Non-8x8 boards use an independent generic legal-move engine and a greedy choice.
 
 Instructor-confirmed timing rules: startup has its own 5 seconds, every move has
@@ -108,14 +138,17 @@ See `NOTES.md` and `versions/round2_experiment_report.json` for all settings/res
 2. After the upload passes, use `playto` against several opponents and inspect replays.
 3. Return timeout/error messages and downloaded replays for local reproduction.
    The platform does not expose match timing telemetry to the user.
-4. Keep a stable passing upload before October 23, 2026 at 23:59.
+4. Keep a stable passing upload before October 23, 2026 at 23:59 (Phase 1).
+5. Upload a successor only after Phase 1 has closed, confirm 10/10 again, and use
+   `playto` before Auto Play; the upload live at November 6, 2026 23:59 plays the
+   round-robin (Phase 2).
 
 The platform must first accept an upload before practice play is available.
 Local checks do not establish platform acceptance or a round-robin rank.
 
 ## Round 5 handoff
 
-`ai.py` remains the platform-accepted **v14**. Middle-game fitting did not pass
+At the time, `ai.py` remained the platform-accepted **v14**. Middle-game fitting did not pass
 independent confirmation: 48 wins / 10 draws / 42 losses against v14 at equal
 0.2-second search budgets, score 53%, paired 95% CI [47%, 59.5%]. No new strategy
 was promoted. `versions/v15_mid19_experimental_ai.py` preserves that rejected-for-
@@ -133,7 +166,8 @@ This is a performance prototype, not a demonstrated playing-strength improvement
 ```
 
 `tools/fit_midgame.py` reuses the 1,200-game dataset recovered into ignored
-`artifacts/codex_round5/claude_round5_inputs/`; the raw dataset is not shipped in Git.
+`artifacts/codex_round5/claude_round5_inputs/` (now inside
+`artifacts/archive_history.tar.xz`; extract it first); the raw dataset is not shipped in Git.
 Rows 17-19 use exact labels; later rows use bootstrapped teacher labels. Pass an
 explicit `--data` directory when restoring the dataset elsewhere. The fitter and
 `tools/run_paired_trial.py` use one process and save source hashes. The match runner
@@ -145,7 +179,7 @@ after that deadline. Full records and the next-step rationale are in `NOTES.md` 
 
 Read `RESEARCH_STATUS.md` first when handing this checkout between Claude and Codex.
 The fixed experiment fitted differences between legal moves rather than absolute
-board values. It did not pass its diagnostic gates; `ai.py` remains v14.
+board values. It did not pass its diagnostic gates; `ai.py` stayed v14.
 On 23 complete fresh holdout roots, mean static-choice margin regret fell from
 3.17 to 2.78 discs, but WDL mistakes rose from one to four. This measures static
 evaluation choices, not complete matches or v14's timed search.

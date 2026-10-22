@@ -1,6 +1,6 @@
 # Phase 1 submission checklist
 
-Local validation date: 2026-10-21. **v12, v13 and v14 each passed all 10 usability cases and earned the 10 basic points (user reports); v14 is uploaded.**
+Local validation date: 2026-10-22. **v12, v13, v14 and v18 each passed all 10 usability cases (user reports); v18 is uploaded (since 2026-10-22).**
 Baseline `versions/v05_platform_passed_ai.py` passed all 10 cases on 2026-10-20.
 
 - [x] Single `ai.py`; class `AI` and required signatures preserved.
@@ -17,12 +17,12 @@ Baseline `versions/v05_platform_passed_ai.py` passed all 10 cases on 2026-10-20.
 - [x] Baseline upload: user reported "Upload success, usability test pass, you have pass all 10 test cases" on 2026-10-20; 20 complete match traces verified.
 - [x] User confirmed separate 5-second startup, 5 seconds per move, and 180 seconds per side.
 - [x] Round 2: 72 TT/minimax comparisons, 48 bound/resume checks, and 139 exact platform-position oracles passed.
-- [x] Upload the current Round 2 `ai.py` and confirm all 10 usability cases again (user report).
+- [x] Upload Round 2's `ai.py` (v12) and confirm all 10 usability cases again (user report).
 - [x] Use `playto` to validate the new version: 20 complete traces from 10 opponents, 11 wins / 3 draws / 6 losses.
-- [ ] Keep a stable passing submission before 2026-10-23 23:59 (v14 passing since 2026-10-21).
+- [ ] Keep a stable passing submission through 2026-10-23 23:59 (v18 passing since 2026-10-22); upload nothing new before Phase 1 closes.
 
 Local timing and memory observations are in `NOTES.md`. Usability acceptance of all
-four uploads (v05, v12, v13, v14) is confirmed by user reports; final course rank
+five uploads (v05, v12, v13, v14, v18) is confirmed by user reports; final course rank
 remains unverified.
 
 ## Round 3 v13 (Phase 2 candidate, validated locally)
@@ -41,5 +41,21 @@ remains unverified.
 - [x] Matches vs v13, 100 paired games each: 0.635 at 0.4 s and 0.8 s (CIs above 0.5); 0.565 at 2 s (CI [0.50, 0.63], inconclusive); 4 s unmeasured.
 - [x] Startup about 1.0 s; maximum stress move 4.0005 s; import+init growth 63.5-77.1 MB over two runs (v13 74.0-76.9 MB); play peak delta at most +0.1 MB.
 - [x] Uploaded 2026-10-21; all 10 usability cases passed (user report).
-- [ ] Paired platform comparison: v14 against the batch 03 opponents with the same colours; keep the replays.
-- [ ] If v14 does worse on the platform, roll back to `versions/v13_round3_pvs_inline_ai.py`.
+- [x] Platform batch 04 recorded with v14 (NOTES.md); superseded by Round 8.
+- [x] Rollback item superseded: v18 replaced v14, and v18's rollback target is `versions/v14_round4_fitted_end_ai.py`.
+
+## Round 8 v18 (shape patterns on rows 10-19)
+
+- [x] Pattern tables (edge plus both X squares, 3x3 corner) on rows 10-19, fitted on exact margins of 24,000 self-play training positions (6,000 held out); offline ranking +3.2 points [+2.7, +3.7] over v14.
+- [x] Engine equals an independent reference on 10,000 pattern-row positions; other rows equal v14; full suite 15/15 on the final bytes; node rate 0.857x v14; startup 0.09 + 1.02 s; timing stress maximum 4.003 s; tables stored as int8 to keep JIT memory at v14's level.
+- [x] Matches vs v14: 0.55 over 200 paired games at 0.4/0.8 s (CI [0.515, 0.588]) and 0.61 over 50 at 2 s.
+- [x] Uploaded 2026-10-22; all 10 usability cases passed (user report). Platform batch 05: 7W/3D/10L over 20 games; on the opponent/colour pairings v14 also played, +10 points net versus v14's results.
+
+## Before uploading a successor (Round 10, only if it passes every gate)
+
+- [ ] Wait until Phase 1 has closed (after 2026-10-23 23:59).
+- [ ] Upload the file whose sha256 matches the promoted candidate in `versions/round10_validation.json`.
+- [ ] Confirm all 10 usability cases; a rejected upload leaves v18 live.
+- [ ] Use `playto` against known opponents before Auto Play; keep the replays.
+- [ ] Roll back to `versions/v18_patterns_candidate_ai.py` if the platform shows any problem.
+- [ ] The upload live at 2026-11-06 23:59 plays the round-robin.

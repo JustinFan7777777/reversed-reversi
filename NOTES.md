@@ -1,5 +1,11 @@
 # Reversed Reversi development notes
 
+> Archive note (2026-10-22): `artifacts/` paths of Rounds 0-7 cited below (root-level logs and
+> JSON, `claude_round7/`, `codex_round5/`, `codex_round6/`, `codex_review_claude/`) now live in
+> `artifacts/archive_history.tar.xz`, together with Round 4's raw data and v18's Stage B logs.
+> Restore with `tar -xJkf artifacts/archive_history.tar.xz` from the repo root. The active
+> engine is v18 (Round 8); the status section below is the 2026-10-21 snapshot.
+
 ## Status — 2026-10-21
 
 - Source: user-supplied Claude handoff; Appendix A extracted verbatim.
@@ -66,7 +72,8 @@ Results will identify environment, seeds, budgets, W/D/L, and timing. Local chec
   Negative RSS growth reflects memory reclamation, not negative allocation.
 - Recommended conservative controls: `GAME_BUDGET_SEC=80`, `PER_MOVE_FRACTION=0.40`,
   per-search cap 2.0 s. The opponent's time and platform initialization accounting remain external facts.
-- Logs: `artifacts/m2-validation.log`, `artifacts/m2-stress.log`, `artifacts/timing.json`.
+- Logs: `artifacts/m2-validation.log`, `artifacts/m2-stress.log` (archived). The M2
+  `artifacts/timing.json` was later overwritten by a v14 timing run (2026-10-22, archived).
 
 ### Experimental candidates
 

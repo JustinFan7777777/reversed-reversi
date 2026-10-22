@@ -1,6 +1,6 @@
 # Reversed Reversi research handoff
 
-Updated: 2026-10-21 (Asia/Shanghai)
+Updated: 2026-10-22 (Asia/Shanghai)
 
 ## Active ownership
 
@@ -11,7 +11,16 @@ Updated: 2026-10-21 (Asia/Shanghai)
   **Round 10 approved and running** (the user's final round): frozen protocol with revisions
   1-3 in `versions/round10_protocol.md` (P0 patterns, linear-only fallback, Stage C
   500+500 pooled then 300 at 2 s); the section below is the original proposal.
-  Labelling started 2026-10-22 13:22 (8 workers, about 16 h; `artifacts/claude_round10/`).
+  Labelling started 2026-10-22 13:22 (8 workers; expected to finish 2026-10-23 afternoon;
+  `artifacts/claude_round10/`). Rounds 0-7 artifacts are packed in
+  `artifacts/archive_history.tar.xz` (restore with `tar -xJkf` from the repo root).
+- Round 10 execution notes (from the pipeline reviews): fit only after every
+  `old_wJ.log` ends with "worker J: 1125 records"; run Stage B's suite in a fresh repo
+  copy without `Project Requirements/`, `.venv/`, `.python/` or `artifacts/`, pass
+  `--frozen` an absolute path to `artifacts/claude_round10/fit_frozen*.json`, run
+  `tools/bench_node_rate.py` from the main repo, and give `tools/bench_timing.py` a
+  `--json` under `artifacts/claude_round10/` so runs do not overwrite each other.
+  Run `tools/run_paired_trial.py` without `-I` (it imports `arena` from `tools/`).
 - Platform evidence (NOTES.md "Platform batch 05"): the platform's 4 s move equals about
   2 s on the development Mac (97.6% move agreement at 2 s, 86% at 4 s).
 

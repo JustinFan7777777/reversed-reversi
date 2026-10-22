@@ -1,6 +1,6 @@
 """Round 7 paired benchmark: two engines choose on the same fresh positions.
 
-    .venv/bin/python -I tools/outcome_benchmark.py --data artifacts/claude_round7/holdout_w*.json \
+    .venv/bin/python -I tools/outcome_benchmark.py --data artifacts/claude_round7/pos_holdout_w*.json \
         --a versions/v14_round4_fitted_end_ai.py --b versions/v17_outcome_first_candidate_ai.py \
         --seconds 4.0 --worker J --workers K --out PART.json
 
@@ -10,6 +10,7 @@ engine goes first alternates by position. Before the first position each engine
 calibrates its node-rate estimate with a 1-second search on a fixed position with 30
 empties, as its earlier moves would in a game. Where the two moves differ,
 tools/outcome_disagree.py later solves both chosen moves exactly.
+(Round 7 data is archived: run `tar -xJkf artifacts/archive_history.tar.xz` from the repo root first.)
 """
 import argparse
 import hashlib
