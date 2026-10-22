@@ -38,7 +38,8 @@ def summarize(records):
                 losses=scores.count(0), score=float(np.mean(scores)) if scores else None,
                 paired_ci95=arena.paired_interval(scores), by_color=colors,
                 reasons=dict(Counter(r["reason"] for r in records)),
-                max_move_seconds=max((r["max_move_seconds"] for r in records), default=0),
+                # a game lost at initialization never moved, so it has no move times
+                max_move_seconds=max((r.get("max_move_seconds", 0.0) for r in records), default=0),
                 max_side_seconds=max((max(r["used"].values()) for r in records), default=0))
 
 

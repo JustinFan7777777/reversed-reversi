@@ -21,6 +21,18 @@ Updated: 2026-10-22 (Asia/Shanghai)
   `tools/bench_node_rate.py` from the main repo, and give `tools/bench_timing.py` a
   `--json` under `artifacts/claude_round10/` so runs do not overwrite each other.
   Run `tools/run_paired_trial.py` without `-I` (it imports `arena` from `tools/`).
+- Stage C mechanics (fixed before any Stage C data): `tools/run_stage_c10.py` runs the
+  plan and `tools/pool_paired.py` pools and gates it (dry run: all three stages, FAILED
+  when the short gate fails). `tools/run_paired_trial.py` now saves a game lost at
+  initialization (it has no move times) before stopping on it; a dry run under the
+  labelling load had crashed there instead (import+init 2.3-2.5 s at load 10, over 5 s
+  in a load spike). If a Stage C process stops on a non-normal game, that Stage C is
+  void. An initialization timeout with the baseline's import+init also inflated
+  (machine load) is mechanical: the whole Stage C is rerun with the same seeds into a
+  new folder on an idle machine, and the void folder is kept and reported, as is a
+  Stage C stopped by the unattended-run thermal watchdog (it pauses only the clock-free
+  labelling and fit; it terminates timed runs only at emergency temperatures). A move
+  timeout, illegal move or mutated input by the candidate fails Stage C.
 - Platform evidence (NOTES.md "Platform batch 05"): the platform's 4 s move equals about
   2 s on the development Mac (97.6% move agreement at 2 s, 86% at 4 s).
 
