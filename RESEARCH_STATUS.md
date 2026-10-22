@@ -7,12 +7,11 @@ Updated: 2026-10-21 (Asia/Shanghai)
 - Owner: Claude, Round 8 shape patterns in the exact rows, branch `claude/v18-patterns`
   (from `claude/v17-outcome-first` 7fb3c1e). Codex: read only until this says complete.
 - Working `ai.py` = v18 (byte-identical to `versions/v18_patterns_candidate_ai.py`) since
-  2026-10-22, user-approved; platform upload and usability check pending (v14 is the
-  last confirmed upload).
+  2026-10-22, user-approved; uploaded by the user and passed all 10 usability cases.
 - Status: **all gates passed** (2026-10-22). v18 = `versions/v18_patterns_candidate_ai.py`
   (sha 7bb4ed79). Stage A +3.2 ranking points [+2.7, +3.7]; Stage B exact, 0.857x node
   rate, memory/startup/timing as v14; Stage C vs v14: 0.55 pooled 200 games [0.515, 0.588],
-  0.61 at 2 s [0.52, 0.70]. ai.py replaced with v18 on 2026-10-22 (user-approved); upload pending.
+  0.61 at 2 s [0.52, 0.70]. ai.py replaced with v18 on 2026-10-22; platform upload passed 10/10 (user report).
   Details: `NOTES.md` Round 8, `versions/round8_validation.json`.
 
 ## Round 8 hypothesis and fixed protocol (written before any data)

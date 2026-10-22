@@ -749,8 +749,8 @@ behavior of the normal timed search and not full-game wins or losses.
 ### Decision
 
 - **v18 passes every gate of the frozen protocol** (`versions/round8_protocol.md`) and is
-  replaced v14 as `ai.py` on 2026-10-22 (user-approved); the platform upload and
-  usability check are pending. Record: `versions/round8_validation.json`.
+  replaced v14 as `ai.py` on 2026-10-22 (user-approved); uploaded and passed all 10
+  usability cases (user report, 2026-10-22). Record: `versions/round8_validation.json`.
 
 ### Change
 
