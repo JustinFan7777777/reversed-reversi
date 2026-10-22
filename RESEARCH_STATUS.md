@@ -8,11 +8,14 @@ Updated: 2026-10-21 (Asia/Shanghai)
 - Active upload: **v18** (`ai.py` == `versions/v18_patterns_candidate_ai.py`, sha 7bb4ed79),
   uploaded and passed 10/10 on 2026-10-22. It stays until a successor passes every gate.
 - Status: Round 9 complete, gate failed (+0.81 vs +1.0 required), v18 retained.
-  Round 10 below is a **proposal awaiting the user's approval**; no Round 10 data exists.
+  **Round 10 approved and running** (the user's final round): frozen protocol with revisions
+  1-3 in `versions/round10_protocol.md` (P0 patterns, linear-only fallback, Stage C
+  500+500 pooled then 300 at 2 s); the section below is the original proposal.
+  Labelling started 2026-10-22 13:22 (8 workers, about 16 h; `artifacts/claude_round10/`).
 - Platform evidence (NOTES.md "Platform batch 05"): the platform's 4 s move equals about
   2 s on the development Mac (97.6% move agreement at 2 s, 86% at 4 s).
 
-## Round 10 proposal: shape patterns at rows 20-22 (not yet approved)
+## Round 10 proposal: shape patterns at rows 20-22 (approved; see revisions in versions/round10_protocol.md)
 
 At the platform's effective budget (about 2 s here, depth about 13 at 30-40 empties) the
 leaves of the decisive middlegame moves fall at about 20-27 empties, where v18 still uses

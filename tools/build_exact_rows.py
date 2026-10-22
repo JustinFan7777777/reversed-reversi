@@ -6,7 +6,7 @@
 Protocol: versions/round8_protocol.md. Self-play with the frozen v14 snapshot: v14 search at
 10 ms per move, eight random opening plies, then a random move with probability 0.1
 (seeded per game: seed-base + game id). For every empties count 10-19 (up to --max-empties), the first position
-in the game whose side to move has a legal move is kept with its exact final margin
+in the game whose side to move has a legal move is kept (from --min-empties up) with its exact final margin
 (full-window solve; margin = opponent's discs - own discs at the end, > 0 wins).
 With --unlabelled-max N, positions with max-empties+1..N empties are kept with margin None.
 Split by game: game id % 5 == 0 is test. The output is rewritten after every game.
@@ -61,6 +61,7 @@ def main():
     ap.add_argument("--games", type=int, required=True)
     ap.add_argument("--worker", type=int, default=0)
     ap.add_argument("--workers", type=int, default=1)
+    ap.add_argument("--min-empties", type=int, default=10)
     ap.add_argument("--max-empties", type=int, default=19)
     ap.add_argument("--unlabelled-max", type=int, default=0)    # also keep 20..N without labels
     ap.add_argument("--out", type=Path, required=True)
@@ -81,7 +82,7 @@ def main():
                 continue
             passes = 0
             empties = 64 - bin(me | opp).count("1")
-            if empties < 10:
+            if empties < args.min_empties:
                 break
             if args.max_empties < empties <= args.unlabelled_max and empties not in seen:
                 seen.add(empties)

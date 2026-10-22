@@ -11,11 +11,18 @@
  "data": {
   "games": 3000,
   "seed_base": 20000000,
-  "positions_train(incl. validation)_validation_test": [
-   52790,
-   4570,
-   5710
-  ],
+  "positions_train(incl. validation)_validation_test": {
+   "used_by_frozen_fit": [
+    52790,
+    4570,
+    5710
+   ],
+   "complete": [
+    54000,
+    4800,
+    6000
+   ]
+  },
   "plus_round8_games_as_train": true
  },
  "selection": {
@@ -34,10 +41,18 @@
  },
  "chosen_set": "P2",
  "test_frozen_model": {
-  "model": 0.8976,
-  "v18": 0.8894,
-  "diff": 0.0081,
-  "note": "frozen model of fit_frozen.json scored on test once"
+  "positions": 6000,
+  "games": 600,
+  "model": 0.8975502161892471,
+  "v18": 0.8894162734019263,
+  "diff": 0.008133942787320825,
+  "diff_ci95": [
+   0.005116945991190119,
+   0.011041571000282377
+  ],
+  "gate_pass": false,
+  "engine_equality_checked": 858,
+  "source": "tools/score_frozen9.py (frozen fit_frozen.json, no refit, complete test set)"
  },
  "test_refit_run": {
   "model": 0.8973247208825814,
@@ -47,7 +62,11 @@
    0.005250629200020904,
    0.011720426773559039
   ],
-  "gate_pass": false
+  "gate_pass": false,
+  "note": "superseded: refit on a partial 59,190-position snapshot"
  },
- "caveat": "ridge_cg refits are not bit-reproducible (about 4% of table entries differ between runs, threaded floating point); the gate decision uses the frozen model."
+ "corrections": [
+  "2026-10-22, found by the Round 10 pipeline review: the frozen fit (fit_frozen.json, written 11:30:49) ran while 5 of the 6 data workers were still writing (finished 11:31:09-11:35:56), so it was fitted on 58,500 of the 60,000 positions. The gate was re-scored on the complete test set (6,000 positions, 600 games) with the same frozen model: +0.81 points [+0.51, +1.10], gate still failed; decision unchanged.",
+  "Retracted: 'ridge_cg refits are not bit-reproducible'. The refit run (fit_test.json) saw 59,190 positions, so its tables differed because its input differed; fits on identical input are bit-identical."
+ ]
 }

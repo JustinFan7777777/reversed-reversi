@@ -808,11 +808,17 @@ behavior of the normal timed search and not full-game wins or losses.
 ### Results
 
 - Validation ranking: v18 0.881, P0 0.888, P1 0.889, P2 0.893 -> P2 chosen.
-- Test (new games, opened once): frozen P2 0.8976 vs v18 0.8894, +0.81 points; a refit run
-  gave +0.85 [+0.53, +1.17]. Required: +1.0 with interval excluding 0. Failed.
+- Test (new games, opened once): frozen P2 0.8976 vs v18 0.8894, +0.81 points
+  [+0.51, +1.10] on all 6,000 test positions (600 games). Required: +1.0 with interval
+  excluding 0. Failed.
 - Shapes at 10-19 empties are saturating: Round 8 +3.2 points, Round 9 +0.8.
-- Caveat: the ridge solver is not bit-reproducible across runs (threaded floating point,
-  about 4% of table entries differ); the decision uses the frozen model.
+- Correction (2026-10-22, found by the Round 10 pipeline review): the frozen fit started
+  while 5 of the 6 data workers were still writing, so it saw 58,500 of the 60,000
+  positions. Re-scoring the same frozen model on the complete test set
+  (`tools/score_frozen9.py`, engine-checked) gives the numbers above; the decision is
+  unchanged. The earlier "solver is not bit-reproducible" caveat was wrong: the refit run
+  saw a different snapshot (59,190 positions); fits on identical input are identical.
+  Round 10's fitter now refuses incomplete data and records a data hash.
 
 ## Platform batch 05 — v18, and the effective platform budget, 2026-10-22
 

@@ -40,6 +40,7 @@ for this checkout; both it and `.venv/` are ignored by Git.
 .venv/bin/python tests/test_pvs_inline.py
 .venv/bin/python tests/test_eval_table.py
 .venv/bin/python tests/test_patterns.py ai.py      # Round 8 pattern engines only
+.venv/bin/python tests/test_patterns_hi.py ai.py   # Round 10 pattern engines only
 .venv/bin/python tests/test_outcome_root.py versions/v17_outcome_first_candidate_ai.py
 .venv/bin/python tools/bench_first_move.py ai.py
 .venv/bin/python tools/bench_timing.py

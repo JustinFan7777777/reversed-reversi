@@ -54,9 +54,13 @@ def main(path=None):
     if hasattr(A, "PATTERN_ROWS"):           # Round 8: rows 10-19 carry pattern-fitted weights
         assert A.PATTERN_ROWS.shape == (10, 11)
         expected[10:20] = A.PATTERN_ROWS
+    if hasattr(A, "PATTERN_ROWS_HI"):        # Round 10: rows 20-22 likewise
+        assert A.PATTERN_ROWS_HI.shape == (3, 11)
+        expected[20:23] = A.PATTERN_ROWS_HI
     assert np.array_equal(W, expected)
     legacy = expand(V13_W)
     patterns = hasattr(A, "PAT_EDGE")
+    pattern_rows = set(range(10, 20)) | (set(range(20, 23)) if hasattr(A, "PATTERN_ROWS_HI") else set())
     rng, noise, checked = random.Random(4417), np.random.default_rng(4417), 0
     for plies in (8, 24, 36, 44, 48, 52, 56):
         for _ in range(4):
@@ -64,13 +68,13 @@ def main(path=None):
             me, opp = A.board_to_bb(board, color)
             moves = np.uint64(A.legal_moves(me, opp))
             # The per-empties lookup of expanded phase rows equals the 3-row phase lookup;
-            # Round 8 engines add their shape-pattern term (rows 10-19, 65-row tables only),
+            # Round 8/10 engines add their shape-pattern term (rows 10-19 and 20-22, 65-row tables only),
             # which an all-zero 65-row table isolates.
             pattern = A.evaluate(me, opp, moves, np.zeros((65, 11), np.int64)) if patterns else 0
             assert A.evaluate(me, opp, moves, legacy) == A.evaluate(me, opp, moves, V13_W) + pattern
             empties = 64 - bin(int(me | opp)).count("1")
             for depth in (1, 2, 3, 4):
-                if not (patterns and 10 <= empties - depth <= 19):
+                if not (patterns and empties - depth in pattern_rows):
                     assert search(me, opp, depth, legacy) == search(me, opp, depth, V13_W)
                 # Row isolation: every leaf of a search has empties - depth empties (passes
                 # are free), so randomising all other rows changes neither value nor tree.

@@ -6,7 +6,8 @@
     looked up in tables parsed directly from the embedded text.
   * Every other row, and the legacy 3-row tables, give exactly v14's values (2,000
     positions over all empties counts); fixed-depth search values match unpruned minimax
-    with the candidate's evaluation (40 positions, depths 1-3).
+    with the candidate's evaluation (40 positions, depths 1-3). A Round 10 engine's rows
+    20-22 are excluded here and checked by tests/test_patterns_hi.py.
 
     python tests/test_patterns.py [path/to/candidate.py]
 """
@@ -88,15 +89,17 @@ def main():
         checked += 1
     same = 0
     legacy = np.array([[3, -1, 2, 0, 1, 2, 1, -1, 1, 0, 1]] * 3, dtype=np.int64)
+    skip = set(range(10, 20)) | (set(range(20, 23)) if hasattr(X, "PATTERN_ROWS_HI") else set())
     for n in range(2_000):
-        e = rnd.choice([e for e in range(1, 61) if not 10 <= e <= 19])
+        e = rnd.choice([e for e in range(1, 61) if e not in skip])
         board, color = position(rnd, e)
         me, opp = X.board_to_bb(board, color)
         mv = np.uint64(X.legal_moves(me, opp))
         assert int(X.evaluate(me, opp, mv, X.DEFAULT_W)) == int(V.evaluate(me, opp, mv, V.DEFAULT_W)), e
         assert int(X.evaluate(me, opp, mv, legacy)) == int(V.evaluate(me, opp, mv, legacy)), e
         same += 1
-    assert np.array_equal(np.delete(X.DEFAULT_W, range(10, 20), 0), np.delete(V.DEFAULT_W, range(10, 20), 0))
+    rows = sorted(skip)
+    assert np.array_equal(np.delete(X.DEFAULT_W, rows, 0), np.delete(V.DEFAULT_W, rows, 0))
 
     def minimax(me, opp, depth, passed=False):
         moves = X.bb_to_squares(X.legal_moves(me, opp))
