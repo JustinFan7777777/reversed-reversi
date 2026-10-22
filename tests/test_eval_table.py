@@ -45,25 +45,33 @@ def main(path=None):
     W = A.DEFAULT_W
     # Layout: one C-contiguous int64 row per empties count 0..64.
     assert W.shape == (65, 11) and W.dtype == np.int64 and W.flags["C_CONTIGUOUS"]
-    assert (W[0] == W[1]).all() and (W[1:17] == A.END_W).all()
-    middle = np.repeat(A.PHASE_W[1:2], 28, axis=0)
+    expected = np.vstack((A.END_W[:1], A.END_W, np.repeat(A.PHASE_W[1:2], 28, axis=0),
+                          np.repeat(A.PHASE_W[:1], 20, axis=0)))
     if hasattr(A, "MID_W"):
         assert A.MID_W.ndim == 2 and A.MID_W.shape[1] == 11
         assert 1 <= len(A.MID_W) <= 28
-        middle[:len(A.MID_W)] = A.MID_W
-    assert np.array_equal(W[17:45], middle) and (W[45:] == A.PHASE_W[0]).all()
+        expected[17:17 + len(A.MID_W)] = A.MID_W
+    if hasattr(A, "PATTERN_ROWS"):           # Round 8: rows 10-19 carry pattern-fitted weights
+        assert A.PATTERN_ROWS.shape == (10, 11)
+        expected[10:20] = A.PATTERN_ROWS
+    assert np.array_equal(W, expected)
     legacy = expand(V13_W)
+    patterns = hasattr(A, "PAT_EDGE")
     rng, noise, checked = random.Random(4417), np.random.default_rng(4417), 0
     for plies in (8, 24, 36, 44, 48, 52, 56):
         for _ in range(4):
             board, color = random_position(rng, plies)
             me, opp = A.board_to_bb(board, color)
             moves = np.uint64(A.legal_moves(me, opp))
-            # The per-empties lookup of expanded phase rows equals the 3-row phase lookup.
-            assert A.evaluate(me, opp, moves, legacy) == A.evaluate(me, opp, moves, V13_W)
+            # The per-empties lookup of expanded phase rows equals the 3-row phase lookup;
+            # Round 8 engines add their shape-pattern term (rows 10-19, 65-row tables only),
+            # which an all-zero 65-row table isolates.
+            pattern = A.evaluate(me, opp, moves, np.zeros((65, 11), np.int64)) if patterns else 0
+            assert A.evaluate(me, opp, moves, legacy) == A.evaluate(me, opp, moves, V13_W) + pattern
             empties = 64 - bin(int(me | opp)).count("1")
             for depth in (1, 2, 3, 4):
-                assert search(me, opp, depth, legacy) == search(me, opp, depth, V13_W)
+                if not (patterns and 10 <= empties - depth <= 19):
+                    assert search(me, opp, depth, legacy) == search(me, opp, depth, V13_W)
                 # Row isolation: every leaf of a search has empties - depth empties (passes
                 # are free), so randomising all other rows changes neither value nor tree.
                 noisy = noise.integers(-50, 50, size=W.shape).astype(np.int64)

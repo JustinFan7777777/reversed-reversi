@@ -743,3 +743,50 @@ behavior of the normal timed search and not full-game wins or losses.
   endgame already makes few outcome errors).
 - The midgame decides the losses. The best-supported lead is pattern features on the
   exact rows 10-20 (the leaves of the 25-35-empties decisions).
+
+## Round 8 — shape patterns in the exact rows (v18, Claude), 2026-10-21/22
+
+### Decision
+
+- **v18 passes every gate of the frozen protocol** (`versions/round8_protocol.md`) and is
+  replaced v14 as `ai.py` on 2026-10-22 (user-approved); the platform upload and
+  usability check are pending. Record: `versions/round8_validation.json`.
+
+### Change
+
+- Rows 10-19 of the weight table add two shape patterns read from the side to move:
+  edge plus both X squares (3^10) and the 3x3 corner block (3^9), each shared by its four
+  symmetric instances and folded by mirror image. Each row keeps its own 11 feature
+  weights; pattern tables are shared within the buckets 10-13, 14-16 and 17-19.
+- Fit (`tools/fit_patterns.py`): ridge on 8 x exact margin, features centred per row,
+  strength chosen on a validation fifth of train, integer scale chosen on train.
+  Data (`tools/build_exact_rows.py`): 3,000 self-play games, 30,000 exact positions,
+  test = game id % 5 == 0. Build: `tools/build_v18.py` (deterministic from v14 + fit).
+- Tables are embedded as 16,516 nonzero "index value" pairs (file 167 KiB) and expanded
+  at import into int8 lookup tables. An int64/int32 table made Numba's JIT warm-up grow
+  by 96 MB (import + init 101 MB); int8 brings it back to v14's level.
+
+### Results
+
+- Stage A (test games, opened once): within-row ranking 0.882 vs v14 0.851, +3.2 points,
+  game-bootstrap 95% [+2.7, +3.7]; +2.0 to +2.7 at 10-16, +4.5 to +5.2 at 17-19 empties.
+- Stage B: engine equals an independent reference on 10,000 pattern-row positions;
+  other rows and legacy tables equal v14; 15/15 suites pass; node rate 0.857x v14
+  (mean depth at 2 s 13.57 vs 13.73); startup 0.09 + 1.02 s; memory as v14; timing
+  stress maximum 4.003 s over 14 cases.
+- Stage C, v18 vs v14 (fresh seeds, all games normal):
+
+| Budget | Games | W/D/L | Score | Paired 95% |
+|---|---:|---:|---:|---:|
+| 0.4 s | 100 | 49/12/39 | 0.550 | [0.510, 0.595] |
+| 0.8 s | 100 | 51/8/41 | 0.550 | [0.495, 0.610] |
+| pooled | 200 | | 0.550 | [0.515, 0.588] |
+| 2.0 s | 50 | 27/7/16 | 0.610 | [0.520, 0.700] |
+
+### Limitations
+
+- All evidence is self-play against v14 (patterns fitted on v14 self-play); platform
+  opponents and the full 4 s budget are not measured. Patterns touch only rows 10-19;
+  the opening/midgame rows (20-64) are still v14's.
+- Next: the same recipe one bucket further out (rows 20-24, labels by exact outcome or
+  bootstrapped search), or patterns with more data at rows 10-19.

@@ -1,0 +1,302 @@
+{
+ "date": "2026-10-21/22",
+ "branch": "claude/v18-patterns",
+ "base_commit": "7fb3c1e",
+ "protocol": "versions/round8_protocol.md",
+ "protocol_sha256": "00068420c0e35182a120acdcf94ae17fe4ccee115d4a9a20795d02e8e58ba2c6",
+ "active_submission": "ai.py == versions/v14_round4_fitted_end_ai.py (unchanged pending user approval)",
+ "candidate": "versions/v18_patterns_candidate_ai.py",
+ "candidate_sha256": "7bb4ed79d5abd8c5c03abdbee03ddedaf2ad01a4a712b489f58ebbecb4c338cd",
+ "build": "tools/build_v18.py artifacts/claude_round8/fit_frozen.json (deterministic from v14 + frozen fit)",
+ "fit_frozen_sha256": "b2eda40fd834b962ed1a0dc424fe2322300948958873b939183e698abce1239c",
+ "strategy_accepted": true,
+ "decision": "All protocol gates passed; v18 recommended to replace v14 subject to the user's approval and platform usability check.",
+ "data": {
+  "games": 3000,
+  "positions": 30000,
+  "train": 24000,
+  "test": {
+   "model": 0.8823777592692125,
+   "v14": 0.8505004567280927,
+   "diff": 0.031877302541119756,
+   "diff_ci95": [
+    0.026809859470854645,
+    0.03729181711095818
+   ],
+   "by_row": {
+    "10": {
+     "model": 0.8770784159454498,
+     "v14": 0.8513506425386834
+    },
+    "11": {
+     "model": 0.8721733759839653,
+     "v14": 0.8456157830644363
+    },
+    "12": {
+     "model": 0.8753706087594727,
+     "v14": 0.8494265393733581
+    },
+    "13": {
+     "model": 0.8775596946707114,
+     "v14": 0.8544067214365149
+    },
+    "14": {
+     "model": 0.8769136736713429,
+     "v14": 0.8507014378019675
+    },
+    "15": {
+     "model": 0.885402578930187,
+     "v14": 0.8655272116774705
+    },
+    "16": {
+     "model": 0.8869162474277287,
+     "v14": 0.8637614331267743
+    },
+    "17": {
+     "model": 0.8908090207327596,
+     "v14": 0.8385165232398144
+    },
+    "18": {
+     "model": 0.8907083104852352,
+     "v14": 0.8396384361400521
+    },
+    "19": {
+     "model": 0.8908456660852725,
+     "v14": 0.8460598388818564
+    }
+   },
+   "gate_pass": true
+  },
+  "seeds": "18000000+",
+  "minutes_on_6_workers": 66
+ },
+ "stage_a": {
+  "buckets": {
+   "10-13": {
+    "validation": [
+     [
+      0.8745021750781539,
+      0.001
+     ],
+     [
+      0.8756243862909092,
+      0.01
+     ],
+     [
+      0.8644578642863204,
+      0.1
+     ],
+     [
+      0.8559644816811923,
+      1.0
+     ],
+     [
+      0.8329528642626679,
+      10.0
+     ],
+     [
+      0.7937972874090302,
+      100.0
+     ]
+    ],
+    "strength": 0.01,
+    "integer_scale": 4,
+    "train_acc_v14": 0.8587282116874164,
+    "train_acc_model": 0.8961076641693541
+   },
+   "14-16": {
+    "validation": [
+     [
+      0.8855763417358857,
+      0.001
+     ],
+     [
+      0.8908565853411323,
+      0.01
+     ],
+     [
+      0.8787693909872162,
+      0.1
+     ],
+     [
+      0.8689061359421478,
+      1.0
+     ],
+     [
+      0.8479240760651124,
+      10.0
+     ],
+     [
+      0.8120446390782435,
+      100.0
+     ]
+    ],
+    "strength": 0.01,
+    "integer_scale": 1,
+    "train_acc_v14": 0.8647706604659028,
+    "train_acc_model": 0.9057545337603822
+   },
+   "17-19": {
+    "validation": [
+     [
+      0.8859639912594554,
+      0.001
+     ],
+     [
+      0.8860424819116526,
+      0.01
+     ],
+     [
+      0.8737761856713968,
+      0.1
+     ],
+     [
+      0.865309506742034,
+      1.0
+     ],
+     [
+      0.8465009438220691,
+      10.0
+     ],
+     [
+      0.814201141940153,
+      100.0
+     ]
+    ],
+    "strength": 0.01,
+    "integer_scale": 2,
+    "train_acc_v14": 0.8432183792608519,
+    "train_acc_model": 0.9075632459023936
+   }
+  },
+  "test": {
+   "model": 0.8823777592692125,
+   "v14": 0.8505004567280927,
+   "diff": 0.031877302541119756,
+   "diff_ci95": [
+    0.026809859470854645,
+    0.03729181711095818
+   ],
+   "by_row": {
+    "10": {
+     "model": 0.8770784159454498,
+     "v14": 0.8513506425386834
+    },
+    "11": {
+     "model": 0.8721733759839653,
+     "v14": 0.8456157830644363
+    },
+    "12": {
+     "model": 0.8753706087594727,
+     "v14": 0.8494265393733581
+    },
+    "13": {
+     "model": 0.8775596946707114,
+     "v14": 0.8544067214365149
+    },
+    "14": {
+     "model": 0.8769136736713429,
+     "v14": 0.8507014378019675
+    },
+    "15": {
+     "model": 0.885402578930187,
+     "v14": 0.8655272116774705
+    },
+    "16": {
+     "model": 0.8869162474277287,
+     "v14": 0.8637614331267743
+    },
+    "17": {
+     "model": 0.8908090207327596,
+     "v14": 0.8385165232398144
+    },
+    "18": {
+     "model": 0.8907083104852352,
+     "v14": 0.8396384361400521
+    },
+    "19": {
+     "model": 0.8908456660852725,
+     "v14": 0.8460598388818564
+    }
+   },
+   "gate_pass": true
+  }
+ },
+ "stage_b": {
+  "equality": "tests/test_patterns.py: 10,000 pattern-row evaluations equal an independent reference; 2,000 other-row/legacy positions equal v14; 120 search values equal minimax",
+  "node_rate_ratio_v18_over_v14": 0.857,
+  "mean_depth_2s": {
+   "v14": 13.73,
+   "v18": 13.57
+  },
+  "startup_seconds": {
+   "import_": 0.09,
+   "init": 1.02
+  },
+  "memory_mb": {
+   "note": "3 runs each, bench_memory",
+   "v14_import_plus_init": "2.8+73.8",
+   "v18_import_plus_init": "4.6-7.5 + 71.7-72.5",
+   "counted_delta": "0.0 peak"
+  },
+  "memory_fix": "tables stored as int8: an int64/int32 global table made Numba's init growth +96 MB (import+init 101 MB)",
+  "suite": "15/15 on final bytes (lint, check_engine 40, search 192, resumption 144, interface 492, fallback, terminal 9, arena limits, variants 72, advanced 48, pvs_inline, eval_table 112 (updated for the Round 8 layout), patterns, stable_edge_lookup, self-play 200 games 0 fallbacks)",
+  "timing_stress_max_seconds": 4.003
+ },
+ "stage_c": {
+  "0.4s": {
+   "games": 100,
+   "wins": 49,
+   "draws": 12,
+   "losses": 39,
+   "score": 0.55,
+   "paired_ci95": [
+    0.51,
+    0.595
+   ],
+   "max_move_seconds": 0.5102152089966694,
+   "reasons": [
+    "normal"
+   ]
+  },
+  "0.8s": {
+   "games": 100,
+   "wins": 51,
+   "draws": 8,
+   "losses": 41,
+   "score": 0.55,
+   "paired_ci95": [
+    0.495,
+    0.61
+   ],
+   "max_move_seconds": 0.8072371659945929,
+   "reasons": [
+    "normal"
+   ]
+  },
+  "pooled_0.4_0.8": {
+   "games": 200,
+   "score": 0.55,
+   "paired_ci95": [
+    0.515,
+    0.5875
+   ]
+  },
+  "2.0s": {
+   "games": 50,
+   "wins": 27,
+   "draws": 7,
+   "losses": 16,
+   "score": 0.61,
+   "paired_ci95": [
+    0.52,
+    0.7
+   ],
+   "max_move_seconds": 2.0111984579998534,
+   "reasons": [
+    "normal"
+   ]
+  },
+  "seeds": "19000000+, 19100000+, 19200000+"
+ }
+}
