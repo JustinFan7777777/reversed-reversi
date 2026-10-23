@@ -1,0 +1,46 @@
+{
+ "date": "2026-10-23",
+ "branch": "claude/v18-patterns",
+ "protocol": "versions/round10_protocol.md",
+ "protocol_sha256": "d702e95ea76277e72cf871585fb72f277486b3f315c888192535c3abbe1629cb",
+ "active_submission": "v18 (7bb4ed79)",
+ "status": "fits frozen; test set not opened yet (this file is committed before --open-test)",
+ "data": {
+  "files": {
+   "old_w0.json": "e7ee7756fbd5b2613e313cbfaa30c7b509aa35cb51ae25b4dc5d9411fdefbc09",
+   "old_w1.json": "95a0694411c86cc75c4e201ff1e5065e8818e2a326e435aca7d5111e32768f66",
+   "old_w2.json": "fc63cc112da09340897c45ed8ac180ea11522bc17ee22d0bb243d7544f5184cf",
+   "old_w3.json": "a9ce2a97f2034753f5595aa6e59bdd484f34bba23a4050927362b7a97e47c61a",
+   "old_w4.json": "b4336a2a7053513e0c9dce444646ca84359aadeae4d04bdb779dcc48d22f44f6",
+   "old_w5.json": "4ce7bb1aff1da02f8800c6a63ed1481d69b304a69d5ffffec40ba165de0d9295",
+   "old_w6.json": "18a17344e247683a914dcaff7d88d807041fd70aa83f5d4d843c0563c90d07ae",
+   "old_w7.json": "15ea2b0d0139d009907df4404c2522ef902cc07fec04c3602c1375adf84b581f"
+  },
+  "data_sha256": "5703199bf2f6c532a2b764395440cf615bc16b974e8295839f9461278ed0af4b",
+  "counts": {
+   "positions": 9000,
+   "train": 7200,
+   "validation": 1440,
+   "test": 1800
+  },
+  "labelling": "8 workers, every log ends 'worker J: 1125 records' (64,680-71,203 s each)",
+  "probe_note": "artifacts/claude_round10/probe.json (revision 1 timing probe) was deleted in the 2026-10-22 cleanup; it was a timing check only and never used"
+ },
+ "fit_frozen": {
+  "P0": {
+   "file": "artifacts/claude_round10/fit_frozen.json",
+   "sha256": "ed3aa2884abeb6d059343b381ee66d9d85e9500b9f9b758ae987cbacf917b30d",
+   "scale": 2,
+   "shapes": [
+    "edge2x",
+    "corner9"
+   ]
+  },
+  "L": {
+   "file": "artifacts/claude_round10/fit_frozen_linear.json",
+   "sha256": "54bf02af3b58d6bbc1e958b742a94dbd7825af1406f078ab317650e99760fa6c",
+   "scale": 4,
+   "shapes": []
+  }
+ }
+}
