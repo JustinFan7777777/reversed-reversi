@@ -844,3 +844,28 @@ behavior of the normal timed search and not full-game wins or losses.
 - The platform's 4 s move equals about **2 s here** (slower or shared CPU). Promotion
   matches should therefore weight 1-2 s; exact endgame solving starts about two plies
   later than local 4 s tests suggest, and the middlegame leaves fall at about 20-27 empties.
+
+## Round 10 — shape patterns at rows 20-22 (v20, Claude), 2026-10-22/24
+
+Protocol `versions/round10_protocol.md` (revisions 1-3, frozen before data); record
+`versions/round10_validation.json`.
+
+- Data: exact margins for the 9,000 Round 9 positions at 20-22 empties (3,000 games;
+  8 workers, 64,680-71,203 s each). Split by game id: 7,200 train, 1,440 validation,
+  1,800 test (600 games).
+- Fits: P0 (edge+2X 3^10, 3x3 corner 3^9, one bucket for rows 20-22; validation 0.895,
+  scale 2) and the linear-only fallback L (validation 0.880, scale 4), both frozen and
+  committed (df1dd21) before the test was opened.
+- Stage A: P0 0.885 vs v18 0.852 within-row ranking, +3.38 points [+2.53, +4.32];
+  every row +3.1 to +3.5.
+- Stage B: suite 19/19 in a repo copy; engine equals the frozen model (78,732 table
+  entries, 900 values); startup 1.20 s; import + init 80.0 MB vs v18 77.0 MB; timing
+  stress 4.004 s vs 4.002 s; node rate 0.96x standard, 0.79x leaf-heavy.
+- Stage C vs v18: 0.527 over 500 at 0.5 s and 0.532 over 500 at 1.0 s, pooled 0.530
+  [0.511, 0.549] (gate: interval above 0.5); 0.55 over 300 at 2.0 s (154W/22D/124L,
+  CI [0.513, 0.587]; gate: score >= 0.5). Maximum move 2.03 s at the 2 s budget.
+- A first Stage C run was stopped at 18:11 on 2026-10-23 when the Claude Code session
+  ended (stage 1 complete, stage 2 partial); per the pre-registered rule it is void
+  (`stage_c_p0_void_session_end`) and Stage C was rerun in full, detached with nohup.
+- The fallback L was not needed. Labelling runs at lowered priority, so side jobs slow
+  it; long runs must be detached from the agent session.

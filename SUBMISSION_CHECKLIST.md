@@ -51,7 +51,13 @@ remains unverified.
 - [x] Matches vs v14: 0.55 over 200 paired games at 0.4/0.8 s (CI [0.515, 0.588]) and 0.61 over 50 at 2 s.
 - [x] Uploaded 2026-10-22; all 10 usability cases passed (user report). Platform batch 05: 7W/3D/10L over 20 games; on the opponent/colour pairings v14 also played, +10 points net versus v14's results.
 
-## Before uploading a successor (Round 10, only if it passes every gate)
+## Round 10 v20 (shape patterns on rows 20-22)
+
+- [x] Same two shapes on rows 20-22, fitted on exact margins of 7,200 training positions (fits frozen and committed before the test); offline ranking +3.4 points [+2.5, +4.3] over v18 on 1,800 test positions.
+- [x] Stage B on the final bytes: suite 19/19, engine equals the frozen model entry by entry, startup 1.20 s, memory +3.0 MB over v18 (import + init 80 MB), timing stress maximum 4.004 s, node rate 0.96x (0.79x when every leaf is at rows 20-22).
+- [x] Matches vs v18: 0.530 over 1,000 paired games at 0.5/1.0 s (CI [0.511, 0.549]) and 0.55 over 300 at 2 s; all games normal.
+
+## Before uploading a successor (Round 10 v20 passed every gate)
 
 - [ ] Wait until Phase 1 has closed (after 2026-10-23 23:59).
 - [ ] Upload the file whose sha256 matches the promoted candidate in `versions/round10_validation.json`.

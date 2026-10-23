@@ -1,14 +1,16 @@
 # Reversed Reversi research handoff
 
-Updated: 2026-10-22 (Asia/Shanghai)
+Updated: 2026-10-24 (Asia/Shanghai)
 
 ## Active ownership
 
 - Owner: Claude, branch `claude/v18-patterns`. Codex: read only until this says complete.
 - Active upload: **v18** (`ai.py` == `versions/v18_patterns_candidate_ai.py`, sha 7bb4ed79),
-  uploaded and passed 10/10 on 2026-10-22. It stays until a successor passes every gate.
-- Status: Round 9 complete, gate failed (+0.81 vs +1.0 required), v18 retained.
-  **Round 10 approved and running** (the user's final round): frozen protocol with revisions
+  uploaded and passed 10/10 on 2026-10-22. Working `ai.py` = **v20** (sha 2abbedd9), to be
+  uploaded after Phase 1 closes.
+- Status: **Round 10 complete, v20 accepted** (Stage A +3.4 points, Stage B all gates,
+  Stage C 0.530 pooled [0.511, 0.549] and 0.55 at 2 s; `versions/round10_validation.json`).
+  Round 9 failed its gate (+0.81 vs +1.0 required). Round 10 was the user's final round: frozen protocol with revisions
   1-3 in `versions/round10_protocol.md` (P0 patterns, linear-only fallback, Stage C
   500+500 pooled then 300 at 2 s); the section below is the original proposal.
   Labelling started 2026-10-22 13:22 (8 workers; expected to finish 2026-10-23 afternoon;

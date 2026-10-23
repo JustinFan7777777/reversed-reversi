@@ -6,9 +6,10 @@ Only `ai.py` is uploaded. Course PDFs are excluded from Git.
 Every uploaded version passed **10/10 usability cases** (user reports): v05 and
 v12 (2026-10-20), v13 and v14 (2026-10-21), and v18 (2026-10-22). The working and
 uploaded `ai.py` is **v18** (sha256 7bb4ed79, equal to
-`versions/v18_patterns_candidate_ai.py`): v14's search and fitted end rows plus
-shape-pattern tables on rows 10-19 (Round 8). Round 10, patterns on rows 20-22 and the
-final planned round, is in progress; see `RESEARCH_STATUS.md`. Deadlines: Phase 1
+`versions/v18_patterns_candidate_ai.py`). The working `ai.py` is now **v20** (sha256
+2abbedd9, equal to `versions/v20_patterns_candidate_ai.py`), which passed every Round 10
+gate and is to be uploaded after Phase 1 closes: v18 plus the same shape patterns on
+rows 20-22 (Round 10, the final planned round). Deadlines: Phase 1
 (usability) 2026-10-23 23:59, Phase 2 (round-robin) 2026-11-06 23:59. The first
 platform-accepted baseline is kept in `versions/v05_platform_passed_ai.py`.
 
@@ -27,8 +28,8 @@ symlink into `.python/`, so `.python/` must not be deleted.
 
 ## Repository layout
 
-- `ai.py`: the submission (v18); only this file is uploaded.
-- `versions/`: frozen engine snapshots `v00`-`v18` (platform-accepted: v05, v12, v13,
+- `ai.py`: the submission (v20, to replace the uploaded v18); only this file is uploaded.
+- `versions/`: frozen engine snapshots `v00`-`v20` (platform-accepted: v05, v12, v13,
   v14, v18; the others are candidates and rejected experiments), round protocols
   (`roundN_protocol.md`), validation records (`roundN_validation.json`) and platform
   batch analyses.
@@ -114,7 +115,10 @@ Round 8 adds shape-pattern tables (edge plus both X squares, 3^10; 3x3 corner, 3
 rows 10-19, fitted on exact margins of 24,000 self-play positions (6,000 more held out
 for the test): +3.2 ranking points offline, 0.55 against v14 over 200 paired games at 0.4/0.8 s (CI [0.515, 0.588]) and
 0.61 at 2 s; this is v18. Round 7 (outcome-first endgame solve) and Round 9 (richer
-patterns on rows 10-19) failed their pre-registered gates. Replaying v18's platform
+patterns on rows 10-19) failed their pre-registered gates. Round 10 fits the same two
+shapes to rows 20-22 on exact margins of 7,200 positions: +3.4 ranking points on 1,800
+test positions [+2.5, +4.3]; against v18, 0.530 over 1,000 paired games at 0.5/1.0 s
+(CI [0.511, 0.549]) and 0.55 over 300 at 2 s; this is v20. Replaying v18's platform
 games shows the platform's 4 s move matches about 2 s on the development machine.
 Non-8x8 boards use an independent generic legal-move engine and a greedy choice.
 

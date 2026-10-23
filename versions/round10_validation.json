@@ -4,7 +4,7 @@
  "protocol": "versions/round10_protocol.md",
  "protocol_sha256": "d702e95ea76277e72cf871585fb72f277486b3f315c888192535c3abbe1629cb",
  "active_submission": "v18 (7bb4ed79)",
- "status": "fits frozen; test set not opened yet (this file is committed before --open-test)",
+ "status": "P0 accepted: Stage A, B and C passed; ai.py = v20",
  "data": {
   "files": {
    "old_w0.json": "e7ee7756fbd5b2613e313cbfaa30c7b509aa35cb51ae25b4dc5d9411fdefbc09",
@@ -42,5 +42,150 @@
    "scale": 4,
    "shapes": []
   }
- }
+ },
+ "candidate": "versions/v20_patterns_candidate_ai.py",
+ "candidate_sha256": "2abbedd967c26dfcf8c8e0f9d8d56bf0edb525fc53a95660ea12378e1fa0f272",
+ "build": "tools/build_v20.py artifacts/claude_round10/fit_frozen.json versions/v20_patterns_candidate_ai.py",
+ "stage_a": {
+  "file": "artifacts/claude_round10/test.json",
+  "sha256": "3cf08bb44a4d40f21be8d5eaafb80c89d6b1ea068e947e556b9fb76eb80c1df6",
+  "positions": 1800,
+  "games": 600,
+  "model": 0.8854478065981847,
+  "v18": 0.8516510106749235,
+  "diff": 0.033796795923261125,
+  "diff_ci95": [
+   0.02525566504912598,
+   0.04315793916928847
+  ],
+  "by_row": {
+   "20": {
+    "model": 0.8895623641312267,
+    "v18": 0.854473980219255
+   },
+   "21": {
+    "model": 0.8846055021227145,
+    "v18": 0.8493573459937048
+   },
+   "22": {
+    "model": 0.8821755535406125,
+    "v18": 0.8511217058118108
+   }
+  },
+  "rule": "diff >= 0.015 and 95% interval lower bound > 0",
+  "passed": true
+ },
+ "stage_b": {
+  "suite": {
+   "passed": true,
+   "commands": 19
+  },
+  "startup": {
+   "import_plus_init_seconds": [
+    1.2200000000000002,
+    1.1900000000000002,
+    1.2000000000000002
+   ],
+   "rule": "median import + __init__ <= 1.5 s",
+   "median": 1.2000000000000002,
+   "passed": true
+  },
+  "memory": {
+   "import_plus_init_mb": {
+    "v18": [
+     77.0,
+     77.10000000000001,
+     77.0
+    ],
+    "candidate": [
+     80.0,
+     80.0,
+     80.19999999999999
+    ]
+   },
+   "median_difference_mb": 3.0,
+   "rule": "median import + init within +5 MB of v18's",
+   "passed": true
+  },
+  "timing": {
+   "max_move_seconds": {
+    "v18": 4.0016429999959655,
+    "candidate": 4.003935624990845
+   },
+   "passed": true,
+   "rule": "candidate maximum <= v18's + 0.05 s and < 4.5 s"
+  },
+  "node_rate": {
+   "standard_ratio": 0.9648933791176302,
+   "leaf_heavy_ratio": 0.7856961100507601,
+   "leaf_heavy_time_ratio": 1.2851839234686029,
+   "mean_depth": {
+    "base": 13.566666666666666,
+    "candidate": 13.566666666666666
+   },
+   "rule": "standard ratio >= 0.85 (sanity check; leaf-heavy reported)",
+   "passed": true
+  },
+  "passed": true
+ },
+ "stage_c": {
+  "file": "artifacts/claude_round10/stage_c_p0/stage_c.json",
+  "pooled_short": {
+   "games": 1000,
+   "wins": 467,
+   "draws": 125,
+   "losses": 408,
+   "score": 0.5295,
+   "paired_ci95": [
+    0.511,
+    0.5485
+   ],
+   "max_move_seconds": 1.1295477500243578,
+   "gate": {
+    "rule": "pooled paired 95% interval entirely above 0.5",
+    "passed": true
+   }
+  },
+  "pooled_long": {
+   "games": 300,
+   "wins": 154,
+   "draws": 22,
+   "losses": 124,
+   "score": 0.55,
+   "paired_ci95": [
+    0.5133333333333333,
+    0.5866666666666667
+   ],
+   "max_move_seconds": 2.030316207994474,
+   "gate": {
+    "rule": "pooled score at least 0.5",
+    "passed": true
+   }
+  },
+  "by_budget": {
+   "0.5": {
+    "games": 500,
+    "max_move_seconds": 0.5484265419945586,
+    "score": 0.527
+   },
+   "1.0": {
+    "games": 500,
+    "max_move_seconds": 1.1295477500243578,
+    "score": 0.532
+   },
+   "2.0": {
+    "games": 300,
+    "max_move_seconds": 2.030316207994474,
+    "score": 0.55
+   }
+  },
+  "passed": true,
+  "void_run": {
+   "folder": "artifacts/claude_round10/stage_c_p0_void_session_end",
+   "reason": "the Claude Code session ended at 18:11 and stopped the match processes (stage 1 complete, stage 2 partial); rerun in full with the same seeds per the RESEARCH_STATUS rule, then detached with nohup",
+   "note": "all its games were normal; it scored 0.511 over 500 games at 0.5 s and 0.515 over 168 at 1.0 s"
+  }
+ },
+ "fallback_L": "not run: P0 passed every stage",
+ "platform_accepted": "pending: upload after Phase 1 closes (2026-10-23 23:59), then check 10/10 usability"
 }
