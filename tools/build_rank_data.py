@@ -237,7 +237,7 @@ def main():
     sources, data_hashes = training_sources(args.data, count, seed) if args.mode == "train" else ([], {})
     report = dict(manifest=dict(
         schema_version=1, mode=args.mode, engine=str(args.engine), engine_sha256=sha(args.engine),
-        generator_sha256=sha(__file__), protocol_sha256=sha(ROOT / "RESEARCH_STATUS.md"),
+        generator_sha256=sha(__file__), protocol_sha256=sha(ROOT / "docs/RESEARCH_STATUS.md"),
         source_data_sha256=data_hashes, requested_roots=count, seed=seed,
         budget_seconds=budget, child_seconds=args.child_seconds,
         frozen_model_sha256=sha(args.frozen_model) if args.frozen_model else None,

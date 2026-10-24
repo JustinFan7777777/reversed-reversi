@@ -1,10 +1,13 @@
 # Reversed Reversi development notes
 
-> Archive note (2026-10-22): `artifacts/` paths of Rounds 0-7 cited below (root-level logs and
-> JSON, `claude_round7/`, `codex_round5/`, `codex_round6/`, `codex_review_claude/`) now live in
-> `artifacts/archive_history.tar.xz`, together with Round 4's raw data and v18's Stage B logs.
-> Restore with `tar -xJkf artifacts/archive_history.tar.xz` from the repo root. The active
-> engine is v18 (Round 8); the status section below is the 2026-10-21 snapshot.
+> Full lab notebook, in the order the work happened. For the condensed story see
+> `DEVELOPMENT.md`; for the final status see `RESEARCH_STATUS.md` (both in `docs/`).
+> Paths: this file moved from the repo root to `docs/` at the project close (2026-10-24);
+> older records and tools that cite `NOTES.md` mean this file. Every `artifacts/` path cited
+> below (ignored by Git) is inside `artifacts/archive_history.tar.xz`; restore it with
+> `tar -xJkf artifacts/archive_history.tar.xz` from the repo root. Platform opponents are
+> anonymised as `oppNN` (numbered by first appearance); the original replays stay local.
+> The final engine is v20 (Round 10); the status section below is the 2026-10-21 snapshot.
 
 ## Status — 2026-10-21
 
@@ -869,3 +872,25 @@ Protocol `versions/round10_protocol.md` (revisions 1-3, frozen before data); rec
   (`stage_c_p0_void_session_end`) and Stage C was rerun in full, detached with nohup.
 - The fallback L was not needed. Labelling runs at lowered priority, so side jobs slow
   it; long runs must be detached from the agent session.
+
+## Platform batch 06 — v20, 2026-10-24
+
+- 20 games (games 51-60, both colours) against 9 opponents, several of them chosen among the
+  strongest on the platform: 4W/2D/14L. All games terminal, every placement legal
+  (`artifacts/platform_batch06/replay_audit_v20.json`, archived).
+- Exact audit of all 141 own decisions at <= 14 empties: zero outcome errors, zero margin
+  regret. Across the six batches (120 games) the same audit covers 841 decisions with zero
+  outcome errors (two one-disc margin slips by v05 in batch 01).
+- On the opponent/colour pairs v18 also played (batch 05): net 0 points (one better, two
+  worse, one equal); ten games cannot separate the versions. The paired local evidence
+  (Round 10 Stage C) stands.
+
+## Project close — 2026-10-24
+
+- v20 stays uploaded for the Phase 2 round-robin (deadline 2026-11-06 23:59). No further
+  rounds: gains per round had shrunk to a few percent, rows beyond 22 cannot be labelled
+  exactly, and another round would need about two days of compute plus a fresh upload.
+- Repository tidied: docs moved to `docs/` (this notebook, `RESEARCH_STATUS.md`,
+  `SUBMISSION_CHECKLIST.md`, new `DEVELOPMENT.md`); Rounds 8-10 data and the batch 05/06
+  audits packed into `artifacts/archive_history.tar.xz` (artifacts 20 MB -> 3.7 MB);
+  `versions/sha256.json` refreshed (27 files, includes v20).

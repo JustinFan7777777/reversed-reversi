@@ -1,6 +1,6 @@
 # Phase 1 submission checklist
 
-Local validation date: 2026-10-22. **v12, v13, v14 and v18 each passed all 10 usability cases (user reports); v18 is uploaded (since 2026-10-22).**
+Local validation date: 2026-10-24. **v12, v13, v14, v18 and v20 each passed all 10 usability cases (user reports); v20 is uploaded (since 2026-10-24) and is the final submission.**
 Baseline `versions/v05_platform_passed_ai.py` passed all 10 cases on 2026-10-20.
 
 - [x] Single `ai.py`; class `AI` and required signatures preserved.
@@ -19,10 +19,10 @@ Baseline `versions/v05_platform_passed_ai.py` passed all 10 cases on 2026-10-20.
 - [x] Round 2: 72 TT/minimax comparisons, 48 bound/resume checks, and 139 exact platform-position oracles passed.
 - [x] Upload Round 2's `ai.py` (v12) and confirm all 10 usability cases again (user report).
 - [x] Use `playto` to validate the new version: 20 complete traces from 10 opponents, 11 wins / 3 draws / 6 losses.
-- [ ] Keep a stable passing submission through 2026-10-23 23:59 (v18 passing since 2026-10-22); upload nothing new before Phase 1 closes.
+- [x] Keep a stable passing submission through 2026-10-23 23:59 (v18 passing since 2026-10-22); nothing new was uploaded before Phase 1 closed.
 
 Local timing and memory observations are in `NOTES.md`. Usability acceptance of all
-five uploads (v05, v12, v13, v14, v18) is confirmed by user reports; final course rank
+six uploads (v05, v12, v13, v14, v18, v20) is confirmed by user reports; final course rank
 remains unverified.
 
 ## Round 3 v13 (Phase 2 candidate, validated locally)
@@ -62,6 +62,6 @@ remains unverified.
 - [x] Wait until Phase 1 has closed (after 2026-10-23 23:59).
 - [x] Upload the file whose sha256 matches the promoted candidate in `versions/round10_validation.json`.
 - [x] Confirm all 10 usability cases: v20 uploaded 2026-10-24, 10/10 passed (user report).
-- [ ] Use `playto` against known opponents before Auto Play; keep the replays.
-- [ ] Roll back to `versions/v18_patterns_candidate_ai.py` if the platform shows any problem.
-- [ ] The upload live at 2026-11-06 23:59 plays the round-robin.
+- [x] `playto` against strong opponents: platform batch 06, 20 games (4W/2D/14L), all normal, no endgame outcome errors; replays kept.
+- [x] No platform problem found, so no rollback (target would be `versions/v18_patterns_candidate_ai.py`).
+- [ ] Leave v20 uploaded: the upload live at 2026-11-06 23:59 plays the round-robin.

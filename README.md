@@ -1,51 +1,100 @@
 # Reversed Reversi AI
 
-Single-file submission for the Fall 2026 Project 1. Fewer own discs wins.
-Only `ai.py` is uploaded. Course PDFs are excluded from Git.
+A single-file game AI for **Reversed Reversi** (anti-Othello: the player with *fewer*
+discs at the end wins). It was written for the Fall 2026 Artificial Intelligence course
+project at SUSTech and played on the course's online platform. There it faced a 5 s
+limit per move, 180 s per game and 100 MB of memory, with NumPy and Numba as the only
+libraries.
 
-Every uploaded version passed **10/10 usability cases** (user reports): v05 and
-v12 (2026-10-20), v13 and v14 (2026-10-21), v18 (2026-10-22) and v20 (2026-10-24). The
-working and uploaded `ai.py` is **v20** (sha256 2abbedd9, equal to
-`versions/v20_patterns_candidate_ai.py`), which passed every Round 10 gate: v18 plus the same shape patterns on
-rows 20-22 (Round 10, the final planned round). Deadlines: Phase 1
-(usability) 2026-10-23 23:59, Phase 2 (round-robin) 2026-11-06 23:59. The first
-platform-accepted baseline is kept in `versions/v05_platform_passed_ai.py`.
+The final engine, **v20** ([`ai.py`](ai.py)), is the result of 20 versions and 10
+research rounds. Every promotion had to pass a gate fixed in advance and win paired
+matches against the previous champion. The whole story is in
+**[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)**.
 
-## Environment
+## Results
 
-Tested with Python 3.10.22, NumPy 1.26.4 and Numba 0.59.1 on macOS arm64.
+| Step | Change | Score vs previous version (paired 95% CI) |
+|---|---|---|
+| v05 | Robust search, frontier feature | 0.660 vs v01 [0.565, 0.750] |
+| v12 | Transposition table, move ordering, CSO-tuned weights | 0.705 vs v05 [0.625, 0.785] |
+| v13 | PVS at every level, inline leaves | 0.630 vs v12 at 0.8 s [0.555, 0.705] |
+| v14 | Endgame rows fitted on exact margins | 0.635 vs v13 at 0.8 s [0.565, 0.705] |
+| v18 | Shape-pattern tables, rows 10–19 | 0.55 vs v14, 200 games [0.515, 0.588] |
+| v20 | Shape-pattern tables, rows 20–22 | 0.530 vs v18, 1,000 games [0.511, 0.549]; 0.55 at 2 s |
+
+Each uploaded version (v05, v12, v13, v14, v18, v20) passed all 10 platform usability
+tests. In 120 platform games, all ended normally (no timeouts or illegal moves), and an
+exact solver confirmed every one of our 841 moves at 14 or fewer empties.
+
+## How the engine works
+
+**Board and moves.** Each side is a 64-bit bitboard. Legal moves and flips come from
+shifted masks in Numba-compiled functions. Input boards of any type (lists, floats,
+strided arrays) are converted without being modified. Non-8×8 boards use a simple
+generic engine.
+
+**Search.** Negamax alpha-beta with an explicit stack instead of recursion, which
+Numba handles poorly:
+
+- iterative deepening that keeps the last completed iteration;
+- principal variation search (PVS) inside the tree and at the root;
+- a 6 MiB transposition table with full-key checks, kept across moves;
+- ordering by the cached best move, then by fewest opponent replies;
+- depth-1 nodes evaluate their leaves inline;
+- passes cost no depth, and a position where neither side can move is terminal;
+- the search reaches exact solves near the end of the game.
+
+**Time safety.** The search runs in 2,048-node slices and checks the clock between them.
+A deadline can stop it anywhere, and it returns the best completed result. The budget is
+160 s per game, at most 80% of each move's allowance, capped at 4 s. If anything goes
+wrong, the AI falls back to a legal move.
+
+**Evaluation.** A weight table with one row per number of empty squares (0–64). Each row
+weights 11 features: corners, X and C squares, edges, discs, mobility, stable edge discs,
+frontier, potential mobility, parity and a positional table. Rows 1–16 are fitted on
+exactly solved endgames. Rows 10–22 add two **shape patterns** read from the side to move:
+
+- edge + both X-squares (3^10 states);
+- the 3×3 corner block (3^9 states).
+
+Each pattern is shared by its symmetric instances. The tables were fitted by ridge
+regression on 31,200 exactly solved positions and stored as int8 to stay within memory.
+Rows with different scales are never compared, because every leaf of one search
+iteration has the same number of empties.
+
+## Repository layout
+
+```text
+ai.py            the submission (v20); the only file uploaded
+docs/            DEVELOPMENT.md (v00 → v20 story), NOTES.md (full lab notebook),
+                 RESEARCH_STATUS.md (final status), SUBMISSION_CHECKLIST.md
+versions/        every engine snapshot v00–v20, round protocols (roundN_protocol.md),
+                 validation records (roundN_validation.json), sha256.json
+tools/           arena and paired-match runner, data generation, exact labelling,
+                 fitting, builds (build_v18/v20.py), benchmarks, replay analysis
+tests/           correctness suite (minimax equality, resumable search, interface, …)
+```
+
+`tools/` and `tests/` are flat: each script finds the repository root from its own path.
+Raw data and platform replays are not in Git. The replays contain other students' IDs;
+opponents appear only as anonymous labels (`opp01` …) in the committed records.
+
+## Quick start
+
+Requires Python 3.10, NumPy 1.26.4 and Numba 0.59.1 (the platform versions).
 
 ```sh
 uv venv --python 3.10 .venv
 uv pip install --python .venv/bin/python -r requirements.txt
+
+# Play v20 against a greedy baseline, then against the original v00
+.venv/bin/python tools/arena.py ai.py tools/baseline_greedy.py --games 10 --time-out 0.5
+.venv/bin/python tools/arena.py ai.py versions/v00_ai.py --games 100 --time-out 0.1 --opening-plies 6
 ```
 
-VS Code uses `.venv/bin/python`. A project-local `.python/` interpreter was installed
-for this checkout; both it and `.venv/` are ignored by Git. `.venv/bin/python` is a
-symlink into `.python/`, so `.python/` must not be deleted.
-
-## Repository layout
-
-- `ai.py`: the submission (v20); only this file is uploaded.
-- `versions/`: frozen engine snapshots `v00`-`v20` (platform-accepted: v05, v12, v13,
-  v14, v18; the others are candidates and rejected experiments), round protocols
-  (`roundN_protocol.md`), validation records (`roundN_validation.json`) and platform
-  batch analyses.
-- `tools/` (data, fitting, benchmark and match scripts) and `tests/` (correctness
-  checks, run by the Validate list below). Keep both folders flat: every script finds
-  the repo as `Path(__file__).resolve().parent.parent` and imports siblings by name.
-- `artifacts/` (ignored by Git): `claude_round8/`, `claude_round9/`, `claude_round10/`
-  (live Round 10 data), `platform_batch05/`, and `platform_logs/`: every downloaded
-  platform replay, one zip per upload (`batch01_v05` ... `batch05_v18`, games 01-50,
-  readable by `tools/analyze_replays.py`). Replays name other students' IDs, so they stay
-  out of Git. Everything older, including the
-  Round 4 raw data behind v14 and Codex's Round 0-6 outputs, is packed in
-  `artifacts/archive_history.tar.xz` with a manifest. Restore it from the repo root
-  with `tar -xJkf artifacts/archive_history.tar.xz` (`-k` never overwrites newer files).
-- `NOTES.md`: full research log. `RESEARCH_STATUS.md`: Claude/Codex handoff and the
-  active protocol. `SUBMISSION_CHECKLIST.md`: platform checklist.
-- `Project Requirements/`: course PDFs (ignored by Git; only `2026Fall人工智能PROJECT1.pdf`
-  is binding, the others are lecture references).
+The arena plays opening pairs with colours exchanged and enforces the platform rules:
+the full legal-move list, input immutability, 5 s per move, a separate 5 s for import and
+initialisation, and 180 s per player. It reports a paired-bootstrap confidence interval.
 
 ## Validate
 
@@ -71,126 +120,15 @@ symlink into `.python/`, so `.python/` must not be deleted.
 .venv/bin/python tools/check_engine.py --games 200 --self-play --time-out 0.005
 ```
 
-The RSS benchmark supports Linux `/proc` and macOS `ps`; a restricted sandbox may
-require permission to run `ps`. Tiny timeouts above test correctness and recovery,
-not competition strength. All development tools enable `DEBUG_RAISE`.
+The tests check the search against unpruned minimax, check that interrupted and resumed
+searches give identical results, and compare the pattern engines entry by entry with
+reference implementations. Tiny timeouts test correctness and recovery, not strength.
+The memory benchmark uses Linux `/proc` or macOS `ps`.
 
-```sh
-.venv/bin/python tools/arena.py ai.py tools/baseline_random.py --games 6 --time-out 0.5
-.venv/bin/python tools/arena.py ai.py tools/baseline_greedy.py --games 10 --time-out 0.5
-.venv/bin/python tools/arena.py ai.py versions/v00_ai.py --games 100 --time-out 0.1 --opening-plies 6 --json artifacts/comparison.json
-```
+## Acknowledgements
 
-Opening pairs share a seed and exchange colors. The arena checks the full move set,
-input immutability, per-move limits, separate 5-second import/initialization allowances,
-and independent 180-second limits for each player.
-Its paired-bootstrap confidence intervals resample opening pairs together.
-The bounded experiment scripts explicitly treat their millisecond search settings
-as soft compute budgets, while retaining the official 5-second hard limit and
-recording each overrun. The arena CLI honors `time_out` as a hard limit by default.
-
-## Search and experiments
-
-The stable search uses uint64 bitboards and an explicit-stack negamax alpha-beta
-implementation. Iterative deepening keeps the last completed result. Search yields
-about every 2048 nodes (an inline depth-1 node may add its leaves first) so Python
-can check elapsed time. Passes do not spend depth;
-both players unable to move is terminal, even with empty squares remaining.
-The candidate uses a fixed 6 MiB transposition table with full-key checks, retained
-across turns and invalidated when weights change. Ordering favors cached moves and
-uses opponent mobility. The opening and middle-game weights (seven active controls)
-were tuned offline with CSO; the optimizer is not part of the submission. The earlier
-SPSA pilot was rejected.
-Round 3 enables PVS inside the tree and at the root (0.56x the nodes at depth 11 with
-identical values), and depth-1 nodes evaluate their leaves inline (same tree, about
-1.6x faster). Against v12 over 100 paired games each, v13 scored 0.640 at 0.4 s and
-0.630 at 0.8 s of search per move (both paired CIs above 0.5) and 0.500 at 0.2 s.
-Round 4 replaces the end-phase row with one row per empties count 1-16, fitted by
-ridge regression on exact final margins from 1,200 self-play games. Against v13 over
-100 paired games each, v14 scored 0.635 at 0.4 s and at 0.8 s (CIs above 0.5) and
-0.565 at 2 s (CI [0.50, 0.63], inconclusive); the real 4 s budget is unmeasured.
-Round 8 adds shape-pattern tables (edge plus both X squares, 3^10; 3x3 corner, 3^9) to
-rows 10-19, fitted on exact margins of 24,000 self-play positions (6,000 more held out
-for the test): +3.2 ranking points offline, 0.55 against v14 over 200 paired games at 0.4/0.8 s (CI [0.515, 0.588]) and
-0.61 at 2 s; this is v18. Round 7 (outcome-first endgame solve) and Round 9 (richer
-patterns on rows 10-19) failed their pre-registered gates. Round 10 fits the same two
-shapes to rows 20-22 on exact margins of 7,200 positions: +3.4 ranking points on 1,800
-test positions [+2.5, +4.3]; against v18, 0.530 over 1,000 paired games at 0.5/1.0 s
-(CI [0.511, 0.549]) and 0.55 over 300 at 2 s; this is v20. Replaying v18's platform
-games shows the platform's 4 s move matches about 2 s on the development machine.
-Non-8x8 boards use an independent generic legal-move engine and a greedy choice.
-
-Instructor-confirmed timing rules: startup has its own 5 seconds, every move has
-5 seconds, and each player has 180 seconds per game. Conservative defaults use
-160 seconds for our move clock and at most 4.0 seconds per search.
-
-`versions/` contains reproducible snapshots. `tools/run_experiments.py` runs bounded
-feature sign sweeps and a small SPSA weight-tuning pilot. It records results and
-promotion evidence without changing `ai.py`. Results are budget-specific; training
-scores alone do not demonstrate improvement. Round 2 tools are `cso_tune.py`,
-`benchmark_search.py`, `round2_experiments.py`, and `round2_final_trials.py`.
-Round 2's final candidate scored 68/5/27 against the baseline on 100 fresh matched-opening
-games at equal 15 ms search budgets (score 70.5%, paired 95% CI 62.5%–78.5%). A
-two-game 1-second pilot scored 2/0/0; this larger-budget sample is small.
-See `NOTES.md` and `versions/round2_experiment_report.json` for all settings/results.
-
-## Platform handoff
-
-1. Upload `ai.py` and record the usability-test result (Phase 1).
-2. After the upload passes, use `playto` against several opponents and inspect replays.
-3. Return timeout/error messages and downloaded replays for local reproduction.
-   The platform does not expose match timing telemetry to the user.
-4. Keep a stable passing upload before October 23, 2026 at 23:59 (Phase 1).
-5. Upload a successor only after Phase 1 has closed, confirm 10/10 again, and use
-   `playto` before Auto Play; the upload live at November 6, 2026 23:59 plays the
-   round-robin (Phase 2).
-
-The platform must first accept an upload before practice play is available.
-Local checks do not establish platform acceptance or a round-robin rank.
-
-## Round 5 handoff
-
-At the time, `ai.py` remained the platform-accepted **v14**. Middle-game fitting did not pass
-independent confirmation: 48 wins / 10 draws / 42 losses against v14 at equal
-0.2-second search budgets, score 53%, paired 95% CI [47%, 59.5%]. No new strategy
-was promoted. `versions/v15_mid19_experimental_ai.py` preserves that rejected-for-
-promotion experiment; this result is inconclusive rather than proof of inferiority.
-
-`versions/v15_fast_features_candidate_ai.py` preserves a separate, exact-equivalent
-feature-kernel prototype: edge-chain lookups and fused adjacency computation.
-It passes value/node/cache equality checks. Small fixed-depth samples show about
-5% less time when fitted end-phase features are active, and about 1% overall.
-This is a performance prototype, not a demonstrated playing-strength improvement.
-
-```sh
-.venv/bin/python tests/test_stable_edge_lookup.py
-.venv/bin/python tools/check_common_probes.py --candidate versions/v15_mid19_experimental_ai.py
-```
-
-`tools/fit_midgame.py` reuses the 1,200-game dataset recovered into ignored
-`artifacts/codex_round5/claude_round5_inputs/` (now inside
-`artifacts/archive_history.tar.xz`; extract it first); the raw dataset is not shipped in Git.
-Rows 17-19 use exact labels; later rows use bootstrapped teacher labels. Pass an
-explicit `--data` directory when restoring the dataset elsewhere. The fitter and
-`tools/run_paired_trial.py` use one process and save source hashes. The match runner
-checks its time budget before each new opening pair; an active pair may finish
-after that deadline. Full records and the next-step rationale are in `NOTES.md` and
-`versions/round5_validation.json`.
-
-## Round 6: exact sibling ranking
-
-Read `RESEARCH_STATUS.md` first when handing this checkout between Claude and Codex.
-The fixed experiment fitted differences between legal moves rather than absolute
-board values. It did not pass its diagnostic gates; `ai.py` stayed v14.
-On 23 complete fresh holdout roots, mean static-choice margin regret fell from
-3.17 to 2.78 discs, but WDL mistakes rose from one to four. This measures static
-evaluation choices, not complete matches or v14's timed search.
-
-The committed dataset includes 75 complete roots / 611 exact sibling labels and
-105 explicitly incomplete roots. No complete parent at 20 empties was obtained.
-`versions/round6_validation.json` contains the protocol, failed gates, source
-hashes, tests, and failure analysis. Reproduce fitting without the old private data:
-
-```sh
-.venv/bin/python tools/rank_model.py --data versions/round6_rank_dataset.json --output artifacts/round6_reproduced.json
-```
+Course project for Artificial Intelligence (Fall 2026, SUSTech). The engine started
+from a framework written with an AI assistant and was developed with Anthropic's Claude
+Code and OpenAI's Codex; [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) records who did
+what in each round. The CSO tuner follows Cheng & Jin, *A Competitive Swarm Optimizer
+for Large Scale Optimization*, IEEE Trans. Cybernetics, 2015.
