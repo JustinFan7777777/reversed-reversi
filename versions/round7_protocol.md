@@ -5,7 +5,7 @@ Updated: 2026-10-21 (Asia/Shanghai)
 ## Active ownership
 
 - Owner: Claude, Round 7 outcome-first endgame, branch `claude/v17-outcome-first`
-  (from `codex/v16-move-ranking` 8d94d8d). Codex: read only until this says complete.
+  (from `codex/v16-move-ranking` 0ec2745). Codex: read only until this says complete.
 - Active upload: v14. `ai.py` stays byte-identical to
   `versions/v14_round4_fitted_end_ai.py`; the candidate lives in
   `versions/v17_outcome_first_candidate_ai.py` until every gate below passes.

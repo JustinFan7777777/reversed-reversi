@@ -1,6 +1,6 @@
 ## Active ownership
 
-- Owner: Claude, Round 9 richer patterns, branch `claude/v18-patterns` (after db7ada3).
+- Owner: Claude, Round 9 richer patterns, branch `claude/v18-patterns` (after a66624f).
   Codex: read only until this says complete.
 - Active upload: **v18** (`ai.py` == `versions/v18_patterns_candidate_ai.py`, sha 7bb4ed79),
   uploaded and passed 10/10 on 2026-10-22. It stays until a successor passes every gate.

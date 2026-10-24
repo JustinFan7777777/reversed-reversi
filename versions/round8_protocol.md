@@ -5,7 +5,7 @@ Updated: 2026-10-21 (Asia/Shanghai)
 ## Active ownership
 
 - Owner: Claude, Round 8 shape patterns in the exact rows, branch `claude/v18-patterns`
-  (from `claude/v17-outcome-first` 7fb3c1e). Codex: read only until this says complete.
+  (from `claude/v17-outcome-first` e4284c3). Codex: read only until this says complete.
 - Active upload: v14. `ai.py` stays byte-identical to
   `versions/v14_round4_fitted_end_ai.py` until every gate below passes.
 - Status: running. No new strategy has been accepted.

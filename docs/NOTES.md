@@ -18,7 +18,7 @@
 - Initial M3–M5 pilot: 10-minute single-process allowance. User subsequently authorized Round 2 implementation, experiments, and compute; main Round 2 training/matches took about 9 min 39 s, with correctness/resource checks separately measured.
 - Phase 1 deadline: 2026-10-23 23:59; Phase 2: 2026-11-06 23:59.
 - Round 3: v13 (PVS at all levels, inline leaves), validated locally against v12 and
-  committed as 1261282. The user uploaded it on 2026-10-21, before Phase 1 closed; it
+  committed as 9f12a99. The user uploaded it on 2026-10-21, before Phase 1 closed; it
   passed all 10 usability cases (user report).
 - Round 4: working ai.py is v14 (end-phase weights fitted on exact labels), validated
   against v13. Uploaded on 2026-10-21; it passed all 10 usability cases (user report)
@@ -376,7 +376,7 @@ openings, screening openings, and final confirmation openings are disjoint.
 ## Round 4 — Fitted end-phase evaluation (v14), 2026-10-20/21
 
 - User approved item 5 of the Round 3 review (end-phase weights fitted on exact labels),
-  to be adopted only on match evidence; v13 was committed first (1261282). The user also
+  to be adopted only on match evidence; v13 was committed first (9f12a99). The user also
   approved a 2 s confirmation match after a mixed depth signal at the real 4 s budget.
 - Platform: the user uploaded v13 on 2026-10-21, before Phase 1 closed, to play
   `playto` games, and then v14 the same day; both passed all 10 usability cases (user
@@ -858,7 +858,7 @@ Protocol `versions/round10_protocol.md` (revisions 1-3, frozen before data); rec
   1,800 test (600 games).
 - Fits: P0 (edge+2X 3^10, 3x3 corner 3^9, one bucket for rows 20-22; validation 0.895,
   scale 2) and the linear-only fallback L (validation 0.880, scale 4), both frozen and
-  committed (df1dd21) before the test was opened.
+  committed (8499ef2) before the test was opened.
 - Stage A: P0 0.885 vs v18 0.852 within-row ranking, +3.38 points [+2.53, +4.32];
   every row +3.1 to +3.5.
 - Stage B: suite 19/19 in a repo copy; engine equals the frozen model (78,732 table
@@ -894,3 +894,8 @@ Protocol `versions/round10_protocol.md` (revisions 1-3, frozen before data); rec
   `SUBMISSION_CHECKLIST.md`, new `DEVELOPMENT.md`); Rounds 8-10 data and the batch 05/06
   audits packed into `artifacts/archive_history.tar.xz` (artifacts 20 MB -> 3.7 MB);
   `versions/sha256.json` refreshed (27 files, includes v20).
+- History anonymised for publication with `git filter-repo`: every platform player ID became
+  `oppNN` (the user's own ID `me`) in all files and commit messages, and commit references in
+  the records were updated to the rewritten hashes. Records whose bytes changed (files that
+  named opponents) no longer match sha256 values recorded before 2026-10-24; the original,
+  un-anonymised history is kept privately. Engine snapshots, fits and `ai.py` are unchanged.

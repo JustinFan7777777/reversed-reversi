@@ -1,6 +1,6 @@
 {
   "date": "2026-10-21",
-  "base_commit": "e32e5a4caac9075070169945472738fec139c523",
+  "base_commit": "541499db07d5de7f7aa13984d3d051e810e4f3fb",
   "branch": "codex/v15-midgame",
   "compute_allowance_seconds": 2700,
   "parallel_workers": 1,

@@ -1,7 +1,7 @@
 {
  "date": "2026-10-21/22",
  "branch": "claude/v18-patterns",
- "base_commit": "7fb3c1e",
+ "base_commit": "e4284c3",
  "protocol": "versions/round8_protocol.md",
  "protocol_sha256": "00068420c0e35182a120acdcf94ae17fe4ccee115d4a9a20795d02e8e58ba2c6",
  "active_submission": "ai.py == versions/v14_round4_fitted_end_ai.py (unchanged pending user approval)",

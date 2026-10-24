@@ -1,7 +1,7 @@
 {
   "date": "2026-10-21",
   "branch": "codex/v16-move-ranking",
-  "base_commit": "a981c3b3ea76ab7b122e1916414ccf00944983f5",
+  "base_commit": "645040f9860ce3a483a76e24e90123856349a4e6",
   "status": "completed_negative_diagnostic",
   "strategy_accepted": false,
   "decision": "Keep active v14. All four preregistered diagnostic gates failed. No matches or upload were performed.",

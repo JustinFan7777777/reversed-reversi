@@ -1,7 +1,7 @@
 {
  "date": "2026-10-21",
  "branch": "claude/v17-outcome-first",
- "base_commit": "8d94d8d",
+ "base_commit": "0ec2745",
  "protocol": {
   "original": "versions/round7_protocol.md",
   "original_sha256": "33040ff5e043b6510b70ec5b81effa9c9ab565b47a482aa8ab5e81817facfae2",
