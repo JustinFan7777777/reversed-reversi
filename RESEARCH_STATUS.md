@@ -6,8 +6,8 @@ Updated: 2026-10-24 (Asia/Shanghai)
 
 - Owner: Claude, branch `claude/v18-patterns`. Codex: read only until this says complete.
 - Active upload: **v18** (`ai.py` == `versions/v18_patterns_candidate_ai.py`, sha 7bb4ed79),
-  uploaded and passed 10/10 on 2026-10-22. Working `ai.py` = **v20** (sha 2abbedd9), to be
-  uploaded after Phase 1 closes.
+  uploaded and passed 10/10 on 2026-10-22. Superseded on 2026-10-24: **v20** (sha 2abbedd9) is
+  uploaded and passed 10/10; rollback target v18.
 - Status: **Round 10 complete, v20 accepted** (Stage A +3.4 points, Stage B all gates,
   Stage C 0.530 pooled [0.511, 0.549] and 0.55 at 2 s; `versions/round10_validation.json`).
   Round 9 failed its gate (+0.81 vs +1.0 required). Round 10 was the user's final round: frozen protocol with revisions

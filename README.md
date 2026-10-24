@@ -4,11 +4,9 @@ Single-file submission for the Fall 2026 Project 1. Fewer own discs wins.
 Only `ai.py` is uploaded. Course PDFs are excluded from Git.
 
 Every uploaded version passed **10/10 usability cases** (user reports): v05 and
-v12 (2026-10-20), v13 and v14 (2026-10-21), and v18 (2026-10-22). The working and
-uploaded `ai.py` is **v18** (sha256 7bb4ed79, equal to
-`versions/v18_patterns_candidate_ai.py`). The working `ai.py` is now **v20** (sha256
-2abbedd9, equal to `versions/v20_patterns_candidate_ai.py`), which passed every Round 10
-gate and is to be uploaded after Phase 1 closes: v18 plus the same shape patterns on
+v12 (2026-10-20), v13 and v14 (2026-10-21), v18 (2026-10-22) and v20 (2026-10-24). The
+working and uploaded `ai.py` is **v20** (sha256 2abbedd9, equal to
+`versions/v20_patterns_candidate_ai.py`), which passed every Round 10 gate: v18 plus the same shape patterns on
 rows 20-22 (Round 10, the final planned round). Deadlines: Phase 1
 (usability) 2026-10-23 23:59, Phase 2 (round-robin) 2026-11-06 23:59. The first
 platform-accepted baseline is kept in `versions/v05_platform_passed_ai.py`.
@@ -28,7 +26,7 @@ symlink into `.python/`, so `.python/` must not be deleted.
 
 ## Repository layout
 
-- `ai.py`: the submission (v20, to replace the uploaded v18); only this file is uploaded.
+- `ai.py`: the submission (v20); only this file is uploaded.
 - `versions/`: frozen engine snapshots `v00`-`v20` (platform-accepted: v05, v12, v13,
   v14, v18; the others are candidates and rejected experiments), round protocols
   (`roundN_protocol.md`), validation records (`roundN_validation.json`) and platform

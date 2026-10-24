@@ -59,9 +59,9 @@ remains unverified.
 
 ## Before uploading a successor (Round 10 v20 passed every gate)
 
-- [ ] Wait until Phase 1 has closed (after 2026-10-23 23:59).
-- [ ] Upload the file whose sha256 matches the promoted candidate in `versions/round10_validation.json`.
-- [ ] Confirm all 10 usability cases; a rejected upload leaves v18 live.
+- [x] Wait until Phase 1 has closed (after 2026-10-23 23:59).
+- [x] Upload the file whose sha256 matches the promoted candidate in `versions/round10_validation.json`.
+- [x] Confirm all 10 usability cases: v20 uploaded 2026-10-24, 10/10 passed (user report).
 - [ ] Use `playto` against known opponents before Auto Play; keep the replays.
 - [ ] Roll back to `versions/v18_patterns_candidate_ai.py` if the platform shows any problem.
 - [ ] The upload live at 2026-11-06 23:59 plays the round-robin.

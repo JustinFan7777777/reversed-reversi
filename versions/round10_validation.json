@@ -187,5 +187,5 @@
   }
  },
  "fallback_L": "not run: P0 passed every stage",
- "platform_accepted": "pending: upload after Phase 1 closes (2026-10-23 23:59), then check 10/10 usability"
+ "platform_accepted": "2026-10-24: v20 uploaded after Phase 1 closed; all 10 usability cases passed (user report)"
 }
